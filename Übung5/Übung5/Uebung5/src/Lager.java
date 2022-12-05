@@ -34,8 +34,6 @@ public class Lager {
      */
     public static void legeAnArtikel (Artikel artikel) {
         ErrorCheck.checkObLagerVoll(lager);
-        ErrorCheck.checkAlreadyInLager(artikel.getArtikelNr(), lager);
-        ErrorCheck.checkLagerLeer(lager);
 
         for (int x = 0; x < lager.length; x++) {
             if (lager[x] == null) {

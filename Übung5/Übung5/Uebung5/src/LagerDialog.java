@@ -91,7 +91,6 @@ public class LagerDialog {
 
     /**
      * Verarbeitet Eingabe des Benutzers und gibt den Wert als Int zurueck
-     * @return gibt die jeweilige Nummer des Befehls wieder
      */
     public int funktionVerarbeitung() {
         int befehl = input.nextInt();
@@ -147,6 +146,10 @@ public class LagerDialog {
             }
         }
     }
+
+    /**
+     * legt ein neues Lager an
+     */
     public void lagerAnlegen() {
         if(lager != null) {
             System.out.println("Es existiert schon ein Lager. Nutzen Sie es!");
@@ -193,7 +196,7 @@ public class LagerDialog {
     }
 
     /**
-     * Erhoeht Artikelbestand um eine vom Nutzer selbst ausgewaehlte Menge
+     * entfernt einen Artikel
      */
     public void artikelEntfernen() {
         if (artikel == null) {
@@ -206,14 +209,18 @@ public class LagerDialog {
         }
     }
 
+    /**
+     * erhoeht Artikelbestand um eine vom Nutzer selbst ausgewaehlte Menge
+     */
     public void bucheZugang(){
         if (artikel == null) {
             System.out.println("Es existiert noch kein Artikel. Legen Sie einen neuen an.");
         } else {
-            System.out.println("Geben Sie einen Wert für artikelNr ein: ");
+            System.out.println("Geben Sie die Artikelnummer an: ");
             int artikelNr = input.nextInt();
 
-            System.out.println("Geben Sie einen Wert für Zugang ein: ");
+            System.out.println("Wie viel soll abgebucht werden?\n" +
+                    "Geben Sie einen Wert ein: ");
             int zugang = input.nextInt();
 
             Lager.bucheZugang(artikelNr, zugang);
@@ -226,10 +233,11 @@ public class LagerDialog {
         if (artikel == null) {
             System.out.println("Es existiert noch kein Artikel. Legen Sie einen neuen an.");
         } else {
-            System.out.println("Geben Sie einen Wert ein: ");
+            System.out.println("Geben Sie die Artikelnummer an: ");
             int artikelNr = input.nextInt();
 
-            System.out.println("Geben Sie einen Wert ein: ");
+            System.out.println("Wie viel soll abgebucht werden?\n" +
+                    "Geben Sie einen Wert ein:  ");
             int abgang = input.nextInt();
 
             Lager.bucheAbgang(artikelNr, abgang);
@@ -237,16 +245,17 @@ public class LagerDialog {
     }
 
     /**
-     * Gibt Artikel als Zeichenkette wieder
+     * erhoeht Preis eines bestimmten artikels
      */
     public void aenderePreisEinesArtikels() {
         if(artikel == null) {
             System.out.println("Es existiert noch kein Artikel. Legen Sie einen neuen an.");
         } else {
-            System.out.println("Geben Sie einen Wert für artikelNr ein: ");
+            System.out.println("Geben Sie die Artikelnummer an: ");
             int artikelNr = input.nextInt();
 
-            System.out.println("Geben Sie einen Wert für Prozent ein: ");
+            System.out.println("Um wei viel Prozent soll der Preis erhoeht werden?\n" +
+                    "Geben Sie einen Wert ein: ");
             double prozent = input.nextDouble();
 
             Lager.aenderePreisEinesArtikels(artikelNr, prozent);
@@ -254,20 +263,21 @@ public class LagerDialog {
     }
 
     /**
-     * Bearbeitung der Beschreibung (Art) des Artikels
+     * erhoeht Preis aller Artikel um einen bestimmten Prozentsatz
      */
     public void aenderePreisAllerArtikel() {
         if(artikel == null) {
             System.out.println("Es existiert noch kein Artikel. Legen Sie einen neuen an.");
         } else {
-            System.out.println("Geben Sie eine Prozent ein: ");
+            System.out.println("Um wie viel Prozent soll der Preis erhoeht werden?\n" +
+                    "Geben Sie einen Wert ein: ");
             double prozent = input.nextDouble();
             Lager.aenderePreisAllerArtikel(prozent);
         }
     }
 
     /**
-     * Aktualisiert Artikelbestand zum Beispiel bei einer Inventur eines Lagers
+     * gibt einen Artikel als String aus
      */
     public void artikelAusgeben() {
         if(artikel == null) {
@@ -280,9 +290,16 @@ public class LagerDialog {
         }
     }
 
+    /**
+     * verarbeitet und gibt alle Artikel als String aus
+     */
     public void alsString() {
         System.out.println(lager.toString());
     }
+
+    /**
+     * gibt die anzahl der im Lager vorhandenen Artikel wieder
+     */
     public void getArtikelAnzahl() {
         if(artikel == null) {
             System.out.println("Es existiert noch kein Artikel. Legen Sie einen neuen an.");
@@ -291,12 +308,12 @@ public class LagerDialog {
 
         }
     }
+
+    /**
+     * gibt die Groessse des Lagers wieder
+     */
     public void getLagerGroesse(){
-        if(artikel == null) {
-            System.out.println("Es existiert noch kein Artikel. Legen Sie einen neuen an.");
-        } else {
-            System.out.println("zahlen : " + Lager.getLagerGroesse());
-        }
+        System.out.println("Groesse des Lagers: " + Lager.getLagerGroesse());
     }
 
     /**
