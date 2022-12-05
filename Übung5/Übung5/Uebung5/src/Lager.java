@@ -3,22 +3,23 @@ import java.util.Scanner;
 public class Lager {
 
     private final int MAX_ANZAHL         = 10;
-    private Artikel[] lager;
+    private static Artikel[] lager;
 
-    public void Lager (int artikelMaxAnzahl) {
-        ErrorCheck.checkArrayGroesse(artikelMaxAnzahl);
-
-        lager = new Artikel[artikelMaxAnzahl];
-
-    }
-
-    public void Lager () {
+    public Lager () {
 
         lager = new Artikel[MAX_ANZAHL];
     }
 
-    public void legeAnArtikel (Artikel artikel) {
+    public Lager (int artikelMaxAnzahl) {
+        ErrorCheck.checkArrayGroesse(artikelMaxAnzahl);
 
+        lager = new Artikel[artikelMaxAnzahl];
+    }
+
+
+
+    public static void legeAnArtikel (Artikel artikel) {
+        //checks
         for (int x = 0; x <= lager.length; x++) {
             if (lager[x] == null) {
                 lager[x] = artikel;
@@ -27,16 +28,18 @@ public class Lager {
         }
     }
 
-    /*public void entferneArtikel (int artikelNr) {
+    public static void entferneArtikel (int artikelNr) {
+        //checks
         for (int x = 0; x <= lager.length; x++) {
             if (artikelNr == lager[x].getArtikelNr()) {
-
+                lager[x] = null;
+                break;
             }
         }
-    }*/
+    }
 
-    public void bucheZugang (int artikelNr, int zugang) {
-
+    public static void bucheZugang (int artikelNr, int zugang) {
+        //checks
         for (int x = 0; x <= lager.length; x++) {
             if (artikelNr == lager[x].getArtikelNr()) {
                 lager[x].bucheZugang(zugang);
@@ -45,8 +48,8 @@ public class Lager {
         }
     }
 
-    public void bucheAbgang (int artikelNr, int abgang) {
-
+    public static void bucheAbgang (int artikelNr, int abgang) {
+        //checks
         for (int x = 0; x <= lager.length; x++) {
             if (artikelNr == lager[x].getArtikelNr()) {
                 lager[x].bucheAbgang(abgang);
@@ -55,7 +58,8 @@ public class Lager {
         }
     }
 
-    public void aenderePreisEinesArtikels (int artikelNr, double prozent) {
+    public static void aenderePreisEinesArtikels (int artikelNr, double prozent) {
+        //checks
         for (int x = 0; x < lager.length; x++) {
             if (artikelNr == lager[x].getArtikelNr()) {
                 lager[x].setPreis(lager[x].getPreis() * (1.0 + prozent / 100.0));
@@ -64,12 +68,46 @@ public class Lager {
         }
     }
 
-    public void aenderePreisEinesArtikels (double prozent) {
-        for (int x = 0; x < lager.length; x++) {
+    public static void aenderePreisAllerArtikel (double prozent) {
+        //checks
+        for (int x = 0; x <= lager.length; x++) {
             if (lager[x] != null) {
                 lager[x].setPreis(lager[x].getPreis() * (1.0 + prozent / 100));
             }
         }
+    }
+
+    public static Artikel getArtikel(int index) {
+        // checks
+        return lager[index];
+    }
+
+    public String toString(){
+        //checks
+        String output = "";
+
+        for (int x = 0; x <= lager.length; x++) {
+            System.out.println(x);
+            if (lager != null) {
+                output += lager[x].toString() + "\n";
+            }
+        }
+        return output;
+    }
+
+    public static int getArtikelAnzahl() {
+        // checks
+        int anzahl = 0;
+
+        for (int x = 0; x <= lager.length; x++) {
+            if (lager[x] != null) {
+                anzahl += 1;
+            }
+        } return anzahl;
+    }
+
+    public static int getLagerGroesse() {
+        return lager.length;
     }
 
 

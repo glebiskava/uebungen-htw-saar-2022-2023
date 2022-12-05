@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class LagerDialog {
     public static Artikel artikel;
-    private final Scanner input;
+    private Scanner input;
     private Lager lager;
 
     /**
@@ -20,20 +20,19 @@ public class LagerDialog {
      * static: wird von allen Objekten der gleichen Klasse geteilt.
      * final: einmal die Variable initialisiert kann sie nicht mehr geaendert werden.
      */
-    private static final int LAGER_ANLEGEN = 1;
-    private static final int STANDARD_LAGER_ANLEGEN = 2;
-    private static final int OBJEKT_ANLEGEN_MIT_BESTAND = 3;
-    private static final int OBJEKT_ANLEGEN_OHNE_BESTAND = 4;
-    private static final int OBJEKT_LOESCHEN = 5;
-    private static final int BUCHE_ZUGANG = 6;
-    private static final int BUCHE_ABGANG = 7;
-    private static final int PREIS_AENDERN_EINES_ARTIKELS = 8;
-    private static final int PREIS_AENDERN_ALLER_ARTIKELS = 9;
-    private static final int GET_ARTIKEL = 10;
-    private static final int TO_STRING = 11;
-    private static final int GET_ARTIKEL_ANZAHL = 12;
-    private static final int GET_LAGER_GROESSE = 13;
-    private static final int PROGRAMM_ENDE = 0;
+    private static final int LAGER_ANLEGEN                 = 1;
+    private static final int ARTIKEL_ANLEGEN               = 2;
+    private static final int ARTIKEL_ENTFERNEN             = 3;
+    private static final int BUCHE_ZUGANG                  = 4;
+    private static final int BUCHE_ABGANG                  = 5;
+    private static final int PREIS_ARTIKELS_AENDERN        = 6;
+    private static final int PREIS_ALLER_ARTIKELS_AENDERN  = 7;
+    private static final int GET_ARTIKEL                   = 8;
+    private static final int TO_STRING                     = 9;
+    private static final int GET_ARTIKEL_ANZAHL            = 10;
+    private static final int GET_LAGER_GROESSE             = 11;
+
+    private static final int PROGRAMM_ENDE                 = 0;
 
     /**
      * Erstellen von leeren Objekten und einem Scannerobjekt zum Einlesen der
@@ -57,12 +56,12 @@ public class LagerDialog {
                 befehl = funktionVerarbeitung();
                 funktionAusfuehrung(befehl);
 
-            } catch (IllegalArgumentException e) {
+            } catch(IllegalArgumentException e) {
                 System.out.println(e);
-            } catch (InputMismatchException e) {
-                System.out.println("Geben Sie einen Wert ein des gewollten Datentypen ein.");
+            } catch(InputMismatchException e) {
+                System.out.println(e);
                 input.nextLine();
-            } catch (Exception e) {
+            } catch(Exception e) {
                 System.out.println(e);
                 e.printStackTrace(System.out);
             }
@@ -73,26 +72,25 @@ public class LagerDialog {
     /**
      * Gibt das Menue aus
      */
-    public void menue() {
-        System.out.print("\n\n" +
+    public void menue(){
+        System.out.print("\n\n\n" +
                 LAGER_ANLEGEN                   + ": Lager anlegen\n" +
-                STANDARD_LAGER_ANLEGEN          + ": Lager mit Standardgroesse 10 anlegen\n" +
-                OBJEKT_ANLEGEN_MIT_BESTAND      + ": Artikel anlegen mit Bestandsattribut\n" +
-                OBJEKT_ANLEGEN_OHNE_BESTAND     + ": Artikel anlegen ohne Bestandsattribut\n" +
-                OBJEKT_LOESCHEN                 + ": Artikel loeschen\n" +
-                BUCHE_ZUGANG                    + ": Artikelbestand eines bestimmten Artikels erhoehen\n" +
-                BUCHE_ABGANG                    + ": Artikelbestand eines bestimmten Artikels vermindern\n" +
-                PREIS_AENDERN_EINES_ARTIKELS    + ": Preis eines bestimmten Artikels aendern\n" +
-                PREIS_AENDERN_ALLER_ARTIKELS    + ": Preis aller Artikel aendern\n" +
-                GET_ARTIKEL                     + ": Einen bestimmten Artikel ermitteln\n" +
-                GET_ARTIKEL_ANZAHL              + ": Anzahl aller Artikel bestimmen\n" +
-                GET_LAGER_GROESSE               + ": Groesse des Lagers anzeigen\n" +
+                ARTIKEL_ANLEGEN                 + ": Artikel anlegen\n" +
+                ARTIKEL_ENTFERNEN               + ": ARTIKEL_ENTFERNEN\n"    +
+                BUCHE_ZUGANG                    + ": Zugang buchen\n" +
+                BUCHE_ABGANG                    + ": Abgang buchen\n"  +
+                PREIS_ARTIKELS_AENDERN          + ": Preis des Artikels aendern\n" +
+                PREIS_ALLER_ARTIKELS_AENDERN    + ": Preis aller artikels aendern durch einer prozent\n" +
+                GET_ARTIKEL                     + ": Get Artikel, als string\n" +
+                TO_STRING                       + ": To string, c'est censé ne rien renvoyer\n" +
+                GET_ARTIKEL_ANZAHL              + ": Get artikel anzahl\n" +
+                GET_LAGER_GROESSE               + ": Get lager groesse\n" +
                 PROGRAMM_ENDE                   + ": Dialog beenden\nGeben Sie einen Nummer ein: ");
     }
 
     /**
      * Verarbeitet Eingabe des Benutzers und gibt den Wert als Int zurueck
-     * @return Nummer des Befehls wieder
+     * @return gibt die jeweilige Nummer des Befehls wieder
      */
     public int funktionVerarbeitung() {
         int befehl = input.nextInt();
@@ -102,51 +100,209 @@ public class LagerDialog {
 
     /**
      * Fuehrt die jeweilige Funktion aus, die vom Benutzer gewaehlt wurde.
-     *
-     * @param befehl Nummer des jeweiligen Befehls
+     * @param befehl ist die Nummer des jeweiligen Befehls
      */
     public void funktionAusfuehrung(int befehl) {
-        if (befehl > GET_LAGER_GROESSE || befehl < PROGRAMM_ENDE) {
-            throw new IllegalArgumentException("Geben Sie eine der angegebenen Nummer ein!");
+        if(befehl > GET_LAGER_GROESSE || befehl < PROGRAMM_ENDE) {
+            throw new IllegalArgumentException("Keine gueltige Eingabe!");
         } else {
-            switch (befehl) {
+            switch(befehl) {
                 case LAGER_ANLEGEN:
-                    System.out.println("bite");
+                    lagerAnlegen();
                     break;
-                case STANDARD_LAGER_ANLEGEN:
-                    System.out.println("bite2");
-                    break;
-                case OBJEKT_ANLEGEN_MIT_BESTAND:
+                case ARTIKEL_ANLEGEN:
                     artikelAnlegen();
+                    break;
+                case ARTIKEL_ENTFERNEN:
+                    artikelEntfernen();
+                    break;
+                case BUCHE_ZUGANG:
+                    bucheZugang();
+                    break;
+                case BUCHE_ABGANG:
+                    bucheAbgang();
+                    break;
+                case PREIS_ARTIKELS_AENDERN:
+                    aenderePreisEinesArtikels();
+                    break;
+                case PREIS_ALLER_ARTIKELS_AENDERN:
+                    aenderePreisAllerArtikel();
+                    break;
+                case GET_ARTIKEL:
+                    artikelAusgeben();
+                    break;
+                case TO_STRING:
+                    alsString();
+                    break;
+                case GET_ARTIKEL_ANZAHL:
+                    getArtikelAnzahl();
+                    break;
+                case GET_LAGER_GROESSE:
+                    getLagerGroesse();
+                    break;
+                case PROGRAMM_ENDE:
+                    System.out.println("ENDE");
                     break;
             }
         }
     }
+    public void lagerAnlegen() {
+        if(artikel != null) {
+            System.out.println("Es existiert schon ein Artikel.");
+        } else {
 
+            System.out.println("Geben sie Ein wert für die Dimensions der Lager ein: ");
+            int size = input.nextInt();
+            input.nextLine();
+
+            if (size <= 0){
+                lager = new Lager();
+            } else {
+                lager = new Lager (size);
+            }
+            Lager.legeAnArtikel(artikel);
+        }
+    }
+    /**
+     * legt einen neuen Artikel an mit den selbstgewaehlten Werten des Benutzers.
+     */
     public void artikelAnlegen() {
-        System.out.println("Artikelnummer: ");
-        int artikelNr = input.nextInt();
-        input.nextLine();
+        if(artikel != null) {
+            System.out.println("Es existiert schon ein Artikel.");
+        } else {
+            System.out.println("Artikelnummer: ");
+            int artikelNr = input.nextInt();
+            input.nextLine();
 
-        System.out.println("Artikelart (Beschreibung): ");
-        String artikelArt = input.next();
-        input.nextLine();
+            System.out.println("Artikelart (Beschreibung): ");
+            String artikelArt = input.next();
+            input.nextLine();
 
-        System.out.println("Artikelbestand: ");
-        int artikelBestand = input.nextInt();
-        input.nextLine();
+            System.out.println("Artikelbestand: ");
+            int artikelBestand = input.nextInt();
+            input.nextLine();
 
-        System.out.println("Artikelpreis: ");
-        double artikelPreis = input.nextDouble();
-        input.nextLine();
+            System.out.println("Artikelpreis: ");
+            double artikelPreis = input.nextDouble();
+            input.nextLine();
 
-        artikel = new Artikel(artikelNr, artikelArt, artikelBestand, artikelPreis);
+            artikel = new Artikel(artikelNr, artikelArt, artikelBestand, artikelPreis);
+
+            Lager.legeAnArtikel(artikel);
+        }
     }
 
-    public static void main (String args[]) {
+    /**
+     * Erhoeht Artikelbestand um eine vom Nutzer selbst ausgewaehlte Menge
+     */
+    public void artikelEntfernen() {
+        if (artikel == null) {
+            System.out.println("Es existiert noch kein Artikel. Legen Sie einen neuen an.");
+        } else {
+            System.out.println("Geben Sie einen Wert ein: ");
+            int artikelNr = input.nextInt();
+            Lager.entferneArtikel(artikelNr);
+        }
+    }
 
+    public void bucheZugang(){
+        if (artikel == null) {
+            System.out.println("Es existiert noch kein Artikel. Legen Sie einen neuen an.");
+        } else {
+            System.out.println("Geben Sie einen Wert für artikelNr ein: ");
+            int artikelNr = input.nextInt();
+
+            System.out.println("Geben Sie einen Wert für Zugang ein: ");
+            int zugang = input.nextInt();
+
+            Lager.bucheZugang(artikelNr, zugang);
+        }
+    }
+    /**
+     * Vermindert Artikelbestand um eine vom Nutzer selbst ausgewaehlte Menge
+     */
+    public void bucheAbgang() {
+        if (artikel == null) {
+            System.out.println("Es existiert noch kein Artikel. Legen Sie einen neuen an.");
+        } else {
+            System.out.println("Geben Sie einen Wert ein: ");
+            int artikelNr = input.nextInt();
+
+            System.out.println("Geben Sie einen Wert ein: ");
+            int abgang = input.nextInt();
+
+            Lager.bucheAbgang(artikelNr, abgang);
+        }
+    }
+
+    /**
+     * Gibt Artikel als Zeichenkette wieder
+     */
+    public void aenderePreisEinesArtikels() {
+        if(artikel == null) {
+            System.out.println("Es existiert noch kein Artikel. Legen Sie einen neuen an.");
+        } else {
+            System.out.println("Geben Sie einen Wert für artikelNr ein: ");
+            int artikelNr = input.nextInt();
+
+            System.out.println("Geben Sie einen Wert für Prozent ein: ");
+            int prozent = input.nextInt();
+
+            Lager.aenderePreisEinesArtikels(artikelNr, prozent);
+        }
+    }
+
+    /**
+     * Bearbeitung der Beschreibung (Art) des Artikels
+     */
+    public void aenderePreisAllerArtikel() {
+        if(artikel == null) {
+            System.out.println("Es existiert noch kein Artikel. Legen Sie einen neuen an.");
+        } else {
+            System.out.println("Geben Sie eine Prozent ein: ");
+            double prozent = input.nextDouble();
+            Lager.aenderePreisAllerArtikel(prozent);
+        }
+    }
+
+    /**
+     * Aktualisiert Artikelbestand zum Beispiel bei einer Inventur eines Lagers
+     */
+    public void artikelAusgeben() {
+        if(artikel == null) {
+            System.out.println("Es existiert noch kein Artikel. Legen Sie einen neuen an.");
+        } else {
+            System.out.println("Geben Sie einen Wert ein: ");
+
+            int index = input.nextInt();
+            System.out.println(Lager.getArtikel(index));
+        }
+    }
+
+    public void alsString() {
+        System.out.println(lager);
+    }
+    public void getArtikelAnzahl() {
+        if(artikel == null) {
+            System.out.println("Es existiert noch kein Artikel. Legen Sie einen neuen an.");
+        } else {
+            System.out.println("Anzahl des Artikels ins Lager : " + Lager.getArtikelAnzahl());
+
+        }
+    }
+    public void getLagerGroesse(){
+        if(artikel == null) {
+            System.out.println("Es existiert noch kein Artikel. Legen Sie einen neuen an.");
+        } else {
+            System.out.println("zahlen : " + Lager.getLagerGroesse());
+        }
+    }
+
+    /**
+     * Funktion zum Starten des Dialogs
+     * @param args
+     */
+    public static void main(String args[]) {
         new LagerDialog().dialogStart();
     }
-
-
 }
