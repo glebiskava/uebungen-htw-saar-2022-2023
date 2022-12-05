@@ -35,7 +35,8 @@ public class LagerDialog {
     private static final int PROGRAMM_ENDE                 = 0;
 
     /**
-     * Erstellen von leeren Objekten und einem Scannerobjekt zum Einlesen der
+     * Erstellen von leeren Objekten und einem 1
+     * Scannerobjekt zum Einlesen der
      * Werte des Benutzers
      */
     public LagerDialog() {
@@ -80,7 +81,7 @@ public class LagerDialog {
                 BUCHE_ZUGANG                    + ": Zugang buchen\n" +
                 BUCHE_ABGANG                    + ": Abgang buchen\n"  +
                 PREIS_ARTIKELS_AENDERN          + ": Preis des Artikels aendern\n" +
-                PREIS_ALLER_ARTIKELS_AENDERN    + ": Preis aller artikels aendern durch einer prozent\n" +
+                PREIS_ALLER_ARTIKELS_AENDERN    + ": Preis aller Artikeln aendern\n" +
                 GET_ARTIKEL                     + ": Get Artikel, als string\n" +
                 TO_STRING                       + ": Ausgabe als String\n" +
                 GET_ARTIKEL_ANZAHL              + ": Get artikel anzahl\n" +
@@ -104,7 +105,7 @@ public class LagerDialog {
      */
     public void funktionAusfuehrung(int befehl) {
         if(befehl > GET_LAGER_GROESSE || befehl < PROGRAMM_ENDE) {
-            throw new IllegalArgumentException("Keine gueltige Eingabe!");
+            throw new IllegalArgumentException("Geben Sie eine der angebenen Zahlen ein!");
         } else {
             switch(befehl) {
                 case LAGER_ANLEGEN:
@@ -150,7 +151,7 @@ public class LagerDialog {
         if(lager != null) {
             System.out.println("Es existiert schon ein Lager. Nutzen Sie es!");
         } else {
-            System.out.println("Geben sie Ein wert für die Dimensions der Lager ein: ");
+            System.out.println("Geben sie die Laenge des Lagers ein: ");
             int size = input.nextInt();
             input.nextLine();
 
@@ -196,7 +197,7 @@ public class LagerDialog {
      */
     public void artikelEntfernen() {
         if (artikel == null) {
-            System.out.println("Es existiert noch kein Artikel. Legen Sie einen neuen an.");
+            System.out.println("Es existiert noch kein Artikel. Legen Sie erst einen neuen an.");
         } else {
             System.out.println("Geben Sie einen die Artikelnummer ein von \n" +
                     "dem Artikel den sie loeschen wollen: ");
@@ -246,7 +247,7 @@ public class LagerDialog {
             int artikelNr = input.nextInt();
 
             System.out.println("Geben Sie einen Wert für Prozent ein: ");
-            int prozent = input.nextInt();
+            double prozent = input.nextDouble();
 
             Lager.aenderePreisEinesArtikels(artikelNr, prozent);
         }
@@ -272,7 +273,7 @@ public class LagerDialog {
         if(artikel == null) {
             System.out.println("Es existiert noch kein Artikel. Legen Sie einen neuen an.");
         } else {
-            System.out.println("Geben Sie einen Wert ein: ");
+            System.out.println("Geben Sie einen Index ein: ");
 
             int index = input.nextInt();
             System.out.println(Lager.getArtikel(index));

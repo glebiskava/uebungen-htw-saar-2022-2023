@@ -55,4 +55,54 @@ public class ErrorCheck {
             throw new IllegalArgumentException("Das Lager ist leer. Legen Sie erst ein Artikel an!");
         }
     }
+
+    public static void checkAlreadyInLager(int artikelNr, Artikel[] artikel){
+        for (int x = 0; x < artikel.length; x++) {
+            if (artikel[x] != null && artikel[x].getArtikelNr() == artikelNr) {
+                throw new IllegalArgumentException("Die Artikelnummer " + artikelNr + " ist bereits einem anderen\n" +
+                        "zugeordnet worden.");
+            }
+        }
+    }
+
+    public static void checkIfNotAlreadyInLager(int artikelNr, Artikel[] artikel){
+        for (int i = 0; i < artikel.length; i++) {
+            if (artikel[i] != null && artikel[i].getArtikelNr() == artikelNr) {
+                return;
+            }
+        } throw new IllegalArgumentException("Die Artikelnummer " + artikelNr + " wurde keinem Artikel zugeordnet");
+    }
+
+    public static void checkObLagerVoll(Artikel[] lager) {
+        int anzahl = 0;
+        for (int x = 0; x < lager.length; x++) {
+            if (lager[x] != null ){
+                anzahl += 1;
+            }
+        }
+        if (anzahl == lager.length) {
+            throw new IllegalArgumentException("Das Lager ist voll. Loeschen Sie erst ein Artikel!");
+        }
+    }
+
+    public static void checkRangeOfIndex(int index, int laenge) {
+        if (index < 0 || index >= laenge) {
+            throw new IllegalArgumentException("Die Groesse des Lagers wird überschritten" + "\n"
+                    + " Er muss zwischen 0 und " + (laenge - 1) + " liegen.");
+        }
+    }
+
+    public static void checkNullIndex(Artikel[] lager, int index) {
+        if (lager[index] == null) {
+            throw new IllegalArgumentException("An dieser Position ist kein Artikel");
+        }
+    }
+
+    public static void checkLagerGroesse(int anzahl) {
+        if (anzahl < 1) {
+            throw new IllegalArgumentException("Das Lager muss mindestens 1 Artikel enthalten muessen.");
+        }
+    }
+
+
 }
