@@ -286,7 +286,7 @@ public class LagerDialog {
         if(artikel == null) {
             System.out.println("Es existiert noch kein Artikel. Legen Sie einen neuen an.");
         } else {
-            System.out.println("Anzahl des Artikels ins Lager : " + Lager.getArtikelAnzahl());
+            System.out.println("Anzahl der Artikel im Lager : " + Lager.getArtikelAnzahl());
 
         }
     }

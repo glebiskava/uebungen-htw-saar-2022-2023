@@ -20,7 +20,7 @@ public class Lager {
 
     public static void legeAnArtikel (Artikel artikel) {
         //checks
-        for (int x = 0; x <= lager.length; x++) {
+        for (int x = 0; x < lager.length; x++) {
             if (lager[x] == null) {
                 lager[x] = artikel;
                 break;
@@ -30,7 +30,7 @@ public class Lager {
 
     public static void entferneArtikel (int artikelNr) {
         //checks
-        for (int x = 0; x <= lager.length; x++) {
+        for (int x = 0; x < lager.length; x++) {
             if (artikelNr == lager[x].getArtikelNr()) {
                 lager[x] = null;
                 break;
@@ -40,7 +40,7 @@ public class Lager {
 
     public static void bucheZugang (int artikelNr, int zugang) {
         //checks
-        for (int x = 0; x <= lager.length; x++) {
+        for (int x = 0; x < lager.length; x++) {
             if (artikelNr == lager[x].getArtikelNr()) {
                 lager[x].bucheZugang(zugang);
                 break;
@@ -50,7 +50,7 @@ public class Lager {
 
     public static void bucheAbgang (int artikelNr, int abgang) {
         //checks
-        for (int x = 0; x <= lager.length; x++) {
+        for (int x = 0; x < lager.length; x++) {
             if (artikelNr == lager[x].getArtikelNr()) {
                 lager[x].bucheAbgang(abgang);
                 break;
@@ -70,7 +70,7 @@ public class Lager {
 
     public static void aenderePreisAllerArtikel (double prozent) {
         //checks
-        for (int x = 0; x <= lager.length; x++) {
+        for (int x = 0; x < lager.length; x++) {
             if (lager[x] != null) {
                 lager[x].setPreis(lager[x].getPreis() * (1.0 + prozent / 100));
             }
@@ -100,7 +100,7 @@ public class Lager {
         // checks
         int anzahl = 0;
 
-        for (int x = 0; x <= lager.length; x++) {
+        for (int x = 0; x < lager.length; x++) {
             if (lager[x] != null) {
                 anzahl += 1;
             }
