@@ -5,27 +5,27 @@ import java.util.Scanner;
  * Dies ist eine Klasse die zur Interaktion mit einem Benutzer dient.
  * Der Benutzer kann ein Objekt bearbeiten in dem er mit Zahlen verschiedene Methoden/Setter auswaehlt
  * @author Elisee Brand, Leopold Mittelberger
+ * @version 1.3
+ *
+ * Benutzer soll anhand von Zahlen die gewünschten input aus.
+ * Dazu werden Konstanten zu jeder Methoden und zu jedem Setter erstellt,
+ * um den Code übersichtlich zu strukturieren.
+ * static: wird von allen Objekten der gleichen Klasse geteilt.
+ * final: einmal die Variable initialisiert kann sie nicht mehr geaendert werden.
  */
 
 public class ArtikelDialog {
     private Artikel artikel;
     private Scanner input;
 
-    /**
-     * Benutzer soll anhand von Zahlen die gewünschten input aus.
-     * Dazu werden Konstanten zu jeder Methoden und zu jedem Setter erstellt,
-     * um den Code übersichtlich zu strukturieren.
-     *
-     * static: wird von allen Objekten der gleichen Klasse geteilt.
-     * final: einmal die Variable initialisiert kann sie nicht mehr geaendert werden.
-     */
-    private static final int OBJEKT_ANLEGEN = 1;
-    private static final int BUCHE_ZUGANG = 2;
-    private static final int BUCHE_ABGANG = 3;
-    private static final int TO_STRING = 4;
-    private static final int SET_ART = 5;
-    private static final int SET_BESTAND = 6;
-    private static final int PROGRAMM_ENDE = 0;
+
+    private static final int OBJEKT_ANLEGEN         = 1;
+    private static final int BUCHE_ZUGANG           = 2;
+    private static final int BUCHE_ABGANG           = 3;
+    private static final int TO_STRING              = 4;
+    private static final int SET_ART                = 5;
+    private static final int SET_BESTAND            = 6;
+    private static final int PROGRAMM_ENDE          = 0;
 
     /**
      * Erstellen von leeren Objekten und einem Scannerobjekt zum Einlesen der
@@ -48,7 +48,6 @@ public class ArtikelDialog {
                 menue();
                 befehl = funktionVerarbeitung();
                 funktionAusfuehrung(befehl);
-
             } catch(IllegalArgumentException e) {
                 System.out.println(e);
             } catch(InputMismatchException e) {
@@ -66,18 +65,17 @@ public class ArtikelDialog {
      * Gibt das Menue aus
      */
     public void menue(){
-        System.out.print(OBJEKT_ANLEGEN + ": Artikel anlegen\n" +
-                BUCHE_ZUGANG + ": Artikelbestand erhoehen\n"    +
-                BUCHE_ABGANG + ": Artikelbestand vermindern\n"  +
-                TO_STRING + ": Artikel als Zeichenkette ausgeben\n" +
-                SET_ART + ": Art(Beschreibung) des Artikels eingeben/bearbeiten\n" +
-                SET_BESTAND + ": Bestand aktualisieren\n" +
-                PROGRAMM_ENDE        + ": Dialog beenden\nGeben Sie einen Nummer ein: ");
+        System.out.print(OBJEKT_ANLEGEN         + ": Artikel anlegen\n" +
+                BUCHE_ZUGANG                    + ": Artikelbestand erhoehen\n"    +
+                BUCHE_ABGANG                    + ": Artikelbestand vermindern\n"  +
+                TO_STRING                       + ": Artikel als Zeichenkette ausgeben\n" +
+                SET_ART                         + ": Art(Beschreibung) des Artikels eingeben/bearbeiten\n" +
+                SET_BESTAND                     + ": Bestand aktualisieren\n" +
+                PROGRAMM_ENDE                   + ": Dialog beenden\nGeben Sie einen Nummer ein: ");
     }
 
     /**
      * Verarbeitet Eingabe des Benutzers und gibt den Wert als Int zurück
-     * @return gibt die jeweilige Nummer des Befehls wieder
      */
     public int funktionVerarbeitung() {
         int befehl = input.nextInt();
@@ -90,31 +88,24 @@ public class ArtikelDialog {
      * @param befehl ist die Nummer des jeweiligen Befehls
      */
     public void funktionAusfuehrung(int befehl) {
-        if(befehl > 6 || befehl < 0) {
+        if(befehl > SET_BESTAND || befehl < PROGRAMM_ENDE) {
             throw new IllegalArgumentException("Keine gültige Eingabe!");
         } else {
             switch(befehl) {
-                case 1:
+                case OBJEKT_ANLEGEN:
                     artikelAnlegen();
-                    break;
-                case 2:
+                case BUCHE_ZUGANG:
                     bucheZugang();
-                    break;
-                case 3:
+                case BUCHE_ABGANG:
                     bucheAbgang();
-                    break;
-                case 4:
+                case TO_STRING:
                     artikelAusgeben();
-                    break;
-                case 5:
+                case SET_ART:
                     eingabeArtikelArt();
-                    break;
-                case 6:
+                case SET_BESTAND:
                     eingabeArtikelBestand();
-                    break;
-                case 0:
+                case PROGRAMM_ENDE:
                     System.out.println("ENDE");
-                    break;
             }
         }
     }
