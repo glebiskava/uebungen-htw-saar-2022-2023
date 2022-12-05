@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class LagerDialog {
     public static Artikel artikel;
     private Scanner input;
-
+    private Lager lager;
 
     /**
      * Benutzer soll anhand von Zahlen die gewuenschten input aus.
@@ -20,18 +20,19 @@ public class LagerDialog {
      * static: wird von allen Objekten der gleichen Klasse geteilt.
      * final: einmal die Variable initialisiert kann sie nicht mehr geaendert werden.
      */
-    private static final int ARTIKEL_ANLEGEN = 1;
-    private static final int ARTIKEL_ENTFERNEN = 2;
-    private static final int BUCHE_ZUGANG = 3;
-    private static final int BUCHE_ABGANG = 4;
-    private static final int PREIS_ARTIKELS_AENDERN = 5;
-    private static final int PREIS_ALLER_ARTIKELS_AENDERN = 6;
-    private static final int GET_ARTIKEL = 7;
-    private static final int TO_STRING = 8;
-    private static final int GET_ARTIKEL_ANZAHL = 9;
-    private static final int GET_LAGER_GROESSE = 10;
+    private static final int LAGER_ANLEGEN                 = 1;
+    private static final int ARTIKEL_ANLEGEN               = 2;
+    private static final int ARTIKEL_ENTFERNEN             = 3;
+    private static final int BUCHE_ZUGANG                  = 4;
+    private static final int BUCHE_ABGANG                  = 5;
+    private static final int PREIS_ARTIKELS_AENDERN        = 6;
+    private static final int PREIS_ALLER_ARTIKELS_AENDERN  = 7;
+    private static final int GET_ARTIKEL                   = 8;
+    private static final int TO_STRING                     = 9;
+    private static final int GET_ARTIKEL_ANZAHL            = 10;
+    private static final int GET_LAGER_GROESSE             = 11;
 
-    private static final int PROGRAMM_ENDE = 0;
+    private static final int PROGRAMM_ENDE                 = 0;
 
     /**
      * Erstellen von leeren Objekten und einem Scannerobjekt zum Einlesen der
@@ -73,17 +74,17 @@ public class LagerDialog {
      */
     public void menue(){
         System.out.print("\n\n\n" +
-                ARTIKEL_ANLEGEN + ": Artikel anlegen\n" +
-                ARTIKEL_ENTFERNEN + ": ARTIKEL_ENTFERNEN\n"    +
-                BUCHE_ZUGANG + ": Zugang buchen\n" +
-                BUCHE_ABGANG + ": Abgang buchen\n"  +
-                PREIS_ARTIKELS_AENDERN + ": Preis des Artikels aendern\n" +
-                PREIS_ALLER_ARTIKELS_AENDERN + ": Preis aller artikels aendern durch einer prozent\n" +
-                GET_ARTIKEL + ": Get Artikel, als string\n" +
-                TO_STRING + ": To string, c'est censé ne rien renvoyer\n" +
-                GET_ARTIKEL_ANZAHL + ": Get artikel anzahl\n" +
-                GET_LAGER_GROESSE + ": Get lager groesse\n" +
-                PROGRAMM_ENDE + ": Dialog beenden\nGeben Sie einen Nummer ein: ");
+                ARTIKEL_ANLEGEN                 + ": Artikel anlegen\n" +
+                ARTIKEL_ENTFERNEN               + ": ARTIKEL_ENTFERNEN\n"    +
+                BUCHE_ZUGANG                    + ": Zugang buchen\n" +
+                BUCHE_ABGANG                    + ": Abgang buchen\n"  +
+                PREIS_ARTIKELS_AENDERN          + ": Preis des Artikels aendern\n" +
+                PREIS_ALLER_ARTIKELS_AENDERN    + ": Preis aller artikels aendern durch einer prozent\n" +
+                GET_ARTIKEL                     + ": Get Artikel, als string\n" +
+                TO_STRING                       + ": To string, c'est censé ne rien renvoyer\n" +
+                GET_ARTIKEL_ANZAHL              + ": Get artikel anzahl\n" +
+                GET_LAGER_GROESSE               + ": Get lager groesse\n" +
+                PROGRAMM_ENDE                   + ": Dialog beenden\nGeben Sie einen Nummer ein: ");
     }
 
     /**
@@ -141,7 +142,23 @@ public class LagerDialog {
             }
         }
     }
+    public void lagerAnlegen() {
+        if(artikel != null) {
+            System.out.println("Es existiert schon ein Artikel.");
+        } else {
 
+            System.out.println("Geben sie Ein wert für die Dimensions der Lager ein: ");
+            int size = input.nextInt();
+            input.nextLine();
+
+            if (size <= 0){
+                lager = new Lager();
+            } else {
+                lager = new Lager(size);
+            }
+            Lager.legeAnArtikel(artikel);
+        }
+    }
     /**
      * legt einen neuen Artikel an mit den selbstgewaehlten Werten des Benutzers.
      */
@@ -166,6 +183,7 @@ public class LagerDialog {
             input.nextLine();
 
             artikel = new Artikel(artikelNr, artikelArt, artikelBestand, artikelPreis);
+
             Lager.legeAnArtikel(artikel);
         }
     }
