@@ -120,9 +120,6 @@ public class ArtikelDialog {
                 case SET_PREIS:
                     eingabeArtikelPreis();
                     break;
-                case TEST:
-                    TEST();
-                    break;
                 case PROGRAMM_ENDE:
                     System.out.println("ENDE");
                     break;
@@ -228,20 +225,13 @@ public class ArtikelDialog {
             artikel.setPreis(artikelPreis);
         }
     }
-    public void TEST(){
-        if(artikel == null) {
-            System.out.println("Es existiert noch kein Artikel. Legen Sie einen neuen an.");
-        } else {
-
-            System.out.println("zahlen : " + Lager.legeAnArtikel(Artikel artikel));
-        }
-    }
 
     /**
      * Funktion zum Starten des Dialogs
      * @param args
      */
     public static void main(String args[]) {
+
         new ArtikelDialog().dialogStart();
     }
 }

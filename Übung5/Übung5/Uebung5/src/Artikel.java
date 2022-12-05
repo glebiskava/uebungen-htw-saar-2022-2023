@@ -22,7 +22,10 @@ public class Artikel {
      * Aufruf der Funktion zum Pruefen der Eingaben beim Anlegen eines Objektes
      */
     public Artikel(int artikelNr, String art, int bestand, double preis) {
-        checkArtikelAttribute(artikelNr, art, bestand, preis);
+        setArtikelNr(artikelNr);
+        setArt(art);
+        setBestand(bestand);
+        setPreis(preis);
     }
 
     /**
@@ -39,9 +42,7 @@ public class Artikel {
      * @param menge Menge die dazu gebucht werden soll
      */
     public void bucheZugang(int menge) {
-        if (menge < 0){
-            throw new IllegalArgumentException("Keine gültige Eingabe! Geben Sie einen positiven Wert ein.");
-        }
+        ErrorCheck.checkBucheZugang(menge);
         bestand += menge;
     }
 
@@ -51,10 +52,7 @@ public class Artikel {
      * @param menge Menge die abgebucht werden soll
      */
     public void bucheAbgang(int menge) {
-        if (menge < 0 || (bestand - menge) < 0){
-            throw new IllegalArgumentException("Keine gültige Eingabe! Die Differenz zwischen Bestand und Menge ist " +
-                    "negativ.");
-        }
+        ErrorCheck.checkBucheAbgang(bestand, menge);
         bestand -= menge;
     }
 
@@ -76,66 +74,45 @@ public class Artikel {
      * etwas geklaut wird, zum Beispiel
      * Bestand darf nicht negativ sein
      */
+    public void setArtikelNr(int artikelNr) {
+        ErrorCheck.checkArtikelNr(artikelNr);
+        this.artikelNr = artikelNr;
+    }
 
     public void setBestand(int bestand) {
-        if(bestand < 0) {
-            throw new IllegalArgumentException("Keine gültige Eingabe. Geben Sie einen positiven Wert ein.");
-        }
+        ErrorCheck.checkBestand(bestand);
         this.bestand = bestand;
     }
+
     public void setPreis(double preis) {
-        if(preis < 0) {
-            throw new IllegalArgumentException("Keine gültige Eingabe. Geben Sie einen positiven Wert ein.");
-        }
+        ErrorCheck.checkPreis(preis);
         this.preis = preis;
     }
 
-    /**
-     * Setter fuer Art ist hier noetig, da es sich hier um eine Beschreibung handelt die geaendert werden kann.
-     * Darf kein leerer String sein
-     */
-
     public void setArt(String art) {
-        if(art.strip().isEmpty()) {
-            throw new IllegalArgumentException("Keine gültige Eingabe. Geben Sie eine Beschreibung ein.");
-        }
+        ErrorCheck.checkArt(art);
         this.art = art;
     }
+
     /**Getter fuer jedes Attribut*/
     public int getArtikelNr() {
+
         return artikelNr;
     }
 
     public String getArt() {
+
         return art;
     }
 
     public int getBestand() {
+
         return bestand;
     }
     public double getPreis(){
+
         return preis;
     }
 
-    /**
-     * Diese Funktion prueft auf fehlerhafte Eingaben
-     * @param artikelNr Nummer des Artikels, welche vierstellig sein muss und mit 1 anfangen muss sonst ist es nicht
-     * moeglich eine vierstellige Zahl einzugeben
-     * @param art Beschreibung des Artikels und darf auch Zahlen enthalten zum Beispiel: Apple Telefon, Art: IPhone 14
-     * @param bestand Anzahl der Artikel muss groeßer als 0 sein
-     */
-    public void checkArtikelAttribute(int artikelNr, String art, int bestand, double preis) {
-        if(String.valueOf(artikelNr).length() != 4 || artikelNr < 1000) {
-            throw new IllegalArgumentException("Keine gültige Eingabe. Geben Sie eine positive vierstellige Zahl ein, " +
-                    "die mit 1 anfaengt.");
-        } else if(art.strip().isEmpty()) {
-            throw new IllegalArgumentException("Keine gültige Eingabe. Geben Sie eine Beschreibung ein.");
-        } else if (bestand < 0) {
-            throw new IllegalArgumentException("Keine gültige Eingabe. Geben Sie einen positiven Wert ein");
-        }
-        this.artikelNr = artikelNr;
-        this.art = art;
-        this.bestand = bestand;
-        this.preis = preis;
-    }
+
 }

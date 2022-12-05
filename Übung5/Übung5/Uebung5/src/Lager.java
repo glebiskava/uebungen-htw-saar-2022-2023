@@ -1,65 +1,76 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
-
-/**
- *
- * @author Elisee Brand, Leopold Mittelberger
- */
 
 public class Lager {
 
-    /**
-     *
-     */
-    private int Array_Dim;
-    public int[] zahlen;
+    private final int MAX_ANZAHL         = 10;
+    private Artikel[] lager;
 
-    private int indexArray = zahlen.length;
+    public void Lager (int artikelMaxAnzahl) {
+        ErrorCheck.checkArrayGroesse(artikelMaxAnzahl);
 
+        lager = new Artikel[artikelMaxAnzahl];
 
-    /** Konstruktoren
-     * erster Konstruktor fuer Artikel(artikelNr, art und Bestand)
-     * Aufruf der Funktion zum Pruefen der Eingaben beim Anlegen eines Objektes
-     */
-    public Lager(int Array_Dim) {
-        checkArtikelAttribute(Array_Dim);
     }
 
-    /**
-     * weiter Konstruktor für Artikel(artikelNr und art)
-     */
-    //public Lager(int Array_Dim) {
-    //    this(10);
-    //}
+    public void Lager () {
 
-    public static void legeAnArtikel(Artikel artikel){
-        zahlen = new int[Array_Dim];
-
-        zahlen[indexArray + 1] = artikel.artikelNr;
+        lager = new Artikel[MAX_ANZAHL];
     }
 
-    public int entferneArtikel(int artikelNr){
-        zahlen = new int[Array_Dim];
-        for(int i = 0; i < indexArray; i++){
-            if(artikelNr == zahlen[i]){
-                if(zahlen[i + 1] == 0 || i == (indexArray - 1)){
-                    zahlen[i] = 0;
-                } else {
-                    zahlen[i] = zahlen[i + 1];
-                }
+    public void legeAnArtikel (Artikel artikel) {
+
+        for (int x = 0; x <= lager.length; x++) {
+            if (lager[x] == null) {
+                lager[x] = artikel;
+                break;
             }
         }
-    return zahlen[0];
     }
 
+    /*public void entferneArtikel (int artikelNr) {
+        for (int x = 0; x <= lager.length; x++) {
+            if (artikelNr == lager[x].getArtikelNr()) {
 
-    /**
-     * Diese Funktion prueft auf fehlerhafte Eingaben
-     */
-    public void checkArtikelAttribute(int Array_Dim) {
-        if(Array_Dim <= 0) {
-            throw new IllegalArgumentException("Keine gültige Eingabe. Der Zahl soll eine int groesser als 0 sein.");
+            }
         }
-        this.Array_Dim = Array_Dim;
+    }*/
+
+    public void bucheZugang (int artikelNr, int zugang) {
+
+        for (int x = 0; x <= lager.length; x++) {
+            if (artikelNr == lager[x].getArtikelNr()) {
+                lager[x].bucheZugang(zugang);
+                break;
+            }
+        }
     }
+
+    public void bucheAbgang (int artikelNr, int abgang) {
+
+        for (int x = 0; x <= lager.length; x++) {
+            if (artikelNr == lager[x].getArtikelNr()) {
+                lager[x].bucheAbgang(abgang);
+                break;
+            }
+        }
+    }
+
+    public void aenderePreisEinesArtikels (int artikelNr, double prozent) {
+        for (int x = 0; x < lager.length; x++) {
+            if (artikelNr == lager[x].getArtikelNr()) {
+                lager[x].setPreis(lager[x].getPreis() * (1.0 + prozent / 100.0));
+                break;
+            }
+        }
+    }
+
+    public void aenderePreisEinesArtikels (double prozent) {
+        for (int x = 0; x < lager.length; x++) {
+            if (lager[x] != null) {
+                lager[x].setPreis(lager[x].getPreis() * (1.0 + prozent / 100));
+            }
+        }
+    }
+
+
 }
