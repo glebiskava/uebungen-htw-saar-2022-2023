@@ -83,13 +83,14 @@ public class Lager {
     }
 
     public String toString(){
-        //checks
         String output = "";
 
-        for (int x = 0; x <= lager.length; x++) {
-            System.out.println(x);
-            if (lager != null) {
-                output += lager[x].toString() + "\n";
+        for (int i = 0; i < lager.length; i++) {
+            output = output + "(Position" + i + ": ";
+            if (lager[i] == null) {
+                output = output + "null" + ")\n";
+            } else {
+                output = output + lager[i].toString() + "]\n";
             }
         }
         return output;
