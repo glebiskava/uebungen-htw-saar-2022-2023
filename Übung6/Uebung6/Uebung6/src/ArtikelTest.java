@@ -72,7 +72,7 @@ public class ArtikelTest {
      * Test ungueltige Artikelnummer wird uebergeben
      */
     @Test
-    public void test_ungueltige_Uebergabe_Artikelnummer() {
+    public void test_ungueltige_Uebergabe_mit_dreistelliger_Artikelnummer_erwartet_Exception() {
         // Artikel anlegen neues Artikel-Objekt mit ungueltiger Artikelnummer
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             Artikel artikel = new Artikel(123, "Test artikel", 10, 10.0);
@@ -83,10 +83,37 @@ public class ArtikelTest {
      * Test ungueltige Uebergabe Bestand
      */
     @Test
-    public void test_ungueltige_Uebergabe_Bestand_mit_0() {
+    public void test_ungueltige_Uebergabe_Bestand_mit_minus1_erwartet_Exception() {
         // Artikel anlegen neues Artikel-Objekt mit ungueltigem Bestand
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             Artikel artikel = new Artikel(1234, "Test artikel", -1, 10.0);
         });
     }
+
+    /**
+     * Test Uebergabe negativ Abgang
+     */
+    @Test
+    public void test_ungueltige_Uebergabe_Abgang_mit_minus5_erwartet_Exception() {
+        // Artikel anlegen neues Artikel-Objekt mit ungueltigem Bestand
+        Artikel artikel = new Artikel(1234, "Test artikel", 10, 10.0);
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            artikel.bucheAbgang(-5);
+        });
+    }
+
+    /**
+     * Test Bestand wird beim Abbuchen negativ
+     */
+    @Test
+    public void test_ungueltige_Bestand_wird_nach_Abgang_negativ_mit_minusZwanzig_erwartet_Exception() {
+        // Artikel anlegen neues Artikel-Objekt mit ungueltigem Bestand
+        Artikel artikel = new Artikel(1234, "Test artikel", 10, 10.0);
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            artikel.bucheAbgang(-20);
+        });
+    }
+
 }

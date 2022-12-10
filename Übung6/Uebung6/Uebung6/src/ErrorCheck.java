@@ -68,8 +68,10 @@ public class ErrorCheck {
      */
     public static void checkBucheAbgang (int bestand, int menge) {
         if (menge < 0 || (bestand- menge) < 0){
-            throw new IllegalArgumentException("Keine gültige Eingabe! Die Differenz zwischen Bestand und Menge ist " +
-                    "negativ.");
+            throw new IllegalArgumentException("Keine gueltige Eingabe! Geben Sie eine Zahl hoeher als 0 ein.");
+
+        } else if ((bestand- menge) < 0) {
+            throw new IllegalArgumentException("Keine gueltige Eingabe! Die Differenz zwischen Bestand und Menge wird negativ.");
         }
     }
 
@@ -80,20 +82,6 @@ public class ErrorCheck {
     public static void checkLagerLeer(Artikel[] lager) {
         if (lager.length == 0){
             throw new IllegalArgumentException("Das Lager ist leer. Legen Sie erst ein Artikel an!");
-        }
-    }
-
-    /**
-     * checkt ob ein Objekt schon im Lager vorhanden ist
-     * @param artikelNr nummer des Artikels
-     * @param artikel objekt
-     */
-    public static void checkAlreadyInLager(int artikelNr, Artikel[] artikel){
-        for (int x = 0; x < artikel.length; x++) {
-            if (artikel[x] != null && artikel[x].getArtikelNr() == artikelNr) {
-                throw new IllegalArgumentException("Die Artikelnummer " + artikelNr + " ist bereits einem anderen\n" +
-                        "zugeordnet worden.");
-            }
         }
     }
 
@@ -148,16 +136,5 @@ public class ErrorCheck {
             throw new IllegalArgumentException("An dieser Position ist kein Artikel");
         }
     }
-
-    /**
-     * checkt ob die ob das Lager mindestens ein objekt enthalten kann
-     * @param anzahl groesse des objektes
-     */
-    public static void checkLagerGroesse(int anzahl) {
-        if (anzahl < 1) {
-            throw new IllegalArgumentException("Das Lager muss mindestens 1 Artikel enthalten muessen.");
-        }
-    }
-
 
 }

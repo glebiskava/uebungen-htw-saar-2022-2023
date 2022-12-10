@@ -46,7 +46,7 @@ public class LagerDialog {
      * Fehlerhafte Eingaben werden hier aufgefangen
      */
     public void dialogStart() {
-        artikel = null;
+        lager = null;
         int befehl = 0;
 
         do {
