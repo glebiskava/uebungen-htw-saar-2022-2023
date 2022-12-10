@@ -8,7 +8,7 @@ import java.util.Scanner;
  */
 
 public class LagerDialog {
-    public static Artikel artikel;
+    private Artikel artikel;
     private Scanner input;
     private Lager lager;
 

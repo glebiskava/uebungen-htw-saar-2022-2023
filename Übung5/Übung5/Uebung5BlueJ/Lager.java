@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public class Lager {
 
-    private final int MAX_ANZAHL         = 10;
-    private static Artikel[] lager;
+    private static final int MAX_ANZAHL         = 10;
+    private Artikel[] lager;
 
     /**
      * zwei konstruktoren --> einer mit waehlbarer Laenge des Arrays und ein Standardkonstruktor
@@ -32,7 +32,7 @@ public class Lager {
      * Prueft auf fehlerhafte Eingaben
      * @param artikel das angelegte objekt
      */
-    public static void legeAnArtikel (Artikel artikel) {
+    public void legeAnArtikel (Artikel artikel) {
         ErrorCheck.checkObLagerVoll(lager);
 
         for (int x = 0; x < lager.length; x++) {
@@ -49,7 +49,7 @@ public class Lager {
      * Prueft auf fehlerhafte Eingaben
      * @param artikelNr identifiaktion des Artikels
      */
-    public static void entferneArtikel (int artikelNr) {
+    public void entferneArtikel (int artikelNr) {
         ErrorCheck.checkIfNotAlreadyInLager(artikelNr, lager);
         ErrorCheck.checkArtikelNr(artikelNr);
         ErrorCheck.checkLagerLeer(lager);
@@ -68,7 +68,7 @@ public class Lager {
      * @param artikelNr identifiaktion des Artikels
      * @param zugang wie viel zugebucht werden soll
      */
-    public static void bucheZugang (int artikelNr, int zugang) {
+    public void bucheZugang (int artikelNr, int zugang) {
         ErrorCheck.checkIfNotAlreadyInLager(artikelNr, lager);
         ErrorCheck.checkArtikelNr(artikelNr);
         ErrorCheck.checkLagerLeer(lager);
@@ -87,7 +87,7 @@ public class Lager {
      * @param artikelNr identifiaktion des Artikels
      * @param abgang wie viel abgebucht werden soll
      */
-    public static void bucheAbgang (int artikelNr, int abgang) {
+    public void bucheAbgang (int artikelNr, int abgang) {
         ErrorCheck.checkIfNotAlreadyInLager(artikelNr, lager);
         ErrorCheck.checkArtikelNr(artikelNr);
         ErrorCheck.checkLagerLeer(lager);
@@ -106,7 +106,7 @@ public class Lager {
      * @param artikelNr identifiaktion des Artikels
      * @param prozent wie viel abgebucht werden soll
      */
-    public static void aenderePreisEinesArtikels (int artikelNr, double prozent) {
+    public void aenderePreisEinesArtikels (int artikelNr, double prozent) {
         ErrorCheck.checkIfNotAlreadyInLager(artikelNr, lager);
         ErrorCheck.checkArtikelNr(artikelNr);
         ErrorCheck.checkLagerLeer(lager);
@@ -124,7 +124,7 @@ public class Lager {
      * Prueft auf fehlerhafte Eingaben
      * @param prozent um wei viel prozent der Preis erhoeht oder erniedrigt werden soll
      */
-    public static void aenderePreisAllerArtikel (double prozent) {
+    public void aenderePreisAllerArtikel (double prozent) {
         ErrorCheck.checkLagerLeer(lager);
 
         for (int x = 0; x < lager.length; x++) {
@@ -139,7 +139,7 @@ public class Lager {
      * Prueft auf fehlerhafte Eingaben
      * @param index position im Lager
      */
-    public static Artikel getArtikel(int index) {
+    public Artikel getArtikel(int index) {
         ErrorCheck.checkLagerLeer(lager);
         ErrorCheck.checkNullIndex(lager, index);
         ErrorCheck.checkRangeOfIndex(index, lager.length);
@@ -170,7 +170,7 @@ public class Lager {
      * Bestimmt die aktuelle Anzahl der Artikel im Lager
      * Prueft auf fehlerhafte Eingaben
      */
-    public static int getArtikelAnzahl() {
+    public int getArtikelAnzahl() {
         ErrorCheck.checkLagerLeer(lager);
 
         int anzahl = 0;
@@ -185,7 +185,7 @@ public class Lager {
     /**
      * Bestimmt die Anzahl der Artikel, die ins Lager gelegt werden koennen
      */
-    public static int getLagerGroesse() {
+    public int getLagerGroesse() {
         return lager.length;
     }
 

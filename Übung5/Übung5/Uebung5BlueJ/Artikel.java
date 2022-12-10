@@ -11,7 +11,7 @@ public class Artikel {
      * @param art Beschreibung des Artikels
      * @param bestand Anzahl der Artikel
      */
-    public int artikelNr;
+    private int artikelNr;
     private String art;
     private int bestand;
     private double preis;
