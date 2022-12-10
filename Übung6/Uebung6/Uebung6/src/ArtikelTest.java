@@ -1,4 +1,6 @@
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
@@ -66,5 +68,25 @@ public class ArtikelTest {
         assertEquals(5, artikel.getBestand());
     }
 
+    /**
+     * Test ungueltige Artikelnummer wird uebergeben
+     */
+    @Test
+    public void test_ungueltige_Uebergabe_Artikelnummer() {
+        // Artikel anlegen neues Artikel-Objekt mit ungueltiger Artikelnummer
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Artikel artikel = new Artikel(123, "Test artikel", 10, 10.0);
+        });
+    }
 
+    /**
+     * Test ungueltige Uebergabe Bestand
+     */
+    @Test
+    public void test_ungueltige_Uebergabe_Bestand_mit_0() {
+        // Artikel anlegen neues Artikel-Objekt mit ungueltigem Bestand
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Artikel artikel = new Artikel(1234, "Test artikel", -1, 10.0);
+        });
+    }
 }
