@@ -28,13 +28,13 @@ public class ArtikelTest {
     @Test
     public void test_zweiten_Konstruktor_And_Check_For_Artikelnummer() {
         // Erstellen eines neuen Artikelobjekts mithilfe des zweiten Konstruktors
-        Artikel artikel = new Artikel(1000, "Test artikel", 0, 0.0);
+        Artikel artikel = new Artikel(1000, "Test artikel", 0, 3.0);
 
         // Pruefen, ob die Attribute des Objekts korrekt gesetzt sind
         assertEquals(1000, artikel.getArtikelNr());
         assertEquals("Test artikel", artikel.getArt());
         assertEquals(0, artikel.getBestand());
-        assertEquals(0.0, artikel.getPreis());
+        assertEquals(3.0, artikel.getPreis());
 
     }
 
