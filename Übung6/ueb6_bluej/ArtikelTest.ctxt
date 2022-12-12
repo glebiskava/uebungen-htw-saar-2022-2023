@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.target=ArtikelTest
+comment1.params=
+comment1.target=void\ test_erster_Konstruktor_And_Check_For_Artikelnummer()
+comment1.text=\r\n\ Test\ f\u00FCr\ den\ ersten\ Konstruktor\ und\ ob\ die\ korrekte\ Artikelnummer\ uebergeben\ wurde\r\n
+comment2.params=
+comment2.target=void\ test_zweiten_Konstruktor_And_Check_For_Artikelnummer()
+comment2.text=\r\n\ Test\ f\u00FCr\ den\ Konstruktor\ und\ ob\ die\ korrekte\ Artikelnummer\ uebergeben\ wurde\r\n
+comment3.params=
+comment3.target=void\ test_Buche_Zugang()
+comment3.text=\r\n\ Test\ fuer\ korrekten\ Zugang\r\n
+comment4.params=
+comment4.target=void\ test_Buche_Abgang()
+comment4.text=\r\n\ Test\ fuer\ korrekten\ Abgang\r\n
+comment5.params=
+comment5.target=void\ test_ungueltige_Uebergabe_mit_dreistelliger_Artikelnummer_erwartet_Exception()
+comment5.text=\r\n\ Test\ ungueltige\ Artikelnummer\ wird\ uebergeben\r\n
+comment6.params=
+comment6.target=void\ test_ungueltige_Uebergabe_Bestand_mit_minus1_erwartet_Exception()
+comment6.text=\r\n\ Test\ ungueltige\ Uebergabe\ Bestand\r\n
+comment7.params=
+comment7.target=void\ test_ungueltige_Uebergabe_Abgang_mit_minus5_erwartet_Exception()
+comment7.text=\r\n\ Test\ Uebergabe\ negativ\ Abgang\r\n
+comment8.params=
+comment8.target=void\ test_ungueltige_Bestand_wird_nach_Abgang_negativ_mit_minusZwanzig_erwartet_Exception()
+comment8.text=\r\n\ Test\ Bestand\ wird\ beim\ Abbuchen\ negativ\r\n
+numComments=9
