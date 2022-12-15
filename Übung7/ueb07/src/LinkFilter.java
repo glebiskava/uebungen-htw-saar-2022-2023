@@ -50,7 +50,7 @@ public class LinkFilter {
                 // um den Link und den Linktext zu trennen
                 String[] parts = link.split("=");
 
-                // Der Linktext befindet sich im zweiten Teil des Arrays
+                // Der Linktext befindet sich im zweiten Teil des Arrayss
                 //String linkText = parts[1];
                 String[] parts2 = parts[1].split(">");
 
