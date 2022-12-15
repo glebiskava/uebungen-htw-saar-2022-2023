@@ -17,7 +17,6 @@ public class LinkFilter {
         // Solange noch Text in der Eingabe ist,
         // lesen wir eine Zeile ein und suchen nach Links
         while (input.hasNextLine()) {
-            System.out.println("Geben Sie Ihren HTML ein: ");
             String line = input.nextLine();
             lineCount++;
 
@@ -40,7 +39,7 @@ public class LinkFilter {
 
                 // Verwenden Sie die Methode split() der Klasse String,
                 // um den Link und den Linktext zu trennen
-                String[] parts = link.split(">");
+                String[] parts = link.split("/>");
 
                 // Der Link selbst befindet sich im ersten Teil des Arrays
                 String linkUrl = parts[0];
