@@ -37,15 +37,25 @@ public class LinkFilter {
                 // um die Anführungszeichen aus dem Link zu entfernen
                 link = link.replace("\"", "");
 
+                // split again
+                String[] parts1 = link.split(">");
+
+                // put it in a String
+                String parts11 = parts1[1];
+
+                // split again
+                String[] linkText = parts11.split("</");
+
                 // Verwenden Sie die Methode split() der Klasse String,
                 // um den Link und den Linktext zu trennen
-                String[] parts = link.split("/>");
-
-                // Der Link selbst befindet sich im ersten Teil des Arrays
-                String linkUrl = parts[0];
+                String[] parts = link.split("=");
 
                 // Der Linktext befindet sich im zweiten Teil des Arrays
-                String linkText = parts[1];
+                //String linkText = parts[1];
+                String[] parts2 = parts[1].split(">");
+
+                // put it in a String
+                String linkUrl = parts2[0];
 
                 // Verwenden Sie die Methode length() der Klasse String,
                 // um die Länge der URL zu bestimmen
@@ -53,8 +63,8 @@ public class LinkFilter {
 
                 // Verwenden Sie die String-Formatierung,
                 // um das Ergebnis in einem lesbaren Format auszugeben
-                System.out.printf("%s: %s, Anzahl Zeichen: %d\n",
-                        linkText, linkUrl, linkUrlLength);
+
+                System.out.printf(linkText[0] + ":\t\t" + linkUrl + " Anzahl Zeichen: " + linkUrlLength + "\n");
             }
         }
 
