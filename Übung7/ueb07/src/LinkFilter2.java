@@ -8,7 +8,7 @@ public class LinkFilter2 {
         input = new Scanner(System.in);
     }
 
-    public void funktionsStart() {
+    public void funktionsStart2() {
 
         // private static final REGEX_LINK = '<a href=[]';
         // Zählvariablen für Links und Zeilen
@@ -31,16 +31,31 @@ public class LinkFilter2 {
                 linkCount++;
 
                 String link = line.substring(hrefIndex);
-                String[] premierSplit = link.split("href=[\"\']");
+                String[] premierSplit = link.split("href\s*=\s*[\"\']");
                 String premierSplit1 = premierSplit[1];
-                String[] secondSplit = premierSplit1.split("[\"\']");
+
+                System.out.println("premierSplit1 = " + premierSplit1 +"\n");
+                System.out.println("premierSplit[0] = " + premierSplit[0] + "\n");
+
+                String[] secondSplit = premierSplit1.split("[\"\']\s*");
                 String linkUrl = secondSplit[0];
-                System.out.printf("linkUrl = ", linkUrl);
+                String secondSplit1 = secondSplit[1];
+
+                System.out.println("linkUrl = " + linkUrl + "\n");
+                System.out.println("secondSplit[1] = " + secondSplit[1] + "\n\n\n\n");
+
+                String[] troisiemeSplit = secondSplit1.split(">");
+                String troisiemeSplit1 = troisiemeSplit[1];
+
+                String[] quatriemeSplit = troisiemeSplit1.split("<");
+                String linkText = quatriemeSplit[0];
+
+                int linkUrlLength = linkUrl.length();
 
                 // Verwenden Sie die String-Formatierung,
                 // um das Ergebnis in einem lesbaren Format auszugeben
                 //System.out.printf(linkText[0] + ":\t\t" + linkUrl + " Anzahl Zeichen: " + linkUrlLength + "\n");
-                //System.out.printf("%s:\t\t %s :\t\t Anzahl Zeichen: %d \n", linkText[0], linkUrl, linkUrlLength);
+                System.out.printf("%s:\t\t %s :\t\t Anzahl Zeichen: %d \n", linkText, linkUrl, linkUrlLength);
             }
         }
 
@@ -50,6 +65,6 @@ public class LinkFilter2 {
     }
 
     public static void main(String args[]) {
-        new LinkFilter().funktionsStart();
+        new LinkFilter2().funktionsStart2();
     }
 }
