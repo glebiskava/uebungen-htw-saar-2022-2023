@@ -55,6 +55,6 @@ public class LinkFilter {
      * Funktion zum Starten des Programms
      */
     public static void main(String args[]) {
-        new LinkFilter2().funktionsStart();
+        new LinkFilter().funktionsStart();
     }
 }
