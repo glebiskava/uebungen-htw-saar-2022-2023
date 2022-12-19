@@ -10,6 +10,7 @@ public class LinkFilter {
 
     public void funktionsStart() {
 
+        // private static final REGEX_LINK = '<a href=[]';
         // Zählvariablen für Links und Zeilen
         int linkCount = 0;
         int lineCount = 0;
@@ -43,8 +44,8 @@ public class LinkFilter {
                 // put it in a String
                 String parts11 = parts1[1];
 
-                // split again
-                String[] linkText = parts11.split("</");
+                // split again 
+                String[] linkText = parts11.split("<.*?/.*?[a-z]");
 
                 // Verwenden Sie die Methode split() der Klasse String,
                 // um den Link und den Linktext zu trennen
@@ -63,7 +64,8 @@ public class LinkFilter {
 
                 // Verwenden Sie die String-Formatierung,
                 // um das Ergebnis in einem lesbaren Format auszugeben
-                System.out.printf(linkText[0] + ":\t\t" + linkUrl + " Anzahl Zeichen: " + linkUrlLength + "\n");
+                //System.out.printf(linkText[0] + ":\t\t" + linkUrl + " Anzahl Zeichen: " + linkUrlLength + "\n");
+                System.out.printf("%s:\t\t %s :\t\t Anzahl Zeichen: %d \n", linkText[0], linkUrl, linkUrlLength);
             }
         }
 
