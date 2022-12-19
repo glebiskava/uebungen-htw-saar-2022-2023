@@ -9,12 +9,11 @@ import java.util.regex.Matcher;
  * @author Elisee Brand, Leopold Mittelberger
  */
 
-public class LinkFilter {
+public class LinkFilter2 {
 
     /**
      * Scanner objekt erstellen zum einlesen
      * Regex pattern als Konstante, aendert sich ja nicht
-     * Variablen fuer Anzahl der Zeilen und Zeichen
      */
     Scanner scanner = new Scanner(System.in);
     private static final String REGEX = "<a\\s+href\\s*=\\s*\"([^\"]*)\"[^>]*>(.*?)</a>";
