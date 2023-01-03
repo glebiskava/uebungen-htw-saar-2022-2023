@@ -26,3 +26,4 @@ public class Patient {
         return patientNummer + ", " + vorname + ", " + nachname;
     }
 }
+

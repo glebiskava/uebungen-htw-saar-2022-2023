@@ -31,27 +31,28 @@ public class PatientenWarteschlange {
         return patienten.poll();
     }
 
-    /*public boolean istLeer() {
+    public boolean istLeer() {
         return patienten.isEmpty();
     }
 
     public int anzahlPatienten() {
         return patienten.size();
-    }*/
+    }
 
     @Override
     public String toString() {
-        StringBuilder output = new StringBuilder();
-        output.append("Warteliste\n");
-        output.append("Patientenummer\tVorname\tNachname\n");
+        StringBuilder sb = new StringBuilder();
+        sb.append("Warteliste\n");
+        sb.append("Patientenummer\tVorname\tNachname\n");
         for (Patient patient : patienten) {
-            output.append(patient.getpatientNummer());
-            output.append("\t\t");
-            output.append(patient.getVorname());
-            output.append("\t\t");
-            output.append(patient.getNachname());
-            output.append("\n");
+            sb.append(patient.getpatientNummer());
+            sb.append("\t\t");
+            sb.append(patient.getVorname());
+            sb.append("\t\t");
+            sb.append(patient.getNachname());
+            sb.append("\n");
         }
-        return output.toString();
+        return sb.toString();
     }
+
 }
