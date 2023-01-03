@@ -23,6 +23,6 @@ public class Patient {
 
     @Override
     public String toString() {
-        return "Patient [patientNummer=" + patientNummer + ", vorname=" + vorname + ", nachname=" + nachname + "]";
+        return patientNummer + ", " + vorname + ", " + nachname;
     }
 }
