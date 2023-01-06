@@ -4,22 +4,22 @@ public class ArrayFunctions {
         double messewerteLength = messwerte.length;
         double summe = 0;
 
-        for (double messwert : messwerte) {
-            summe += messwert;
+        for(int i = 0; i < messewerteLength; i++){
+            summe += messwerte[i];
         }
         double mittelwert = summe / messewerteLength;
 
-        double naehesteMessung = Double.MAX_VALUE;
-        double weitesteMessung = Double.MIN_VALUE;
+        double nahesterWert = Double.MAX_VALUE;
+        double entferntesterWert = Double.MIN_VALUE;
 
-        for (double messwert : messwerte) {
-            if (messwert < naehesteMessung) {
-                naehesteMessung = messwert;
+        for(int j = 0; j < messewerteLength; j++){
+            if(messwerte[j] < nahesterWert){
+                nahesterWert = messwerte[j];
             }
-            if (messwert > weitesteMessung) {
-                weitesteMessung = messwert;
+            if(messwerte[j] > entferntesterWert){
+                entferntesterWert = messwerte[j];
             }
         }
-        return new Mittelwert(mittelwert, naehesteMessung, weitesteMessung);
+        return new Mittelwert(mittelwert, nahesterWert, entferntesterWert);
     }
 }

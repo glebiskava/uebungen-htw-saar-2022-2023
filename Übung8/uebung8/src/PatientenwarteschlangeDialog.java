@@ -21,14 +21,14 @@ public class PatientenwarteschlangeDialog {
 
 
             // simplement pour testeer l'exo 2, à enlever avant de submit
-            
-            //double[] messwerte = {1.0, 2.0, 3.0, 4.0, 5.0};
-            //Mittelwert moyenne = ArrayFunctions.berechneMittelwert(messwerte);
+
+            double[] messwerte = {1.0, 2.0, 3.0, 4.0, 5.0};
+            Mittelwert moyenne = ArrayFunctions.berechneMittelwert(messwerte);
 
             //System.out.println("Mesures: " + Arrays.toString(messwerte));
-            //System.out.println("Moyenne: " + moyenne.get_mittelwert());
-            //System.out.println("Mesure la plus proche de la moyenne: " + moyenne.get_nahesterWert());
-            //System.out.println("Mesure la plus éloignée de la moyenne: " + moyenne.get_entferntesterWert());
+            System.out.println("Moyenne: " + moyenne.get_mittelwert());
+            System.out.println("Mesure la plus proche de la moyenne: " + moyenne.get_nahesterWert());
+            System.out.println("Mesure la plus éloignée de la moyenne: " + moyenne.get_entferntesterWert());
 
 
         } catch (RuntimeException e) {
