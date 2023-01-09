@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=ErrorCheck
+comment0.text=\r\n\ Check\ viele\ dinge\ hier,\ um\ das\ code\ in\ der\ anderen\ Klasse\ besser\ zu\ lesen\r\n\ @author\ Leopold\ Mittelberger,\ Elisee\ Brand\r\n\ @version\ 2\r\n
+comment1.params=strings
+comment1.target=void\ checkLehrArray(java.lang.String[])
+comment1.text=\r\n\ prueft\ funktion,\ ob\ das\ Array\ leer\ ist\r\n\ @param\ strings\ ist\ das\ Array\r\n
+comment2.params=letzterPatient\ maxAnzahlPatienten
+comment2.target=void\ checkArrayVoll(int,\ int)
+comment2.text=\r\n\ Prueft,\ ob\ das\ Array\ voll\ ist\ oder\ nicht\r\n\ @param\ letzterPatient\ ist\ index\ von\ der\ letzte\ patient\ in\ das\ Array\r\n\ @param\ maxAnzahlPatienten\ ist\ die\ max\ Groesse\ von\ das\ Array\r\n
+comment3.params=index
+comment3.target=void\ checkPatientGefunden(int)
+comment3.text=\r\n\ Prueft,\ ob\ der\ Patient\ gefunden\ ist\r\n\ @param\ index\ ist\ der\ patient\ index\ in\ das\ Array\r\n
+comment4.params=letzterPatient
+comment4.target=void\ checkPatientenInArray(int)
+comment4.text=\r\n\ Prueft\ ob\ es\ patienten\ in\ das\ Array\ gibt\r\n\ @param\ letzterPatient\ ist\ index\ von\ der\ letzte\ patient\ in\ das\ Array\r\n
+numComments=5

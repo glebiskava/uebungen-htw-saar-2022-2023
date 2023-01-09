@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=Mittelwert
+comment0.text=\r\n\ Mittelwert\ klass,\ die\ die\ daten\ der\ mittelwert\ addiert\ und\ ausgibt\r\n\ @author\ Leopold\ Mittelberger,\ Elisee\ Brand\r\n\ @version\ 2\r\n
+comment1.params=mittelwert\ nahesterWert\ entferntesterWert
+comment1.target=Mittelwert(double,\ double,\ double)
+comment2.params=
+comment2.target=double\ get_mittelwert()
+comment3.params=
+comment3.target=double\ get_nahesterWert()
+comment4.params=
+comment4.target=double\ get_entferntesterWert()
+numComments=5

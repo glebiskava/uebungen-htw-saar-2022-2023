@@ -81,7 +81,7 @@ public class PatientenWarteschlange {
     public Patient derNaechsteBitte() {
         // Prueft ob es patienten in das Array gibt
         ErrorCheck.checkPatientenInArray(letzterPatient);
-
+        
         Patient naechstePatient = patientenListe[0];
         //Ruft entfernePatient um das patient von das Array loeschen
         entfernePatient(naechstePatient.getpatientNummer());

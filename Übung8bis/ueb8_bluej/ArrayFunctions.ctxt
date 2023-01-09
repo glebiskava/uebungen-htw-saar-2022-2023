@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=ArrayFunctions
+comment1.params=messwerte
+comment1.target=Mittelwert\ berechneMittelwert(double[])
+comment1.text=\r\n\ Berechnet\ das\ arithmetische\ Mittel\ und\ gibt\ Messwerte\ die\ am\ naechsten\ und\ am\ weitesten\ liegen\r\n\ @param\ messwerte\ ist\ ein\ Array\ von\ double\r\n\ @return\ ruft\ einen\ konstruktor\ an,\ um\ die\ daten\ einfacher\ zu\ bekommen\r\n
+comment2.params=strings
+comment2.target=int\ stringsAuswerten(java.lang.String[])
+comment2.text=\r\n\ Sucht\ von\ ein\ Arrayder\ Anzahl\ von\ Strings\ in\ String\ die\ nur\ aus\ Grossbuchstaben\ oder\ nur\ aus\ Kleinbuchstaben\r\n\ bestehen\ sind\r\n\ @param\ strings\ ist\ ein\ Array\ von\ String\r\n\ @return\ der\ Anzahl\ von\ Strings\ in\ String\ die\ nur\ aus\ Grossbuchstaben\ oder\ nur\ aus\ Kleinbuchstaben\ bestehen\ sind\r\n
+numComments=3

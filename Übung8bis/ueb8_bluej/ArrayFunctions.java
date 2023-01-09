@@ -53,7 +53,7 @@ public class ArrayFunctions {
 
         int ergebnis = 0;
         int stringLength = strings.length;
-
+        
         for(int i = 0; i < stringLength; i++){
 
             int upper = 0;

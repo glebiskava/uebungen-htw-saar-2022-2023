@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=PatientenWarteschlange
+comment0.text=\r\n\ Dies\ ist\ eine\ Klasse\ PatientenWarteschlange\ fuer\ eine\ einfache\ Patienten\ Warteschlange\ fuehrung\r\n\ @author\ Leopold\ Mittelberger,\ Elisee\ Brand\r\n\ @version\ 2\r\n
+comment1.params=maxAnzahlPatienten
+comment1.target=PatientenWarteschlange(int)
+comment1.text=\r\n\ Konstruktor\ der\ die\ Groesse\ der\ array\ initialisiert\r\n\ @param\ maxAnzahlPatienten\ gibt\ die\ Groesse\ der\ Array\ patientenListe\r\n
+comment2.params=nummer\ vorname\ nachname
+comment2.target=void\ neuerPatient(int,\ java.lang.String,\ java.lang.String)
+comment2.text=\r\n\ Diese\ Funktion\ schaft\ ein\ patienten\ in\ das\ Array\r\n\ @param\ nummer\ Identifikationsnummer\ der\ patient\r\n\ @param\ vorname\ String\ fuer\ der\ Vorname\ der\ Patient\r\n\ @param\ nachname\ String\ fuer\ der\ Nachname\ der\ Patient\r\n
+comment3.params=nummer
+comment3.target=Patient\ entfernePatient(int)
+comment3.text=\r\n\ Dies\ Funktion\ loescht\ ein\ Patient\ aus\ das\ Array\r\n\ @param\ nummer\ Identifikationsnummer\ der\ patient\r\n\ @return\ der\ patient\ der\ geloescht\ wird\r\n
+comment4.params=
+comment4.target=Patient\ derNaechsteBitte()
+comment4.text=\r\n\ Diese\ funktion\ ruft\ der\ naechste\ patienten\ an,\ und\ loescht\ er\ von\ die\ patientenListe\r\n\ @return\ der\ naechste\ /\ erste\ patient\ von\ das\ Array\r\n
+comment5.params=
+comment5.target=java.lang.String\ toString()
+comment5.text=\r\n\ Gibt\ eine\ String\ presentation\ von\ die\ patientenListe\ aus\r\n\ @return\ eine\ String\ presentation\ von\ die\ patientenListe\r\n
+numComments=6
