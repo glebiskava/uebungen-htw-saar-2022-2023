@@ -1,58 +1,108 @@
-import java.util.LinkedList;
-import java.util.Queue;
-
+/**
+ * Dies ist eine Klasse PatientenWarteschlange fuer eine einfache Patienten Warteschlange fuehrung
+ * @author Leopold Mittelberger, Elisee Brand
+ * @version 2
+ */
 public class PatientenWarteschlange {
-    private Queue<Patient> patienten;
+    /**
+     * @param maxAnzahlPatienten Max Anzahl Patienten
+     * @param patientenListe Array von objekt Patient
+     * @param letzterPatient Index der laetzte Patient der zur der Array addiert ist
+     */
     private int maxAnzahlPatienten;
+    private Patient[] patientenListe;
+    private int letzterPatient;
 
+    /**
+     * Konstruktor der die Groesse der array initialisiert
+     * @param maxAnzahlPatienten gibt die Groesse der Array patientenListe
+     */
+    // Constructeur qui initialise la liste de patients avec la taille maximale donnée
     public PatientenWarteschlange(int maxAnzahlPatienten) {
         this.maxAnzahlPatienten = maxAnzahlPatienten;
-        patienten = new LinkedList<>();
+        patientenListe = new Patient[maxAnzahlPatienten];
+        letzterPatient = -1;
     }
 
-    public void neuerPatient(int patientNummer, String vorname, String nachname) {
-        if (patienten.size() >= maxAnzahlPatienten) {
-            throw new RuntimeException("Die Warteschlange ist voll.");
-        }
-        patienten.add(new Patient(patientNummer, vorname, nachname));
+    /**
+     * Diese Funktion schaft ein patienten in das Array
+     * @param nummer Identifikationsnummer der patient
+     * @param vorname String fuer der Vorname der Patient
+     * @param nachname String fuer der Nachname der Patient
+     */
+    public void neuerPatient(int nummer, String vorname, String nachname) {
+        // Prueft, ob das Array voll ist oder nicht
+        ErrorCheck.checkArrayVoll(letzterPatient, maxAnzahlPatienten);
+
+        Patient patient = new Patient(nummer, vorname, nachname);
+
+        //patient am ende das Array addieren
+        letzterPatient++;
+        patientenListe[letzterPatient] = patient;
+
     }
 
-    public Patient entfernePatient(int patientNummer) {
-        for (Patient patient : patienten) {
-            if (patient.getpatientNummer() == patientNummer) {
-                patienten.remove(patient);
-                return patient;
+    /**
+     * Dies Funktion loescht ein Patient aus das Array
+     * @param nummer Identifikationsnummer der patient
+     * @return der patient der geloescht wird
+     */
+    public Patient entfernePatient(int nummer) {
+        // Patient in das Array suchen via identifikationsnummer
+        int index = -1;
+        for (int i = 0; i <= letzterPatient; i++) {
+            Patient patient = patientenListe[i];
+            if (patient.getpatientNummer() == nummer) {
+                index = i;
+                break;
             }
         }
-        throw new RuntimeException("Es gibt keinen Patienten mit der angegebenen ID in der Warteschlange.");
+
+        // Prueft, ob der Patient gefunden ist
+        ErrorCheck.checkPatientGefunden(index);
+
+        // Der gefundene Patient in einer variable lagern
+        Patient tmp = patientenListe[index];
+        // Jeder andere Patienten sieht seine platz in das Array inkrementiert werden
+        for (int i = index; i < letzterPatient; i++) {
+            patientenListe[i] = patientenListe[i + 1];
+        }
+        // Letzte platzt, wird zurückgesetzt
+        patientenListe[letzterPatient] = null;
+        letzterPatient--;
+
+        return tmp;
     }
 
+    /**
+     * Diese funktion ruft der naechste patienten an, und loescht er von die patientenListe
+     * @return der naechste / erste patient von das Array
+     */
     public Patient derNaechsteBitte() {
-        return patienten.poll();
+        // Prueft ob es patienten in das Array gibt
+        ErrorCheck.checkPatientenInArray(letzterPatient);
+
+        Patient naechstePatient = patientenListe[0];
+        //Ruft entfernePatient um das patient von das Array loeschen
+        entfernePatient(naechstePatient.getpatientNummer());
+        return naechstePatient;
     }
 
-    public boolean istLeer() {
-        return patienten.isEmpty();
-    }
-
-    public int anzahlPatienten() {
-        return patienten.size();
-    }
-
+    /**
+     * Gibt eine String presentation von die patientenListe aus
+     * @return eine String presentation von die patientenListe
+     */
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Warteliste\n");
-        sb.append("Patientenummer\tVorname\tNachname\n");
-        for (Patient patient : patienten) {
-            sb.append(patient.getpatientNummer());
-            sb.append("\t\t");
-            sb.append(patient.getVorname());
-            sb.append("\t\t");
-            sb.append(patient.getNachname());
-            sb.append("\n");
-        }
-        return sb.toString();
-    }
+        String drucken = new String();
 
+        drucken = "Warteliste\nPatientenummer\tVorname\tNachname\n";
+        for (int i = 0; i < patientenListe.length; i++) {
+            if(patientenListe[i] != null) {
+                drucken += patientenListe[i].getpatientNummer() + "\t\t" + patientenListe[i].getVorname() + " \t" +
+                        patientenListe[i].getNachname() + "\n";
+            }
+        }
+        return drucken;
+    }
 }

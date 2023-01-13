@@ -11,7 +11,7 @@ public class PatientenwarteschlangeDialog {
             patientenwarteschlange.neuerPatient(2222, "Phil", "Harmonie");
             System.out.println(patientenwarteschlange); // Warteschlange ausgeben
             Patient entfernterPatient = patientenwarteschlange.entfernePatient(1234);
-            // Patient entfernen
+            System.out.println(entfernterPatient);// Patient entfernen
             System.out.println("Patient gelöscht: " + entfernterPatient);
             // naechsten Patient herausholen
             Patient naechsterPatient = patientenwarteschlange.derNaechsteBitte();
