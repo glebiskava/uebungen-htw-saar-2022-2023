@@ -12,9 +12,9 @@ public class Artikel {
      * @param bestand Anzahl der Artikel
      */
     public int artikelNr;
-    private String art;
-    private int bestand;
-    private double preis;
+    public String art;
+    public int bestand;
+    public double preis;
 
 
     /** Konstruktoren
@@ -112,6 +112,10 @@ public class Artikel {
     public double getPreis(){
 
         return preis;
+    }
+
+    public String getBeschreibung() {
+        return "Art : " + art;
     }
 
 
