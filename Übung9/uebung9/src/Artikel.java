@@ -75,7 +75,6 @@ public class Artikel {
      * Bestand darf nicht negativ sein
      */
     public void setArtikelNr(int artikelNr) {
-        ErrorCheck.checkArtikelNr(artikelNr);
         this.artikelNr = artikelNr;
     }
 

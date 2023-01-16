@@ -15,7 +15,7 @@ public class ErrorCheck {
      * @param bestand menge von artikel
      */
     public static void checkBestand (int bestand) {
-        if (bestand < 0) {
+        if (bestand < 1) {
             throw new IllegalArgumentException("Geben Sie eine Zahl hoeher als 0 ein!");
         }
     }
@@ -25,7 +25,7 @@ public class ErrorCheck {
      * @param preis preis des artikels
      */
     public static void checkPreis (double preis) {
-        if (preis < 0.0) {
+        if (preis <= 0.0) {
             throw new IllegalArgumentException("Geben Sie eine Zahl hoeher als 0 ein!");
         }
     }
@@ -167,13 +167,13 @@ public class ErrorCheck {
     }
 
     public static void checkGroesserAlsNull(int zahl){
-        if(zahl < 0) {
+        if(zahl <= 0) {
             throw new IllegalArgumentException("Der Zahl, muss Groesser als 0 sein");
         }
     }
 
     public static void checkZwischen1900und2022(int zahl){
-        if(1900 < zahl && zahl < 2022) {
+        if(1900 > zahl || zahl > 2022) {
             throw new IllegalArgumentException("Der Zahl, muss Groesser als 1900 und Kleiner als 2022 sein");
         }
     }
