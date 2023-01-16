@@ -31,16 +31,6 @@ public class ErrorCheck {
     }
 
     /**
-     * preuft auf fehlerhafte eingabe bei artikelart
-     * @param art Beschreibung des artikels
-     */
-    public static void checkArt (String art) {
-        if(art.strip().isEmpty()) {
-            throw new IllegalArgumentException("Geben Sie keine Leerzeichen ein!");
-        }
-    }
-
-    /**
      * checkt ob Artikelnummer vierstellig ist
      * @param artikelNr nummer des artikels
      */
@@ -164,6 +154,27 @@ public class ErrorCheck {
     public static void checkLagerExistiert(Lager lager){
         if(lager == null) {
             throw new IllegalArgumentException("Es existiert noch kein Lager. Legen Sie eins an!");
+        }
+    }
+    /**
+     * checkt, ob das String Leer ist
+     * @param string string
+     */
+    public static void checkStringNichtLeer(String string){
+        if(string.strip().isEmpty()) {
+            throw new IllegalArgumentException("Der String ist leer, geben Sie einen Wert an");
+        }
+    }
+
+    public static void checkGroesserAlsNull(int zahl){
+        if(zahl < 0) {
+            throw new IllegalArgumentException("Der Zahl, muss Groesser als 0 sein");
+        }
+    }
+
+    public static void checkZwischen1900und2022(int zahl){
+        if(1900 < zahl && zahl < 2022) {
+            throw new IllegalArgumentException("Der Zahl, muss Groesser als 1900 und Kleiner als 2022 sein");
         }
     }
 }

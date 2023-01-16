@@ -90,7 +90,7 @@ public class Artikel {
     }
 
     public void setArt(String art) {
-        ErrorCheck.checkArt(art);
+        ErrorCheck.checkStringNichtLeer(art);
         this.art = art;
     }
 
