@@ -115,7 +115,7 @@ public class Artikel {
     }
 
     public String getBeschreibung() {
-        return "Art : " + art;
+        return art;
     }
 
 

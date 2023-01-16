@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Video extends Artikel{
 
     private String titel;
@@ -35,7 +37,24 @@ public class Video extends Artikel{
     }
 
     @Override
+    public boolean equals(Object object){
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Video video = (Video) object;
+        return artikelNr == video.artikelNr &&
+                bestand == video.bestand &&
+                Double.compare(video.preis, preis) == 0 &&
+                Objects.equals(titel, video.titel) &&
+                Objects.equals(spieldauer, video.spieldauer) &&
+                Objects.equals(jahr, video.jahr);
+    }
+    @Override
     public String getBeschreibung() {
-        return "Titel" + titel;
+        return titel;
+    }
+
+    @Override
+    public String toString() {
+        return "Video: " + super.toString() + ", Titel: " + titel + ", Spieldauer: " + spieldauer + ", Jahr: " + jahr;
     }
 }

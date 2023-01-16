@@ -197,67 +197,42 @@ public class LagerDialog {
      * legt ein neues Lager an
      */
     public void lagerAnlegen() {
-        if(lager != null) {
-            System.out.println("Es existiert schon ein Lager. Nutzen Sie es!");
-        } else {
-            System.out.println("Geben sie die Laenge des Lagers ein: ");
-            int size = input.nextInt();
-            input.nextLine();
+         ErrorCheck.checkSchonLager(lager);
 
-            if (size <= 0){
-                lager = new Lager();
-            } else {
-                lager = new Lager (size);
-            }
-            Lager.legeAnArtikel(artikel);
-        }
+         System.out.println("Geben sie die Laenge des Lagers ein: ");
+         int size = input.nextInt();
+         input.nextLine();
+
+         if (size <= 0){
+             lager = new Lager();
+             System.out.println("Sie haben keinen korrekten Wert angegeben, der Standardwert 10 wurde angegeben.");
+         } else {
+             lager = new Lager(size);
+         }
+         //Lager.legeAnArtikel(artikel);
     }
     /**
      * legt einen neuen Artikel an mit den selbstgewaehlten Werten des Benutzers.
      */
     public void artikelAnlegen() {
-        if(lager == null) {
-            System.out.println("Es existiert noch kein Lager. Legen Sie eins an!");
-        } else {
-            int artikelBefehl = 0;
-            do {
-                try {
-                    menueArtikel();
-                    artikelBefehl = funktionVerarbeitung();
-                    funktionArtikelAusfuehrung(artikelBefehl);
-                } catch(IllegalArgumentException e) {
-                    System.out.println(e);
-                } catch(InputMismatchException e) {
-                    System.out.println(e);
-                    input.nextLine();
-                } catch(Exception e) {
-                    System.out.println(e);
-                    e.printStackTrace(System.out);
-                }
-            } while (artikelBefehl != DIALOG_ARTIKEL_ENDE);
-/*
+        ErrorCheck.checkLagerExistiert(lager);
 
-
-            System.out.println("Artikelnummer: ");
-            int artikelNr = input.nextInt();
-            input.nextLine();
-
-            System.out.println("Artikelart (Beschreibung): ");
-            String artikelArt = input.next();
-            input.nextLine();
-
-            System.out.println("Artikelbestand: ");
-            int artikelBestand = input.nextInt();
-            input.nextLine();
-
-            System.out.println("Artikelpreis: ");
-            double artikelPreis = input.nextDouble();
-            input.nextLine();
-
-            artikel = new Artikel(artikelNr, artikelArt, artikelBestand, artikelPreis);
-
-            Lager.legeAnArtikel(artikel);*/
-        }
+        int artikelBefehl = 0;
+        do {
+            try {
+                menueArtikel();
+                artikelBefehl = funktionVerarbeitung();
+                funktionArtikelAusfuehrung(artikelBefehl);
+            } catch(IllegalArgumentException e) {
+                System.out.println(e);
+            } catch(InputMismatchException e) {
+                System.out.println(e);
+                input.nextLine();
+            } catch(Exception e) {
+                System.out.println(e);
+                e.printStackTrace(System.out);
+            }
+        } while (artikelBefehl != DIALOG_ARTIKEL_ENDE);
     }
 
     public void cdAnlegen(){
@@ -265,9 +240,7 @@ public class LagerDialog {
         int artikelNr = input.nextInt();
         input.nextLine();
 
-        System.out.println("Artikelart (Beschreibung): ");
-        String artikelArt = input.next();
-        input.nextLine();
+        ErrorCheck.checkAlreadyInLager(artikelNr, Lager.lager);
 
         System.out.println("Artikelbestand: ");
         int artikelBestand = input.nextInt();
@@ -299,6 +272,8 @@ public class LagerDialog {
         int artikelNr = input.nextInt();
         input.nextLine();
 
+        ErrorCheck.checkAlreadyInLager(artikelNr, Lager.lager);
+
         System.out.println("Artikelbestand: ");
         int artikelBestand = input.nextInt();
         input.nextLine();
@@ -321,7 +296,6 @@ public class LagerDialog {
 
         Video Video = new Video(artikelNr, artikelBestand, artikelPreis, artikelTitel, artikelSpieldauer, artikelJahr);
         Lager.legeAnArtikel(Video);
-
     }
 
 
@@ -329,6 +303,8 @@ public class LagerDialog {
         System.out.println("Artikelnummer: ");
         int artikelNr = input.nextInt();
         input.nextLine();
+
+        ErrorCheck.checkAlreadyInLager(artikelNr, Lager.lager);
 
         System.out.println("Artikelbestand: ");
         int artikelBestand = input.nextInt();
@@ -348,7 +324,7 @@ public class LagerDialog {
 
         System.out.println("Verlag: ");
         String artikelVerlag = input.next();
-        input.next();
+        input.nextLine();
 
         Buch Buch = new Buch(artikelNr, artikelBestand, artikelPreis, artikelTitel, artikelAuthor, artikelVerlag);
         Lager.legeAnArtikel(Buch);
@@ -358,6 +334,8 @@ public class LagerDialog {
         System.out.println("Artikelnummer: ");
         int artikelNr = input.nextInt();
         input.nextLine();
+
+        ErrorCheck.checkAlreadyInLager(artikelNr, Lager.lager);
 
         System.out.println("Artikelart (Beschreibung): ");
         String artikelArt = input.next();
@@ -379,101 +357,97 @@ public class LagerDialog {
      * entfernt einen Artikel
      */
     public void artikelEntfernen() {
-        if (artikel == null) {
-            System.out.println("Es existiert noch kein Artikel. Legen Sie erst einen neuen an.");
-        } else {
-            System.out.println("Geben Sie einen die Artikelnummer ein von \n" +
-                    "dem Artikel den sie loeschen wollen: ");
-            int artikelNr = input.nextInt();
-            Lager.entferneArtikel(artikelNr);
-        }
+        ErrorCheck.checkLagerExistiert(lager);
+        ErrorCheck.checkLagerLeer(Lager.lager);
+
+        System.out.println("Geben Sie einen die Artikelnummer ein von \n" +
+                "dem Artikel den sie loeschen wollen: ");
+        int artikelNr = input.nextInt();
+        Lager.entferneArtikel(artikelNr);
+
     }
 
     /**
      * erhoeht Artikelbestand um eine vom Nutzer selbst ausgewaehlte Menge
      */
     public void bucheZugang(){
-        if (artikel == null) {
-            System.out.println("Es existiert noch kein Artikel. Legen Sie einen neuen an.");
-        } else {
-            System.out.println("Geben Sie die Artikelnummer an: ");
-            int artikelNr = input.nextInt();
+        ErrorCheck.checkLagerExistiert(lager);
+        ErrorCheck.checkLagerLeer(Lager.lager);
 
-            System.out.println("Wie viel soll abgebucht werden?\n" +
-                    "Geben Sie einen Wert ein: ");
-            int zugang = input.nextInt();
+        System.out.println("Geben Sie die Artikelnummer an: ");
+        int artikelNr = input.nextInt();
 
-            Lager.bucheZugang(artikelNr, zugang);
-        }
+        System.out.println("Wie viel soll abgebucht werden?\n" +
+                "Geben Sie einen Wert ein: ");
+        int zugang = input.nextInt();
+
+        Lager.bucheZugang(artikelNr, zugang);
     }
     /**
      * Vermindert Artikelbestand um eine vom Nutzer selbst ausgewaehlte Menge
      */
     public void bucheAbgang() {
-        if (artikel == null) {
-            System.out.println("Es existiert noch kein Artikel. Legen Sie einen neuen an.");
-        } else {
-            System.out.println("Geben Sie die Artikelnummer an: ");
-            int artikelNr = input.nextInt();
+        ErrorCheck.checkLagerExistiert(lager);
+        ErrorCheck.checkLagerLeer(Lager.lager);
 
-            System.out.println("Wie viel soll abgebucht werden?\n" +
-                    "Geben Sie einen Wert ein:  ");
-            int abgang = input.nextInt();
+        System.out.println("Geben Sie die Artikelnummer an: ");
+        int artikelNr = input.nextInt();
 
-            Lager.bucheAbgang(artikelNr, abgang);
-        }
+        System.out.println("Wie viel soll abgebucht werden?\n" +
+                "Geben Sie einen Wert ein:  ");
+        int abgang = input.nextInt();
+
+        Lager.bucheAbgang(artikelNr, abgang);
     }
 
     /**
      * erhoeht Preis eines bestimmten artikels
      */
     public void aenderePreisEinesArtikels() {
-        if(artikel == null) {
-            System.out.println("Es existiert noch kein Artikel. Legen Sie einen neuen an.");
-        } else {
-            System.out.println("Geben Sie die Artikelnummer an: ");
-            int artikelNr = input.nextInt();
+        ErrorCheck.checkLagerExistiert(lager);
+        ErrorCheck.checkLagerLeer(Lager.lager);
 
-            System.out.println("Um wei viel Prozent soll der Preis erhoeht werden?\n" +
-                    "Geben Sie einen Wert ein: ");
-            double prozent = input.nextDouble();
+        System.out.println("Geben Sie die Artikelnummer an: ");
+        int artikelNr = input.nextInt();
 
-            Lager.aenderePreisEinesArtikels(artikelNr, prozent);
-        }
+        System.out.println("Um wei viel Prozent soll der Preis erhoeht werden?\n" +
+                "Geben Sie einen Wert ein: ");
+        double prozent = input.nextDouble();
+
+        Lager.aenderePreisEinesArtikels(artikelNr, prozent);
     }
 
     /**
      * erhoeht Preis aller Artikel um einen bestimmten Prozentsatz
      */
     public void aenderePreisAllerArtikel() {
-        if(artikel == null) {
-            System.out.println("Es existiert noch kein Artikel. Legen Sie einen neuen an.");
-        } else {
-            System.out.println("Um wie viel Prozent soll der Preis erhoeht werden?\n" +
-                    "Geben Sie einen Wert ein: ");
-            double prozent = input.nextDouble();
-            Lager.aenderePreisAllerArtikel(prozent);
-        }
+        ErrorCheck.checkLagerExistiert(lager);
+        ErrorCheck.checkLagerLeer(Lager.lager);
+
+        System.out.println("Um wie viel Prozent soll der Preis erhoeht werden?\n" +
+                "Geben Sie einen Wert ein: ");
+        double prozent = input.nextDouble();
+        Lager.aenderePreisAllerArtikel(prozent);
     }
 
     /**
      * gibt einen Artikel als String aus
      */
     public void artikelAusgeben() {
-        if(artikel == null) {
-            System.out.println("Es existiert noch kein Artikel. Legen Sie einen neuen an.");
-        } else {
-            System.out.println("Geben Sie einen Index ein: ");
+        ErrorCheck.checkLagerExistiert(lager);
+        ErrorCheck.checkLagerLeer(Lager.lager);
 
-            int index = input.nextInt();
-            System.out.println(Lager.getArtikel(index));
-        }
+        System.out.println("Geben Sie einen Index ein: ");
+
+        int index = input.nextInt();
+        System.out.println(Lager.getArtikel(index));
     }
 
     /**
      * verarbeitet und gibt alle Artikel als String aus
      */
     public void alsString() {
+        ErrorCheck.checkLagerExistiert(lager);
         System.out.println(lager.toString());
     }
 
@@ -481,18 +455,18 @@ public class LagerDialog {
      * gibt die anzahl der im Lager vorhandenen Artikel wieder
      */
     public void getArtikelAnzahl() {
-        if(artikel == null) {
-            System.out.println("Es existiert noch kein Artikel. Legen Sie einen neuen an.");
-        } else {
-            System.out.println("Anzahl der Artikel im Lager : " + Lager.getArtikelAnzahl());
-        }
+        ErrorCheck.checkLagerExistiert(lager);
+        ErrorCheck.checkLagerLeer(Lager.lager);
+
+        System.out.println("Anzahl der Artikel im Lager : " + Lager.getArtikelAnzahl());
     }
 
     /**
      * gibt die Groessse des Lagers wieder
      */
     public void getLagerGroesse(){
-        System.out.println("Groesse des Lagers: " + Lager.getLagerGroesse());
+        ErrorCheck.checkLagerExistiert(lager);
+        System.out.println("Groesse des Lagers: " + Lager. getLagerGroesse());
     }
 
     /**

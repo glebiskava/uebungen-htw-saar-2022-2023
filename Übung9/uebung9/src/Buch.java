@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Buch extends Artikel{
 
     private String titel;
@@ -36,7 +38,24 @@ public class Buch extends Artikel{
     }
 
     @Override
+    public boolean equals(Object object){
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Buch buch = (Buch) object;
+        return artikelNr == buch.artikelNr &&
+                bestand == buch.bestand &&
+                Double.compare(buch.preis, preis) == 0 &&
+                Objects.equals(titel, buch.titel) &&
+                Objects.equals(author, buch.author) &&
+                Objects.equals(verlag, buch.verlag);
+    }
+    @Override
     public String getBeschreibung() {
-        return author + ":" + titel;
+        return author + ": " + titel;
+    }
+
+    @Override
+    public String toString() {
+        return "Buch: " + super.toString() + ", Titel: " + titel + ", Author: " + author + ", Verlag: " + verlag;
     }
 }
