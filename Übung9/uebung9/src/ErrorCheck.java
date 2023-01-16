@@ -156,12 +156,20 @@ public class ErrorCheck {
         }
     }
 
+    /**
+     * checkt ob es schon ein lager gibt
+     * @param lager array mit objekten
+     */
     public static void checkSchonLager(Lager lager){
         if(lager != null) {
             throw new IllegalArgumentException("Es existiert schon ein Lager. Nutzen Sie es!");
         }
     }
 
+    /**
+     * checkt ob noch kein lager existiert
+     * @param lager array mit obj
+     */
     public static void checkLagerExistiert(Lager lager){
         if(lager == null) {
             throw new IllegalArgumentException("Es existiert noch kein Lager. Legen Sie eins an!");
@@ -177,12 +185,20 @@ public class ErrorCheck {
         }
     }
 
+    /**
+     * checkt ob wert groesser als null ist
+     * @param zahl wert der uebergeben wird
+     */
     public static void checkGroesserAlsNull(int zahl){
         if(zahl <= 0) {
             throw new IllegalArgumentException("Der Zahl, muss Groesser als 0 sein");
         }
     }
 
+    /**
+     * checkt ob jahr zwischen 1900 und 2022 liegt
+     * @param zahl wert der uebergeben wird
+     */
     public static void checkZwischen1900und2022(int zahl){
         if(1900 > zahl || zahl > 2022) {
             throw new IllegalArgumentException("Der Zahl, muss Groesser als 1900 und Kleiner als 2022 sein");

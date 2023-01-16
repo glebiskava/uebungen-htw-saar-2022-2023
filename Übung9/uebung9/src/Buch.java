@@ -1,10 +1,27 @@
 import java.util.Objects;
 
+/**
+ * Dies ist eine Unterklasse Buch von der Klasse Artikel welche
+ */
+
 public class Buch extends Artikel{
 
+    /**
+     * attribute: selbsterklaerend
+     */
     private String titel;
     private String author;
     private String verlag;
+
+    /**
+     * Konstruktor Buch
+     * @param artikelNr nummer des Artikels (Buch)
+     * @param bestand bestand des artikels im Lager
+     * @param preis preis des Artikels
+     * @param titel titel des Buchs
+     * @param author author des Buchs
+     * @param verlag verlag des Buchs
+     */
 
     public Buch(int artikelNr, int bestand, double preis, String titel, String author, String verlag) {
         super(artikelNr, "Medien", bestand, preis);
@@ -13,6 +30,9 @@ public class Buch extends Artikel{
         setVerlag(verlag);
     }
 
+    /**
+     * getter fuer jedes Attribut
+     */
     public String getTitel() {
         return titel;
     }
@@ -25,6 +45,9 @@ public class Buch extends Artikel{
         return verlag;
     }
 
+    /**
+     * setter fuer jedes Attribute
+     */
     public void setTitel(String titel) {
         ErrorCheck.checkStringNichtLeer(titel);
         this.titel = titel;
@@ -40,6 +63,10 @@ public class Buch extends Artikel{
         this.verlag = verlag;
     }
 
+    /**
+     * equals methode vergleicht zwei Objekte, um festzustellen, ob sie gleich sind
+     * @param object welches verglichen wird
+     */
     @Override
     public boolean equals(Object object){
         if (this == object) return true;
@@ -52,22 +79,20 @@ public class Buch extends Artikel{
                 Objects.equals(author, buch.author) &&
                 Objects.equals(verlag, buch.verlag);
     }
+
+    /**
+     * erzeugt eine Beschreibung als String
+     */
     @Override
     public String getBeschreibung() {
         return author + ": " + titel;
     }
 
+    /**
+     * bereitet ein Objekt als String auf
+     */
     @Override
     public String toString() {
         return super.toString() + ", titel: " + titel + ", author: " + author + ", verlag: " + verlag;
-    }
-
-    /**
-     * generiert einen hashcode fuer ein Objekt
-     * @return hashcode des Objekts
-     */
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), titel, author, verlag);
     }
 }

@@ -1,9 +1,10 @@
 import org.junit.jupiter.api.Test;
 
-import java.util.Objects;
-
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * dies ist eine Klasse zum Testen der Klasse Buch
+ */
 public class BuchTests {
 
     /**
@@ -178,26 +179,13 @@ public class BuchTests {
         Buch buchTest8 = new Buch(7488, 12, 33454,
                 "Sonntag", "Linda", "Pi");
 
-        // Test fuer Gleichheit
         assertEquals(buchTest1, buchTest2);
 
-        // Test fuer Ungleichheit
         assertNotEquals(buchTest1, buchTest3);
         assertNotEquals(buchTest1, buchTest4);
         assertNotEquals(buchTest1, buchTest5);
         assertNotEquals(buchTest1, buchTest6);
         assertNotEquals(buchTest1, buchTest7);
         assertNotEquals(buchTest1, buchTest8);
-    }
-
-   /**
-     * Test ob hash methode richtig funktioniert
-     */
-    @Test
-    public void test_ob_hash_funktioniert(){
-        Buch buch = new Buch(1234, 12, 22, "Bevoelkerung", "John", "Long");
-        Artikel artikelTest = new Artikel(1234, "Medien", 12, 22);
-
-        assertEquals(Objects.hash(artikelTest.hashCode(), "Bevoelkerung", "John", "Long"), buch.hashCode());
     }
 }

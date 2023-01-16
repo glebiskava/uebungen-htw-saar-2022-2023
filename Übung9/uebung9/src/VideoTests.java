@@ -1,7 +1,5 @@
 import org.junit.jupiter.api.Test;
 
-import java.util.Objects;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -165,27 +163,13 @@ public class VideoTests {
         Video videoTest7 = new Video(5743, 1442, 24444, "unchained", 376, 1956);
         Video videoTest8 = new Video(5365, 1242, 3242, "bowling", 3678, 1999);
 
-        // Test for equality
         assertEquals(videoTest1, videoTest2);
 
-        // Test for inequality
         assertNotEquals(videoTest1, videoTest3);
         assertNotEquals(videoTest1, videoTest4);
         assertNotEquals(videoTest1, videoTest5);
         assertNotEquals(videoTest1, videoTest6);
         assertNotEquals(videoTest1, videoTest7);
         assertNotEquals(videoTest1, videoTest8);
-    }
-
-
-    /**
-     * Testen ob hashcode methode richtig funktioniert
-     */
-    @Test
-    public void test_hashCode_sollte_korrekt_sein() {
-        Video video1= new Video(1234, 12, 22, "Scream", 22, 2022);
-        Artikel artikel1 = new Artikel(1234, "Medien",12, 22);
-
-        assertEquals(Objects.hash(artikel1.hashCode(), "Scream", 22, 2022), video1.hashCode());
     }
 }

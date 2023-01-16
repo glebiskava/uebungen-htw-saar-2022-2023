@@ -214,6 +214,10 @@ public class ArtikelDialog {
             artikel.setBestand(artikelBestand);
         }
     }
+
+    /**
+     * funktion zum eingeben des Preises eines artikels
+     */
     public void eingabeArtikelPreis() {
         if(artikel == null) {
             System.out.println("Es existiert noch kein Artikel. Legen Sie einen neuen an.");

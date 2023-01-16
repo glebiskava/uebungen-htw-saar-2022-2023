@@ -239,6 +239,9 @@ public class LagerDialog {
         } while (artikelBefehl != DIALOG_ARTIKEL_ENDE);
     }
 
+    /**
+     * liegt ein cd-artikel an
+     */
     public void cdAnlegen(){
         System.out.println("Artikelnummer: ");
         int artikelNr = input.nextInt();
@@ -282,6 +285,9 @@ public class LagerDialog {
         Lager.legeAnArtikel(Cd);
     }
 
+    /**
+     * liegt ein video-artikel an
+     */
     public void videoAnlegen(){
         System.out.println("Artikelnummer: ");
         int artikelNr = input.nextInt();
@@ -324,7 +330,9 @@ public class LagerDialog {
         Lager.legeAnArtikel(Video);
     }
 
-
+    /**
+     * liegt ein buch-artikel an
+     */
     public void buchAnlegen(){
         System.out.println("Artikelnummer: ");
         int artikelNr = input.nextInt();
@@ -367,6 +375,9 @@ public class LagerDialog {
         Lager.legeAnArtikel(Buch);
     }
 
+    /**
+     * liegt anderen/weiteren artikel an
+     */
     public void andereArtikelAnlegen(){
         System.out.println("Artikelnummer: ");
         int artikelNr = input.nextInt();
@@ -492,6 +503,10 @@ public class LagerDialog {
         ErrorCheck.checkLagerExistiert(lager);
         System.out.println(lager.toString());
     }
+
+    /**
+     * gibt das gesamte Lager als String aufbereitet wieder
+     */
     public void beschreibungAlsString() {
         double GesamtWert = 0;
         System.out.format("%-6s%-43s%-9s%-9s%6s", "ArtNr", "Beschreibung", "Preis", "Bestand", "Gesamt\n");

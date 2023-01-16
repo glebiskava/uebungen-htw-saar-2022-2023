@@ -1,8 +1,10 @@
 import org.junit.jupiter.api.Test;
 
-import java.util.Objects;
-
 import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * dies ist eine Klasse zum testen der Klasse CD
+ */
 
 public class CDTests {
 
@@ -154,28 +156,14 @@ public class CDTests {
         CD cd7 = new CD(2344, 14353, 882, "Fuenf", "wahrscheinlich", 2324);
         CD cd8 = new CD(6877, 1453, 4563, "Sechs", "angbracht", 2324);
 
-        // Test for equality
         assertEquals(cd1, cd2);
 
-        // Test for inequality
         assertNotEquals(cd1, cd3);
         assertNotEquals(cd1, cd4);
         assertNotEquals(cd1, cd5);
         assertNotEquals(cd1, cd6);
         assertNotEquals(cd1, cd7);
         assertNotEquals(cd1, cd8);
-    }
-
-    /**
-     * Test for hashCode.
-     * Gets the hash code of the CD object and checks if the value is correct.
-     */
-    @Test
-    public void test_hashCode_sollte_richtig_sein() {
-        CD cd= new CD(1234, 12, 223, "Sam smith", "only me", 12);
-        Artikel artikelTest = new Artikel(1234, "Medien",12, 223);
-
-        assertEquals(Objects.hash(artikelTest.hashCode(), "Sam smith", "only me", 12), cd.hashCode());
     }
 }
 
