@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 /**
  * Dies ist eine Klasse Artikel fuer eine einfache Bestandsfuehrung
  * @author Leopold Mittelberger, Elisee Brand
@@ -80,6 +82,7 @@ public class Artikel {
     }
 
     public void setBestand(int bestand) {
+        ErrorCheck.checkGroesserAlsNull(bestand);
         ErrorCheck.checkBestand(bestand);
         this.bestand = bestand;
     }
@@ -116,6 +119,35 @@ public class Artikel {
 
     public String getBeschreibung() {
         return art;
+    }
+
+    /**
+     * Diese Methode vergleicht
+     * @param object The object to be compared with
+     * @return boolean true if the objects are equal, false otherwise
+     */
+    @Override
+    public boolean equals(Object object) {
+        if (this == object){
+            return true;
+        }
+        if (object == null || !(object instanceof Artikel)) {
+            return false;
+        }
+        Artikel artikel = (Artikel) object;
+        return artikelNr == artikel.artikelNr &&
+                bestand == artikel.bestand &&
+                Double.compare(artikel.preis, preis) == 0 &&
+                Objects.equals(art, artikel.art);
+    }
+
+    /**
+     * This method is used to generate a unique hash code for the object
+     * @return int The hash code of the object
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(artikelNr, art, bestand, preis);
     }
 
 

@@ -26,13 +26,16 @@ public class Video extends Artikel{
     }
 
     public void setTitel(String titel) {
+        ErrorCheck.checkStringNichtLeer(titel);
         this.titel = titel;
     }
 
     public void setSpieldauer(int spieldauer) {
+        ErrorCheck.checkGroesserAlsNull(spieldauer);
         this.spieldauer = spieldauer;
     }
     public void setJahr(int jahr) {
+        ErrorCheck.checkZwischen1900und2022(jahr);
         this.jahr = jahr;
     }
 
@@ -55,6 +58,15 @@ public class Video extends Artikel{
 
     @Override
     public String toString() {
-        return "Video: " + super.toString() + ", Titel: " + titel + ", Spieldauer: " + spieldauer + ", Jahr: " + jahr;
+        return super.toString() + ", titel: " + titel + ", spieldauer: " + spieldauer + ", jahr: " + jahr;
+    }
+
+    /**
+     * generiert einen hashcode fuer ein Objekt
+     * @return hashcode des Objekts
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), titel, spieldauer, jahr);
     }
 }

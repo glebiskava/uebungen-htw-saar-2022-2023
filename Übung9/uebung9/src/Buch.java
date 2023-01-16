@@ -26,14 +26,17 @@ public class Buch extends Artikel{
     }
 
     public void setTitel(String titel) {
+        ErrorCheck.checkStringNichtLeer(titel);
         this.titel = titel;
     }
 
     public void setAuthor(String author) {
+        ErrorCheck.checkStringNichtLeer(author);
         this.author = author;
     }
 
     public void setVerlag(String verlag) {
+        ErrorCheck.checkStringNichtLeer(verlag);
         this.verlag = verlag;
     }
 
@@ -56,6 +59,15 @@ public class Buch extends Artikel{
 
     @Override
     public String toString() {
-        return "Buch: " + super.toString() + ", Titel: " + titel + ", Author: " + author + ", Verlag: " + verlag;
+        return super.toString() + ", titel: " + titel + ", author: " + author + ", verlag: " + verlag;
+    }
+
+    /**
+     * generiert einen hashcode fuer ein Objekt
+     * @return hashcode des Objekts
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), titel, author, verlag);
     }
 }

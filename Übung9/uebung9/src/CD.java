@@ -32,14 +32,17 @@ public class CD extends Artikel{
     }
 
     public void setInterpret(String interpret) {
+        ErrorCheck.checkStringNichtLeer(interpret);
         this.interpret = interpret;
     }
 
     public void setTitel(String titel) {
+        ErrorCheck.checkStringNichtLeer(titel);
         this.titel = titel;
     }
 
     public void setAnzahlTitel(int anzahlTitel) {
+        ErrorCheck.checkGroesserAlsNull(anzahlTitel);
         this.anzahlTitel = anzahlTitel;
     }
 
@@ -55,15 +58,22 @@ public class CD extends Artikel{
                 Objects.equals(titel, cd.titel);
     }
 
-    // getBeschreibung method
     public String getBeschreibung() {
         return interpret + ": " + titel;
     }
 
-    // @Todo right format as in uebung9.pdf
     @Override
     public String toString() {
-        return "CD: " + super.toString() + ", Interpret: " + interpret + ", Titel: " + titel + ", Anzahl Titel: " +
+        return super.toString() + ", interpret: " + interpret + ", titel: " + titel + ", anzahlTitel: " +
                 anzahlTitel;
+    }
+
+    /**
+     * generiert einen hashcode fuer ein Objekt
+     * @return hashcode des Objekts
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), interpret, titel, anzahlTitel);
     }
 }

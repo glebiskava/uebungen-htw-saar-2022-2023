@@ -29,8 +29,9 @@ public class LagerDialog {
     private static final int PREIS_ALLER_ARTIKELS_AENDERN  = 7;
     private static final int GET_ARTIKEL                   = 8;
     private static final int TO_STRING                     = 9;
-    private static final int GET_ARTIKEL_ANZAHL            = 10;
-    private static final int GET_LAGER_GROESSE             = 11;
+    private static final int BESCHREIBUNG_ALS_STRING       = 10;
+    private static final int GET_ARTIKEL_ANZAHL            = 11;
+    private static final int GET_LAGER_GROESSE             = 12;
 
     private static final int PROGRAMM_ENDE                 = 0;
 
@@ -92,6 +93,7 @@ public class LagerDialog {
                 PREIS_ALLER_ARTIKELS_AENDERN    + ": Preis aller Artikeln aendern\n" +
                 GET_ARTIKEL                     + ": Get Artikel, als string\n" +
                 TO_STRING                       + ": Ausgabe als String\n" +
+                BESCHREIBUNG_ALS_STRING         + ": Beschreibung als String\n" +
                 GET_ARTIKEL_ANZAHL              + ": Get artikel anzahl\n" +
                 GET_LAGER_GROESSE               + ": Get lager groesse\n" +
                 PROGRAMM_ENDE                   + ": Dialog beenden\nGeben Sie einen Nummer ein: ");
@@ -142,6 +144,9 @@ public class LagerDialog {
                 case TO_STRING:
                     alsString();
                     break;
+                case BESCHREIBUNG_ALS_STRING:
+                    beschreibungAlsString();
+                    break;
                 case GET_ARTIKEL_ANZAHL:
                     getArtikelAnzahl();
                     break;
@@ -187,7 +192,7 @@ public class LagerDialog {
                     andereArtikelAnlegen();
                     break;
                 case DIALOG_ARTIKEL_ENDE:
-                    System.out.println("ENDE");
+                    System.out.println("Hauptmenue, Geben Sie einen Nummer ein: ");
                     break;
             }
         }
@@ -209,7 +214,6 @@ public class LagerDialog {
         } else {
             lager = new Lager(size);
         }
-        //Lager.legeAnArtikel(artikel);
     }
     /**
      * legt einen neuen Artikel an mit den selbstgewaehlten Werten des Benutzers.
@@ -240,27 +244,38 @@ public class LagerDialog {
         int artikelNr = input.nextInt();
         input.nextLine();
 
+        ErrorCheck.checkArtikelNr(artikelNr);
         ErrorCheck.checkAlreadyInLager(artikelNr, Lager.lager);
 
         System.out.println("Artikelbestand: ");
         int artikelBestand = input.nextInt();
         input.nextLine();
 
+        ErrorCheck.checkBestand(artikelBestand);
+
         System.out.println("Artikelpreis: ");
         double artikelPreis = input.nextDouble();
         input.nextLine();
+
+        ErrorCheck.checkPreis(artikelPreis);
 
         System.out.println("Interpret: ");
         String artikelInterpret = input.next();
         input.nextLine();
 
+        ErrorCheck.checkStringNichtLeer(artikelInterpret);
+
         System.out.println("Titel:");
         String artikelTitel = input.next();
         input.nextLine();
 
+        ErrorCheck.checkStringNichtLeer(artikelTitel);
+
         System.out.println("Anzahl der Musiktitel: ");
         int artikelAnzahlTitel = input.nextInt();
         input.nextLine();
+
+        ErrorCheck.checkGroesserAlsNull(artikelAnzahlTitel);
 
         CD Cd = new CD(artikelNr, artikelBestand, artikelPreis, artikelInterpret, artikelTitel, artikelAnzahlTitel);
 
@@ -272,27 +287,38 @@ public class LagerDialog {
         int artikelNr = input.nextInt();
         input.nextLine();
 
+        ErrorCheck.checkArtikelNr(artikelNr);
         ErrorCheck.checkAlreadyInLager(artikelNr, Lager.lager);
 
         System.out.println("Artikelbestand: ");
         int artikelBestand = input.nextInt();
         input.nextLine();
 
+        ErrorCheck.checkBestand(artikelBestand);
+
         System.out.println("Artikelpreis: ");
         double artikelPreis = input.nextDouble();
         input.nextLine();
+
+        ErrorCheck.checkPreis(artikelPreis);
 
         System.out.println("Titel:");
         String artikelTitel = input.next();
         input.nextLine();
 
+        ErrorCheck.checkStringNichtLeer(artikelTitel);
+
         System.out.println("Spiel dauer: ");
         int artikelSpieldauer = input.nextInt();
         input.nextLine();
 
+        ErrorCheck.checkGroesserAlsNull(artikelSpieldauer);
+
         System.out.println("Jahr: ");
         int artikelJahr = input.nextInt();
         input.nextLine();
+
+        ErrorCheck.checkZwischen1900und2022(artikelJahr);
 
         Video Video = new Video(artikelNr, artikelBestand, artikelPreis, artikelTitel, artikelSpieldauer, artikelJahr);
         Lager.legeAnArtikel(Video);
@@ -304,27 +330,38 @@ public class LagerDialog {
         int artikelNr = input.nextInt();
         input.nextLine();
 
+        ErrorCheck.checkArtikelNr(artikelNr);
         ErrorCheck.checkAlreadyInLager(artikelNr, Lager.lager);
 
         System.out.println("Artikelbestand: ");
         int artikelBestand = input.nextInt();
         input.nextLine();
 
+        ErrorCheck.checkBestand(artikelBestand);
+
         System.out.println("Artikelpreis: ");
         double artikelPreis = input.nextDouble();
         input.nextLine();
+
+        ErrorCheck.checkPreis(artikelPreis);
 
         System.out.println("Titel:");
         String artikelTitel = input.next();
         input.nextLine();
 
+        ErrorCheck.checkStringNichtLeer(artikelTitel);
+
         System.out.println("Author: ");
         String artikelAuthor = input.next();
         input.nextLine();
 
+        ErrorCheck.checkStringNichtLeer(artikelAuthor);
+
         System.out.println("Verlag: ");
         String artikelVerlag = input.next();
         input.nextLine();
+
+        ErrorCheck.checkStringNichtLeer(artikelVerlag);
 
         Buch Buch = new Buch(artikelNr, artikelBestand, artikelPreis, artikelTitel, artikelAuthor, artikelVerlag);
         Lager.legeAnArtikel(Buch);
@@ -335,6 +372,7 @@ public class LagerDialog {
         int artikelNr = input.nextInt();
         input.nextLine();
 
+        ErrorCheck.checkArtikelNr(artikelNr);
         ErrorCheck.checkAlreadyInLager(artikelNr, Lager.lager);
 
         System.out.println("Artikelart (Beschreibung): ");
@@ -345,9 +383,13 @@ public class LagerDialog {
         int artikelBestand = input.nextInt();
         input.nextLine();
 
+        ErrorCheck.checkBestand(artikelBestand);
+
         System.out.println("Artikelpreis: ");
         double artikelPreis = input.nextDouble();
         input.nextLine();
+
+        ErrorCheck.checkPreis(artikelPreis);
 
         artikel = new Artikel(artikelNr, artikelArt, artikelBestand, artikelPreis);
 
@@ -449,6 +491,26 @@ public class LagerDialog {
     public void alsString() {
         ErrorCheck.checkLagerExistiert(lager);
         System.out.println(lager.toString());
+    }
+    public void beschreibungAlsString() {
+        double GesamtWert = 0;
+        System.out.format("%-6s%-43s%-9s%-9s%6s", "ArtNr", "Beschreibung", "Preis", "Bestand", "Gesamt\n");
+        System.out.format("---------------------------------------------------------------------------\n");
+        for (int i = 0; i < Lager.lager.length; i++) {
+            if (Lager.lager[i] != null) {
+                int ArtNr = Lager.lager[i].getArtikelNr();
+                String Art = Lager.lager[i].getBeschreibung();
+                double Preis = Lager.lager[i].getPreis();
+                int Bestand = Lager.lager[i].getBestand();
+                double GesamtPreis = Preis * Bestand;
+                GesamtWert += GesamtPreis;
+
+                System.out.format("%-6d%-43s%-9s%-9d%-6s", ArtNr, Art, Preis, Bestand, GesamtPreis);
+                System.out.format("\n");
+            }
+        }
+        System.out.format("---------------------------------------------------------------------------\n");
+        System.out.format("Gesamtwert%62s", GesamtWert);
     }
 
     /**

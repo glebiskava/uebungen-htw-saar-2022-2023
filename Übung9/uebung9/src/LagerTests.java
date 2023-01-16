@@ -1,12 +1,14 @@
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-public class LagerTest {
+/**
+ * dies ist eine Klasse zum testen der klasse lager
+ */
+public class LagerTests {
     @BeforeEach
     public void setup(){
         // Before each test ein Lager Groesse 10 anlegen (default value)
@@ -42,7 +44,7 @@ public class LagerTest {
     @Test
     public void test_lege_Artikel_ins_Lager_sollte_korrekt_sein() {
         // Artikel anlegen
-        Artikel artikel = new Artikel(1000, "Test artikel", 10, 10.0);
+        Artikel artikel = new Artikel(9999, "Test artikel", 1000, 10.0);
 
         //Artikel ins Lager legen
         Lager.legeAnArtikel(artikel);
@@ -58,8 +60,8 @@ public class LagerTest {
     @Test
     public void test_entferne_Artikel_ins_Lager_sollte_korrekt_sein() {
         // Zwei Artikel anlegen mit verschiedene ArtikelNr
-        Artikel artikel = new Artikel(1000, "Test artikel", 10, 10.0);
-        Artikel artikel2 = new Artikel(1001, "Test artikel", 10, 10.0);
+        Artikel artikel = new Artikel(1021, "Test artikel", 10, 10.0);
+        Artikel artikel2 = new Artikel(1001, "Test artikel", 1, 10.0);
 
         // Beide Artikel ins Lager legen
         Lager.legeAnArtikel(artikel);
@@ -70,7 +72,7 @@ public class LagerTest {
         assertEquals(artikel, Lager.getArtikel(0));
 
         // Artikel von Lager löschen
-        Lager.entferneArtikel(1000);
+        Lager.entferneArtikel(1021);
 
         // Prüft ob der artikel gut geloescht ist
         assertEquals(1, Lager.getArtikelAnzahl());
@@ -82,13 +84,13 @@ public class LagerTest {
     @Test
     public void test_Buche_Zugang_sollte_korrekt_sein() {
         // Artikel anlegen neues Artikel-Objekt mit Artikel-Startbestand von 10
-        Artikel artikel = new Artikel(1000, "Test artikel", 10, 10.0);
+        Artikel artikel = new Artikel(1210, "Test artikel", 10, 10.0);
 
         //Artikel ins Lager legen
         Lager.legeAnArtikel(artikel);
 
         // Verwenden der Methode bucheZugang, um den Lagerbestand um 5 zu erhöhen
-        Lager.bucheZugang(1000, 5);
+        Lager.bucheZugang(1210, 5);
 
         // Feststellen, dass der neue Lagerbestand gleich 15 ist
         assertEquals(15, artikel.getBestand());
@@ -172,7 +174,7 @@ public class LagerTest {
             Lager lager = new Lager(1);
 
             // Erste Artikel schaffen und im Lager anlegen
-            Artikel artikel = new Artikel(1000, "Test artikel", 10, 10.0);
+            Artikel artikel = new Artikel(1012, "Test artikel", 10, 10.0);
             Lager.legeAnArtikel(artikel);
 
             // Zweite Artikel schaffen und im Lager anlegen
@@ -187,7 +189,7 @@ public class LagerTest {
     @Test
     public void test_preisaenderung_wird_preis_negativ_machen_erwartet_Exception() {
         // Artikel anlegen neues 
-        Artikel artikel = new Artikel(1000, "Test artikel", 10, 10.0);
+        Artikel artikel = new Artikel(1021, "Test artikel", 10, 10.0);
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             // Probiert mit ein negativ Prozent Groesser als -100
