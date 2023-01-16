@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Lager {
 
     private final int MAX_ANZAHL         = 10;
-    private static Artikel[] lager;
+    public static Artikel[] lager;
 
     /**
      * zwei konstruktoren --> einer mit waehlbarer Laenge des Arrays und ein Standardkonstruktor
@@ -160,10 +160,10 @@ public class Lager {
             if (lager[i] == null) {
                 output = output + "null" + ")\n";
             } else {
-                output = output + lager[i].toString() + "]\n";
+                output = output + lager[i].toString() + ")\n";
             }
         }
-        return output;
+        return "[" + output + "]";
     }
 
     /**

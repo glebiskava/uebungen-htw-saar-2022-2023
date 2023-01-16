@@ -46,8 +46,8 @@ public class ErrorCheck {
      */
     public static void checkArtikelNr (int artikelNr) {
         if(String.valueOf(artikelNr).length() != 4 || artikelNr < 1000) {
-            throw new IllegalArgumentException("Keine gültige Eingabe. Geben Sie eine positive vierstellige Zahl ein, " +
-                    "die mit 1 anfaengt.");
+            throw new IllegalArgumentException("Keine gültige Eingabe. Geben Sie eine positive vierstellige Zahl ein, "
+                    + "die mit 1 anfaengt.");
         }
     }
 
@@ -62,7 +62,7 @@ public class ErrorCheck {
     }
 
     /**
-     * checkt ob menge die abgebucht wird posittiv ist und ob die differenz zwischen BEstand und Menge positiv bleibt
+     * checkt, ob menge die abgebucht wird positiv ist und ob die differenz zwischen Bestand und Menge positiv bleibt
      * @param bestand aktuelle meneg die vorhanden ist
      * @param menge anzahl die abgebucht wird
      */
@@ -74,7 +74,7 @@ public class ErrorCheck {
     }
 
     /**
-     * checkt ob das Lager leer ist
+     * checkt, ob das Lager leer ist
      * @param lager array mit objekten
      */
     public static void checkLagerLeer(Artikel[] lager) {
@@ -90,13 +90,13 @@ public class ErrorCheck {
     }
 
     /**
-     * checkt ob ein Objekt schon im Lager vorhanden ist
+     * checkt, ob ein Objekt schon im Lager vorhanden ist
      * @param artikelNr nummer des Artikels
-     * @param artikel objekt
+     * @param lager objekt
      */
-    public static void checkAlreadyInLager(int artikelNr, Artikel[] artikel){
-        for (int x = 0; x < artikel.length; x++) {
-            if (artikel[x] != null && artikel[x].getArtikelNr() == artikelNr) {
+    public static void checkAlreadyInLager(int artikelNr, Artikel[] lager){
+        for (int x = 0; x < lager.length; x++) {
+            if (lager[x] != null && lager[x].getArtikelNr() == artikelNr) {
                 throw new IllegalArgumentException("Die Artikelnummer " + artikelNr + " ist bereits einem anderen\n" +
                         "zugeordnet worden.");
             }
@@ -104,7 +104,7 @@ public class ErrorCheck {
     }
 
     /**
-     * checkt ob ein Objekt noch nicht Lager vorhanden ist
+     * checkt, ob ein Objekt noch nicht Lager vorhanden ist
      * @param artikelNr nummer des artikels
      * @param artikel objekt
      */
@@ -117,7 +117,7 @@ public class ErrorCheck {
     }
 
     /**
-     * checkt ob das Lager voll ist
+     * checkt, ob das Lager voll ist
      * @param lager arraay mit objekten
      */
     public static void checkObLagerVoll(Artikel[] lager) {
@@ -133,7 +133,7 @@ public class ErrorCheck {
     }
 
     /**
-     * checkt ob der die Grenze des Arrays erreicht ist
+     * checkt, ob der die Grenze des Arrays erreicht ist
      * @param index position im Array
      * @param laenge laenge des Arrays
      */
@@ -145,7 +145,7 @@ public class ErrorCheck {
     }
 
     /**
-     * checkt ob der Index null ist
+     * checkt, ob der Index null ist
      * @param lager array mit objekten
      * @param index position im array
      */
@@ -155,15 +155,15 @@ public class ErrorCheck {
         }
     }
 
-    /**
-     * checkt ob die ob das Lager mindestens ein objekt enthalten kann
-     * @param anzahl groesse des objektes
-     */
-    public static void checkLagerGroesse(int anzahl) {
-        if (anzahl < 1) {
-            throw new IllegalArgumentException("Das Lager muss mindestens 1 Artikel enthalten muessen.");
+    public static void checkSchonLager(Lager lager){
+        if(lager != null) {
+            throw new IllegalArgumentException("Es existiert schon ein Lager. Nutzen Sie es!");
         }
     }
 
-
+    public static void checkLagerExistiert(Lager lager){
+        if(lager == null) {
+            throw new IllegalArgumentException("Es existiert noch kein Lager. Legen Sie eins an!");
+        }
+    }
 }

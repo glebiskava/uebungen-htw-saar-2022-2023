@@ -12,7 +12,7 @@ public class CD extends Artikel{
     private String titel;
     private int anzahlTitel;
 
-    public CD(int artikelNr, String art, int bestand, double preis, String interpret, String titel, int anzahlTitel) {
+    public CD(int artikelNr, int bestand, double preis, String interpret, String titel, int anzahlTitel) {
         super(artikelNr, "Medien", bestand, preis);
         setInterpret(interpret);
         setTitel(titel);
@@ -60,9 +60,10 @@ public class CD extends Artikel{
         return interpret + ": " + titel;
     }
 
-    /*// @Todo right format as in uebung9.pdf
+    // @Todo right format as in uebung9.pdf
     @Override
     public String toString() {
-        return "CD: " + super.toString() + ", Interpret: " + interpret + ", Titel: " + titel + ", Anzahl Titel: " + anzahlTitel;
-    }*/
+        return "CD: " + super.toString() + ", Interpret: " + interpret + ", Titel: " + titel + ", Anzahl Titel: " +
+                anzahlTitel;
+    }
 }

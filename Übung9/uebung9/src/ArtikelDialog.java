@@ -26,7 +26,6 @@ public class ArtikelDialog {
     private static final int SET_ART = 5;
     private static final int SET_BESTAND = 6;
     private static final int SET_PREIS = 7;
-    private static final int TEST = 8;
     private static final int PROGRAMM_ENDE = 0;
 
     /**
@@ -76,7 +75,6 @@ public class ArtikelDialog {
                 SET_ART + ": Art(Beschreibung) des Artikels eingeben/bearbeiten\n" +
                 SET_BESTAND + ": Bestand aktualisieren\n" +
                 SET_PREIS + ": Preis aktualisieren\n" +
-                TEST + ": TEST\n" +
                 PROGRAMM_ENDE + ": Dialog beenden\nGeben Sie einen Nummer ein: ");
     }
 
