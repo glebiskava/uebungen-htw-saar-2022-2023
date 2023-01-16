@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 /**
  * Dies ist eine Klasse Artikel fuer eine einfache Bestandsfuehrung
  * @author Leopold Mittelberger, Elisee Brand
@@ -75,10 +77,12 @@ public class Artikel {
      * Bestand darf nicht negativ sein
      */
     public void setArtikelNr(int artikelNr) {
+        ErrorCheck.checkArtikelNr(artikelNr);
         this.artikelNr = artikelNr;
     }
 
     public void setBestand(int bestand) {
+        ErrorCheck.checkGroesserAlsNull(bestand);
         ErrorCheck.checkBestand(bestand);
         this.bestand = bestand;
     }
@@ -89,7 +93,7 @@ public class Artikel {
     }
 
     public void setArt(String art) {
-        ErrorCheck.checkStringNichtLeer(art);
+        ErrorCheck.checkArt(art);
         this.art = art;
     }
 
@@ -117,9 +121,6 @@ public class Artikel {
         return art;
     }
 
-<<<<<<< Updated upstream
-
-=======
     /**
      * Diese Methode vergleicht
      * @param object The object to be compared with
@@ -139,5 +140,4 @@ public class Artikel {
                 Double.compare(artikel.preis, preis) == 0 &&
                 Objects.equals(art, artikel.art);
     }
->>>>>>> Stashed changes
 }

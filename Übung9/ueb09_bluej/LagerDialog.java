@@ -202,18 +202,18 @@ public class LagerDialog {
      * legt ein neues Lager an
      */
     public void lagerAnlegen() {
-         ErrorCheck.checkSchonLager(lager);
+        ErrorCheck.checkSchonLager(lager);
 
-         System.out.println("Geben sie die Laenge des Lagers ein: ");
-         int size = input.nextInt();
-         input.nextLine();
+        System.out.println("Geben sie die Laenge des Lagers ein: ");
+        int size = input.nextInt();
+        input.nextLine();
 
-         if (size <= 0){
-             lager = new Lager();
-             System.out.println("Sie haben keinen korrekten Wert angegeben, der Standardwert 10 wurde angegeben.");
-         } else {
-             lager = new Lager(size);
-         }
+        if (size <= 0){
+            lager = new Lager();
+            System.out.println("Sie haben keinen korrekten Wert angegeben, der Standardwert 10 wurde angegeben.");
+        } else {
+            lager = new Lager(size);
+        }
     }
     /**
      * legt einen neuen Artikel an mit den selbstgewaehlten Werten des Benutzers.
@@ -239,6 +239,9 @@ public class LagerDialog {
         } while (artikelBefehl != DIALOG_ARTIKEL_ENDE);
     }
 
+    /**
+     * liegt ein cd-artikel an
+     */
     public void cdAnlegen(){
         System.out.println("Artikelnummer: ");
         int artikelNr = input.nextInt();
@@ -282,6 +285,9 @@ public class LagerDialog {
         Lager.legeAnArtikel(Cd);
     }
 
+    /**
+     * liegt ein video-artikel an
+     */
     public void videoAnlegen(){
         System.out.println("Artikelnummer: ");
         int artikelNr = input.nextInt();
@@ -324,7 +330,9 @@ public class LagerDialog {
         Lager.legeAnArtikel(Video);
     }
 
-
+    /**
+     * liegt ein buch-artikel an
+     */
     public void buchAnlegen(){
         System.out.println("Artikelnummer: ");
         int artikelNr = input.nextInt();
@@ -367,6 +375,9 @@ public class LagerDialog {
         Lager.legeAnArtikel(Buch);
     }
 
+    /**
+     * liegt anderen/weiteren artikel an
+     */
     public void andereArtikelAnlegen(){
         System.out.println("Artikelnummer: ");
         int artikelNr = input.nextInt();
@@ -378,7 +389,7 @@ public class LagerDialog {
         System.out.println("Artikelart (Beschreibung): ");
         String artikelArt = input.next();
         input.nextLine();
-
+        
         //ErrorCheck.checkArt(artikelArt);
 
         System.out.println("Artikelbestand: ");
@@ -494,6 +505,10 @@ public class LagerDialog {
         ErrorCheck.checkLagerExistiert(lager);
         System.out.println(lager.toString());
     }
+
+    /**
+     * gibt das gesamte Lager als String aufbereitet wieder
+     */
     public void beschreibungAlsString() {
         double GesamtWert = 0;
         System.out.format("%-6s%-43s%-9s%-9s%6s", "ArtNr", "Beschreibung", "Preis", "Bestand", "Gesamt\n");
