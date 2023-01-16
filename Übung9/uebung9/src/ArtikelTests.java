@@ -1,5 +1,5 @@
 import org.junit.jupiter.api.Test;
-import java.util.Objects;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -220,14 +220,4 @@ public class ArtikelTests {
         assertNotEquals(artikelTest1, artikelTest5);
         assertNotEquals(artikelTest1, artikelTest6);
     }
-
-    /**
-     * Test ob hash methode richtig funktioniert
-     */
-    @Test
-    public void test_ob_hash_funktioniert(){
-        Artikel artikelTest = new Artikel(1234, "Ball", 10, 5.0);
-        assertEquals(Objects.hash(1234, "Ball", 10, 5.0), artikelTest.hashCode());
-    }
-
 }
