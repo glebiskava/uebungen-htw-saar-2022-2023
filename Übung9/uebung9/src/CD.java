@@ -43,16 +43,20 @@ public class CD extends Artikel{
         this.anzahlTitel = anzahlTitel;
     }
 
+    /**
+     * Checks if the provided object is equal to this book.
+     * @param object the object to compare
+     * @return true if the objects are equal, false otherwise
+     */
     @Override
     public boolean equals(Object object){
         if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
+        if (object == null || !(object instanceof Buch)) return false;
+        if (!super.equals(object)) return false;
         CD cd = (CD) object;
-        return artikelNr == cd.artikelNr &&
-                bestand == cd.bestand &&
-                Double.compare(cd.preis, preis) == 0 &&
-                Objects.equals(interpret, cd.interpret) &&
-                Objects.equals(titel, cd.titel);
+        return Objects.equals(interpret, cd.interpret) &&
+                Objects.equals(titel, cd.titel) &&
+                anzahlTitel == cd.anzahlTitel;
     }
 
     // getBeschreibung method

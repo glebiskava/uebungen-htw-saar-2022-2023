@@ -41,12 +41,10 @@ public class Video extends Artikel{
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         Video video = (Video) object;
-        return artikelNr == video.artikelNr &&
-                bestand == video.bestand &&
-                Double.compare(video.preis, preis) == 0 &&
-                Objects.equals(titel, video.titel) &&
-                Objects.equals(spieldauer, video.spieldauer) &&
-                Objects.equals(jahr, video.jahr);
+
+        return Objects.equals(titel, video.titel) &&
+                spieldauer == video.spieldauer &&
+                jahr == video.jahr;
     }
     @Override
     public String getBeschreibung() {

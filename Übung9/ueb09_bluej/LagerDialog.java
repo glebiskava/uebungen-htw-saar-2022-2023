@@ -202,18 +202,18 @@ public class LagerDialog {
      * legt ein neues Lager an
      */
     public void lagerAnlegen() {
-        ErrorCheck.checkSchonLager(lager);
+         ErrorCheck.checkSchonLager(lager);
 
-        System.out.println("Geben sie die Laenge des Lagers ein: ");
-        int size = input.nextInt();
-        input.nextLine();
+         System.out.println("Geben sie die Laenge des Lagers ein: ");
+         int size = input.nextInt();
+         input.nextLine();
 
-        if (size <= 0){
-            lager = new Lager();
-            System.out.println("Sie haben keinen korrekten Wert angegeben, der Standardwert 10 wurde angegeben.");
-        } else {
-            lager = new Lager(size);
-        }
+         if (size <= 0){
+             lager = new Lager();
+             System.out.println("Sie haben keinen korrekten Wert angegeben, der Standardwert 10 wurde angegeben.");
+         } else {
+             lager = new Lager(size);
+         }
     }
     /**
      * legt einen neuen Artikel an mit den selbstgewaehlten Werten des Benutzers.
@@ -240,27 +240,50 @@ public class LagerDialog {
     }
 
     /**
-     * liegt ein cd-artikel an
+     * ArtikelNr für die gemeinsamen attributes
+     * @return artikelNr der aertikel nummer
      */
-    public void cdAnlegen(){
+    public int gemeinsamAttributeArtikelNr() {
         System.out.println("Artikelnummer: ");
         int artikelNr = input.nextInt();
         input.nextLine();
 
         ErrorCheck.checkArtikelNr(artikelNr);
         ErrorCheck.checkAlreadyInLager(artikelNr, Lager.lager);
-
+        return artikelNr;
+    }
+    /**
+     * ArtikelNr für die gemeinsamen attributes
+     * @return artikelBestand der artikel bestand
+     */
+    public int gemeinsamAttributeBestand() {
         System.out.println("Artikelbestand: ");
         int artikelBestand = input.nextInt();
         input.nextLine();
 
         ErrorCheck.checkBestand(artikelBestand);
-
+        return artikelBestand;
+    }
+    /**
+     * ArtikelNr für die gemeinsamen attributes
+     * @return artikelPreis der artikel preis
+     */
+    public double gemeinsamAttributePreis() {
         System.out.println("Artikelpreis: ");
         double artikelPreis = input.nextDouble();
         input.nextLine();
 
         ErrorCheck.checkPreis(artikelPreis);
+        return artikelPreis;
+    }
+
+    /**
+     * liegt ein cd-artikel an
+     */
+    public void cdAnlegen(){
+        int artikelNr = gemeinsamAttributeArtikelNr();
+        int artikelBestand = gemeinsamAttributeBestand();
+        double artikelPreis = gemeinsamAttributePreis();
 
         System.out.println("Interpret: ");
         String artikelInterpret = input.next();
@@ -289,24 +312,9 @@ public class LagerDialog {
      * liegt ein video-artikel an
      */
     public void videoAnlegen(){
-        System.out.println("Artikelnummer: ");
-        int artikelNr = input.nextInt();
-        input.nextLine();
-
-        ErrorCheck.checkArtikelNr(artikelNr);
-        ErrorCheck.checkAlreadyInLager(artikelNr, Lager.lager);
-
-        System.out.println("Artikelbestand: ");
-        int artikelBestand = input.nextInt();
-        input.nextLine();
-
-        ErrorCheck.checkBestand(artikelBestand);
-
-        System.out.println("Artikelpreis: ");
-        double artikelPreis = input.nextDouble();
-        input.nextLine();
-
-        ErrorCheck.checkPreis(artikelPreis);
+        int artikelNr = gemeinsamAttributeArtikelNr();
+        int artikelBestand = gemeinsamAttributeBestand();
+        double artikelPreis = gemeinsamAttributePreis();
 
         System.out.println("Titel:");
         String artikelTitel = input.next();
@@ -334,24 +342,9 @@ public class LagerDialog {
      * liegt ein buch-artikel an
      */
     public void buchAnlegen(){
-        System.out.println("Artikelnummer: ");
-        int artikelNr = input.nextInt();
-        input.nextLine();
-
-        ErrorCheck.checkArtikelNr(artikelNr);
-        ErrorCheck.checkAlreadyInLager(artikelNr, Lager.lager);
-
-        System.out.println("Artikelbestand: ");
-        int artikelBestand = input.nextInt();
-        input.nextLine();
-
-        ErrorCheck.checkBestand(artikelBestand);
-
-        System.out.println("Artikelpreis: ");
-        double artikelPreis = input.nextDouble();
-        input.nextLine();
-
-        ErrorCheck.checkPreis(artikelPreis);
+        int artikelNr = gemeinsamAttributeArtikelNr();
+        int artikelBestand = gemeinsamAttributeBestand();
+        double artikelPreis = gemeinsamAttributePreis();
 
         System.out.println("Titel:");
         String artikelTitel = input.next();
@@ -375,34 +368,14 @@ public class LagerDialog {
         Lager.legeAnArtikel(Buch);
     }
 
-    /**
-     * liegt anderen/weiteren artikel an
-     */
     public void andereArtikelAnlegen(){
-        System.out.println("Artikelnummer: ");
-        int artikelNr = input.nextInt();
-        input.nextLine();
-
-        ErrorCheck.checkArtikelNr(artikelNr);
-        ErrorCheck.checkAlreadyInLager(artikelNr, Lager.lager);
+        int artikelNr = gemeinsamAttributeArtikelNr();
+        int artikelBestand = gemeinsamAttributeBestand();
+        double artikelPreis = gemeinsamAttributePreis();
 
         System.out.println("Artikelart (Beschreibung): ");
         String artikelArt = input.next();
         input.nextLine();
-        
-        //ErrorCheck.checkArt(artikelArt);
-
-        System.out.println("Artikelbestand: ");
-        int artikelBestand = input.nextInt();
-        input.nextLine();
-
-        ErrorCheck.checkBestand(artikelBestand);
-
-        System.out.println("Artikelpreis: ");
-        double artikelPreis = input.nextDouble();
-        input.nextLine();
-
-        ErrorCheck.checkPreis(artikelPreis);
 
         artikel = new Artikel(artikelNr, artikelArt, artikelBestand, artikelPreis);
 
@@ -505,10 +478,6 @@ public class LagerDialog {
         ErrorCheck.checkLagerExistiert(lager);
         System.out.println(lager.toString());
     }
-
-    /**
-     * gibt das gesamte Lager als String aufbereitet wieder
-     */
     public void beschreibungAlsString() {
         double GesamtWert = 0;
         System.out.format("%-6s%-43s%-9s%-9s%6s", "ArtNr", "Beschreibung", "Preis", "Bestand", "Gesamt\n");

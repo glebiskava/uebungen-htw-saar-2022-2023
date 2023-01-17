@@ -37,18 +37,22 @@ public class Buch extends Artikel{
         this.verlag = verlag;
     }
 
+    /**
+     * Checks if the provided object is equal to this book.
+     * @param object the object to compare
+     * @return true if the objects are equal, false otherwise
+     */
     @Override
     public boolean equals(Object object){
         if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
+        if (object == null || !(object instanceof Buch)) return false;
+        if (!super.equals(object)) return false;
         Buch buch = (Buch) object;
-        return artikelNr == buch.artikelNr &&
-                bestand == buch.bestand &&
-                Double.compare(buch.preis, preis) == 0 &&
-                Objects.equals(titel, buch.titel) &&
+        return Objects.equals(titel, buch.titel) &&
                 Objects.equals(author, buch.author) &&
                 Objects.equals(verlag, buch.verlag);
     }
+
     @Override
     public String getBeschreibung() {
         return author + ": " + titel;

@@ -11,10 +11,10 @@ public class Artikel {
      * @param art Beschreibung des Artikels
      * @param bestand Anzahl der Artikel
      */
-    public int artikelNr;
-    public String art;
-    public int bestand;
-    public double preis;
+    private int artikelNr;
+    private String art;
+    private int bestand;
+    private double preis;
 
 
     /** Konstruktoren
