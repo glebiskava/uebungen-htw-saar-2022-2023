@@ -2,12 +2,13 @@ public class QueueClass implements Queue{
 
     private Object[] queue;
     private int Groesse;
-    private int Size;
+    private int Size = 0;
     private static final int default_groesse = 10;
     public QueueClass(int Groesse){
         //check groesser als 0 / 1 ? ou bien a mettre ailleurs
         this.Groesse = Groesse;
         queue = new Object[Groesse];
+        Size = 0;
     }
     public QueueClass(){
         queue = new Object[default_groesse]; //this(default_groesse)
@@ -25,8 +26,10 @@ public class QueueClass implements Queue{
     public Object removeFirst() {
         Object output = queue[0];
         queue[0] = null;
-        for(int i = 0; i < Size; i++){
+
+        for(int i = 0; i+1 < Size; i++){
             queue[i] = queue[i+1];
+            System.out.println("queue[i] : "+ queue[i]);
         }
         Size--;
         return output;
@@ -49,14 +52,21 @@ public class QueueClass implements Queue{
     @Override
     public boolean full() {
         if(Size == Groesse){
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     @Override
     public int size() {
-        int output = Groesse - Size;
-        return output;
+        return Size;
     }
+
+    //rajoutée
+
+    @Override
+    public Object queueZeigen(Queue q, int index){
+        return queue[index];
+    }
+
 }

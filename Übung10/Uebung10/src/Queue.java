@@ -6,4 +6,8 @@ public interface Queue {
         public boolean empty(); // Testen, die Queue leer ist
         public boolean full() ; // Testen, ob noch Elemente einfuegbar sind
         public int size(); // Anzahl eingefuegter Elemente
+
+
+        //rajouté :
+        public Object queueZeigen(Queue q, int index);
 }
