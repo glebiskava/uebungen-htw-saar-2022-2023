@@ -377,6 +377,23 @@ public class LagerDialog {
         String artikelArt = input.next();
         input.nextLine();
 
+<<<<<<< Updated upstream
+=======
+        //ErrorCheck.checkArt(artikelArt);
+
+        System.out.println("Artikelbestand: ");
+        int artikelBestand = input.nextInt();
+        input.nextLine();
+
+        ErrorCheck.checkBestand(artikelBestand);
+
+        System.out.println("Artikelpreis: ");
+        double artikelPreis = input.nextDouble();
+        input.nextLine();
+
+        ErrorCheck.checkPreis(artikelPreis);
+
+>>>>>>> Stashed changes
         artikel = new Artikel(artikelNr, artikelArt, artikelBestand, artikelPreis);
 
         Lager.legeAnArtikel(artikel);

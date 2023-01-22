@@ -202,6 +202,7 @@ public class LagerDialog {
      * legt ein neues Lager an
      */
     public void lagerAnlegen() {
+<<<<<<< Updated upstream
          ErrorCheck.checkSchonLager(lager);
 
          System.out.println("Geben sie die Laenge des Lagers ein: ");
@@ -214,6 +215,20 @@ public class LagerDialog {
          } else {
              lager = new Lager(size);
          }
+=======
+        ErrorCheck.checkSchonLager(lager);
+
+        System.out.println("Geben sie die Laenge des Lagers ein: ");
+        int size = input.nextInt();
+        input.nextLine();
+
+        if (size <= 0){
+            lager = new Lager();
+            System.out.println("Sie haben keinen korrekten Wert angegeben, der Standardwert 10 wurde angegeben.");
+        } else {
+            lager = new Lager(size);
+        }
+>>>>>>> Stashed changes
     }
     /**
      * legt einen neuen Artikel an mit den selbstgewaehlten Werten des Benutzers.
@@ -240,16 +255,23 @@ public class LagerDialog {
     }
 
     /**
+<<<<<<< Updated upstream
      * ArtikelNr für die gemeinsamen attributes
      * @return artikelNr der aertikel nummer
      */
     public int gemeinsamAttributeArtikelNr() {
+=======
+     * liegt ein cd-artikel an
+     */
+    public void cdAnlegen(){
+>>>>>>> Stashed changes
         System.out.println("Artikelnummer: ");
         int artikelNr = input.nextInt();
         input.nextLine();
 
         ErrorCheck.checkArtikelNr(artikelNr);
         ErrorCheck.checkAlreadyInLager(artikelNr, Lager.lager);
+<<<<<<< Updated upstream
         return artikelNr;
     }
     /**
@@ -257,11 +279,15 @@ public class LagerDialog {
      * @return artikelBestand der artikel bestand
      */
     public int gemeinsamAttributeBestand() {
+=======
+
+>>>>>>> Stashed changes
         System.out.println("Artikelbestand: ");
         int artikelBestand = input.nextInt();
         input.nextLine();
 
         ErrorCheck.checkBestand(artikelBestand);
+<<<<<<< Updated upstream
         return artikelBestand;
     }
     /**
@@ -269,11 +295,15 @@ public class LagerDialog {
      * @return artikelPreis der artikel preis
      */
     public double gemeinsamAttributePreis() {
+=======
+
+>>>>>>> Stashed changes
         System.out.println("Artikelpreis: ");
         double artikelPreis = input.nextDouble();
         input.nextLine();
 
         ErrorCheck.checkPreis(artikelPreis);
+<<<<<<< Updated upstream
         return artikelPreis;
     }
 
@@ -284,6 +314,8 @@ public class LagerDialog {
         int artikelNr = gemeinsamAttributeArtikelNr();
         int artikelBestand = gemeinsamAttributeBestand();
         double artikelPreis = gemeinsamAttributePreis();
+=======
+>>>>>>> Stashed changes
 
         System.out.println("Interpret: ");
         String artikelInterpret = input.next();
@@ -312,9 +344,30 @@ public class LagerDialog {
      * liegt ein video-artikel an
      */
     public void videoAnlegen(){
+<<<<<<< Updated upstream
         int artikelNr = gemeinsamAttributeArtikelNr();
         int artikelBestand = gemeinsamAttributeBestand();
         double artikelPreis = gemeinsamAttributePreis();
+=======
+        System.out.println("Artikelnummer: ");
+        int artikelNr = input.nextInt();
+        input.nextLine();
+
+        ErrorCheck.checkArtikelNr(artikelNr);
+        ErrorCheck.checkAlreadyInLager(artikelNr, Lager.lager);
+
+        System.out.println("Artikelbestand: ");
+        int artikelBestand = input.nextInt();
+        input.nextLine();
+
+        ErrorCheck.checkBestand(artikelBestand);
+
+        System.out.println("Artikelpreis: ");
+        double artikelPreis = input.nextDouble();
+        input.nextLine();
+
+        ErrorCheck.checkPreis(artikelPreis);
+>>>>>>> Stashed changes
 
         System.out.println("Titel:");
         String artikelTitel = input.next();
@@ -342,9 +395,30 @@ public class LagerDialog {
      * liegt ein buch-artikel an
      */
     public void buchAnlegen(){
+<<<<<<< Updated upstream
         int artikelNr = gemeinsamAttributeArtikelNr();
         int artikelBestand = gemeinsamAttributeBestand();
         double artikelPreis = gemeinsamAttributePreis();
+=======
+        System.out.println("Artikelnummer: ");
+        int artikelNr = input.nextInt();
+        input.nextLine();
+
+        ErrorCheck.checkArtikelNr(artikelNr);
+        ErrorCheck.checkAlreadyInLager(artikelNr, Lager.lager);
+
+        System.out.println("Artikelbestand: ");
+        int artikelBestand = input.nextInt();
+        input.nextLine();
+
+        ErrorCheck.checkBestand(artikelBestand);
+
+        System.out.println("Artikelpreis: ");
+        double artikelPreis = input.nextDouble();
+        input.nextLine();
+
+        ErrorCheck.checkPreis(artikelPreis);
+>>>>>>> Stashed changes
 
         System.out.println("Titel:");
         String artikelTitel = input.next();
@@ -368,14 +442,44 @@ public class LagerDialog {
         Lager.legeAnArtikel(Buch);
     }
 
+<<<<<<< Updated upstream
     public void andereArtikelAnlegen(){
         int artikelNr = gemeinsamAttributeArtikelNr();
         int artikelBestand = gemeinsamAttributeBestand();
         double artikelPreis = gemeinsamAttributePreis();
+=======
+    /**
+     * liegt anderen/weiteren artikel an
+     */
+    public void andereArtikelAnlegen(){
+        System.out.println("Artikelnummer: ");
+        int artikelNr = input.nextInt();
+        input.nextLine();
+
+        ErrorCheck.checkArtikelNr(artikelNr);
+        ErrorCheck.checkAlreadyInLager(artikelNr, Lager.lager);
+>>>>>>> Stashed changes
 
         System.out.println("Artikelart (Beschreibung): ");
         String artikelArt = input.next();
         input.nextLine();
+<<<<<<< Updated upstream
+=======
+        
+        //ErrorCheck.checkArt(artikelArt);
+
+        System.out.println("Artikelbestand: ");
+        int artikelBestand = input.nextInt();
+        input.nextLine();
+
+        ErrorCheck.checkBestand(artikelBestand);
+
+        System.out.println("Artikelpreis: ");
+        double artikelPreis = input.nextDouble();
+        input.nextLine();
+
+        ErrorCheck.checkPreis(artikelPreis);
+>>>>>>> Stashed changes
 
         artikel = new Artikel(artikelNr, artikelArt, artikelBestand, artikelPreis);
 
@@ -478,6 +582,13 @@ public class LagerDialog {
         ErrorCheck.checkLagerExistiert(lager);
         System.out.println(lager.toString());
     }
+<<<<<<< Updated upstream
+=======
+
+    /**
+     * gibt das gesamte Lager als String aufbereitet wieder
+     */
+>>>>>>> Stashed changes
     public void beschreibungAlsString() {
         double GesamtWert = 0;
         System.out.format("%-6s%-43s%-9s%-9s%6s", "ArtNr", "Beschreibung", "Preis", "Bestand", "Gesamt\n");

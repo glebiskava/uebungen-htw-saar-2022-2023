@@ -139,5 +139,8 @@ public class Artikel {
                 Double.compare(artikel.preis, preis) == 0 &&
                 Objects.equals(art, artikel.art);
     }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
