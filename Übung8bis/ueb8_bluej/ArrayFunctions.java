@@ -1,4 +1,4 @@
-/**
+    /**
  * Dies ist eine Klasse ArrayFunctions fuer messewerte und String auswerten
  * @author Leopold Mittelberger, Elisee Brand
  * @version 2

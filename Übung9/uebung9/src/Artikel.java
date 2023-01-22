@@ -117,9 +117,6 @@ public class Artikel {
         return art;
     }
 
-<<<<<<< Updated upstream
-
-=======
     /**
      * Diese Methode vergleicht
      * @param object The object to be compared with
@@ -139,8 +136,4 @@ public class Artikel {
                 Double.compare(artikel.preis, preis) == 0 &&
                 Objects.equals(art, artikel.art);
     }
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 }
