@@ -21,14 +21,14 @@ public class QueueDialog {
      */
     private static final int PERSON_QUEUE_ANLEGEN          = 1;
     private static final int STRING_QUEUE_ANLEGEN          = 2;
-    private static final int ADD_PERSON_ANFANG             = 3;
-    private static final int ADD_PERSON_ENDE               = 4;
-    private static final int REMOVE_PERSON_ANFANG          = 5;
-    private static final int REMOVE_PERSON_ENDE            = 6;
+    private static final int ADD_OBJEKT_ANFANG             = 3;
+    private static final int ADD_OBJEKT_ENDE               = 4;
+    private static final int REMOVE_OBJEKT_ANFANG          = 5;
+    private static final int REMOVE_OBJEKT_ENDE            = 6;
     private static final int REMOVE_PERSON_NR              = 7;
     private static final int PATIENTENWARTESCHlANGE_ZEIGEN = 8;
-    private static final int GET_ANZAHL_PERSON             = 9;
-    private static final int GET_PERSON_INDEX              = 10;
+    private static final int GET_ANZAHL_OBJEKT = 9;
+    private static final int GET_DATA_INDEX                = 10;
     private static final int IST_QUEUE_LEER                = 11;
     private static final int IST_QUEUE_VOLL                = 12;
     private static final int PROGRAMM_ENDE                 = 0;
@@ -74,14 +74,14 @@ public class QueueDialog {
         System.out.print("\n\n\n" +
                 PERSON_QUEUE_ANLEGEN          + ": PERSON_QUEUE_ANLEGEN\n" +
                 STRING_QUEUE_ANLEGEN          + ": STRING_QUEUE_ANLEGEN\n" +
-                /*ADD_PERSON_ANFANG             + ": Person am Anfang anlegen\n" +*/ // ne pas suprimer les comments j'en parle a vice lundi
-                ADD_PERSON_ENDE               + ": Person am Ende anlegen\n" +
-                REMOVE_PERSON_ANFANG          + ": Person am Anfang entfernen\n" +
-                /*REMOVE_PERSON_ENDE            + ": Person am Ende entfernen\n" +*/
+                ADD_OBJEKT_ANFANG             + ": Objekt am Anfang anlegen\n" +
+                ADD_OBJEKT_ENDE               + ": Objekt am Ende anlegen\n" +
+                REMOVE_OBJEKT_ANFANG          + ": Objekt am Anfang entfernen\n" +
+                REMOVE_OBJEKT_ENDE            + ": Objekt am Ende entfernen\n" +
                 /*REMOVE_PERSON_NR              + ": Person bei PersonNr entfernen\n"  +*/
                 PATIENTENWARTESCHlANGE_ZEIGEN + ": Patienten warteschlange Zeigen\n" +
-                GET_ANZAHL_PERSON             + ": Anzahl patienten ausgeben\n" +
-                GET_PERSON_INDEX              + ": Get Person data bei Index\n" +
+                GET_ANZAHL_OBJEKT             + ": Anzahl objekten ausgeben\n" +
+                GET_DATA_INDEX                + ": Get data in queue bei Index\n" +
                 IST_QUEUE_LEER                + ": IST_QUEUE_LEER ?\n" +
                 IST_QUEUE_VOLL                + ": IST_QUEUE_VOLL ?\n" +
                 PROGRAMM_ENDE                 + ": Dialog beenden\nGeben Sie einen Nummer ein: ");
@@ -111,29 +111,29 @@ public class QueueDialog {
                 case STRING_QUEUE_ANLEGEN:
                     stringQueueAnlegen();
                     break;
-                case ADD_PERSON_ANFANG:
-                    /*personAnfangAnlegen();*/
+                case ADD_OBJEKT_ANFANG:
+                    /*objektAnfangAnlegen();*/
                     break;
-                case ADD_PERSON_ENDE:
-                    personEndeAnlegen();
+                case ADD_OBJEKT_ENDE:
+                    objektEndeAnlegen();
                     break;
-                case REMOVE_PERSON_ANFANG:
-                    personAnfangEntfernen();
+                case REMOVE_OBJEKT_ANFANG:
+                    objektAnfangEntfernen();
                     break;
-                case REMOVE_PERSON_ENDE:
-                    /*personEndeEntfernen();*/
+                case REMOVE_OBJEKT_ENDE:
+                    /*objektEndeEntfernen();*/
                     break;
                 case REMOVE_PERSON_NR:
-                    /*personNrEntfernen();*/
+                    /*objektNrEntfernen();*/
                     break;
                 case PATIENTENWARTESCHlANGE_ZEIGEN:
                     personWarteschlangeZeigen();
                     break;
-                case GET_ANZAHL_PERSON:
-                    personAnzahlGeben();
+                case GET_ANZAHL_OBJEKT:
+                    objektAnzahlGeben();
                     break;
-                case GET_PERSON_INDEX:
-                    personIndexGeben();
+                case GET_DATA_INDEX:
+                    indexGeben();
                     break;
                 case IST_QUEUE_LEER :
                     istQueueLeer();
@@ -192,46 +192,76 @@ public class QueueDialog {
      * ArtikelNr für die gemeinsamen attributes
      * @return artikelBestand der artikel bestand
      */
-    public void personEndeAnlegen() {
-        //pruefen ob voll ist oder nicht
-        System.out.println("Vorname: ");
-        String personVorname = input.next();
-        input.nextLine();
+    public void objektEndeAnlegen() {
+        //pruefen, ob voll ist oder nicht
+        if(queue == null){
+            System.out.println("Es gibt zurzeit kein queue ein, legen sie zuerst eine an !");
+        } else {
+            if(queue instanceof PersonQueue){
+                System.out.println("Vorname: ");
+                String personVorname = input.next();
+                input.nextLine();
 
-        System.out.println("Nachname: ");
-        String personNachname = input.next();
-        input.nextLine();
+                System.out.println("Nachname: ");
+                String personNachname = input.next();
+                input.nextLine();
 
-        queue.addLast(new Person(personVorname, personNachname));
+                queue.addLast(new Person(personVorname, personNachname));
+            } else {
+                System.out.println("String: ");
+                String stringData = input.next();
+                input.nextLine();
+
+                queue.addLast(stringData);
+            }
+        }
     }
     /**
      * ArtikelNr für die gemeinsamen attributes
      * @return artikelPreis der artikel preis
      */
-    public void personAnfangEntfernen() {
-        if(queue.size() < 1){
-            System.out.println("Es gibt kein personne / string in das queue, legen sie eine an !");
-        } else{
-            System.out.println("Erste person wird gelöscht");
-            queue.removeFirst();
+    public void objektAnfangEntfernen() {
+        if(queue == null){
+            System.out.println("Es gibt zurzeit kein queue ein, legen sie zuerst eine an !");
+        } else {
+            if(queue.size() < 1){ // prueft, ob es mindestens ein element in das array gibt
+                System.out.println("Es gibt kein objekt in das queue, legen sie eine an !");
+            } else{
+                System.out.println("Erste objekt wird gelöscht");
+                queue.removeFirst();
+            }
         }
     }
 
     /**
      * liegt ein cd-artikel an
      */
-    public void personIndexGeben(){
-        System.out.println("Was ist der index der Person die sie brauchen ? geben sie ein zahl ein: ");
-        int indexPerson = input.nextInt();
-        input.nextLine();
-        if(queue.size() - 1 < indexPerson){ //a tester
-            System.out.println("Es gibt keine personnen / string an diese stelle");
-        } else{
-            System.out.println(queue.get(indexPerson));
+    public void indexGeben(){
+        if(queue == null){
+            System.out.println("Es gibt zurzeit kein queue ein, legen sie zuerst eine an !");
+        } else {
+            if(queue instanceof PersonQueue){
+                System.out.println("Was ist der index der Person die sie brauchen ? geben sie ein zahl ein: ");
+                int indexPerson = input.nextInt();
+                input.nextLine();
+                if(queue.size() - 1 < indexPerson){ //a tester
+                    System.out.println("Es gibt keine personnen / string an diese stelle");
+                } else{
+                    System.out.println(queue.get(indexPerson));
+                }
+            } else {
+                System.out.println("Was ist der index der String die sie brauchen ? geben sie ein zahl ein: ");
+                int indexString = input.nextInt();
+                input.nextLine();
+                if(queue.size() - 1 < indexString){ //a tester
+                    System.out.println("Es gibt keine personnen / string an diese stelle");
+                } else{
+                    System.out.println(queue.get(indexString));
+                }
+            }
         }
-
     }
-    public void personAnzahlGeben(){
+    public void objektAnzahlGeben(){
         System.out.println("Es gibt genau " + queue.size() + " personnen in das queue");
     }
     public void istQueueLeer(){
