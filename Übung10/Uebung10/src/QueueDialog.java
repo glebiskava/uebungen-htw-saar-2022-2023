@@ -158,7 +158,7 @@ public class QueueDialog {
             queue = new PersonQueue(Groesse);
             System.out.println("Das Queue wurde gut angelegt");
         }else {
-            System.out.println("Es existiert schon eine Queue");
+            System.out.println("Es existiert schon eine Queue, benutzen sie es !");
         }
     }
     public void stringQueueAnlegen() {
@@ -168,7 +168,7 @@ public class QueueDialog {
             queue = new StringQueue(Groesse);
             System.out.println("Das Queue wurde gut angelegt");
         } else {
-            System.out.println("Es existiert schon eine Queue");
+            System.out.println("Es existiert schon eine Queue, benutzen sie es !");
         }
     }
 
@@ -244,17 +244,7 @@ public class QueueDialog {
         if(queue.size() < 1){
             System.out.println("Es gibt noch kein personnen / String");
         } else {
-            System.out.format("%-8s%-8s%-8s", "index", "Vorname", "Nachname", "\n");
-            System.out.format("----------------------------------------------\n");
-            for (int i = 0; i < queue.size(); i++) {
-                Object name = queue.queueZeigen(queue, i);
-                if(name != null){
-                    System.out.format("%-8d%8s", i, name);
-                    System.out.format("\n");
-                }
-            }
-            System.out.format("----------------------------------------------------------------------\n");
-
+            queue.print(queue);
         }
     }
     /**

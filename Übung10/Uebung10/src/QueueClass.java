@@ -61,6 +61,12 @@ public class QueueClass implements Queue{
     public int size() {
         return Size;
     }
+    @Override
+    public void print(Queue q) {
+        for(int i = 0; i < q.size(); i++){
+            System.out.println(q.get(i));
+        }
+    }
 
     //rajoutée
 

@@ -7,7 +7,8 @@ public interface Queue {
         public boolean full() ; // Testen, ob noch Elemente einfuegbar sind
         public int size(); // Anzahl eingefuegter Elemente
 
-
+        //dans l'énoncé :
+        public void print(Queue q);
         //rajouté :
         public Object queueZeigen(Queue q, int index);
 }
