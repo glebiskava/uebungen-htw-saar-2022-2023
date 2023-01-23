@@ -35,10 +35,18 @@ public class QueueClass implements Queue{
         return output;
     }
 
-    @Override
+    /*@Override
     public Object get(int i) {
         Object output = queue[i];
         return output;
+    }*/
+    public Object get(int i) {
+        if (i >= 0 && i < size()) {
+            return queue[i];
+        } else {
+            System.out.println("Index out of bounds");
+            return null;
+        }
     }
 
     @Override

@@ -9,6 +9,4 @@ public interface Queue {
 
     //dans l'énoncé :
     public void print(Queue q);
-    //rajouté :
-    public Object queueZeigen(Queue q, int index);
 }

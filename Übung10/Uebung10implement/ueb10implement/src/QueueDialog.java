@@ -73,10 +73,10 @@ public class QueueDialog {
         System.out.print("\n\n\n" +
                 PERSON_QUEUE_ANLEGEN          + ": PERSON_QUEUE_ANLEGEN\n" +
                 STRING_QUEUE_ANLEGEN          + ": STRING_QUEUE_ANLEGEN\n" +
-                ADD_OBJEKT_ANFANG             + ": Objekt am Anfang anlegen\n" + // facultatif
+                /*ADD_OBJEKT_ANFANG             + ": Objekt am Anfang anlegen\n" +*/ // facultatif
                 ADD_OBJEKT_ENDE               + ": Objekt am Ende anlegen\n" +
                 REMOVE_OBJEKT_ANFANG          + ": Objekt am Anfang entfernen\n" +
-                REMOVE_OBJEKT_ENDE            + ": Objekt am Ende entfernen\n" + // facultatif
+                /*REMOVE_OBJEKT_ENDE            + ": Objekt am Ende entfernen\n" +*/ // facultatif
                 PATIENTENWARTESCHlANGE_ZEIGEN + ": Patienten warteschlange Zeigen\n" +
                 GET_ANZAHL_OBJEKT             + ": Anzahl objekten ausgeben\n" +
                 GET_DATA_INDEX                + ": Get data in queue bei Index\n" +
@@ -167,22 +167,7 @@ public class QueueDialog {
         }
     }
 
-    /**
-     * ArtikelNr für die gemeinsamen attributes
-     * @return artikelNr der aertikel nummer
-     */
-    // à garder
-    /*public void personAnfangAnlegen() {
-        System.out.println("Vorname: ");
-        String personVorname = input.next();
-        input.nextLine();
-
-        System.out.println("Nachname: ");
-        String personNachname = input.next();
-        input.nextLine();
-
-        queue.addFirst(new Person(personVorname, personNachname));
-    }*/
+    
     /**
      * ArtikelNr für die gemeinsamen attributes
      * @return artikelBestand der artikel bestand
