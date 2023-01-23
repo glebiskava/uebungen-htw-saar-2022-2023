@@ -1,14 +1,15 @@
 /**
- * Dies ist eine einfache Klasse zu einer Person mit den Attributen Vorname und Nachname
- * @author Elisee Brand, Leopold Mittelberger
+ * Dies ist eine einfache Klasse Person mit den folgenden Attributen und Methoden:
+
+ * Get- und set-Methoden fuer die beiden Attribute
  */
 
 public class Person {
 
     /**
-     * Attribute der Klasse Person
-     * String vorname: Vorname der Person
-     * String nachname: Nachname der Person
+     * Attribute
+     *  vorname: String vorname der Person
+     *  nachname: String nachname der Person
      */
     private String vorname;
     private String nachname;
@@ -16,35 +17,54 @@ public class Person {
     /**
      * Konstruktor fuer die Klasse Person
      * @param vorname vorname der Person
-     * @param nachname Nachname der Person
+     * @param nachname nachname der Person
      */
-    public Person(String vorname, String nachname) {
+    public Person(String vorname, String nachname){
         this.vorname = vorname;
         this.nachname = nachname;
     }
 
     /**
-     * Setter fuer die Attribute der Klasse
+     * Setter fuer Attribut vorname, legt den vornamen der Person fest
+     * @param vorname vorname der Person
      */
-    public void setVorname(){
+    public void setVorname(String vorname){
         //check
         this.vorname = vorname;
     }
-    public void setNachname(){
+
+    /**
+     * Setter fuer Attribut nachname, legt den nachname der Person fest
+     * @param nachname nachname der Person
+     */
+    public void setNachname(String nachname){
         //check
         this.nachname = nachname;
     }
 
     /**
-     * Getter fuer die Attribute der Klasse
-     * @return vorname
-     * @return nachname
+     * Getter fuer Attribute Vorname
+     * @return vorname der Person
      */
-    public String getVorname(){
+    public String getVorname() {
         return vorname;
     }
 
+    /**
+     * Getter fuer Attribut nachname
+     * @return nachname der Person
+     */
     public String getNachname(){
         return nachname;
     }
+
+    /**
+     * toString Methode die ein Objekt als String aufbereitet und wiedergibt
+     * @return vorname und nachname der Person
+     */
+    @Override
+    public String toString(){
+        return vorname + " " + nachname;
+    }
+
 }
