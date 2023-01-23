@@ -148,20 +148,16 @@ public class QueueDialog {
      */
     public void personQueueAnlegen() {
         if(queue == null){
-            System.out.println("Groesse : ");
-            int Groesse = input.nextInt();
-            queue = new PersonQueue(Groesse);
-            System.out.println("Das Queue wurde gut angelegt");
+            queue = new PersonQueue();
+            System.out.println("Das Queue wurde gut angelegt mit eine Groesse von 10");
         }else {
             System.out.println("Es existiert schon eine Queue, benutzen sie es !");
         }
     }
     public void stringQueueAnlegen() {
         if(queue == null){
-            System.out.println("Groesse : ");
-            int Groesse = input.nextInt();
-            queue = new StringQueue(Groesse);
-            System.out.println("Das Queue wurde gut angelegt");
+            queue = new StringQueue();
+            System.out.println("Das Queue wurde gut angelegt mit eine Groesse von 10");
         } else {
             System.out.println("Es existiert schon eine Queue, benutzen sie es !");
         }

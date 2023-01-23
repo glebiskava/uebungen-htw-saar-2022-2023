@@ -1,11 +1,10 @@
 class PersonQueue implements Queue {
     private Person[] queue;
     private int size;
-    private int maxSize;
+    private int defaultSize = 10;
 
-    public PersonQueue(int maxSize) {
-        this.maxSize = maxSize;
-        this.queue = new Person[maxSize];
+    public PersonQueue() {
+        this.queue = new Person[defaultSize];
         this.size = 0;
     }
 
@@ -50,7 +49,7 @@ class PersonQueue implements Queue {
     }
 
     public boolean full() {
-        return size == maxSize;
+        return size == defaultSize;
     }
 
     public int size() {

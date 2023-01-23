@@ -1,11 +1,10 @@
 public class StringQueue implements Queue {
     private String[] queue;
     private int size;
-    private int maxSize;
+    private int defaultSize = 10;
 
-    public StringQueue(int maxSize) {
-        this.maxSize = maxSize;
-        this.queue = new String[maxSize];
+    public StringQueue() {
+        this.queue = new String[defaultSize];
         this.size = 0;
     }
 
@@ -50,7 +49,7 @@ public class StringQueue implements Queue {
     }
 
     public boolean full() {
-        return size == maxSize;
+        return size == defaultSize;
     }
 
     public int size() {
@@ -66,6 +65,13 @@ public class StringQueue implements Queue {
 
     @Override
     public Object removeLast() {
-        return null;
+        if (!empty()) {
+            Object item = queue[size - 1];
+            size--;
+            return item;
+        } else {
+            System.out.println("Queue is empty");
+            return null;
+        }
     }
 }
