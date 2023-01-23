@@ -193,11 +193,12 @@ public class QueueDialog {
      * @return artikelBestand der artikel bestand
      */
     public void objektEndeAnlegen() {
-        //pruefen, ob voll ist oder nicht
+
         if(queue == null){
             System.out.println("Es gibt zurzeit kein queue ein, legen sie zuerst eine an !");
         } else {
             if(queue instanceof PersonQueue){
+                //pruefen, ob voll ist oder nicht avec get size
                 System.out.println("Vorname: ");
                 String personVorname = input.next();
                 input.nextLine();
@@ -262,7 +263,7 @@ public class QueueDialog {
         }
     }
     public void objektAnzahlGeben(){
-        System.out.println("Es gibt genau " + queue.size() + " personnen in das queue");
+        System.out.println("Es gibt genau " + queue.size() + " objekt in das queue");
     }
     public void istQueueLeer(){
         System.out.println("ist die queue leer ? antwort : " + queue.empty());
@@ -272,7 +273,7 @@ public class QueueDialog {
     }
     public void personWarteschlangeZeigen() {
         if(queue.size() < 1){
-            System.out.println("Es gibt noch kein personnen / String");
+            System.out.println("Es gibt noch kein objekt in das queue");
         } else {
             queue.print(queue);
         }
