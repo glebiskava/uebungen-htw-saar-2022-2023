@@ -139,7 +139,7 @@ public class QueueDialog {
     }
 
     /**
-     * legt eine neue PersonQueue an mit Standard Groesse 10 und prueft ob es schon eins gibt
+     * legt eine neue PersonQueue an mit Standard Groesse 10 und prueft, ob es schon eins gibt
      */
     public void personQueueAnlegen() {
         if(queue == null){
@@ -151,7 +151,7 @@ public class QueueDialog {
     }
 
     /**
-     * legt eine neue StringQueue an mit Standard Groesse 10 und prueft ob es schon eins gibt
+     * legt eine neue StringQueue an mit Standard Groesse 10 und prueft, ob es schon eins gibt
      */
     public void stringQueueAnlegen() {
         if(queue == null){
@@ -164,7 +164,7 @@ public class QueueDialog {
 
 
     /**
-     * fuegt eines neues Objekt an das Ende des Arrays an und prueft ob es noch keins gibt
+     * fuegt eines neues Objekt an das Ende des Arrays an und prueft, ob es noch keins gibt
      */
     public void objektEndeAnlegen() {
         if(queue == null){
@@ -172,20 +172,20 @@ public class QueueDialog {
         } else {
             if(!queue.full()){
                 if(queue instanceof PersonQueue){
-                System.out.println("Vorname: ");
-                String personVorname = input.next();
-                input.nextLine();
+                    System.out.println("Vorname: ");
+                    String personVorname = input.next();
+                    input.nextLine();
 
-                System.out.println("Nachname: ");
-                String personNachname = input.next();
-                input.nextLine();
+                    System.out.println("Nachname: ");
+                    String personNachname = input.next();
+                    input.nextLine();
 
-                queue.addLast(new Person(personVorname, personNachname));
+                    queue.addLast(new Person(personVorname, personNachname));
                 } else {
                     System.out.println("String: ");
                     String stringData = input.next();
                     input.nextLine();
-    
+
                     queue.addLast(stringData);
                 }
             } else {
@@ -260,31 +260,47 @@ public class QueueDialog {
      * gibt die Anzahl der Elemente im Array zurueck
      */
     public void objektAnzahlGeben() {
-        System.out.println("Es gibt genau " + queue.size() + " Element(e) im Queue");
+        if(queue == null) {
+            System.out.println("Es gibt zurzeit noch kein Queue, legen Sie zuerst eins an !");
+        } else {
+            System.out.println("Es gibt genau " + queue.size() + " Element(e) im Queue");
+        }
     }
 
     /**
-     * checkt ob die Queue leer ist
+     * checkt, ob die Queue leer ist
      */
     public void istQueueLeer() {
-        System.out.println("Ist die Queue leer ? Antwort : " + queue.empty());
+        if(queue == null) {
+            System.out.println("Es gibt zurzeit noch kein Queue, legen Sie zuerst eins an !");
+        } else {
+            System.out.println("Ist die Queue leer ? Antwort : " + queue.empty());
+        }
     }
 
     /**
-     * checkt ob die Queue voll ist
+     * checkt, ob die Queue voll ist
      */
     public void istQueueVoll() {
-        System.out.println("Ist die Queue voll ? Antwort : " + queue.full());
+        if (queue == null) {
+            System.out.println("Es gibt zurzeit noch kein Queue, legen Sie zuerst eins an !");
+        } else {
+            System.out.println("Ist die Queue voll ? Antwort : " + queue.full());
+        }
     }
 
     /**
-     * gibt die Queue aus und prueft ob es noch kein Element im Array gibt
+     * gibt die Queue aus und prueft, ob es noch kein Element im Array gibt
      */
     public void personWarteschlangeZeigen() {
-        if(queue.size() < 1){
-            System.out.println("Es gibt noch kein Element im Queue");
+        if(queue == null) {
+            System.out.println("Es gibt zurzeit noch kein Queue, legen Sie zuerst eins an !");
         } else {
-            queue.print(queue);
+            if (queue.size() < 1) {
+                System.out.println("Es gibt noch kein Element im Queue");
+            } else {
+                queue.print(queue);
+            }
         }
     }
     /**

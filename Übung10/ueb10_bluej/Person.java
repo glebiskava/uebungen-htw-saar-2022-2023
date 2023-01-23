@@ -28,7 +28,6 @@ public class Person {
      * @param vorname vorname der Person
      */
     public void setVorname(String vorname){
-        //check
         this.vorname = vorname;
     }
 
@@ -37,7 +36,6 @@ public class Person {
      * @param nachname nachname der Person
      */
     public void setNachname(String nachname){
-        //check
         this.nachname = nachname;
     }
 

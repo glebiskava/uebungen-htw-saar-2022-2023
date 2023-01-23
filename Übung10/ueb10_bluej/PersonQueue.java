@@ -100,7 +100,7 @@ class PersonQueue implements Queue {
 
     /**
      * Methode schaut ob Queue voll ist also ob es noch anfuegbare Elemente gibt
-     * @return true wenn sie voll ist und false wenn nicht
+     * @return true, wenn sie voll ist und false, wenn nicht
      */
     public boolean full() {
         return size == defaultSize;
@@ -115,7 +115,7 @@ class PersonQueue implements Queue {
     }
 
     /**
-     * Methode die die jeweilige Warteschlange mit Hilfe der get-Methode
+     * Methode die jeweilige Warteschlange mithilfe der get-Methode
      * sequenziell durchlaeuft und ausgibt
      * @param q
      */

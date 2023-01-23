@@ -91,7 +91,7 @@ class StringQueue implements Queue {
 
     /**
      * Methode schaut ob Queue leer ist
-     * @return true wenn sie leer ist und false wenn nicht
+     * @return true, wenn sie leer ist und false, wenn nicht
      */
     public boolean empty() {
         return size == 0;
@@ -99,7 +99,7 @@ class StringQueue implements Queue {
 
     /**
      * Methode schaut ob Queue voll ist also ob es noch anfuegbare Elemente gibt
-     * @return true wenn sie voll ist und false wenn nicht
+     * @return true, wenn sie voll ist und false, wenn nicht
      */
     public boolean full() {
         return size == defaultSize;
@@ -114,7 +114,7 @@ class StringQueue implements Queue {
     }
 
     /**
-     * Methode die die jeweilige Warteschlange mit Hilfe der get-Methode
+     * Methode die jeweilige Warteschlange mithilfe der get-Methode
      * sequenziell durchlaeuft und ausgibt
      * @param q
      */
