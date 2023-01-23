@@ -222,7 +222,8 @@ public class QueueDialog {
                 System.out.println("Es gibt kein objekt in das queue, legen sie eine an !");
             } else{
                 System.out.println("Erste objekt wird gelöscht");
-                queue.removeLast();
+                System.out.print("Letzte objekt wird gelöscht => ");
+                System.out.println(queue.removeLast());
             }
         }
     }
