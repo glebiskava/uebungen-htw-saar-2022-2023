@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=Person
+comment0.text=\r\n\ Dies\ ist\ eine\ einfache\ Klasse\ Person\ mit\ den\ folgenden\ Attributen\ und\ Methoden\:\r\n\ Get-\ und\ set-Methoden\ fuer\ die\ beiden\ Attribute\r\n
+comment1.params=vorname\ nachname
+comment1.target=Person(java.lang.String,\ java.lang.String)
+comment1.text=\r\n\ Konstruktor\ fuer\ die\ Klasse\ Person\r\n\ @param\ vorname\ vorname\ der\ Person\r\n\ @param\ nachname\ nachname\ der\ Person\r\n
+comment2.params=vorname
+comment2.target=void\ setVorname(java.lang.String)
+comment2.text=\r\n\ Setter\ fuer\ Attribut\ vorname,\ legt\ den\ vornamen\ der\ Person\ fest\r\n\ @param\ vorname\ vorname\ der\ Person\r\n
+comment3.params=nachname
+comment3.target=void\ setNachname(java.lang.String)
+comment3.text=\r\n\ Setter\ fuer\ Attribut\ nachname,\ legt\ den\ nachname\ der\ Person\ fest\r\n\ @param\ nachname\ nachname\ der\ Person\r\n
+comment4.params=
+comment4.target=java.lang.String\ getVorname()
+comment4.text=\r\n\ Getter\ fuer\ Attribute\ Vorname\r\n\ @return\ vorname\ der\ Person\r\n
+comment5.params=
+comment5.target=java.lang.String\ getNachname()
+comment5.text=\r\n\ Getter\ fuer\ Attribut\ nachname\r\n\ @return\ nachname\ der\ Person\r\n
+comment6.params=
+comment6.target=java.lang.String\ toString()
+comment6.text=\r\n\ toString\ Methode\ die\ ein\ Objekt\ als\ String\ aufbereitet\ und\ wiedergibt\r\n\ @return\ vorname\ und\ nachname\ der\ Person\r\n
+numComments=7

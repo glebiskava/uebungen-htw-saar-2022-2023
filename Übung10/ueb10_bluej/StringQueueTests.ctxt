@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=StringQueueTests
+comment0.text=\r\n\ Dies\ ist\ eine\ Klasse\ zum\ Testen\ der\ Klasse\ PersonQueue\r\n
+comment1.params=
+comment1.target=void\ testAddLastStringQueue()
+comment1.text=\r\n\ test\ fuer\ addLast\r\n
+comment2.params=
+comment2.target=void\ testRemoveFirstStringQueue()
+comment2.text=\r\n\ test\ fuer\ removeFirst\ funktion\r\n
+comment3.params=
+comment3.target=void\ testRemoveLastStringQueue()
+comment3.text=\r\n\ test\ fuer\ removeLast\ funktion\r\n
+comment4.params=
+comment4.target=void\ testFullStringQueue()
+comment4.text=\r\n\ test\ fuer\ full\ funktion\r\n
+comment5.params=
+comment5.target=void\ testEmptyStringQueue()
+comment5.text=\r\n\ test\ fuer\ empty\ funktion\r\n
+comment6.params=
+comment6.target=void\ testGetStringQueue()
+comment6.text=\r\n\ test\ fuer\ Get\ funktion\r\n
+comment7.params=
+comment7.target=void\ testPrintStringQueue()
+comment7.text=\r\n\ test\ fuer\ print\ funktion\r\n
+numComments=8

@@ -172,20 +172,20 @@ public class QueueDialog {
         } else {
             if(!queue.full()){
                 if(queue instanceof PersonQueue){
-                    System.out.println("Vorname: ");
-                    String personVorname = input.next();
-                    input.nextLine();
+                System.out.println("Vorname: ");
+                String personVorname = input.next();
+                input.nextLine();
 
-                    System.out.println("Nachname: ");
-                    String personNachname = input.next();
-                    input.nextLine();
+                System.out.println("Nachname: ");
+                String personNachname = input.next();
+                input.nextLine();
 
-                    queue.addLast(new Person(personVorname, personNachname));
+                queue.addLast(new Person(personVorname, personNachname));
                 } else {
                     System.out.println("String: ");
                     String stringData = input.next();
                     input.nextLine();
-
+    
                     queue.addLast(stringData);
                 }
             } else {
