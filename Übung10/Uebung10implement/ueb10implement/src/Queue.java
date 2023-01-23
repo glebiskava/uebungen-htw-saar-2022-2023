@@ -9,4 +9,7 @@ public interface Queue {
 
     //dans l'énoncé :
     public void print(Queue q);
+
+    // rajoutée
+    public Object removeLast();
 }

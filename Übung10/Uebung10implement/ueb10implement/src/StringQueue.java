@@ -63,4 +63,9 @@ public class StringQueue implements Queue {
             System.out.println(q.get(i));
         }
     }
+
+    @Override
+    public Object removeLast() {
+        return null;
+    }
 }

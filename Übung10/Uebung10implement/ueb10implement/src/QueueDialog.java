@@ -76,7 +76,7 @@ public class QueueDialog {
                 /*ADD_OBJEKT_ANFANG             + ": Objekt am Anfang anlegen\n" +*/ // facultatif
                 ADD_OBJEKT_ENDE               + ": Objekt am Ende anlegen\n" +
                 REMOVE_OBJEKT_ANFANG          + ": Objekt am Anfang entfernen\n" +
-                /*REMOVE_OBJEKT_ENDE            + ": Objekt am Ende entfernen\n" +*/ // facultatif
+                REMOVE_OBJEKT_ENDE            + ": Objekt am Ende entfernen\n" + // facultatif
                 PATIENTENWARTESCHlANGE_ZEIGEN + ": Patienten warteschlange Zeigen\n" +
                 GET_ANZAHL_OBJEKT             + ": Anzahl objekten ausgeben\n" +
                 GET_DATA_INDEX                + ": Get data in queue bei Index\n" +
@@ -119,7 +119,7 @@ public class QueueDialog {
                     objektAnfangEntfernen();
                     break;
                 case REMOVE_OBJEKT_ENDE:// facultatif
-                    /*objektEndeEntfernen();*/
+                    objektEndeEntfernen();
                     break;
                 case PATIENTENWARTESCHlANGE_ZEIGEN:
                     personWarteschlangeZeigen();
@@ -167,13 +167,12 @@ public class QueueDialog {
         }
     }
 
-    
+
     /**
      * ArtikelNr für die gemeinsamen attributes
      * @return artikelBestand der artikel bestand
      */
     public void objektEndeAnlegen() {
-
         if(queue == null){
             System.out.println("Es gibt zurzeit kein queue ein, legen sie zuerst eine an !");
         } else {
@@ -197,6 +196,7 @@ public class QueueDialog {
             }
         }
     }
+
     /**
      * ArtikelNr für die gemeinsamen attributes
      * @return artikelPreis der artikel preis
@@ -208,12 +208,24 @@ public class QueueDialog {
             if(queue.size() < 1){ // prueft, ob es mindestens ein element in das array gibt
                 System.out.println("Es gibt kein objekt in das queue, legen sie eine an !");
             } else{
-                System.out.println("Erste objekt wird gelöscht");
-                queue.removeFirst();
+                System.out.print("Erste objekt wird gelöscht => ");
+                System.out.println(queue.removeFirst());
             }
         }
     }
 
+    public void objektEndeEntfernen() {
+        if(queue == null){
+            System.out.println("Es gibt zurzeit kein queue ein, legen sie zuerst eine an !");
+        } else {
+            if(queue.size() < 1){ // prueft, ob es mindestens ein element in das array gibt
+                System.out.println("Es gibt kein objekt in das queue, legen sie eine an !");
+            } else{
+                System.out.println("Erste objekt wird gelöscht");
+                queue.removeLast();
+            }
+        }
+    }
     /**
      * liegt ein cd-artikel an
      */

@@ -24,7 +24,7 @@ class PersonQueue implements Queue {
 
     public Object removeFirst() {
         if (!empty()) {
-            Person item = queue[0];
+            Object item = queue[0];
             for (int i = 0; i < size - 1; i++) {
                 queue[i] = queue[i + 1];
             }
@@ -61,6 +61,18 @@ class PersonQueue implements Queue {
     public void print(Queue q) {
         for(int i = 0; i < q.size(); i++){
             System.out.println(q.get(i));
+        }
+    }
+
+    @Override
+    public Object removeLast() {
+        if (!empty()) {
+            Object item = queue[size - 1];
+            size--;
+            return item;
+        } else {
+            System.out.println("Queue is empty");
+            return null;
         }
     }
 }
