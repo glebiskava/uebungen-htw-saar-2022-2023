@@ -66,6 +66,7 @@ public class QueueClass implements Queue{
         for(int i = 0; i < q.size(); i++){
             System.out.println(q.get(i));
         }
+
     }
 
     //rajoutée

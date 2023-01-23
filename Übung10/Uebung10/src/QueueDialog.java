@@ -25,12 +25,11 @@ public class QueueDialog {
     private static final int ADD_OBJEKT_ENDE               = 4;
     private static final int REMOVE_OBJEKT_ANFANG          = 5;
     private static final int REMOVE_OBJEKT_ENDE            = 6;
-    private static final int REMOVE_PERSON_NR              = 7;
-    private static final int PATIENTENWARTESCHlANGE_ZEIGEN = 8;
-    private static final int GET_ANZAHL_OBJEKT = 9;
-    private static final int GET_DATA_INDEX                = 10;
-    private static final int IST_QUEUE_LEER                = 11;
-    private static final int IST_QUEUE_VOLL                = 12;
+    private static final int PATIENTENWARTESCHlANGE_ZEIGEN = 7;
+    private static final int GET_ANZAHL_OBJEKT             = 8;
+    private static final int GET_DATA_INDEX                = 9;
+    private static final int IST_QUEUE_LEER                = 10;
+    private static final int IST_QUEUE_VOLL                = 11;
     private static final int PROGRAMM_ENDE                 = 0;
 
     /**
@@ -74,11 +73,10 @@ public class QueueDialog {
         System.out.print("\n\n\n" +
                 PERSON_QUEUE_ANLEGEN          + ": PERSON_QUEUE_ANLEGEN\n" +
                 STRING_QUEUE_ANLEGEN          + ": STRING_QUEUE_ANLEGEN\n" +
-                ADD_OBJEKT_ANFANG             + ": Objekt am Anfang anlegen\n" +
+                ADD_OBJEKT_ANFANG             + ": Objekt am Anfang anlegen\n" + // facultatif
                 ADD_OBJEKT_ENDE               + ": Objekt am Ende anlegen\n" +
                 REMOVE_OBJEKT_ANFANG          + ": Objekt am Anfang entfernen\n" +
-                REMOVE_OBJEKT_ENDE            + ": Objekt am Ende entfernen\n" +
-                /*REMOVE_PERSON_NR              + ": Person bei PersonNr entfernen\n"  +*/
+                REMOVE_OBJEKT_ENDE            + ": Objekt am Ende entfernen\n" + // facultatif
                 PATIENTENWARTESCHlANGE_ZEIGEN + ": Patienten warteschlange Zeigen\n" +
                 GET_ANZAHL_OBJEKT             + ": Anzahl objekten ausgeben\n" +
                 GET_DATA_INDEX                + ": Get data in queue bei Index\n" +
@@ -111,7 +109,7 @@ public class QueueDialog {
                 case STRING_QUEUE_ANLEGEN:
                     stringQueueAnlegen();
                     break;
-                case ADD_OBJEKT_ANFANG:
+                case ADD_OBJEKT_ANFANG: // facultatif
                     /*objektAnfangAnlegen();*/
                     break;
                 case ADD_OBJEKT_ENDE:
@@ -120,11 +118,8 @@ public class QueueDialog {
                 case REMOVE_OBJEKT_ANFANG:
                     objektAnfangEntfernen();
                     break;
-                case REMOVE_OBJEKT_ENDE:
+                case REMOVE_OBJEKT_ENDE:// facultatif
                     /*objektEndeEntfernen();*/
-                    break;
-                case REMOVE_PERSON_NR:
-                    /*objektNrEntfernen();*/
                     break;
                 case PATIENTENWARTESCHlANGE_ZEIGEN:
                     personWarteschlangeZeigen();

@@ -6,15 +6,15 @@ public class Person {
         this.nachname = nachname;
     }
 
-    public void setVorname(){
+    public void setVorname(String vorname){
         //check
         this.vorname = vorname;
     }
-    public void setNachname(){
+    public void setNachname(String nachname){
         //check
         this.nachname = nachname;
     }
-    public String getVorname(){
+    public String getVorname() {
         return vorname;
     }
     public String getNachname(){
