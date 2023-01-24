@@ -17,13 +17,13 @@ class PersonQueue implements Queue {
     /**
      * vorgegebene Groesse 10 des Arrays --> wie in Aufgabenstellung
      */
-    private int defaultSize = 10;
+    private static final int DEFAULT = 10;
 
     /**
      * Konstruktor fuer die Queue mit Standardgroesse 10 und aktueller groesse 0
      */
     public PersonQueue() {
-        this.queue = new Person[defaultSize];
+        this.queue = new Person[DEFAULT];
         this.size = 0;
     }
 
@@ -100,10 +100,10 @@ class PersonQueue implements Queue {
 
     /**
      * Methode schaut ob Queue voll ist also ob es noch anfuegbare Elemente gibt
-     * @return true wenn sie voll ist und false wenn nicht
+     * @return true, wenn sie voll ist und false, wenn nicht
      */
     public boolean full() {
-        return size == defaultSize;
+        return size == DEFAULT;
     }
 
     /**
@@ -115,7 +115,7 @@ class PersonQueue implements Queue {
     }
 
     /**
-     * Methode die die jeweilige Warteschlange mit Hilfe der get-Methode
+     * Methode die jeweilige Warteschlange mithilfe der get-Methode
      * sequenziell durchlaeuft und ausgibt
      * @param q
      */

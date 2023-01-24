@@ -1,13 +1,13 @@
 /**
- * Dies ist eine einfache StringQueue Klasse die das Interface Queue implementiert
+ * Dies ist eine einfache PersonQueue Klasse die das Interface Queue implementiert
  */
 
-class StringQueue implements Queue {
+class PersonQueue implements Queue {
 
     /**
      * erstellen des Arrays
      */
-    private String[] queue;
+    private Person[] queue;
 
     /**
      * aktuelle groesse des Arrays
@@ -17,13 +17,13 @@ class StringQueue implements Queue {
     /**
      * vorgegebene Groesse 10 des Arrays --> wie in Aufgabenstellung
      */
-    private static final int DEFAULT = 10;
+    private int defaultSize = 10;
 
     /**
      * Konstruktor fuer die Queue mit Standardgroesse 10 und aktueller groesse 0
      */
-    public StringQueue() {
-        this.queue = new String[DEFAULT];
+    public PersonQueue() {
+        this.queue = new Person[defaultSize];
         this.size = 0;
     }
 
@@ -32,15 +32,16 @@ class StringQueue implements Queue {
      * @param o element welches angefuegt wird
      */
     public void addLast(Object o) {
-        if (o instanceof String) {
+
+        if (o instanceof Person) {
             if (!full()) {
-                queue[size] = (String) o;
+                queue[size] = (Person) o;
                 size++;
             } else {
                 throw new IllegalArgumentException("Die Queue ist voll!");
             }
         } else {
-            System.out.println("Invalid input, input must be of type String");
+            throw new IllegalArgumentException("Ungueltige Eingabe! Die Eingabe muss vom Typ Person sein!");
         }
     }
 
@@ -91,7 +92,7 @@ class StringQueue implements Queue {
 
     /**
      * Methode schaut ob Queue leer ist
-     * @return true, wenn sie leer ist und false, wenn nicht
+     * @return true wenn sie leer ist und false wenn nicht
      */
     public boolean empty() {
         return size == 0;
@@ -102,7 +103,7 @@ class StringQueue implements Queue {
      * @return true, wenn sie voll ist und false, wenn nicht
      */
     public boolean full() {
-        return size == DEFAULT;
+        return size == defaultSize;
     }
 
     /**
@@ -124,6 +125,4 @@ class StringQueue implements Queue {
             System.out.println(i + " : " + q.get(i));
         }
     }
-
-
 }

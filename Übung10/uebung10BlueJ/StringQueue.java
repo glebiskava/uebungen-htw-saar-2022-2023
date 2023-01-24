@@ -17,13 +17,13 @@ class StringQueue implements Queue {
     /**
      * vorgegebene Groesse 10 des Arrays --> wie in Aufgabenstellung
      */
-    private static final int DEFAULT = 10;
+    private int defaultSize = 10;
 
     /**
      * Konstruktor fuer die Queue mit Standardgroesse 10 und aktueller groesse 0
      */
     public StringQueue() {
-        this.queue = new String[DEFAULT];
+        this.queue = new String[defaultSize];
         this.size = 0;
     }
 
@@ -102,7 +102,7 @@ class StringQueue implements Queue {
      * @return true, wenn sie voll ist und false, wenn nicht
      */
     public boolean full() {
-        return size == DEFAULT;
+        return size == defaultSize;
     }
 
     /**
