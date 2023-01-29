@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=MathFunctions
+comment0.text=\n\ Dies\ ist\ eine\ Klasse\ MathFunctions,\ die\ aehnlich\ wie\ die\ Klasse\ java.lang.Math\ Funktionen\ in\n\ Form\ von\ Klassenmethoden\ anbietet\n\ @author\ Elisee\ Brand,\ Leopold\ Mittelberger\n
+comment1.params=zahl
+comment1.target=long\ berechneTeilersumme(long)
+comment1.text=\n\ Die\ Methode\ berechneTeilersumme(long\ zahl)\ berechnet\ die\ Teilersumme\ einer\ natuerlichen\ Zahl.\n\ @param\ zahl\ Wert\ der\ entgegengenommen\ wird\n
+comment2.params=isbn
+comment2.target=java.lang.String\ berechneChecksummeIsbn(long)
+comment2.text=\n\ berechnet\ die\ Pruefziffer\ einer\ ISBN-10\ Nummer\ und\ gibt\ diese\ als\ String\ aus.\n\ @param\ isbn\ Zahl\ die\ entgegengenommen\ wird\n
+comment3.params=p\ q
+comment3.target=java.lang.String\ berechneNullstellen(double,\ double)
+comment3.text=\n\ bestimmt\ Nullstellen\ einer\ quadratischen\ Gleichung\ und\ gibt\ diese\ als\ aufbereiteten\ String\ aus\n\ @param\ p\ P-Wert\ der\ entgegengenommen\ wird\n\ @param\ q\ Q-Wert\ der\ entgegengenommen\ wird\n
+numComments=4

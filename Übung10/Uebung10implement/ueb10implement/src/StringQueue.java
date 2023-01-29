@@ -17,12 +17,12 @@ class StringQueue implements Queue {
     /**
      * vorgegebene Groesse 10 des Arrays --> wie in Aufgabenstellung
      */
-    private int defaultSize = 10;
+    private static final int defaultSize = 10;
 
     /**
      * Konstruktor fuer die Queue mit Standardgroesse 10 und aktueller groesse 0
      */
-    public StringQueue() {
+    public StringQueue() { // demander à l'user
         this.queue = new String[defaultSize];
         this.size = 0;
     }
@@ -40,7 +40,7 @@ class StringQueue implements Queue {
                 throw new IllegalArgumentException("Die Queue ist voll!");
             }
         } else {
-            System.out.println("Invalid input, input must be of type String");
+            throw new IllegalArgumentException("Invalid input, input must be of type String");
         }
     }
 
