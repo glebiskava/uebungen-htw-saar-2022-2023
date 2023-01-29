@@ -25,4 +25,8 @@ public class datei1 { //25LOC
     public void setVorname(String vorname){
         this.vorname = vorname;
     }
+    public static void test(int zahl){
+        int test = zahl;
+        test++;
+    }
 }

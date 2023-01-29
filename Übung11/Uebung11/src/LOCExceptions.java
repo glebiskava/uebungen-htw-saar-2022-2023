@@ -1,10 +1,10 @@
 import java.io.File;
 
-public class locExceptions extends RuntimeException{
-    public locExceptions(String message){
+public class LOCExceptions extends RuntimeException{
+    public LOCExceptions(String message){
         super(message);
     }
-    public locExceptions(){
+    public LOCExceptions(){
         super();
     }
 
@@ -33,7 +33,7 @@ public class locExceptions extends RuntimeException{
     public static void checkDateiExistiert(String[] args){
         for(int i = 0; i < args.length; i++){
             File file = new File(args[i]);
-            if(file.exists()){
+            if(!file.exists()){
                 throw new IllegalArgumentException("Datei: " + args[i] + " existiert nicht");
             }
         }
