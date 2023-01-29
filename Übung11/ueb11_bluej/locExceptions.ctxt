@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=locExceptions
+comment1.params=message
+comment1.target=locExceptions(java.lang.String)
+comment2.params=
+comment2.target=locExceptions()
+comment3.params=args
+comment3.target=void\ checkJavaDatei(java.lang.String[])
+comment4.params=args
+comment4.target=void\ checkSelbeDatei(java.lang.String[])
+comment5.params=args
+comment5.target=void\ checkMindestensEinDatei(java.lang.String[])
+comment6.params=args
+comment6.target=void\ checkDateiExistiert(java.lang.String[])
+numComments=7

@@ -3,6 +3,7 @@ public class Main {
         System.out.println("Hello world!");
     }
     //java LOCAuswertung datei1.java datei2.java datei3.java
+    //Au moins un fichier doit être transmis. Le nombre total de fichiers transmis est quelconque.
     //Les fichiers à traiter doivent être contrôlés quant aux propriétés "fichier normal" et "lisibilité". Bien entendu,
     //les fichiers à traiter doivent également exister avant qu'un traitement puisse démarrer.
     //        - Les exceptions éventuelles doivent être traitées. Définissez pour cela vos propres classes d'exceptions.

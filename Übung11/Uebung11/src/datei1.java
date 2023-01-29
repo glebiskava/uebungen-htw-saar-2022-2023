@@ -1,4 +1,4 @@
-public class datei1 { //24LOC
+public class datei1 { //25LOC
      /**
      * Attribute
      *  vorname: String vorname der Person
@@ -6,6 +6,7 @@ public class datei1 { //24LOC
      */
     private String vorname;
     private String nachname;
+    //ererer
 
     /**
      * Konstruktor fuer die Klasse Person
