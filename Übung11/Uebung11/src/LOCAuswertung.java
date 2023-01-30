@@ -30,19 +30,22 @@ public class LOCAuswertung {
                 throw new LOCExceptions("Es gibt keine Datei als Argument");
             }
             for(int i = 0; i < sizeArgs; i++){
-                //check, ob das Datei existiert.
-                //Wenn die Datei nicht existiert, prüft man nicht, ob es eine java Datei ist oder nicht
                 File file = new File(args[i]);
-                if(!file.exists()){
-                    System.out.println("Datei: " + args[i] + " existiert nicht");
-                } else if(!args[i].endsWith(".java")){
-                    //check, ob es eine Java Datei ist
-                    System.out.println("Datei: " + args[i] + " ist kein java datei");
-                } else {
-                        //datei ist lesbar, man addiert ihn in einer array ein
-                        lesbarDateien.add(args[i]);
-                        sizeLesbarDateien = lesbarDateien.size();
+                if(file.exists()){ // check, ob das Datei existiert.
+                    if(!args[i].endsWith(".java")){ // check, ob es eine Java Datei ist
+                        if(file.canRead()){ // check, ob datei lesbar ist
+                            //man addiert den datei in einer array ein
+                            lesbarDateien.add(args[i]);
+                            sizeLesbarDateien = lesbarDateien.size();
+                        } else {
+                            System.out.println("Datei: " + args[i] + " ist nicht lesbar");
+                        }
+                    }else {
+                        System.out.println("Datei: " + args[i] + " ist kein java datei");
                     }
+                } else {
+                    System.out.println("Datei: " + args[i] + " existiert nicht");
+                }
             }
 
 
