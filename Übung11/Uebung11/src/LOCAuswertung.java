@@ -95,7 +95,6 @@ public class LOCAuswertung {
         }
     }
 
-
     /**
      * Funktion zum Starten des Programms
      * @param args ist ein Array die die Argumente des anruf lagert (datei.en)
