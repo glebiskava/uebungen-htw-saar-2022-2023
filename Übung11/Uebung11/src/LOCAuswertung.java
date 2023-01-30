@@ -32,7 +32,7 @@ public class LOCAuswertung {
             for(int i = 0; i < sizeArgs; i++){
                 File file = new File(args[i]);
                 if(file.exists()){ // check, ob das Datei existiert.
-                    if(!args[i].endsWith(".java")){ // check, ob es eine Java Datei ist
+                    if(args[i].endsWith(".java")){ // check, ob es eine Java Datei ist
                         if(file.canRead()){ // check, ob datei lesbar ist
                             //man addiert den datei in einer array ein
                             lesbarDateien.add(args[i]);
