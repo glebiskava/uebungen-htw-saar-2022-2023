@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=LOCAuswertung
+comment1.params=args
+comment1.target=void\ start(java.lang.String[])
+comment2.params=file
+comment2.target=int\ gegebeneDatei(java.io.File)
+comment3.params=args
+comment3.target=void\ main(java.lang.String[])
+comment3.text=\r\n\ Funktion\ zum\ Starten\ des\ Dialogs\r\n\ @param\ args\r\n
+numComments=4

@@ -1,4 +1,4 @@
-public class LOCExceptions extends RuntimeException{
+public class LOCExceptions extends Exception {
     public LOCExceptions(String message){
         super(message);
     }

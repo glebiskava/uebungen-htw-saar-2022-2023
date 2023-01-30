@@ -1,5 +1,5 @@
 public class datei1 { //29LOC
-     /**
+    /**
      * Attribute
      *  vorname: String vorname der Person
      *  nachname: String nachname der Person
@@ -7,7 +7,7 @@ public class datei1 { //29LOC
     private String vorname;
     private String nachname;
     //ererer
-     /**
+    /**
      * Konstruktor fuer die Klasse Person
      * @param vorname vorname der Person
      * @param nachname nachname der Person
