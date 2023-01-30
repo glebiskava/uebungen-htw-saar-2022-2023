@@ -14,8 +14,8 @@ public class LOCAuswertung {
     private int sizeArgs = 0;
     private int sizeLesbarDateien = 0;
     List<String> lesbarDateien = new ArrayList<String>();
-    Pattern regexCommentLinie = Pattern.compile("^\s*//");
-    Pattern regexLeereLinie= Pattern.compile("^\s*$");
+    private static final Pattern regexCommentLinie = Pattern.compile("^\\s*//");
+    private static final Pattern regexLeereLinie= Pattern.compile("^\\s*$");
 
     /**
      * Hauptschleife, die zum Starten des Programms benutzt ist.
