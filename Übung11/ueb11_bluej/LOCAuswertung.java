@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 import java.util.*;
 
 /**
- * Dies ist eine Klasse das die sogenannten "Lines of Code" (LOC) zählt.
+ * Dies ist eine Klasse das die sogenannten "Lines of Code" (LOC) zaehlt.
  * Der Benutzer gibt der Klasse einige datei ein, und der code gibt das zahl aus.
  * @author Elisee Brand, Leopold Mittelberger
  */
@@ -68,8 +68,8 @@ public class LOCAuswertung {
     }
 
     /**
-     * Function die zählt wie viel Linie es, in der Code gibt.
-     * Sie entscheidet auch welche Linie nicht zählbar ist, z.B. eine Comment linie
+     * Function die zaehlt wie viel Linie es, in der Code gibt.
+     * Sie entscheidet auch welche Linie nicht zaehlbar ist, z.B. eine Comment linie
      * @param file ist der datei die zu analysieren ist
      */
     public int gegebeneDatei(File file) {

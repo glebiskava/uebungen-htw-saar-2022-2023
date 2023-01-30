@@ -1,10 +1,13 @@
 #BlueJ class context
 comment0.target=LOCAuswertung
+comment0.text=\r\n\ Dies\ ist\ eine\ Klasse\ das\ die\ sogenannten\ "Lines\ of\ Code"\ (LOC)\ zaehlt.\r\n\ Der\ Benutzer\ gibt\ der\ Klasse\ einige\ datei\ ein,\ und\ der\ code\ gibt\ das\ zahl\ aus.\r\n\ @author\ Elisee\ Brand,\ Leopold\ Mittelberger\r\n
 comment1.params=args
 comment1.target=void\ start(java.lang.String[])
+comment1.text=\r\n\ Hauptschleife,\ die\ zum\ Starten\ des\ Programms\ benutzt\ ist.\r\n\ Fehlerhafte\ Eingaben\ werden\ hier\ aufgefangen\r\n\ @param\ args\ ist\ ein\ Array\ die\ die\ Argumente\ des\ anruf\ lagert\ (datei.en)\r\n
 comment2.params=file
 comment2.target=int\ gegebeneDatei(java.io.File)
+comment2.text=\r\n\ Function\ die\ zaehlt\ wie\ viel\ Linie\ es,\ in\ der\ Code\ gibt.\r\n\ Sie\ entscheidet\ auch\ welche\ Linie\ nicht\ zaehlbar\ ist,\ z.B.\ eine\ Comment\ linie\r\n\ @param\ file\ ist\ der\ datei\ die\ zu\ analysieren\ ist\r\n
 comment3.params=args
 comment3.target=void\ main(java.lang.String[])
-comment3.text=\r\n\ Funktion\ zum\ Starten\ des\ Dialogs\r\n\ @param\ args\r\n
+comment3.text=\r\n\ Funktion\ zum\ Starten\ des\ Programms\r\n\ @param\ args\ ist\ ein\ Array\ die\ die\ Argumente\ des\ anruf\ lagert\ (datei.en)\r\n
 numComments=4
