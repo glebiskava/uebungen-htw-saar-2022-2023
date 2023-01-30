@@ -1,50 +1,79 @@
 import java.io.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.*;
 
+/**
+ * Dies ist eine Klasse das die sogenannten "Lines of Code" (LOC) zaehlt.
+ * Der Benutzer gibt der Klasse dateien zuamverarbeiten, und es wird die Anzahl der Zeilen Code ausgegeben
+ * @author Elisee Brand, Leopold Mittelberger
+ */
 public class LOCAuswertung {
     private int linieAnzahl = 0;
     private int totalLinieAnzahl = 0;
+    private int sizeArgs = 0;
+    private int sizeLesbarDateien = 0;
+    List<String> lesbarDateien = new ArrayList<String>();
+    private static final Pattern regexCommentLinie = Pattern.compile("^\\s*//");
+    private static final Pattern regexLeereLinie= Pattern.compile("^\\s*$");
 
-    Pattern regexCommentLinie = Pattern.compile("^\s*//");
-    Pattern regexLeereLinie= Pattern.compile("^\s*$");
-    public void start(String[] args) {
+    /**
+     * Hauptschleife, die zum Starten des Programms benutzt wird.
+     * Fehlerhafte Eingaben werden hier aufgefangen
+     * @param args ist ein Array die die Argumente des anruf lagert (datei.en)
+     */
+    public void start(String[] args){
+        sizeArgs = args.length;
         try {
-            for(int i = 0; i < args.length; i++){
-                //checkJavaDatei
-                if(!args[i].endsWith(".java")){
-                    System.out.println("Datei: " + args[i] + " ist kein java datei");
-                }
-                //checkDateiExistiert
+            //check, ob mindestens eine Datei gibt
+            if(sizeArgs == 0) {
+                throw new LOCExceptions("Es gibt keine Datei als Argument");
+            }
+            for(int i = 0; i < sizeArgs; i++){
                 File file = new File(args[i]);
-                if(!file.exists()){
+                if(file.exists()){ // check, ob das Datei existiert.
+                    if(args[i].endsWith(".java")){ // check, ob es eine Java Datei ist
+                        if(file.canRead()){ // check, ob datei lesbar ist
+                            //man addiert den datei in einer array ein
+                            lesbarDateien.add(args[i]);
+                            sizeLesbarDateien = lesbarDateien.size();
+                        } else {
+                            System.out.println("Datei: " + args[i] + " ist nicht lesbar");
+                        }
+                    }else {
+                        System.out.println("Datei: " + args[i] + " ist kein java datei");
+                    }
+                } else {
                     System.out.println("Datei: " + args[i] + " existiert nicht");
                 }
-                //checkSelbeDatei
-                for(int j = 0; j < args.length; j++){
-                    if(args[i] == args[j]){
-                        System.out.println("Datei: " + args[i] + " ist verdoppelt");
-                    }
+            }
+
+            /**
+             * wenn es mehr als 0 Dateien gibt wird alles ausgegeben
+             */
+            if(sizeLesbarDateien > 0){
+                System.out.println("Auswertung Lines of Code (LOC)");
+                for(int i = 0; i < sizeLesbarDateien; i++){
+                    File file = new File(lesbarDateien.get(i));
+                    System.out.println(file + ": " + gegebeneDatei(file) + " LOC");
                 }
-            }
-            //checkMindestensEinDatei
-            if(args.length == 0) {
-                throw new LOCExceptions("Es gibt als Argument kein Datei");
-            }
-            System.out.println("Auswertung Lines of Code (LOC)");
-            for(int i = 0; i < args.length; i++){
-                File file = new File(args[i]);
-                System.out.println(file + ": " + gegebeneDatei(file) + " LOC");
             }
         } catch (LOCExceptions e) {
             System.out.println(e.getMessage());
             System.exit(0);
         } finally {
-            System.out.println("Gesamt: ");
-            System.out.println(args.length + " Dateien: " + totalLinieAnzahl + " LOC");
+            if(sizeLesbarDateien > 0){
+                System.out.println("Gesamt: ");
+                System.out.println(sizeLesbarDateien + " Dateien: " + totalLinieAnzahl + " LOC");
+            }
         }
     }
 
+    /**
+     * Function die zaehlt wie viel Linien es im Code gibt.
+     * Sie entscheidet auch welche Linie nicht zaehlbar ist, z.B. eine Comment linie
+     * @param file ist der datei die zu analysieren ist
+     */
     public int gegebeneDatei(File file) {
         try {
             FileReader fileReader = new FileReader(file);
@@ -69,19 +98,10 @@ public class LOCAuswertung {
     }
 
     /**
-     * Funktion zum Starten des Dialogs
-     * @param args
+     * Funktion zum Starten des Programms
+     * @param args ist ein Array die die Argumente des anruf lagert (datei.en)
      */
-    public static void main(String[] args) {
+    public static void main(String[] args){
         new LOCAuswertung().start(args);
     }
 }
-//java LOCAuswertung datei1.java datei2.java datei3.java
-//Au moins un fichier doit être transmis. Le nombre total de fichiers transmis est quelconque.
-//Les fichiers à traiter doivent être contrôlés quant aux propriétés "fichier normal" et "lisibilité". Bien entendu,
-//les fichiers à traiter doivent également exister avant qu'un traitement puisse démarrer.
-//        - Les exceptions éventuelles doivent être traitées. Définissez pour cela vos propres classes d'exceptions.
-//        - En cas d'erreur de lecture dans un fichier, il faut passer au fichier suivant.
-//        - Il faut compter toutes les lignes non vides qui ne sont pas des lignes de commentaire.
-//        - Les lignes vides peuvent tout à fait avoir une longueur supérieure à 0.
-//        - Pour simplifier, nous ne considérons comme lignes de commentaires que celles qui commencent par la chaîne "//".
