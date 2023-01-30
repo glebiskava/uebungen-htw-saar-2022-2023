@@ -8,11 +8,11 @@ public class LOCAuswertung {
     Pattern regexCommentLine= Pattern.compile("^//");
     public void start(String[] args) {
         try {
-            datei1.test(5);
-            LOCExceptions.checkJavaDatei(args); //idk c'est quoi le pb avec LOCExceptions
-            LOCExceptions.checkSelbeDatei(args);
-            LOCExceptions.checkMindestensEinDatei(args);
-            LOCExceptions.checkDateiExistiert(args);
+            /*datei1.test(5);*/
+            ErrorCheck.checkJavaDatei(args); //idk c'est quoi le pb avec LOCExceptions
+            ErrorCheck.checkSelbeDatei(args);
+            ErrorCheck.checkMindestensEinDatei(args);
+            ErrorCheck.checkDateiExistiert(args);
             //check if datei leer ??? j'ai testé ça fonctionne, idk s'il faut tester
 
             System.out.println("Auswertung Lines of Code (LOC)");
