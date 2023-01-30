@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=LOCExceptions
+comment0.text=\n\ Dies\ ist\ die\ Ausnahmeklasse\ von\ LOCAuswertung\ die\ von\ Exception\ abgeleitet\ ist.\n\ @author\ Elisee\ Brand,\ Leopold\ Mittelberger\n
+comment1.params=message
+comment1.target=LOCExceptions(java.lang.String)
+comment1.text=\n\ Erste\ konstruktor\n\ @param\ message\ ist\ ein\ string\ der\ die\ Fehler\ kennt\n
+comment2.params=
+comment2.target=LOCExceptions()
+comment2.text=\n\ Standard\ konstruktor\n
+numComments=3
