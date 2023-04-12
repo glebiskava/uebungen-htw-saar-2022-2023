@@ -61,7 +61,7 @@ public class Reservierung {
 
     /**
      * Setter für Endzeit
-     * @param ende ende der Reservierung
+     * @param ende Ende der Reservierung
      */
     public void setEnde(Uhrzeit ende) {
         this.ende = ende;

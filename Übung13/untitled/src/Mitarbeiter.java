@@ -6,9 +6,9 @@ public class Mitarbeiter extends Person {
     private String email;
 
     /**
-     * Kosntruktor für Mitarbeiter
+     * Konstruktor für Mitarbeiter
      * @param vorname vorname des Mitarbeiters
-     * @param nachname Nacghnamen des Mitarbeiters
+     * @param nachname Nachnamen des Mitarbeiters
      * @param email E-Mail des Mitarbeiters
      */
     public Mitarbeiter(String vorname, String nachname, String email) {
@@ -20,7 +20,7 @@ public class Mitarbeiter extends Person {
      * Methode zum Reservieren eines Raums
      * @param raum raum der reserviert werden soll
      * @param begin beginn der reservierung
-     * @param ende ende der reservierung
+     * @param ende Ende der reservierung
      * @param bemerkung bemerkung (wer hat reserviert?)
      */
     public void reserviere(Raum raum, Uhrzeit begin, Uhrzeit ende, String bemerkung) {
@@ -31,16 +31,16 @@ public class Mitarbeiter extends Person {
     }
 
     /**
-     * Getter für Email
-     * @return email des Mitarbeiters
+     * Getter für E-Mail
+     * @return E-Mail des Mitarbeiters
      */
     public String getEmail() {
         return email;
     }
 
     /**
-     * Setter für Email
-     * @param email welche email soll gesetzt werden
+     * Setter für E-Mail
+     * @param email welche E-Mail soll gesetzt werden
      */
     public void setEmail(String email) {
         this.email = email;

@@ -26,7 +26,7 @@ public class Uhrzeit {
 
     /**
      * setter für Stunde
-     * @param stunde auf welcehe soll gestellt werden
+     * @param stunde auf welche soll gestellt werden
      */
     public void setStunde(int stunde) {
         this.stunde = stunde;
