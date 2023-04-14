@@ -4,6 +4,7 @@ public class Mitarbeiter extends Person {
      * Attribute für Mitarbeiter entnommen aus UML-Diagramm
      */
     private String email;
+    public Object Reservierung;
 
     /**
      * Konstruktor für Mitarbeiter

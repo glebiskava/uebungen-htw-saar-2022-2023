@@ -2,17 +2,12 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MitarbeiterDialog {
-    // public static Mitarbeiter mitarbeiter;
     private final Scanner input;
 
-    // private Mitarbeiter mitarbeiter;
-
     private static final int PROGRAMM_ENDE = 0;
-    private static final int MITARBEITER_ANLEGEN = 1;
-    private static final int RAUM_ANLEGEN = 2;
-    private static final int RESERVIEREN = 3;
-    // private static final int MITARBEITER_ANLEGEN = 1;
-    // private static final int MITARBEITER_ANLEGEN = 1;
+    private static final int RESERVIEREN = 1;
+    private static final int RESERVIERUNG_ZEIGEN = 2;
+
 
 
 
@@ -43,6 +38,7 @@ public class MitarbeiterDialog {
     public void menueAnzeigen(){
         System.out.print("\n\n\n" +
                 RESERVIEREN       + ": Reservieren\n"    +
+                RESERVIERUNG_ZEIGEN       + ": RESERVIERUNG_ZEIGEN\n"    +
                 PROGRAMM_ENDE     + ": Dialog beenden\nGeben Sie einen Nummer ein: ");
     }
     public int funktionVerarbeitung(){
@@ -51,22 +47,16 @@ public class MitarbeiterDialog {
     }
 
     public void funktionAusfuehrung(int befehl){
-        if(befehl > RESERVIEREN || befehl < PROGRAMM_ENDE){
+        if(befehl > RESERVIERUNG_ZEIGEN || befehl < PROGRAMM_ENDE){
             throw new IllegalArgumentException("Geben Sie eine der angegebenen Zahlen ein!");
         } else {
             switch(befehl){
-                // case MITARBEITER_ANLEGEN:
-                //     MitarbeiterAnlegen();
-                //     break;
-                // case RAUM_ANLEGEN:
-                //     RaumAnlegen();
-                //     break;
                 case RESERVIEREN:
                     Reservieren();
                     break;
-                // case MITARBEITER_ANLEGEN:
-                //     MitarbeiterAnlegen();
-                //     break;
+                case RESERVIERUNG_ZEIGEN:
+                    reservierungZeigen();
+                    break;
                 case PROGRAMM_ENDE:
                     System.out.println("ENDE");
                     break;
@@ -75,53 +65,6 @@ public class MitarbeiterDialog {
         }
 
     }
-    // public void UhrZeitAnlegen(){
-    //     System.out.println("Geben Sie eine Uhr ein und dann die Minuten für das Begin der Reservierung ein: \n");
-
-    //     System.out.println("Uhr: \n");
-    //     int inputUhr = input.nextInt();
-
-    //     System.out.println("Uhr: \n");
-    //     int inputMin = input.nextInt();
-
-    //     Uhrzeit uhrzeit = new Uhrzeit(inputUhr, inputMin);
-    // }
-
-    // public void MitarbeiterAnlegen(){
-    //     System.out.println("Vorname: ");
-    //     String mitarbeiterVorname = input.next();
-    //     input.nextLine();
-
-    //     System.out.println("Nachname: ");
-    //     String mitarbeiterNachname = input.next();
-    //     input.nextLine();
-
-    //     System.out.println("Email: ");
-    //     String mitarbeiterEmail = input.next();
-    //     input.nextLine();
-
-    //     // Mitarbeiter mitarbeiter = new Mitarbeiter(mitarbeiterVorname, mitarbeiterNachname, mitarbeiterEmail);
-    //     //queue.addLast(new Person(personVorname, personNachname));
-    //     // System.out.println(mitarbeiter);
-
-    // }
-
-    // public void RaumAnlegen(){
-    //     System.out.println("Um den Raum anzulegen brauchen Sie den Gebaude, den Etage und der Nummer den Raum\n");
-    //     System.out.println("Geb: ");
-    //     int RaumGeb = input.nextInt();
-    //     input.nextLine();
-
-    //     System.out.println("Etage: ");
-    //     int RaumEtage = input.nextInt();
-    //     input.nextLine();
-
-    //     System.out.println("Raum: ");
-    //     int RaumRaum = input.nextInt();
-    //     input.nextLine();
-
-    //     Raum raum = new Raum(RaumGeb, RaumEtage, RaumRaum);
-    // }
 
     public void Reservieren(){
         //mitarbeiter anlegen
@@ -185,6 +128,16 @@ public class MitarbeiterDialog {
         String nameKurs = input.next();
 
         mitarbeiter.reserviere(raum, uhrzeitBegin, uhrzeitEnde, nameKurs);
+
+        // String reservierungText = mitarbeiter.toString();
+        // System.out.println(reservierungText);
+    }
+
+    public void reservierungZeigen(){
+        for (Reservierung r : Mitarbeiter.getReservierungen()) {
+            System.out.println(r.toString());
+        }
+    //    System.out.println(toString());
     }
 
     /**

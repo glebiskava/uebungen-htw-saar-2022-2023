@@ -10,6 +10,12 @@ public class Reservierung {
     private Raum raum;
 
     /**
+     * Array erstellen fuer Reservierungen und Mitarbeiter um Bezeichnugn zwischen zuverwalten
+     */
+    /*private Raum[] raeume;
+    private Mitarbeiter[] mitarbeiterArr;*/
+
+    /**
      * Konstruktor für Reservierung, erstellt eine Reservierung mit Beginnzeit und Endzeit
      * @param begin anfangszeit der Reservierung
      * @param ende Endzeit der Reservierung
@@ -111,9 +117,4 @@ public class Reservierung {
                 + " bis " + ende.toString()
                 + " für " + bemerkung;
     }
-
-
-
-
-
 }
