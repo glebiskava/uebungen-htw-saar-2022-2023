@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Übung01/Uebung1/Uebung1.iml" filepath="$PROJECT_DIR$/Übung01/Uebung1/Uebung1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Übung10/Uebung10implement/Uebung10implement.iml" filepath="$PROJECT_DIR$/Übung10/Uebung10implement/Uebung10implement.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Übung11/Uebung11/Uebung11.iml" filepath="$PROJECT_DIR$/Übung11/Uebung11/Uebung11.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Übung02/Uebung2/Uebung2.iml" filepath="$PROJECT_DIR$/Übung02/Uebung2/Uebung2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Übung03/Uebung3BlueJ/Uebung3BlueJ.iml" filepath="$PROJECT_DIR$/Übung03/Uebung3BlueJ/Uebung3BlueJ.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Übung05/Uebung5/Uebung5.iml" filepath="$PROJECT_DIR$/Übung05/Uebung5/Uebung5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Übung07/Uebung7/Uebung7.iml" filepath="$PROJECT_DIR$/Übung07/Uebung7/Uebung7.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Übung08bis/Uebung8/Uebung8.iml" filepath="$PROJECT_DIR$/Übung08bis/Uebung8/Uebung8.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Übung09/uebung9/uebung9.iml" filepath="$PROJECT_DIR$/Übung09/uebung9/uebung9.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uebungen.iml" filepath="$PROJECT_DIR$/uebungen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Übung01/Übung01.iml" filepath="$PROJECT_DIR$/Übung01/Übung01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Übung02/Übung02.iml" filepath="$PROJECT_DIR$/Übung02/Übung02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Übung03/Übung03.iml" filepath="$PROJECT_DIR$/Übung03/Übung03.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Übung04/Übung04.iml" filepath="$PROJECT_DIR$/Übung04/Übung04.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Übung07/Übung07.iml" filepath="$PROJECT_DIR$/Übung07/Übung07.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Übung08bis/Übung08bis.iml" filepath="$PROJECT_DIR$/Übung08bis/Übung08bis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Übung09/Übung09.iml" filepath="$PROJECT_DIR$/Übung09/Übung09.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Übung10/Übung10.iml" filepath="$PROJECT_DIR$/Übung10/Übung10.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Übung11/Übung11.iml" filepath="$PROJECT_DIR$/Übung11/Übung11.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Übung13/Übung13.iml" filepath="$PROJECT_DIR$/Übung13/Übung13.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Übung05/Übung5/Übung5.iml" filepath="$PROJECT_DIR$/Übung05/Übung5/Übung5.iml" />
+    </modules>
+  </component>
+</project>
