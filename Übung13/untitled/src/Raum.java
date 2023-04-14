@@ -8,11 +8,18 @@ public class Raum {
     private int geb;
     private int etage;
     private int raum;
+    private int anzahlReservierungen;
 
     /**
-     * erstellen einer Arraylist, um alle Reservierungen zu speichern
+     * Konstante GEBAEUDEGROESSE für eine fixe groesse des arrays
      */
-    private ArrayList<Reservierung> reservierungen;
+
+    private static final int GEBAEUDEGROESSE = 10;
+
+    /**
+     * erstellen eines Array, um alle Reservierungen zu speichern
+     */
+    private Reservierung[] reservierungen = new Reservierung[GEBAEUDEGROESSE];
 
     /**
      * Konstruktor für Raum
@@ -27,11 +34,13 @@ public class Raum {
     }
 
     /**
-     * Methode die eine Reservierung in einer ArrayListe speichert
+     * Methode die eine Reservierung im Array reservierugnen speichert und die anzahl an reservierungen um 1 erhoeht
+     * bevor eine reservierung zusaetzlich hinzugefuegt wird, wird der Index (anzahlReservierungen) erhoeht, sodass
+     * die vorherige Reservierung nicht überschrieben wird
      * @param reservierung Reservierung die gespeichert werden soll
      */
     public void addReservierung(Reservierung reservierung) {
-        this.reservierungen.add(reservierung);
+        reservierungen[anzahlReservierungen++] = reservierung;
     }
 
     /**
@@ -40,10 +49,10 @@ public class Raum {
      */
     @Override
     public String toString() {
-        String s = "Raum " + geb + "-" + etage + "." + raum + "\n";
-        for (Reservierung r : reservierungen) {
-            s += r.toString() + "\n";
+        String result = "Raum " + this.geb + "-" + this.etage + "." + this.raum + "\n";
+        for (int i = 0; i < anzahlReservierungen; i++) {
+            result += reservierungen[i].toString() + "\n";
         }
-        return s;
+        return result;
     }
 }
