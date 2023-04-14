@@ -44,6 +44,15 @@ public class Raum {
     }
 
     /**
+     * gibt die reservierungen an einer bestimmten Stelle im Array zurueck
+     * @param index
+     * @return
+     */
+    public Reservierung getReservierung(int index) {
+        return reservierungen[index];
+    }
+
+    /**
      * ToString Methode die einen erstellten Raum als String aufbereitet zurückgibt
      * @return Raum als String
      */
