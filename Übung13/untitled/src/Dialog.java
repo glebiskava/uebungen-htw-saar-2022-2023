@@ -1,4 +1,5 @@
 import java.util.InputMismatchException;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Dialog {
@@ -23,9 +24,9 @@ public class Dialog {
     /**
      * variablen fuer die laengeerfassung der verschiedenen arrays
      */
-    private int uhrzeitLaenge = 0;
-    private int mitarbeiterLaenge = 0;
-    private int raumLaenge = 0;
+    private int uhrzeitArrLaenge = 0;
+    private int mitarbeiterArrLaenge = 0;
+    private int raumArrLaenge = 0;
 
     /**
      * Konstanten anlegen fuer einfache zahlen menueeingabe im terminal
@@ -86,158 +87,204 @@ public class Dialog {
         } while (befehl != PROGRAMM_ENDE);
     }
 
+    /**
+     * Methode zeigt das Menue an
+     */
     public void menueAnzeigen(){
         System.out.print("\n\n\n" +
-                RESERVIEREN       + ": Reservieren\n"    +
-                PROGRAMM_ENDE     + ": Dialog beenden\nGeben Sie einen Nummer ein: ");
+                MITARBEITER_ANLEGEN     + MITARBEITER_ANLEGEN_STR +
+                MITARBEITER_ANZEIGEN    + MITARBEITER_ANZEIGEN_STR +
+                RAUM_ANLEGEN            + RAUM_ANLEGEN_STR +
+                RAUM_ANZEIGEN           + RAUM_ANZEIGEN_STR +
+                UHRZEIT_ANLEGEN         + UHRZEIT_ANLEGEN_STR +
+                UHRZEIT_ANZEIGEN        + UHRZEIT_ANZEIGEN_STR +
+                RESERVIEREN             + RESERVIEREN_STR +
+                PROGRAMM_ENDE           + PROGRAMM_ENDE_STR);
     }
+
+    /**
+     * Methode zum Einlesen der Nutzereingabe und Rueckgabe
+     * @return Nutzer Eingabe befehl als Int
+     */
     public int funktionVerarbeitung(){
         int befehl = input.nextInt();
         return befehl;
     }
 
+    /**
+     * Methode zur Ausführung der Nutzereingabe der Menuepunkte
+     * @param befehl
+     */
     public void funktionAusfuehrung(int befehl){
-        if(befehl > RESERVIEREN || befehl < PROGRAMM_ENDE){
+        if(befehl > RESERVIEREN || befehl < PROGRAMM_ENDE) {
             throw new IllegalArgumentException("Geben Sie eine der angegebenen Zahlen ein!");
         } else {
-            switch(befehl){
-                // case MITARBEITER_ANLEGEN:
-                //     MitarbeiterAnlegen();
-                //     break;
-                // case RAUM_ANLEGEN:
-                //     RaumAnlegen();
-                //     break;
+            switch (befehl) {
+                case MITARBEITER_ANLEGEN:
+                    mitarbeiterAnlegen();
+                    break;
+                case MITARBEITER_ANZEIGEN:
+                    mitarbeiterAnzeigen();
+                    break;
+                case RAUM_ANLEGEN:
+                    raumAnlegen();
+                    break;
+                case RAUM_ANZEIGEN:
+                    raumAnzeigen();
+                    break;
+                case UHRZEIT_ANLEGEN:
+                    uhrzeitAnlegen();
+                    break;
+                case UHRZEIT_ANZEIGEN:
+                    uhrzeitAnzeigen();
+                    break;
                 case RESERVIEREN:
                     Reservieren();
                     break;
-                // case MITARBEITER_ANLEGEN:
-                //     MitarbeiterAnlegen();
-                //     break;
                 case PROGRAMM_ENDE:
                     System.out.println("ENDE");
                     break;
             }
-
         }
+    }
+
+    /**
+     * Methode zur Eingabe des Vornamens, Nachnamens und E-Mail
+     */
+    public void mitarbeiterAnlegen() {
+        // Eingabe des Vornamens
+        System.out.println("Vorname : ");
+        String vorname = input.next();
+        input.nextLine();
+
+        //Eingabe des Nachnamens
+        System.out.println("Nachname : ");
+        String nachname = input.next();
+        input.nextLine();
+
+        //Eingabe Email
+        System.out.println("E-Mail : ");
+        String email = input.next();
+        input.nextLine();
+
+        mitarbeiterArr[mitarbeiterArrLaenge] = new Mitarbeiter(vorname, nachname, email);
+        mitarbeiterArrLaenge++;
+    }
+
+    /**
+     * Methode die alle Mitarbeiter ausgibt, wenn das Array nicht leer ist
+     */
+    public void mitarbeiterAnzeigen() {
+        if(isArrayEmpty(mitarbeiterArr)) {
+            System.out.println("Es gibt noch keinen Mitarbeiter. Legen Sie einen an!");
+        } else {
+            printOutArrayObject(mitarbeiterArr);
+        }
+    }
+
+    /**
+     * Methode zum Anlegen eines Raumes
+     */
+    public void raumAnlegen() {
+        //Gebaeude Eingabe
+        System.out.println("Gebaeude : ");
+        int gebaeude = input.nextInt();
+        input.nextLine();
+
+        //Etage Eingabe
+        System.out.println("Etage : ");
+        int etage = input.nextInt();
+        input.nextLine();
+
+        //Eingabe Raum
+        System.out.println("Raum : ");
+        int raum = input.nextInt();
+        input.nextLine();
+
+        raumArr[raumArrLaenge] = new Raum(gebaeude, etage, raum);
+        raumArrLaenge++;
+    }
+
+    /**
+     * Methode gibt alle Raeume aus, wenn das array nicht leer
+     */
+    public void raumAnzeigen() {
+        if(isArrayEmpty(raumArr)) {
+            System.out.println("Es gibt noch keinen Raum. Legen Sie einen an!");
+        } else {
+            printOutArrayObject(raumArr);
+        }
+    }
+
+    /**
+     * Methode um eine Uhrzeit anzulegen
+     */
+    public void uhrzeitAnlegen() {
+
+        //Eingabe Stunde
+        System.out.println("Stunde : ");
+        int stunde = input.nextInt();
+        input.nextLine();
+
+        //Eingabe Minuten
+        System.out.println("Minute : ");
+        int minute = input.nextInt();
+        input.nextLine();
+
+        uhrzeitArr[uhrzeitArrLaenge] = new Uhrzeit(stunde, minute);
+        uhrzeitArrLaenge++;
+    }
+
+    /**
+     * Methode die alle Uhrzeiten ausgibt, wenn das array nicht leer ist
+     */
+    public void uhrzeitAnzeigen() {
+        if(isArrayEmpty(uhrzeitArr)) {
+            System.out.println("Es gibt noch keine Uhrzeit. Legen Sie eine an!");
+        } else {
+            printOutArrayObject(uhrzeitArr);
+        }
+    }
+
+    /**
+     * Methode um zum Reservieren
+     * eingabe von nutzer wird entgegengenommen und weiter geleitet
+     */
+    public void Reservieren(){
 
     }
-    // public void UhrZeitAnlegen(){
-    //     System.out.println("Geben Sie eine Uhr ein und dann die Minuten für das Begin der Reservierung ein: \n");
 
-    //     System.out.println("Uhr: \n");
-    //     int inputUhr = input.nextInt();
+    /**
+     * Methode die prueft ob das array leer ist
+     * @param arrayObject Objekt im Array
+     * @return true oder false
+     */
+    public boolean isArrayEmpty(Object[] arrayObject) {
+        for(Object obj : arrayObject) {
+            if (obj != null) {
+                return false;
+            }
+        }
+        return true;
+    }
 
-    //     System.out.println("Uhr: \n");
-    //     int inputMin = input.nextInt();
-
-    //     Uhrzeit uhrzeit = new Uhrzeit(inputUhr, inputMin);
-    // }
-
-    // public void MitarbeiterAnlegen(){
-    //     System.out.println("Vorname: ");
-    //     String mitarbeiterVorname = input.next();
-    //     input.nextLine();
-
-    //     System.out.println("Nachname: ");
-    //     String mitarbeiterNachname = input.next();
-    //     input.nextLine();
-
-    //     System.out.println("Email: ");
-    //     String mitarbeiterEmail = input.next();
-    //     input.nextLine();
-
-    //     // Mitarbeiter mitarbeiter = new Mitarbeiter(mitarbeiterVorname, mitarbeiterNachname, mitarbeiterEmail);
-    //     //queue.addLast(new Person(personVorname, personNachname));
-    //     // System.out.println(mitarbeiter);
-
-    // }
-
-    // public void RaumAnlegen(){
-    //     System.out.println("Um den Raum anzulegen brauchen Sie den Gebaude, den Etage und der Nummer den Raum\n");
-    //     System.out.println("Geb: ");
-    //     int RaumGeb = input.nextInt();
-    //     input.nextLine();
-
-    //     System.out.println("Etage: ");
-    //     int RaumEtage = input.nextInt();
-    //     input.nextLine();
-
-    //     System.out.println("Raum: ");
-    //     int RaumRaum = input.nextInt();
-    //     input.nextLine();
-
-    //     Raum raum = new Raum(RaumGeb, RaumEtage, RaumRaum);
-    // }
-
-    public void Reservieren(){
-        //mitarbeiter anlegen
-        System.out.println("Mitarbeiter anlegen, mit vorname, name und email: ");
-        System.out.println("Vorname: ");
-        String mitarbeiterVorname = input.next();
-        input.nextLine();
-
-        System.out.println("Nachname: ");
-        String mitarbeiterNachname = input.next();
-        input.nextLine();
-
-        System.out.println("Email: ");
-        String mitarbeiterEmail = input.next();
-        input.nextLine();
-
-        Mitarbeiter mitarbeiter = new Mitarbeiter(mitarbeiterVorname, mitarbeiterNachname, mitarbeiterEmail);
-
-
-        //Raum anlegen
-        System.out.println("Um den Raum anzulegen brauchen Sie den Gebaude, den Etage und der Nummer den Raum\n");
-        System.out.println("Geb: ");
-        int RaumGeb = input.nextInt();
-        input.nextLine();
-
-        System.out.println("Etage: ");
-        int RaumEtage = input.nextInt();
-        input.nextLine();
-
-        System.out.println("Raum: ");
-        int RaumRaum = input.nextInt();
-        input.nextLine();
-
-        Raum raum = new Raum(RaumGeb, RaumEtage, RaumRaum);
-
-
-        //Begin Uhr anelegen
-        System.out.println("Geben Sie eine Uhr ein und dann die Minuten für das Begin der Reservierung ein: \n");
-        System.out.println("Uhr: \n");
-        int inputUhrBegin = input.nextInt();
-
-        System.out.println("Uhr: \n");
-        int inputMinBegin = input.nextInt();
-
-        Uhrzeit uhrzeitBegin = new Uhrzeit(inputUhrBegin, inputMinBegin);
-
-
-        //EndeUhr anlegen
-        System.out.println("Geben Sie eine Uhr ein und dann die Minuten für das Ende der Reservierung ein: \n");
-        System.out.println("Uhr: \n");
-        int inputUhrEnde = input.nextInt();
-
-        System.out.println("Uhr: \n");
-        int inputMinEnde = input.nextInt();
-
-        Uhrzeit uhrzeitEnde = new Uhrzeit(inputUhrEnde, inputMinEnde);
-
-        //Name des kurse anlegen
-        System.out.println("Geben Sie der Name des Kurse für die Reservierung ein: \n");
-        System.out.println("Name der Kurs: \n");
-        String nameKurs = input.next();
-
-        mitarbeiter.reserviere(raum, uhrzeitBegin, uhrzeitEnde, nameKurs);
+    /**
+     * Methode die ein Objekt ausgibt, wenn es nicht leer ist
+     * @param arrayObject
+     */
+    public void printOutArrayObject(Object[] arrayObject) {
+        for (Object obj : arrayObject) {
+            if(obj != null) {
+                System.out.println(obj);
+            }
+        }
     }
 
     /**
      * Funktion zum Starten des Dialogs
-     * @param args
+     * @param args argumenten Array
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         new Dialog().dialogStart();
     }
 }
