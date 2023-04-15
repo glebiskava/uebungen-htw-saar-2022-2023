@@ -1,7 +1,11 @@
 import java.util.InputMismatchException;
-import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * @author Leopold Mittelberger, Elisee Brand
+ * @version 1.0
+ * Dies ist eine einfache Dialogklassse zum interaktiven Testen der Aufgabe
+ */
 public class Dialog {
 
     /**
@@ -139,7 +143,7 @@ public class Dialog {
                     uhrzeitAnzeigen();
                     break;
                 case RESERVIEREN:
-                    Reservieren();
+                    reservieren();
                     break;
                 case PROGRAMM_ENDE:
                     System.out.println("ENDE");
@@ -250,7 +254,7 @@ public class Dialog {
      * Methode um zum Reservieren
      * eingabe von nutzer wird entgegengenommen und weiter geleitet
      */
-    public void Reservieren(){
+    public void reservieren(){
 
     }
 

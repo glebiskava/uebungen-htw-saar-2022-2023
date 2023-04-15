@@ -1,3 +1,8 @@
+/**
+ * @author Leopold Mittelberger, Elisee Brand
+ * @version 1.0
+ * Dies ist eine einfache Reservierungsklasse mit den Attributen begin, ende, bemerkung
+ */
 public class Reservierung {
 
     /**

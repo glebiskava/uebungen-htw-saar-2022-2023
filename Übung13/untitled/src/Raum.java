@@ -1,5 +1,11 @@
 import java.util.ArrayList;
 
+/**
+ * @author Leopold Mittelberger, Elisee Brand
+ * @version 1.0
+ * Dies ist eine einfache Raumklasse mit den Attributen gebaeude, etage und raum.
+ * Jeder Raumm hat eine bestimmt Anzahl an Reservierungen
+ */
 public class Raum {
 
     /**

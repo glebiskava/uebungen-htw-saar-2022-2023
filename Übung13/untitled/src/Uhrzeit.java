@@ -1,3 +1,8 @@
+/**
+ * @author Leopold Mittelberger, Elisee Brand
+ * @version 1.0
+ * Dies ist eine einfache Uhrzeitklasse mit den Attributen Stunde und Minute
+ */
 public class Uhrzeit {
 
     /**

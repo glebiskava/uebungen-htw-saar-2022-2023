@@ -1,3 +1,9 @@
+/**
+ * @author Leopold Mittelberger, Elisee Brand
+ * @version 1.0
+ * Dies ist eine einfache Mitarbeiterklasse mit dem Attribute Emial und Vorname und Nachname werden
+ * von der Klasse Person geerbt
+ */
 public class Mitarbeiter extends Person {
 
     /**

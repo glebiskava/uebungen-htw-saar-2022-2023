@@ -1,3 +1,8 @@
+/**
+ * @author Leopold Mittelberger, Elisee Brand
+ * @version 1.0
+ * Dies ist eine einfache Personenklasse mit den Attributen Vorname und Nachname
+ */
 public class Person {
 
     /**
