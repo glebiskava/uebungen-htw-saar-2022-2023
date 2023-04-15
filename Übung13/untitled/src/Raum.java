@@ -34,6 +34,7 @@ public class Raum {
      * @param raum welcher Raum gebucht werden soll
      */
     public Raum(int geb, int etage, int raum) {
+
         this.geb = geb;
         this.etage = etage;
         this.raum = raum;
@@ -46,6 +47,7 @@ public class Raum {
      * @param reservierung Reservierung die gespeichert werden soll
      */
     public void addReservierung(Reservierung reservierung) {
+
         reservierungen[anzahlReservierungen++] = reservierung;
     }
 
@@ -55,6 +57,7 @@ public class Raum {
      * @return
      */
     public Reservierung getReservierung(int index) {
+
         return reservierungen[index];
     }
 
@@ -64,6 +67,7 @@ public class Raum {
      */
     @Override
     public String toString() {
+
         String result = "Raum " + this.geb + "-" + this.etage + "." + this.raum + "\n";
         for (int i = 0; i < anzahlReservierungen; i++) {
             result += reservierungen[i].toString() + "\n";

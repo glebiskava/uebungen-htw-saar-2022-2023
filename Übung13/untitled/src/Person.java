@@ -17,6 +17,7 @@ public class Person {
      * @param nachname nachname der Person
      */
     public Person(String vorname, String nachname) {
+
         this.vorname = vorname;
         this.nachname = nachname;
     }
@@ -26,6 +27,7 @@ public class Person {
      * @return vorname der Person
      */
     public String getVorname() {
+
         return vorname;
     }
 
@@ -34,6 +36,7 @@ public class Person {
      * @param vorname vorname der gesetzt werden soll
      */
     public void setVorname(String vorname) {
+
         this.vorname = vorname;
     }
 
@@ -42,6 +45,7 @@ public class Person {
      * @return nachname der Person
      */
     public String getNachname() {
+
         return nachname;
     }
 
@@ -50,6 +54,7 @@ public class Person {
      * @param nachname Nachname der Person
      */
     public void setNachname(String nachname) {
+
         this.nachname = nachname;
     }
 
@@ -59,6 +64,7 @@ public class Person {
      */
     @Override
     public String toString() {
+
         return vorname + " " + nachname;
     }
 }

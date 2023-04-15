@@ -18,6 +18,7 @@ public class Mitarbeiter extends Person {
      * @param email E-Mail des Mitarbeiters
      */
     public Mitarbeiter(String vorname, String nachname, String email) {
+
         super(vorname, nachname);
         this.email = email;
     }
@@ -30,6 +31,7 @@ public class Mitarbeiter extends Person {
      * @param bemerkung bemerkung (wer hat reserviert?)
      */
     public void reserviere(Raum raum, Uhrzeit begin, Uhrzeit ende, String bemerkung) {
+
         Reservierung reservierung = new Reservierung(begin, ende);
         reservierung.setMitarbeiter(this);
         reservierung.setRaum(raum);
@@ -41,6 +43,7 @@ public class Mitarbeiter extends Person {
      * @return E-Mail des Mitarbeiters
      */
     public String getEmail() {
+
         return email;
     }
 
@@ -49,6 +52,7 @@ public class Mitarbeiter extends Person {
      * @param email welche E-Mail soll gesetzt werden
      */
     public void setEmail(String email) {
+
         this.email = email;
     }
 
@@ -58,6 +62,7 @@ public class Mitarbeiter extends Person {
      */
     @Override
     public String toString() {
+
         return super.toString() + " (" + email + ")";
     }
 }

@@ -17,6 +17,7 @@ public class Uhrzeit {
      * @param minute welche Minute
      */
     public Uhrzeit(int stunde, int minute) {
+
         this.stunde = stunde;
         this.minute = minute;
     }
@@ -26,6 +27,7 @@ public class Uhrzeit {
      * @return stunde
      */
     public int getStunde() {
+
         return stunde;
     }
 
@@ -34,6 +36,7 @@ public class Uhrzeit {
      * @param stunde auf welche soll gestellt werden
      */
     public void setStunde(int stunde) {
+
         this.stunde = stunde;
     }
 
@@ -42,6 +45,7 @@ public class Uhrzeit {
      * @return welche Minute
      */
     public int getMinute() {
+
         return minute;
     }
 
@@ -50,6 +54,7 @@ public class Uhrzeit {
      * @param minute auf welche minute soll gestellt werden
      */
     public void setMinute(int minute) {
+
         this.minute = minute;
     }
 
@@ -59,6 +64,7 @@ public class Uhrzeit {
      */
     @Override
     public String toString() {
+
         // wenn minute kleiner als 10 ist, wird eine Null davor gesetzt
         return stunde + ":" + (minute < 10 ? "0" : "") + minute + " Uhr";
     }

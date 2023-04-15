@@ -15,17 +15,12 @@ public class Reservierung {
     private Raum raum;
 
     /**
-     * Array erstellen fuer Reservierungen und Mitarbeiter um Bezeichnugn zwischen zuverwalten
-     */
-    /*private Raum[] raeume;
-    private Mitarbeiter[] mitarbeiterArr;*/
-
-    /**
      * Konstruktor für Reservierung, erstellt eine Reservierung mit Beginnzeit und Endzeit
      * @param begin anfangszeit der Reservierung
      * @param ende Endzeit der Reservierung
      */
     public Reservierung(Uhrzeit begin, Uhrzeit ende) {
+
         this.begin = begin;
         this.ende = ende;
     }
@@ -35,6 +30,7 @@ public class Reservierung {
      * @return bemerkung
      */
     public String getBemerkung() {
+
         return bemerkung;
     }
 
@@ -43,6 +39,7 @@ public class Reservierung {
      * @param bemerkung Bezeichnung für die Reservierung (z.B.: wer aht reserviert?)
      */
     public void setBemerkung(String bemerkung) {
+
         this.bemerkung = bemerkung;
     }
 
@@ -51,6 +48,7 @@ public class Reservierung {
      * @return begin
      */
     public Uhrzeit getBegin() {
+
         return begin;
     }
 
@@ -59,6 +57,7 @@ public class Reservierung {
      * @param begin Anfangszeit der Reservierung
      */
     public void setBegin(Uhrzeit begin) {
+
         this.begin = begin;
     }
 
@@ -67,6 +66,7 @@ public class Reservierung {
      * @return ende
      */
     public Uhrzeit getEnde() {
+
         return ende;
     }
 
@@ -75,6 +75,7 @@ public class Reservierung {
      * @param ende Ende der Reservierung
      */
     public void setEnde(Uhrzeit ende) {
+
         this.ende = ende;
     }
 
@@ -83,6 +84,7 @@ public class Reservierung {
      * @return mitarbeiter
      */
     public Mitarbeiter getMitarbeiter() {
+
         return mitarbeiter;
     }
 
@@ -91,6 +93,7 @@ public class Reservierung {
      * @param mitarbeiter mitarbeiter der einen Raum reserviert
      */
     public void setMitarbeiter(Mitarbeiter mitarbeiter) {
+
         this.mitarbeiter = mitarbeiter;
     }
 
@@ -99,6 +102,7 @@ public class Reservierung {
      * @return raum
      */
     public Raum getRaum() {
+
         return raum;
     }
 
@@ -107,6 +111,7 @@ public class Reservierung {
      * @param raum raum der reserviert wird
      */
     public void setRaum(Raum raum) {
+
         this.raum = raum;
         raum.addReservierung(this);
     }
@@ -117,6 +122,7 @@ public class Reservierung {
      */
     @Override
     public String toString() {
+
         return "gebucht von " + mitarbeiter.toString()
                 + " von " + begin.toString()
                 + " bis " + ende.toString()
