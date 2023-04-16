@@ -1,5 +1,12 @@
-public class Raum {
+import java.util.ArrayList;
 
+/**
+ * @author Leopold Mittelberger, Elisee Brand
+ * @version 1.0
+ * Dies ist eine einfache Raumklasse mit den Attributen gebaeude, etage und raum.
+ * Jeder Raumm hat eine bestimmt Anzahl an Reservierungen
+ */
+public class Raum {
     /**
      * Attribute für Raum entnommen aus dem UML-Diagramm
      */
@@ -26,6 +33,8 @@ public class Raum {
      * @param raum welcher Raum gebucht werden soll
      */
     public Raum(int geb, int etage, int raum) {
+
+        ErrorCheck.checkSchonExistierendeRaumZahl(reservierungen, geb, etage, raum);
         this.geb = geb;
         this.etage = etage;
         this.raum = raum;
@@ -38,7 +47,18 @@ public class Raum {
      * @param reservierung Reservierung die gespeichert werden soll
      */
     public void addReservierung(Reservierung reservierung) {
+
         reservierungen[anzahlReservierungen++] = reservierung;
+    }
+
+    /**
+     * gibt die reservierungen an einer bestimmten Stelle im Array zurueck
+     * @param index
+     * @return
+     */
+    public Reservierung getReservierung(int index) {
+
+        return reservierungen[index];
     }
 
     /**
@@ -47,6 +67,7 @@ public class Raum {
      */
     @Override
     public String toString() {
+
         String result = "Raum " + this.geb + "-" + this.etage + "." + this.raum + "\n";
         for (int i = 0; i < anzahlReservierungen; i++) {
             result += reservierungen[i].toString() + "\n";

@@ -1,10 +1,15 @@
+/**
+ * @author Leopold Mittelberger, Elisee Brand
+ * @version 1.0
+ * Dies ist eine einfache Mitarbeiterklasse mit dem Attribute Emial und Vorname und Nachname werden
+ * von der Klasse Person geerbt
+ */
 public class Mitarbeiter extends Person {
-    private Reservierung reservierung;
+
     /**
      * Attribute für Mitarbeiter entnommen aus UML-Diagramm
      */
     private String email;
-    public Object Reservierung;
 
     /**
      * Konstruktor für Mitarbeiter
@@ -13,7 +18,12 @@ public class Mitarbeiter extends Person {
      * @param email E-Mail des Mitarbeiters
      */
     public Mitarbeiter(String vorname, String nachname, String email) {
+
         super(vorname, nachname);
+
+        ErrorCheck.checkEmail(email);
+        // ErrorCheck.checkEmailMitA(email);
+
         this.email = email;
     }
 
@@ -25,7 +35,8 @@ public class Mitarbeiter extends Person {
      * @param bemerkung bemerkung (wer hat reserviert?)
      */
     public void reserviere(Raum raum, Uhrzeit begin, Uhrzeit ende, String bemerkung) {
-        reservierung = new Reservierung(begin, ende);
+
+        Reservierung reservierung = new Reservierung(begin, ende);
         reservierung.setMitarbeiter(this);
         reservierung.setRaum(raum);
         reservierung.setBemerkung(bemerkung);
@@ -36,6 +47,7 @@ public class Mitarbeiter extends Person {
      * @return E-Mail des Mitarbeiters
      */
     public String getEmail() {
+
         return email;
     }
 
@@ -44,19 +56,17 @@ public class Mitarbeiter extends Person {
      * @param email welche E-Mail soll gesetzt werden
      */
     public void setEmail(String email) {
+
         this.email = email;
     }
 
-
-    public Reservierung getReservierung(){
-        return reservierung;
-    }
     /**
      * Methode die den Mitarbeiter als String zurückgibt
      * @return mitarbeiter als String
      */
     @Override
     public String toString() {
+
         return super.toString() + " (" + email + ")";
     }
 }
