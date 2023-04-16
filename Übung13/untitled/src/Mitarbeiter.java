@@ -1,5 +1,5 @@
 public class Mitarbeiter extends Person {
-
+    private Reservierung reservierung;
     /**
      * Attribute für Mitarbeiter entnommen aus UML-Diagramm
      */
@@ -25,7 +25,7 @@ public class Mitarbeiter extends Person {
      * @param bemerkung bemerkung (wer hat reserviert?)
      */
     public void reserviere(Raum raum, Uhrzeit begin, Uhrzeit ende, String bemerkung) {
-        Reservierung reservierung = new Reservierung(begin, ende);
+        reservierung = new Reservierung(begin, ende);
         reservierung.setMitarbeiter(this);
         reservierung.setRaum(raum);
         reservierung.setBemerkung(bemerkung);
@@ -47,6 +47,10 @@ public class Mitarbeiter extends Person {
         this.email = email;
     }
 
+
+    public Reservierung getReservierung(){
+        return reservierung;
+    }
     /**
      * Methode die den Mitarbeiter als String zurückgibt
      * @return mitarbeiter als String

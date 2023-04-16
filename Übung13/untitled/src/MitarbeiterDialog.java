@@ -9,8 +9,6 @@ public class MitarbeiterDialog {
     private static final int RESERVIERUNG_ZEIGEN = 2;
 
 
-
-
     public MitarbeiterDialog(){
         input = new Scanner(System.in);
     }
@@ -134,7 +132,7 @@ public class MitarbeiterDialog {
     }
 
     public void reservierungZeigen(){
-        for (Reservierung r : Mitarbeiter.getReservierungen()) {
+        for (Reservierung r : Mitarbeiter.getReservierung()) {
             System.out.println(r.toString());
         }
     //    System.out.println(toString());
