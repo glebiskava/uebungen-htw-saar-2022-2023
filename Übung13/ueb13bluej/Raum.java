@@ -34,6 +34,9 @@ public class Raum {
      * @param raum welcher Raum gebucht werden soll
      */
     public Raum(int geb, int etage, int raum) {
+        ErrorCheck.checkNegativeZahl(geb);
+        ErrorCheck.checkNegativeZahl(etage);
+        ErrorCheck.checkNegativeZahl(raum);
 
         this.geb = geb;
         this.etage = etage;
@@ -57,6 +60,7 @@ public class Raum {
      * @return
      */
     public Reservierung getReservierung(int index) {
+        ErrorCheck.indexUngueltig(index);
 
         return reservierungen[index];
     }

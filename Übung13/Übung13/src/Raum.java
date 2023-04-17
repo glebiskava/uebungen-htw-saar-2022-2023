@@ -22,7 +22,7 @@ public class Raum {
 
     private static final int GEBAEUDEGROESSE = 50;
 
-    /** 
+    /**
      * erstellen eines Array, um alle Reservierungen zu speichern
      */
     private Reservierung[] reservierungen = new Reservierung[GEBAEUDEGROESSE];
@@ -34,6 +34,11 @@ public class Raum {
      * @param raum welcher Raum gebucht werden soll
      */
     public Raum(int geb, int etage, int raum) {
+        ErrorCheck.checkNegativeZahl(geb);
+        ErrorCheck.checkNegativeZahl(etage);
+        ErrorCheck.checkNegativeZahl(raum);
+
+        //raumNummerExistiertSchon(raumArr, geb, etage, raum);
 
         this.geb = geb;
         this.etage = etage;
@@ -57,6 +62,7 @@ public class Raum {
      * @return
      */
     public Reservierung getReservierung(int index) {
+        ErrorCheck.indexUngueltig(index);
 
         return reservierungen[index];
     }

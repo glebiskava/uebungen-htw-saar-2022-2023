@@ -12,15 +12,24 @@ public class Mitarbeiter extends Person {
     private String email;
 
     /**
+     * Array fuer Mitarbeiter
+     */
+    Mitarbeiter[] mitarbeiter;
+
+    /**
      * Konstruktor für Mitarbeiter
      * @param vorname vorname des Mitarbeiters
      * @param nachname Nachnamen des Mitarbeiters
      * @param email E-Mail des Mitarbeiters
      */
     public Mitarbeiter(String vorname, String nachname, String email) {
-
         super(vorname, nachname);
+
+        ErrorCheck.checkEingabeLeer(email);
+        ErrorCheck.checkEmailMitAt(email);
+
         this.email = email;
+
     }
 
     /**
@@ -36,6 +45,14 @@ public class Mitarbeiter extends Person {
         reservierung.setMitarbeiter(this);
         reservierung.setRaum(raum);
         reservierung.setBemerkung(bemerkung);
+    }
+
+    /**
+     * Getter fuer Email
+     * @return Email als String
+     */
+    public String getEmail() {
+        return email;
     }
 
     /**

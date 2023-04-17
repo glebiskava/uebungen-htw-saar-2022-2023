@@ -17,6 +17,7 @@ public class Uhrzeit {
      * @param minute welche Minute
      */
     public Uhrzeit(int stunde, int minute) {
+        ErrorCheck.checkStundeUhrzeit(stunde, minute);
 
         this.stunde = stunde;
         this.minute = minute;

@@ -23,15 +23,11 @@ public class MitarbeiterTest {
         assertEquals("Mbappe", mitarbeiter.getNachname());
     }
 
-    //@Test
-    //public void testToString() {
-    //    assertEquals("Kylian Mbappe", person.toString());
-    //}
     
     //test ueber mail 
     @Test
     public void test_getEmail() {
-        assertEquals("kylian.mbappe@gmail.com", mitarbeiter.getEmail());
+        assertEquals("Kylian.mbappe@gmail.com", mitarbeiter.getEmail());
     }
     
     @Test
@@ -80,5 +76,11 @@ public class MitarbeiterTest {
     public void test_mitarbeiter_anlegen_mail_leeres_zeichnen() {
         assertThrows(ErrorCheck.class, () -> {mitarbeiter = new Mitarbeiter("Antoine", "Griezmann",
             " ");});
+    }
+    
+    @Test
+    public void test_mitarbeiter_anlegen_mail_andere_zeichnen() {
+        assertThrows(ErrorCheck.class, () -> {mitarbeiter = new Mitarbeiter("Antoine", "Griezmann",
+            "1");});
     }
 }

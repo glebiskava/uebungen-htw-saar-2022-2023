@@ -12,30 +12,42 @@ public class PersonTest {
     }
 
     @Test
-    public void testGetVorname() {
+    public void test_getVorname() {
         assertEquals("Kylian", person.getVorname());
     }
 
     @Test
-    public void testGetNachname() {
+    public void test_getNachname() {
         assertEquals("Mbappe", person.getNachname());
     }
 
     @Test
-    public void testToString() {
+    public void test_toString() {
         assertEquals("Kylian Mbappe", person.toString());
     }
 
     @Test
-    public void testEmptyVorname() {
-        Exception exception = assertThrows(ErrorCheck.class, () -> new Person("", "Mbappe"));
-        assertEquals("*msg d'erreur a renvoyer", exception.getMessage());
+    public void test_empty_vorname() {
+        Exception e = assertThrows(ErrorCheck.class, () -> new Person("", "Mbappe"));
+        assertEquals("Eingabe darf nicht leer sein!", e.getMessage());
     }
     
     @Test
-    public void testEmptyNachname() {
-        Exception exception = assertThrows(ErrorCheck.class, () -> new Person("Kylian", ""));
-        assertEquals("*msg d'erreur a renvoyer", exception.getMessage());
+    public void test_empty_nachname() {
+        Exception e = assertThrows(ErrorCheck.class, () -> new Person("Kylian", ""));
+        assertEquals("Eingabe darf nicht leer sein!", e.getMessage());
+    }
+    
+    @Test
+    public void test_leeres_zeichnen_vorname() {
+        Exception e = assertThrows(ErrorCheck.class, () -> new Person(" ", " "));
+        assertEquals("Eingabe darf nicht leer sein!", e.getMessage());
+    }
+    
+    @Test
+    public void test_leeres_zeichnen_nachname() {
+        Exception e = assertThrows(ErrorCheck.class, () -> new Person("Kylian", ""));
+        assertEquals("Eingabe darf nicht leer sein!", e.getMessage());
     }
 
 }

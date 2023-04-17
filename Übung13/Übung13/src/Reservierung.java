@@ -30,7 +30,7 @@ public class Reservierung {
      * @param bemerkung Bezeichnung für die Reservierung (z.B.: wer aht reserviert?)
      */
     public void setBemerkung(String bemerkung) {
-
+        ErrorCheck.checkEingabeLeer(bemerkung);
         this.bemerkung = bemerkung;
     }
 
@@ -39,7 +39,6 @@ public class Reservierung {
      * @param mitarbeiter mitarbeiter der einen Raum reserviert
      */
     public void setMitarbeiter(Mitarbeiter mitarbeiter) {
-
         this.mitarbeiter = mitarbeiter;
     }
 

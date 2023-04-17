@@ -43,7 +43,6 @@ public class Dialog {
     private static final int RESERVIEREN = 6;
     private static final int PRINT_RESERVIERUNG_ZU_RAUM = 7;
     private static final int RAUM_ANZEIGEN = 8;
-
     private static final int PROGRAMM_ENDE = 0;
 
     /**
@@ -104,11 +103,11 @@ public class Dialog {
                 MITARBEITER_ANLEGEN        + MITARBEITER_ANLEGEN_STR        + "\n" +
                 MITARBEITER_ANZEIGEN       + MITARBEITER_ANZEIGEN_STR       + "\n" +
                 RAUM_ANLEGEN               + RAUM_ANLEGEN_STR               + "\n" +
-                RAUM_ANZEIGEN              + RAUM_ANZEIGEN_STR              + "\n" +
                 UHRZEIT_ANLEGEN            + UHRZEIT_ANLEGEN_STR            + "\n" +
                 UHRZEIT_ANZEIGEN           + UHRZEIT_ANZEIGEN_STR           + "\n" +
                 RESERVIEREN                + RESERVIEREN_STR                + "\n" +
                 PRINT_RESERVIERUNG_ZU_RAUM + PRINT_RESERVIERUNG_ZU_RAUM_STR + "\n" +
+                RAUM_ANZEIGEN              + RAUM_ANZEIGEN_STR              + "\n" +
                 PROGRAMM_ENDE              + PROGRAMM_ENDE_STR              + "\n" +
                 "Geben Sie eine der angegebenen Zahlen ein : "
         );
@@ -221,7 +220,7 @@ public class Dialog {
         System.out.println("Raum : ");
         int raum = input.nextInt();
         input.nextLine();
-
+    
         raumArr[raumArrLaenge] = new Raum(gebaeude, etage, raum);
         raumArrLaenge++;
     }
@@ -280,50 +279,67 @@ public class Dialog {
        } else if (isArrayEmpty(mitarbeiterArr)) {
            System.out.println("Es existiert noch kein Mitarbeiter. Legen Sie einen an!");
        } else {
+
            //Mitarbeiter waehlen anhand Index
-           System.out.println("Geben Sie den Index des Mitarbeiters an : ");
+           if(mitarbeiterArrLaenge > 1){
+                System.out.println("Geben Sie den Index des Mitarbeiters an (zwischen 0 und " + (mitarbeiterArrLaenge-1) + ") : " );
+           } else {
+                System.out.println("Geben Sie den Index des Mitarbeiters an (1 zahl möglich : '0') : " );
+           }
            int indexM = input.nextInt();
-           input.nextLine();
+           
+           if(indexM > mitarbeiterArrLaenge-1){
+                System.out.println("Der zahl ist zu gross");
+           } else {
+                input.nextLine();
+                //Raum waehlen anhand Index
+                if(raumArrLaenge > 1){
+                    System.out.println("Geben Sie den Index des Raumes an (zwischen 0 und " + (raumArrLaenge-1) + ") : " );
+                } else {
+                    System.out.println("Geben Sie den Index des Raumes an (1 zahl möglich : '0') : " );
+                }
+                int indexR = input.nextInt();
+                
+                if(indexR > raumArrLaenge-1){
+                    System.out.println("Der zahl ist zu gross");
+                } else {
+                    input.nextLine();
+                //Startzeit-Stunde Eingabe
+                System.out.println("Geben Sie eine Anfangsstunde ein : ");
+                int startStunde = input.nextInt();
+                input.nextLine();
 
-           //Raum waehlen anhand Index
-           System.out.println("Geben Sie den Index des Raumes an : ");
-           int indexR = input.nextInt();
-           input.nextLine();
+                //Startzeit-Minute Eingabe
+                System.out.println("Geben Sie eine Anfangsminute ein : ");
+                int startMinute = input.nextInt();
+                input.nextLine();
 
-           //Startzeit-Stunde Eingabe
-           System.out.println("Geben Sie eine Anfangsstunde ein : ");
-           int startStunde = input.nextInt();
-           input.nextLine();
+                Uhrzeit start = new Uhrzeit(startStunde, startMinute);
 
-           //Startzeit-Minute Eingabe
-           System.out.println("Geben Sie eine Anfangsminute ein : ");
-           int startMinute = input.nextInt();
-           input.nextLine();
+                //Endzeit-Stunde Eingabe
+                System.out.println("Geben Sie eine Endstunde ein : ");
+                int endStunde = input.nextInt();
+                input.nextLine();
 
-           //Endzeit-Stunde Eingabe
-           System.out.println("Geben Sie eine Endstunde ein : ");
-           int endStunde = input.nextInt();
-           input.nextLine();
+                //Endzeit-Minute Eingabe
+                System.out.println("Geben Sie eine Endminute ein : ");
+                int endMinute = input.nextInt();
+                input.nextLine();
 
-           //Endzeit-Minute Eingabe
-           System.out.println("Geben Sie eine Endminute ein : ");
-           int endMinute = input.nextInt();
-           input.nextLine();
+                Uhrzeit ende = new Uhrzeit(endStunde, endMinute);
 
-           //Bemerkung fuer den Raum
-           System.out.println("Geben Sie eine Bemerkung fuer den Raume ein: ");
-           String bemerkung = input.next();
-           input.nextLine();
+                //Bemerkung fuer den Raum
+                System.out.println("Geben Sie eine Bemerkung fuer den Raume ein: ");
+                String bemerkung = input.next();
+                input.nextLine();
 
-           Mitarbeiter mitarbeiter = mitarbeiterArr[indexM];
-           Raum raum = raumArr[indexR];
 
-           mitarbeiter.reserviere(
-                   raum,
-                   new Uhrzeit(startStunde, startMinute),
-                   new Uhrzeit(endStunde, endMinute),
-                   bemerkung
-           );
+                Mitarbeiter mitarbeiter = mitarbeiterArr[indexM];
+                Raum raum = raumArr[indexR];
+
+                mitarbeiter.reserviere(raum, start, ende, bemerkung);
+           }
+        }
        }
     }
 
@@ -341,7 +357,11 @@ public class Dialog {
 
         } else {
             //Eingabe des Index des Raums
-            System.out.println("Geben Sie den Index des Raumes an : ");
+            if(raumArrLaenge > 1){
+                System.out.println("Geben Sie den Index des Raumes an (zwischen 0 und " + (raumArrLaenge-1) + ") : " );
+            } else {
+                System.out.println("Geben Sie den Index des Raumes an (1 zahl möglich : '0') : " );
+            }
             int raumIndex = input.nextInt();
             input.nextLine();
             Raum raum = raumArr[raumIndex];

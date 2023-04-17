@@ -1,67 +1,61 @@
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ErrorCheck extends RuntimeException{
-    //check string
-    private static final String STR_LEER = "Eingabe darf nicht leer sein";
+/**
+ * @author Leopold Mittelberger, Elisee Brand
+ * @version 1.0
+ *
+ * Dies ist eine einfache ErrorCheck Klasse wo alle eingabe erst getestet werden bevor sie weitergeleitet werden
+ */
+public class ErrorCheck extends RuntimeException {
 
-    //Konstanten fuer Mitarbeiter
-    // private static final String MAIL_LEER = "Leeres Mail";
-    private static final String MAIL_FALSCH = "Falsches Mail";
+    /**
+     * Alle Fehlermeldungen werden in Konstanten ausgelagert
+     */
+    private static final String LEERE_EINGABE = "Eingabe darf nicht leer sein!";
+    private static final String NEGATIV_EINGABE = "Die Eingabe darf nicht negativ sein!";
+    private static final String MITARBEITER_EXISTIERT_SCHON = "Dieser Mitarbeiter existiert schon!";
+    private static final String RAUM_EXISTIERT_SCHON = "Dieser Raum existiert schon!";
+    private static final String UHRZEIT_EXISTIERT_SCHON = "Diese Uhrzeit existiert schon!";
+    private static final String MAIL_FALSCH = "Die E-Mail muss ein @ enthalten!";
+    private static final String FALSCHE_UHRZEIT_STUNDE = "Geben Sie eine Stunde zwischen 0 und 23 ein!";
+    private static final String FALSCHE_UHRZEIT_MIN = "Geben Sie eine Minute zwischen 0 und 59 ein!";
+    private static final String INDEX_UNGUELTIG = "Geben Sie einen Index zwischen 0 und 49 an!";
 
-    //Konstanten fuer Person
-    // private static final String NAME_LEER = "Leeres name";
-    // private static final String VORNAME_LEER = "Falsches vorname";
-
-    //Konstanten fuer Raum
-    private static final String NEGATIV_RAUM_ZAHL = "Negativ raum zahl";
-    private static final String NEGATIV_GEB_ZAHL = "Negativ gebaeude zahl";
-    // private static final String SCHON_EXISTIERENDE_RAUM_ZAHL = "Dieser raum zahl existiert schon";
-
-    //Konstanten fuer Uhrzeit
-    private static final String FALSCHE_UHRZEIT_STUNDE = "Falsche Uhrzeit beim stunde, soll zwischen 0 und 23";
-    private static final String FALSCHE_UHRZEIT_MIN = "Falsche Uhrzeit beim stunde, soll zwischen 0 und 59";
-
-    public ErrorCheck(){
+    /**
+     * Konstruktor ohne Fehlermeldungen
+     */
+    public ErrorCheck() {
         super();
     }
-    public ErrorCheck(String msg){
+
+    /**
+     * Konstruktor mit Fehlermeldung
+     * @param msg fehlermeldung als String
+     */
+    public ErrorCheck(String msg) {
         super(msg);
     }
-    //check fuer strings
+
     /**
-     * Check ob das mail leer ist oder nicht
-     * 
-     * @param string
+     * Check ob das Eingabe leer ist oder nicht
+     *
+     * @param eingabe email des Mitarbeiters
      * @throws ErrorCheck
      */
-    public static void checkEmail(String string) throws ErrorCheck{
-        if(string == null || string.trim().isEmpty()){
-            throw new ErrorCheck(STR_LEER);
+    public static void checkEingabeLeer(String eingabe) throws ErrorCheck{
+        if(eingabe == null || eingabe.trim().isEmpty()){
+            throw new ErrorCheck(LEERE_EINGABE);
         }
     }
 
-    //check fuer mitarbeiter
-
-    // /**
-    //  * Check ob das mail leer ist oder nicht
-    //  * 
-    //  * @param email
-    //  * @throws ErrorCheck
-    //  */
-    // public static void checkEmail(String email) throws ErrorCheck{
-    //     if(email == null || email.trim().isEmpty()){
-    //         throw new ErrorCheck(MAIL_LEER);
-    //     }
-    // }
-
     /**
      * Check ob das mail mindestens ein zeichnen davor und danach das @ zeichnen hat. Mit regex (".+@.+")
-     * 
-     * @param email
+     *
+     * @param email emaild es Mitarbeiters
      * @throws ErrorCheck
      */
-    public static void checkEmailMitA(String email) throws ErrorCheck{
+    public static void checkEmailMitAt(String email) throws ErrorCheck{
         Pattern pattern = Pattern.compile(".+@.+");
         Matcher matcher = pattern.matcher(email);
         if (!matcher.matches()) {
@@ -69,79 +63,41 @@ public class ErrorCheck extends RuntimeException{
         }
     }
 
-    // //check fuer Person
-    // /**
-    //  * Check ob name leer ist
-    //  * 
-    //  * @param name
-    //  * @throws ErrorCheck
-    //  */
-    // public static void checkName(String name) throws ErrorCheck{
-    //     if(name == null || name.trim().isEmpty()){
-    //         throw new ErrorCheck(NAME_LEER);
-    //     }
-    // }
-
-    // /**
-    //  * Check ob vorname leer ist
-    //  * 
-    //  * @param name
-    //  * @throws ErrorCheck
-    //  */
-    // public static void checkVorname(String vorname) throws ErrorCheck{
-    //     if(vorname == null || vorname.trim().isEmpty()){
-    //         throw new ErrorCheck(VORNAME_LEER);
-    //     }
-    // }
-
-
-
-    //check fuer Raum
     /**
      * Check ob raum oder gebaude ein negatives zahl hat
-     * 
-     * @param raumZahl zahl des raum
-     * @param gebZahl zahl des gebaeude
+     *
+     * @param zahl zahl
      * @throws ErrorCheck
      */
-    public static void checkNegativesRaumZahl(int raumZahl, int gebZahl) throws ErrorCheck{
-        if(raumZahl < 0){
-            throw new ErrorCheck(NEGATIV_RAUM_ZAHL);
-        }
-        if(gebZahl < 0){
-            throw new ErrorCheck(NEGATIV_GEB_ZAHL);
+    public static void checkNegativeZahl(int zahl) throws ErrorCheck{
+        if(zahl < 0) {
+            throw new ErrorCheck(NEGATIV_EINGABE);
         }
     }
 
     /**
-     * Check ob raum schon existiert
-     * 
-     * @param geb
-     * @param etage
-     * @param raum
-     * @throws ErrorCheck
+     * check ob stunde zwischen 0 und 23 ist und minute zwischen 0 und 59 ist
+     * @param stunde stunde
+     * @param min minute
      */
-    public static void checkSchonExistierendeRaumZahl(Reservierung[] reservierungen, int geb, int etage, int raum) throws ErrorCheck{
-        // for (Object obj : reservierungen) {
-        //     if(obj != null) {
-        //         String result = "Raum " + geb + "-" + etage + "." + raum + "\n";
-        //         if(geb == Raum.getReservierung(0)){
-        //             throw new ErrorCheck(SCHON_EXISTIERENDE_RAUM_ZAHL);
-        //         }
-        //     }
-        // }
-        
-    }
-
-
-    //check fuer Uhrzeit
-    public static void checkUhrzeitRichtigeUhr(int stunde, int min){
-        if(stunde < 0 || stunde > 23){
+    public static void checkStundeUhrzeit(int stunde, int min){
+        if(stunde < 0 || stunde > 23) {
             throw new ErrorCheck(FALSCHE_UHRZEIT_STUNDE);
         }
-        if(min < 0 || min > 59){
+        if(min < 0 || min > 59) {
             throw new ErrorCheck(FALSCHE_UHRZEIT_MIN);
         }
     }
+
+    /**
+     * Checkt ob ein guetliger INdex eingegeben wurde
+     * @param index index des arrays
+     */
+    public static void indexUngueltig(int index) {
+        if (index >= 50) {
+            throw new ErrorCheck(INDEX_UNGUELTIG);
+        }
+    }
+
 
 }
