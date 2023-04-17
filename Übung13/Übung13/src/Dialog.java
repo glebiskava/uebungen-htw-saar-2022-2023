@@ -38,12 +38,12 @@ public class Dialog {
     private static final int MITARBEITER_ANLEGEN = 1;
     private static final int MITARBEITER_ANZEIGEN = 2;
     private static final int RAUM_ANLEGEN = 3;
-    private static final int RAUM_ANZEIGEN = 4;
-    private static final int RAUM_RESERVIEREN = 5;
-    private static final int UHRZEIT_ANLEGEN = 6;
-    private static final int UHRZEIT_ANZEIGEN = 7;
-    private static final int RESERVIEREN = 8;
-    private static final int PRINT_RESERVIERUNG_ZU_RAUM = 9;
+    private static final int UHRZEIT_ANLEGEN = 4;
+    private static final int UHRZEIT_ANZEIGEN = 5;
+    private static final int RESERVIEREN = 6;
+    private static final int PRINT_RESERVIERUNG_ZU_RAUM = 7;
+    private static final int RAUM_ANZEIGEN = 8;
+
     private static final int PROGRAMM_ENDE = 0;
 
     /**
@@ -52,12 +52,11 @@ public class Dialog {
     private static final String MITARBEITER_ANLEGEN_STR = " : Mitarbeiter anlegen";
     private static final String MITARBEITER_ANZEIGEN_STR = " : Mitarbeiter anzeigen";
     private static final String RAUM_ANLEGEN_STR = " : Raum anlegen";
-    private static final String RAUM_ANZEIGEN_STR = " : Raum anzeigen";
-    private static final String RAUM_RESERVIEREN_STR = " : Raum reservieren";
     private static final String UHRZEIT_ANLEGEN_STR = " : Uhrzeit anlegen";
     private static final String UHRZEIT_ANZEIGEN_STR = " : Uhrzeit anzeigen";
     private static final String RESERVIEREN_STR = " : Reservieren";
     private static final String PRINT_RESERVIERUNG_ZU_RAUM_STR = " : Reservierungen zu einem Raum anzeigen";
+    private static final String RAUM_ANZEIGEN_STR = " : Alle Raeume und Reservierungen anzeigen";
     private static final String PROGRAMM_ENDE_STR = " : Programm beenden";
 
     /**
@@ -106,7 +105,6 @@ public class Dialog {
                 MITARBEITER_ANZEIGEN       + MITARBEITER_ANZEIGEN_STR       + "\n" +
                 RAUM_ANLEGEN               + RAUM_ANLEGEN_STR               + "\n" +
                 RAUM_ANZEIGEN              + RAUM_ANZEIGEN_STR              + "\n" +
-                RAUM_RESERVIEREN           + RAUM_RESERVIEREN_STR           + "\n" +
                 UHRZEIT_ANLEGEN            + UHRZEIT_ANLEGEN_STR            + "\n" +
                 UHRZEIT_ANZEIGEN           + UHRZEIT_ANZEIGEN_STR           + "\n" +
                 RESERVIEREN                + RESERVIEREN_STR                + "\n" +
@@ -133,7 +131,7 @@ public class Dialog {
      */
     public void funktionAusfuehrung(int befehl){
 
-        if(befehl > PRINT_RESERVIERUNG_ZU_RAUM || befehl < PROGRAMM_ENDE) {
+        if(befehl > RAUM_ANZEIGEN || befehl < PROGRAMM_ENDE) {
             throw new IllegalArgumentException("Geben Sie eine der angegebenen Zahlen ein!");
         } else {
             switch (befehl) {
@@ -148,9 +146,6 @@ public class Dialog {
                     break;
                 case RAUM_ANZEIGEN:
                     raumAnzeigen();
-                    break;
-                case RAUM_RESERVIEREN:
-                    raumReservieren();
                     break;
                 case UHRZEIT_ANLEGEN:
                     uhrzeitAnlegen();
@@ -283,7 +278,7 @@ public class Dialog {
        if(isArrayEmpty(raumArr)) {
            System.out.println("Es existiert noch kein Raum. Legen Sie einen an!");
        } else if (isArrayEmpty(mitarbeiterArr)) {
-           System.out.println("Es existiert noch kein Raum. Legen Sie einen an!");
+           System.out.println("Es existiert noch kein Mitarbeiter. Legen Sie einen an!");
        } else {
            //Mitarbeiter waehlen anhand Index
            System.out.println("Geben Sie den Index des Mitarbeiters an : ");
@@ -333,63 +328,6 @@ public class Dialog {
     }
 
     /**
-     * Methode die einem Raum eine Reservierung hinzufuegt --> Ein Raum wird reserviert
-     * Ein Raum muss erst erstellt werden
-     */
-
-    public void raumReservieren() {
-
-        if(isArrayEmpty(mitarbeiterArr)) {
-
-            System.out.println("Es gibt noch keinen Mitarbeiter. Legen Sie einen an!");
-
-        } else if(isArrayEmpty(raumArr)) {
-
-            System.out.println("Es git noch keinen Raum. Legen Sie einen an!");
-
-        } else {
-
-            //Eingabe des Inde eines Raumes
-            System.out.println("Geben Sie den Index des Raumes an : ");
-            int indexR = input.nextInt();
-            input.nextLine();
-            Raum raum = raumArr[indexR];
-
-            //Startzeit-Stunde Eingabe
-            System.out.println("Geben Sie eine Anfangsstunde ein : ");
-            int startStunde = input.nextInt();
-            input.nextLine();
-
-            //Startzeit-Minute Eingabe
-            System.out.println("Geben Sie eine Anfangsminute ein : ");
-            int startMinute = input.nextInt();
-            input.nextLine();
-
-            //neue Uhrzeit wird dem Array hinzugefuegt
-            Uhrzeit begin = new Uhrzeit(startStunde, startMinute);
-            uhrzeitArr[uhrzeitArrLaenge] = begin;
-            uhrzeitArrLaenge++;
-
-            //Endzeit-Stunde Eingabe
-            System.out.println("Geben Sie eine Endstunde ein : ");
-            int endStunde = input.nextInt();
-            input.nextLine();
-
-            //Endzeit-Minute Eingabe
-            System.out.println("Geben Sie eine Endminute ein : ");
-            int endMinute = input.nextInt();
-            input.nextLine();
-
-            //neue Uhrzeit wird dem Array hinzugefuegt
-            Uhrzeit ende = new Uhrzeit(endStunde, endMinute);
-            uhrzeitArr[uhrzeitArrLaenge] = ende;
-            uhrzeitArrLaenge++;
-
-            raum.addReservierung(new Reservierung(begin, ende));
-        }
-    }
-
-    /**
      * Methode gibt eine bestimmte reservierung aus zu einem bestimmten Raum
      */
     public void printReservierungZuRaum() {
@@ -414,7 +352,7 @@ public class Dialog {
             input.nextLine();
 
             Reservierung reservierung = raum.getReservierung(reservierungIndex);
-            System.out.println(reservierung);
+            System.out.println("Dieser Raum wurde " + reservierung);
         }
     }
 

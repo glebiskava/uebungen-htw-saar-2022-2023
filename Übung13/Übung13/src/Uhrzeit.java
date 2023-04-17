@@ -23,42 +23,6 @@ public class Uhrzeit {
     }
 
     /**
-     * Getter für Stunde
-     * @return stunde
-     */
-    public int getStunde() {
-
-        return stunde;
-    }
-
-    /**
-     * setter für Stunde
-     * @param stunde auf welche soll gestellt werden
-     */
-    public void setStunde(int stunde) {
-
-        this.stunde = stunde;
-    }
-
-    /**
-     * Getter für Minute
-     * @return welche Minute
-     */
-    public int getMinute() {
-
-        return minute;
-    }
-
-    /**
-     * Setter für Minute
-     * @param minute auf welche minute soll gestellt werden
-     */
-    public void setMinute(int minute) {
-
-        this.minute = minute;
-    }
-
-    /**
      * toString Methode gibt Uhrzeit als String zurück
      * @return Uhrzeit als String
      */

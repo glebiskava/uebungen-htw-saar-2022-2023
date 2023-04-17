@@ -39,24 +39,6 @@ public class Mitarbeiter extends Person {
     }
 
     /**
-     * Getter für E-Mail
-     * @return E-Mail des Mitarbeiters
-     */
-    public String getEmail() {
-
-        return email;
-    }
-
-    /**
-     * Setter für E-Mail
-     * @param email welche E-Mail soll gesetzt werden
-     */
-    public void setEmail(String email) {
-
-        this.email = email;
-    }
-
-    /**
      * Methode die den Mitarbeiter als String zurückgibt
      * @return mitarbeiter als String
      */
