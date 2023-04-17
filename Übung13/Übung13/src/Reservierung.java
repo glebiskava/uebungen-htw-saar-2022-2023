@@ -128,9 +128,4 @@ public class Reservierung {
                 + " bis " + ende.toString()
                 + " für " + bemerkung;
     }
-
-
-
-
-
 }
