@@ -43,7 +43,6 @@ public class Dialog {
     private static final int RESERVIEREN = 6;
     private static final int PRINT_RESERVIERUNG_ZU_RAUM = 7;
     private static final int RAUM_ANZEIGEN = 8;
-
     private static final int PROGRAMM_ENDE = 0;
 
     /**
@@ -104,11 +103,11 @@ public class Dialog {
                 MITARBEITER_ANLEGEN        + MITARBEITER_ANLEGEN_STR        + "\n" +
                 MITARBEITER_ANZEIGEN       + MITARBEITER_ANZEIGEN_STR       + "\n" +
                 RAUM_ANLEGEN               + RAUM_ANLEGEN_STR               + "\n" +
-                RAUM_ANZEIGEN              + RAUM_ANZEIGEN_STR              + "\n" +
                 UHRZEIT_ANLEGEN            + UHRZEIT_ANLEGEN_STR            + "\n" +
                 UHRZEIT_ANZEIGEN           + UHRZEIT_ANZEIGEN_STR           + "\n" +
                 RESERVIEREN                + RESERVIEREN_STR                + "\n" +
                 PRINT_RESERVIERUNG_ZU_RAUM + PRINT_RESERVIERUNG_ZU_RAUM_STR + "\n" +
+                RAUM_ANZEIGEN              + RAUM_ANZEIGEN_STR              + "\n" +
                 PROGRAMM_ENDE              + PROGRAMM_ENDE_STR              + "\n" +
                 "Geben Sie eine der angegebenen Zahlen ein : "
         );
@@ -300,6 +299,8 @@ public class Dialog {
            int startMinute = input.nextInt();
            input.nextLine();
 
+           Uhrzeit start = new Uhrzeit(startStunde, startMinute);
+
            //Endzeit-Stunde Eingabe
            System.out.println("Geben Sie eine Endstunde ein : ");
            int endStunde = input.nextInt();
@@ -310,6 +311,8 @@ public class Dialog {
            int endMinute = input.nextInt();
            input.nextLine();
 
+           Uhrzeit ende = new Uhrzeit(endStunde, endMinute);
+
            //Bemerkung fuer den Raum
            System.out.println("Geben Sie eine Bemerkung fuer den Raume ein: ");
            String bemerkung = input.next();
@@ -318,12 +321,7 @@ public class Dialog {
            Mitarbeiter mitarbeiter = mitarbeiterArr[indexM];
            Raum raum = raumArr[indexR];
 
-           mitarbeiter.reserviere(
-                   raum,
-                   new Uhrzeit(startStunde, startMinute),
-                   new Uhrzeit(endStunde, endMinute),
-                   bemerkung
-           );
+           mitarbeiter.reserviere(raum, start, ende, bemerkung);
        }
     }
 

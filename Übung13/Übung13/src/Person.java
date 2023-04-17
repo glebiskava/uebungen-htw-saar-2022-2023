@@ -17,9 +17,26 @@ public class Person {
      * @param nachname nachname der Person
      */
     public Person(String vorname, String nachname) {
-
+        ErrorCheck.checkEingabeLeer(vorname);
+        ErrorCheck.checkEingabeLeer(nachname);
         this.vorname = vorname;
         this.nachname = nachname;
+    }
+
+    /**
+     * Getter fuer Vorname
+     * @return vorname als String
+     */
+    public String getVorname() {
+        return vorname;
+    }
+
+    /**
+     * Getter fuer Nachname
+     * @return nachname als String
+     */
+    public String getNachname() {
+        return nachname;
     }
 
     /**
