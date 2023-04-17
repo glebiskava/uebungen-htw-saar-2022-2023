@@ -26,15 +26,6 @@ public class Reservierung {
     }
 
     /**
-     * Getter für Bemerkung
-     * @return bemerkung
-     */
-    public String getBemerkung() {
-
-        return bemerkung;
-    }
-
-    /**
      * Setter für Bemerkung
      * @param bemerkung Bezeichnung für die Reservierung (z.B.: wer aht reserviert?)
      */
@@ -44,66 +35,12 @@ public class Reservierung {
     }
 
     /**
-     * Getter für Begin
-     * @return begin
-     */
-    public Uhrzeit getBegin() {
-
-        return begin;
-    }
-
-    /**
-     * Setter für Begin
-     * @param begin Anfangszeit der Reservierung
-     */
-    public void setBegin(Uhrzeit begin) {
-
-        this.begin = begin;
-    }
-
-    /**
-     * Getter für Endzeit
-     * @return ende
-     */
-    public Uhrzeit getEnde() {
-
-        return ende;
-    }
-
-    /**
-     * Setter für Endzeit
-     * @param ende Ende der Reservierung
-     */
-    public void setEnde(Uhrzeit ende) {
-
-        this.ende = ende;
-    }
-
-    /**
-     * Getter für Mitarbeiter
-     * @return mitarbeiter
-     */
-    public Mitarbeiter getMitarbeiter() {
-
-        return mitarbeiter;
-    }
-
-    /**
      * Setter für Mitarbeiter
      * @param mitarbeiter mitarbeiter der einen Raum reserviert
      */
     public void setMitarbeiter(Mitarbeiter mitarbeiter) {
 
         this.mitarbeiter = mitarbeiter;
-    }
-
-    /**
-     * Getter für Raum
-     * @return raum
-     */
-    public Raum getRaum() {
-
-        return raum;
     }
 
     /**
@@ -122,7 +59,6 @@ public class Reservierung {
      */
     @Override
     public String toString() {
-
         return "gebucht von " + mitarbeiter.toString()
                 + " von " + begin.toString()
                 + " bis " + ende.toString()

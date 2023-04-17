@@ -2,18 +2,21 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ErrorCheck extends RuntimeException{
+    //check string
+    private static final String STR_LEER = "Eingabe darf nicht leer sein";
+
     //Konstanten fuer Mitarbeiter
-    private static final String MAIL_LEER = "Leeres Mail";
+    // private static final String MAIL_LEER = "Leeres Mail";
     private static final String MAIL_FALSCH = "Falsches Mail";
 
     //Konstanten fuer Person
-    private static final String NAME_LEER = "Leeres name";
-    private static final String VORNAME_LEER = "Falsches vorname";
+    // private static final String NAME_LEER = "Leeres name";
+    // private static final String VORNAME_LEER = "Falsches vorname";
 
     //Konstanten fuer Raum
     private static final String NEGATIV_RAUM_ZAHL = "Negativ raum zahl";
     private static final String NEGATIV_GEB_ZAHL = "Negativ gebaeude zahl";
-    private static final String SCHON_EXISTIERENDE_RAUM_ZAHL = "Dieser raum zahl existiert schon";
+    // private static final String SCHON_EXISTIERENDE_RAUM_ZAHL = "Dieser raum zahl existiert schon";
 
     //Konstanten fuer Uhrzeit
     private static final String FALSCHE_UHRZEIT_STUNDE = "Falsche Uhrzeit beim stunde, soll zwischen 0 und 23";
@@ -25,21 +28,32 @@ public class ErrorCheck extends RuntimeException{
     public ErrorCheck(String msg){
         super(msg);
     }
-
-
-    //check fuer mitarbeiter
-
+    //check fuer strings
     /**
      * Check ob das mail leer ist oder nicht
      * 
-     * @param email
+     * @param string
      * @throws ErrorCheck
      */
-    public static void checkEmail(String email) throws ErrorCheck{
-        if(email == null || email.trim().isEmpty()){
-            throw new ErrorCheck(MAIL_LEER);
+    public static void checkEmail(String string) throws ErrorCheck{
+        if(string == null || string.trim().isEmpty()){
+            throw new ErrorCheck(STR_LEER);
         }
     }
+
+    //check fuer mitarbeiter
+
+    // /**
+    //  * Check ob das mail leer ist oder nicht
+    //  * 
+    //  * @param email
+    //  * @throws ErrorCheck
+    //  */
+    // public static void checkEmail(String email) throws ErrorCheck{
+    //     if(email == null || email.trim().isEmpty()){
+    //         throw new ErrorCheck(MAIL_LEER);
+    //     }
+    // }
 
     /**
      * Check ob das mail mindestens ein zeichnen davor und danach das @ zeichnen hat. Mit regex (".+@.+")
@@ -55,30 +69,30 @@ public class ErrorCheck extends RuntimeException{
         }
     }
 
-    //check fuer Person
-    /**
-     * Check ob name leer ist
-     * 
-     * @param name
-     * @throws ErrorCheck
-     */
-    public static void checkName(String name) throws ErrorCheck{
-        if(name == null || name.trim().isEmpty()){
-            throw new ErrorCheck(NAME_LEER);
-        }
-    }
+    // //check fuer Person
+    // /**
+    //  * Check ob name leer ist
+    //  * 
+    //  * @param name
+    //  * @throws ErrorCheck
+    //  */
+    // public static void checkName(String name) throws ErrorCheck{
+    //     if(name == null || name.trim().isEmpty()){
+    //         throw new ErrorCheck(NAME_LEER);
+    //     }
+    // }
 
-    /**
-     * Check ob vorname leer ist
-     * 
-     * @param name
-     * @throws ErrorCheck
-     */
-    public static void checkVorname(String vorname) throws ErrorCheck{
-        if(vorname == null || vorname.trim().isEmpty()){
-            throw new ErrorCheck(VORNAME_LEER);
-        }
-    }
+    // /**
+    //  * Check ob vorname leer ist
+    //  * 
+    //  * @param name
+    //  * @throws ErrorCheck
+    //  */
+    // public static void checkVorname(String vorname) throws ErrorCheck{
+    //     if(vorname == null || vorname.trim().isEmpty()){
+    //         throw new ErrorCheck(VORNAME_LEER);
+    //     }
+    // }
 
 
 

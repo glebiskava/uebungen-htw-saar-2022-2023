@@ -20,7 +20,7 @@ public class Raum {
      * Konstante GEBAEUDEGROESSE für eine fixe groesse des arrays
      */
 
-    private static final int GEBAEUDEGROESSE = 10;
+    private static final int GEBAEUDEGROESSE = 50;
 
     /**
      * erstellen eines Array, um alle Reservierungen zu speichern

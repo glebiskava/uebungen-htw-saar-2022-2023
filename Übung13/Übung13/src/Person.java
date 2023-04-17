@@ -23,42 +23,6 @@ public class Person {
     }
 
     /**
-     * Getter für Vorname
-     * @return vorname der Person
-     */
-    public String getVorname() {
-
-        return vorname;
-    }
-
-    /**
-     * Setter für Vorname
-     * @param vorname vorname der gesetzt werden soll
-     */
-    public void setVorname(String vorname) {
-
-        this.vorname = vorname;
-    }
-
-    /**
-     * Getter für Nachname
-     * @return nachname der Person
-     */
-    public String getNachname() {
-
-        return nachname;
-    }
-
-    /**
-     * Setter für Nachnamen
-     * @param nachname Nachname der Person
-     */
-    public void setNachname(String nachname) {
-
-        this.nachname = nachname;
-    }
-
-    /**
      * Methode gibt Person als String aufbereitet zurück
      * @return Person als String
      */
