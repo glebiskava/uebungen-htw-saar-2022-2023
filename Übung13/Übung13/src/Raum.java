@@ -70,7 +70,9 @@ public class Raum {
 
         String result = "Raum " + this.geb + "-" + this.etage + "." + this.raum + "\n";
         for (int i = 0; i < anzahlReservierungen; i++) {
-            result += reservierungen[i].toString() + "\n";
+            if (reservierungen[i] != null) {
+                result += reservierungen[i].toString() + "\n";
+            }
         }
         return result;
     }
