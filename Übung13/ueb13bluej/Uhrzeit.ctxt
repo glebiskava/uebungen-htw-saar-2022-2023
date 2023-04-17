@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Uhrzeit
+comment0.text=\r\n\ @author\ Leopold\ Mittelberger,\ Elisee\ Brand\r\n\ @version\ 1.0\r\n\ Dies\ ist\ eine\ einfache\ Uhrzeitklasse\ mit\ den\ Attributen\ Stunde\ und\ Minute\r\n
+comment1.params=stunde\ minute
+comment1.target=Uhrzeit(int,\ int)
+comment1.text=\r\n\ Konstruktor\ f\u00FCr\ Uhrzeit\r\n\ @param\ stunde\ welche\ Stunde\r\n\ @param\ minute\ welche\ Minute\r\n
+comment2.params=
+comment2.target=java.lang.String\ toString()
+comment2.text=\r\n\ toString\ Methode\ gibt\ Uhrzeit\ als\ String\ zur\u00FCck\r\n\ @return\ Uhrzeit\ als\ String\r\n
+numComments=3

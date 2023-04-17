@@ -22,7 +22,7 @@ public class Raum {
 
     private static final int GEBAEUDEGROESSE = 50;
 
-    /** 
+    /**
      * erstellen eines Array, um alle Reservierungen zu speichern
      */
     private Reservierung[] reservierungen = new Reservierung[GEBAEUDEGROESSE];

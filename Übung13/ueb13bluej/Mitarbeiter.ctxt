@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Mitarbeiter
+comment0.text=\r\n\ @author\ Leopold\ Mittelberger,\ Elisee\ Brand\r\n\ @version\ 1.0\r\n\ Dies\ ist\ eine\ einfache\ Mitarbeiterklasse\ mit\ dem\ Attribute\ Emial\ und\ Vorname\ und\ Nachname\ werden\r\n\ von\ der\ Klasse\ Person\ geerbt\r\n
+comment1.params=vorname\ nachname\ email
+comment1.target=Mitarbeiter(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment1.text=\r\n\ Konstruktor\ f\u00FCr\ Mitarbeiter\r\n\ @param\ vorname\ vorname\ des\ Mitarbeiters\r\n\ @param\ nachname\ Nachnamen\ des\ Mitarbeiters\r\n\ @param\ email\ E-Mail\ des\ Mitarbeiters\r\n
+comment2.params=
+comment2.target=java.lang.String\ toString()
+comment2.text=\r\n\ Methode\ die\ den\ Mitarbeiter\ als\ String\ zur\u00FCckgibt\r\n\ @return\ mitarbeiter\ als\ String\r\n
+numComments=3

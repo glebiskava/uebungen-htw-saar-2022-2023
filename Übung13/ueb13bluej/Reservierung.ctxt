@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Reservierung
+comment0.text=\r\n\ @author\ Leopold\ Mittelberger,\ Elisee\ Brand\r\n\ @version\ 1.0\r\n\ Dies\ ist\ eine\ einfache\ Reservierungsklasse\ mit\ den\ Attributen\ begin,\ ende,\ bemerkung\r\n
+comment1.params=bemerkung
+comment1.target=void\ setBemerkung(java.lang.String)
+comment1.text=\r\n\ Setter\ f\u00FCr\ Bemerkung\r\n\ @param\ bemerkung\ Bezeichnung\ f\u00FCr\ die\ Reservierung\ (z.B.\:\ wer\ aht\ reserviert?)\r\n
+comment2.params=mitarbeiter
+comment2.target=void\ setMitarbeiter(Mitarbeiter)
+comment2.text=\r\n\ Setter\ f\u00FCr\ Mitarbeiter\r\n\ @param\ mitarbeiter\ mitarbeiter\ der\ einen\ Raum\ reserviert\r\n
+comment3.params=raum
+comment3.target=void\ setRaum(Raum)
+comment3.text=\r\n\ Setter\ f\u00FCr\ Raum\r\n\ @param\ raum\ raum\ der\ reserviert\ wird\r\n
+comment4.params=
+comment4.target=java.lang.String\ toString()
+comment4.text=\r\n\ ToString\ Methode,\ die\ die\ Reservierung\ als\ String\ aufbereitet\ zur\u00FCckgibt\r\n\ @return\ wer\ welchen\ Raum\ wann\ reserviert\ hat\r\n
+numComments=5
