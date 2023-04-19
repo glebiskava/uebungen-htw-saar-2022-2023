@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=ReservierungTest
+comment1.params=
+comment1.target=void\ setup()
+comment2.params=
+comment2.target=void\ test_reservierung_mit_mitarbeiter_und_raum_nichts_erwartet()
+numComments=3

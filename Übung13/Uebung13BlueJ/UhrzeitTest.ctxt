@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=UhrzeitTest
+comment1.params=
+comment1.target=void\ test_uhrzeit_mit_null_werten_nichts_erwartet()
+comment2.params=
+comment2.target=void\ test_uhrzeit_ohne_problem_nichts_erwartet()
+comment3.params=
+comment3.target=void\ test_uhrzeit_mit_24_als_stunde_exception_erwartet()
+comment4.params=
+comment4.target=void\ test_uhrzeit_mit_60_als_minute_exception_erwartet()
+numComments=5

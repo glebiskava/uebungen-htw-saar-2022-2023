@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=PersonTest
+comment1.params=
+comment1.target=void\ setUp()
+comment2.params=
+comment2.target=void\ test_getVorname()
+comment3.params=
+comment3.target=void\ test_getNachname()
+comment4.params=
+comment4.target=void\ test_toString()
+comment5.params=
+comment5.target=void\ test_empty_vorname()
+comment6.params=
+comment6.target=void\ test_empty_nachname()
+comment7.params=
+comment7.target=void\ test_leeres_zeichnen_vorname()
+comment8.params=
+comment8.target=void\ test_leeres_zeichnen_nachname()
+numComments=9

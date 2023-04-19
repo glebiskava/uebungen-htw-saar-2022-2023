@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=ErrorCheck
+comment0.text=\r\n\ @author\ Leopold\ Mittelberger,\ Elisee\ Brand\r\n\ @version\ 1.0\r\n\r\n\ Dies\ ist\ eine\ einfache\ ErrorCheck\ Klasse\ wo\ alle\ eingabe\ erst\ getestet\ werden\ bevor\ sie\ weitergeleitet\ werden\r\n
+comment1.params=
+comment1.target=ErrorCheck()
+comment1.text=\r\n\ Konstruktor\ ohne\ Fehlermeldungen\r\n
+comment2.params=msg
+comment2.target=ErrorCheck(java.lang.String)
+comment2.text=\r\n\ Konstruktor\ mit\ Fehlermeldung\r\n\ @param\ msg\ fehlermeldung\ als\ String\r\n
+comment3.params=eingabe
+comment3.target=void\ checkEingabeLeer(java.lang.String)
+comment3.text=\r\n\ Check\ ob\ das\ Eingabe\ leer\ ist\ oder\ nicht\r\n\r\n\ @param\ eingabe\ email\ des\ Mitarbeiters\r\n\ @throws\ ErrorCheck\r\n
+comment4.params=email
+comment4.target=void\ checkEmailMitAt(java.lang.String)
+comment4.text=\r\n\ Check\ ob\ das\ mail\ mindestens\ ein\ zeichnen\ davor\ und\ danach\ das\ @\ zeichnen\ hat.\ Mit\ regex\ (".+@.+")\r\n\r\n\ @param\ email\ emaild\ es\ Mitarbeiters\r\n\ @throws\ ErrorCheck\r\n
+comment5.params=zahl
+comment5.target=void\ checkNegativeZahl(int)
+comment5.text=\r\n\ Check\ ob\ raum\ oder\ gebaude\ ein\ negatives\ zahl\ hat\r\n\r\n\ @param\ zahl\ zahl\r\n\ @throws\ ErrorCheck\r\n
+comment6.params=stunde\ min
+comment6.target=void\ checkStundeUhrzeit(int,\ int)
+comment6.text=\r\n\ check\ ob\ stunde\ zwischen\ 0\ und\ 23\ ist\ und\ minute\ zwischen\ 0\ und\ 59\ ist\r\n\ @param\ stunde\ stunde\r\n\ @param\ min\ minute\r\n
+comment7.params=index
+comment7.target=void\ indexUngueltig(int)
+comment7.text=\r\n\ Checkt\ ob\ ein\ guetliger\ INdex\ eingegeben\ wurde\r\n\ @param\ index\ index\ des\ arrays\r\n
+numComments=8

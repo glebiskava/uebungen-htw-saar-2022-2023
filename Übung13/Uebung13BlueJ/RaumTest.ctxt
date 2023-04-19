@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=RaumTest
+comment1.params=
+comment1.target=void\ test_raum_anlegen_mit_null_geb_zahl_nichts_erwartet()
+comment2.params=
+comment2.target=void\ test_raum_anlegen_mit_negative_geb_zahl_exception_erwartet()
+comment3.params=
+comment3.target=void\ test_raum_anlegen_mit_negative_raum_zahl_exception_erwartet()
+numComments=4
