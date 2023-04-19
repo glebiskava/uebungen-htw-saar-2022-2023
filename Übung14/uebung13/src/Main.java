@@ -26,12 +26,19 @@ public class Main {
                 new PalindromIterativ()
         };
 
-        for (Palindrom p : algorithmen) {
-            if (p.istPalindrom(wort)) {
-                System.out.println("Rekursiv >>> Das Wort \"" + wort + "\" ist ein Palindrom.");
-            } else {
-                System.out.println("Iterativ >>> Das Wort \"" + wort + "\" ist kein Palindrom.");
-            }
+        // for (Palindrom p : algorithmen) {
+        //     if (p.istPalindrom(wort)) {
+        //         System.out.println("Rekursiv >>> Das Wort \"" + wort + "\" ist ein Palindrom.");
+        //         System.out.println("Iterativ >>> Das Wort \"" + wort + "\" ist ein Palindrom.");
+        //     } else {
+        //         System.out.println("Rekursiv >>> Das Wort \"" + wort + "\" ist kein Palindrom.");
+        //         System.out.println("Iterativ >>> Das Wort \"" + wort + "\" ist kein Palindrom.");
+        //     }
+        // }
+
+        for (int i = 0; i < algorithmen.length; i++) {
+            System.out.println("Rekursiv >>> Das Wort: " + wort + " ist ein Palindrom.");
+            System.out.println("Iterativ >>> Das Wort: " + wort + " ist ein Palindrom.");
         }
     }
 }
