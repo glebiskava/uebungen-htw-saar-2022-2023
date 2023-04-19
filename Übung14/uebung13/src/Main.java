@@ -28,9 +28,9 @@ public class Main {
 
         for (Palindrom p : algorithmen) {
             if (p.istPalindrom(wort)) {
-                System.out.println("Das Wort \"" + wort + "\" ist ein Palindrom.");
+                System.out.println("Rekursiv >>> Das Wort \"" + wort + "\" ist ein Palindrom.");
             } else {
-                System.out.println("Das Wort \"" + wort + "\" ist kein Palindrom.");
+                System.out.println("Iterativ >>> Das Wort \"" + wort + "\" ist kein Palindrom.");
             }
         }
     }
