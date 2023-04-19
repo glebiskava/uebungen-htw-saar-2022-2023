@@ -19,8 +19,13 @@ public class Main {
                 return;
             }
         }
+
         // Palindrom-Tests
-        Palindrom[] algorithmen = { new PalindromRekursiv(), new PalindromIterativ() };
+        Palindrom[] algorithmen = {
+                new PalindromRekursiv(),
+                new PalindromIterativ()
+        };
+
         for (Palindrom p : algorithmen) {
             if (p.istPalindrom(wort)) {
                 System.out.println("Das Wort \"" + wort + "\" ist ein Palindrom.");
@@ -29,6 +34,4 @@ public class Main {
             }
         }
     }
-
-
 }
