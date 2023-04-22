@@ -9,9 +9,7 @@ import java.io.*;
  * @version 1.0
 <<<<<<< HEAD
  * Diese Methode misst die Ausführungsgeschwindigkeit der Berechnung eines Palindrom
-=======
- *
->>>>>>> origin/main
+ * die Messzeiten werden dann in eine Datei geschrieben
  */
 
 public class Messung {

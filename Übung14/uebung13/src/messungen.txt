@@ -1,7 +1,7 @@
-otto otto otto : 19022, 4157
-ein Neger mit Gazelle zagt im Regen nie : 1923, 1010
-test : 933, 862
-regen : 486, 718
-Reittier : 527, 661
-reittier : 1404, 1031
-anna : 916, 790
+ottoottootto : 18196, 5004
+einnegermitgazellezagtimregennie : 5556, 2162
+test : 1018, 851
+regen : 1102, 1097
+reittier : 2372, 1234
+reittier : 1486, 930
+anna : 1074, 709
