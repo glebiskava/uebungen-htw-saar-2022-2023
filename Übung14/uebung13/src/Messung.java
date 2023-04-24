@@ -1,26 +1,24 @@
+/**
+ *Die Klasse Messung testet die Laufzeit von rekursiver und iterativer Methode zur Überprüfung von Palindromen.
+ *Sie kann entweder mit einem einzelnen Wort als Argument aufgerufen werden oder mit einem Dateipfad, der eine Liste von Wörtern enthält.
+ *Die Laufzeit der beiden Methoden wird gemessen und in einer Datei namens "messungen.txt" gespeichert.
+ * @author Elisee Brand, Leopold Mittelberger
+ * @version 1.0
+ */
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.*;
 
-/**
- * @author Leopold Mittelberger, Elisee Brand
- * @version 1.0
-<<<<<<< HEAD
- * Diese Methode misst die Ausführungsgeschwindigkeit der Berechnung eines Palindrom
- * die Messzeiten werden dann in eine Datei geschrieben
- */
-
 public class Messung {
 
-    public static void main(String[] args) throws IOException {
-        Messung messung = new Messung();
-
-        messung.messen(args);
-    }
-
-
+    /**
+     * Die messen-Methode überprüft die Palindrome entweder eines einzelnen Worts oder einer Datei, die eine Liste von Wörtern enthält.
+     * Die Laufzeit der beiden Methoden zur Überprüfung wird gemessen und in einer Datei namens "messungen.txt" gespeichert.
+     * @param args Argumente, die bei der Ausführung der Anwendung übergeben werden
+     * @throws IOException wenn beim Lesen der Datei ein Fehler auftritt
+     */
     public void messen(String[] args) throws IOException {
         FileWriter fileWriter = new FileWriter("messungen.txt", false);
         BufferedWriter writer = new BufferedWriter(fileWriter);
@@ -95,9 +93,7 @@ public class Messung {
                 System.err.println("Fehler : " + e.getMessage());
             }
         }
-
         writer.close();
-
     }
     /**
      * Diese Methode testet, ob ein über gegebenes Argument ein File ist oder nicht
@@ -116,6 +112,15 @@ public class Messung {
                 return true;
             }
         } return false;
+    }
 
+    /**
+     * Die main-Methode ruft die messen-Methode auf, um die Überprüfung der Palindrome durchzuführen.
+     * @param args Argumente, die bei der Ausführung der Anwendung übergeben werden
+     * @throws IOException wenn beim Lesen der Datei ein Fehler auftritt
+     */
+    public static void main(String[] args) throws IOException {
+        Messung messung = new Messung();
+        messung.messen(args);
     }
 }
