@@ -1,5 +1,8 @@
-import static org.junit.Assert.*;
-import org.junit.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.testng.annotations.Test;
+
 
 /**
  * Dies ist eine Klasse zum Testen der Klasse PersonQueue
