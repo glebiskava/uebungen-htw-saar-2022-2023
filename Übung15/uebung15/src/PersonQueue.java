@@ -160,4 +160,21 @@ class PersonQueue implements Queue {
             System.out.println(iterator.next() + "\n");
         }
     }
+
+    /**
+     * gibt die Person in der Warteschlange mit dem lexikalisch
+     * kleinsten Vornamen zurück
+     * @return Person als String mit kleinsten Vornamen
+     */
+    public String smallest() {
+        PersonIterator iterator = new Iterator();
+        String smallestName = null;
+        while (iterator.hasNext()) {
+            Person person = iterator.next();
+            if (smallestName == null || person.getVorname().compareTo(smallestName) < 0) {
+                smallestName = person.getVorname();
+            }
+        }
+        return smallestName;
+    }
 }
