@@ -10,10 +10,6 @@ import java.io.IOException;
  * ein Palindrom ist oder es bekommt ein Argument (ein Wort) über die Konsole mitgegeben
  */
 public class PalindromRechner {
-    public static void main(String[] args) {
-        PalindromRechner palindrom = new PalindromRechner();
-        palindrom.isPalindrom(args);
-    }
 
     /**
      * Diese Methode prüft ein oder mehrere Wörter, ob es ein Palindrom ist oder nicht
@@ -83,6 +79,15 @@ public class PalindromRechner {
                 return true;
             }
         } return false;
+    }
+
+    /**
+     * Main Methode zum Starten des Programms
+     * @param args array mit argumenten
+     */
+    public static void main(String[] args) {
+        PalindromRechner palindrom = new PalindromRechner();
+        palindrom.isPalindrom(args);
     }
 
 }
