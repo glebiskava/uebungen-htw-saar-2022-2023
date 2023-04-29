@@ -1,16 +1,15 @@
 import java.util.Random;
 
-import javax.management.OperationsException;
 
 public class NumberCruncherAnonym {
     /**
      * erstellen des Arrays
      */
     private float[] Zahlen;
-    private int langeArray;
+    // private int langeArray;
 
     NumberCruncherAnonym(float[] zahlen) {
-        this.zahlen = zahlen;
+        this.Zahlen = zahlen;
         // this.langeArray = langue
 
     }
@@ -44,7 +43,7 @@ public class NumberCruncherAnonym {
         CrunchOperation sum = new CrunchOperation(){
             public void crunch(float[] Zahlen){
                 for(int i = 0; i < Zahlen.length ; i++){
-                    Zahlen[i + 1] = Zahlen[i] + Zahlen[i + 1];
+                    Zahlen[i + 1] += Zahlen[i];
                 }
             }
         };
@@ -102,7 +101,7 @@ public class NumberCruncherAnonym {
         CrunchOperation substract = new CrunchOperation(){
             public void crunch(float[] Zahlen){
                 for(int i = 0; i < Zahlen.length ; i++){
-                    Zahlen[i + 1] = Zahlen[i] - Zahlen[i + 1];
+                    Zahlen[i + 1] -= Zahlen[i];
                 }
             }
         };
