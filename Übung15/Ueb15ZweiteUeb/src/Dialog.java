@@ -7,6 +7,7 @@ import java.util.Random;
  * @version 1.0
  * Dies ist eine einfache Dialogklassse zum interaktiven Testen der Aufgabe
  */
+
 public class Dialog {
 
     /**
@@ -18,24 +19,31 @@ public class Dialog {
      * Float Array erstellen
      */
     private float[] floatZahlenArr;
+    private float[] speichernArr;
 
     /**
-     * 
+     * Variablen fuer die laengeerfassung der arrays
+     */
+    private int floatZahlenGroesse;
+
+    /**
+     * Für die Durchführung der Operationen
      */
     private NumberCruncherTopLevel cruncher;
 
     /**
      * Konstanten anlegen fuer einfache zahlen menueeingabe im terminal
      */
-    private static final int ZAHLEN_MANUEL_GEBEN = 1;
-    private static final int ZAHLEN_RANDOM_GEBEN = 2;
-    private static final int ZAHLEN_ARRAY_ZEIGEN = 3;
-    private static final int SUM                 = 4;
-    private static final int SWIRL               = 5;
-    private static final int DIVIDE              = 6;
-    private static final int SUBSTRACT           = 7;
-    private static final int AVERAGE             = 8;
-    private static final int PROGRAMM_ENDE       = 0;
+    private static final int ZAHLEN_MANUEL_GEBEN  = 1;
+    private static final int ZAHLEN_RANDOM_GEBEN  = 2;
+    private static final int ZAHLEN_ARRAY_ZEIGEN  = 3;
+    private static final int SELBE_ARRAY_EINGEBEN = 4;
+    private static final int SUM                  = 5;
+    private static final int SWIRL                = 6;
+    private static final int DIVIDE               = 7;
+    private static final int SUBSTRACT            = 8;
+    private static final int AVERAGE              = 9;
+    private static final int PROGRAMM_ENDE        = 0;
 
     /**
      * String konstanten fuer jeden Menue punkt --> uebersichtlichkeit im code
@@ -43,6 +51,7 @@ public class Dialog {
     private static final String ZAHLEN_MANUEL_GEBEN_STR = " : Zahlen manuel eingeben";
     private static final String ZAHLEN_RANDOM_GEBEN_STR = " : Random zahlen generieren";
     private static final String ZAHLEN_ARRAY_ZEIGEN_STR = " : Float array anzeigen";
+    private static final String SELBE_ARRAY_EINGEBEN_STR = " : Selbe array wieder benutzen";
     // private static final String SUM_STR                 = " : Die summe von die Elemente des Arrays rechnen";
     // private static final String SWIRL_STR               = " : n zufällige Vertauschungen der Datenfelder durchfuehren";
     // private static final String DIVIDE_STR              = " : Die n/2 groeßten Werte im Array durch die n/2 Kleinsten teilen";
@@ -93,7 +102,8 @@ public class Dialog {
         System.out.print("\n\n\n" +
                 ZAHLEN_MANUEL_GEBEN        + ZAHLEN_MANUEL_GEBEN_STR        + "\n" +
                 ZAHLEN_RANDOM_GEBEN        + ZAHLEN_RANDOM_GEBEN_STR        + "\n" +
-                ZAHLEN_ARRAY_ZEIGEN        + ZAHLEN_ARRAY_ZEIGEN_STR        + "\n===\n" +
+                ZAHLEN_ARRAY_ZEIGEN        + ZAHLEN_ARRAY_ZEIGEN_STR        + "\n" +
+                SELBE_ARRAY_EINGEBEN       + SELBE_ARRAY_EINGEBEN_STR       + "\n===\n" +
                 SUM                        + SUM_STR                        + "\n" +
                 SWIRL                      + SWIRL_STR                      + "\n" +
                 DIVIDE                     + DIVIDE_STR                     + "\n" +
@@ -132,6 +142,9 @@ public class Dialog {
                 case ZAHLEN_ARRAY_ZEIGEN:
                     arrayAnzeigen(floatZahlenArr);
                     break;
+                case SELBE_ARRAY_EINGEBEN:
+                    selbeArrayWiederBenutzen();
+                    break;
                 case SUM:
                     summe();
                     break;
@@ -161,10 +174,11 @@ public class Dialog {
         if(floatZahlenArr == null){
             // Eingabe des Groesse des Array
             System.out.println("Anzahl von zahlen, die Sie eingeben moechten : ");
-            int floatZahlenGroesse = input.nextInt();
+            floatZahlenGroesse = input.nextInt();
             input.nextLine();
 
             floatZahlenArr = new float[floatZahlenGroesse];
+            speichernArr = new float[floatZahlenGroesse];
 
             // Eingabe des float zahen die des Arrays einfuellen werden
             for(int i = 0; i < floatZahlenGroesse; i++){
@@ -172,8 +186,11 @@ public class Dialog {
                 float floatZahl = input.nextFloat();
                 input.nextLine();
 
+                speichernArr[i] = floatZahl;
                 floatZahlenArr[i] = floatZahl;
             }
+            System.out.println("Das Array die hergestelt wurde : ");
+            arrayAnzeigen(floatZahlenArr);
 
         } else {
             // Eingabe zum wissen ob das Array ueberschreiben soll oder nicht
@@ -198,18 +215,22 @@ public class Dialog {
             
             // Eingabe des Groesse des Array
             System.out.println("Anzahl von zahlen, die werden generiert und in das Array gegeben : ");
-            int floatZahlenGroesse = input.nextInt();
+            floatZahlenGroesse = input.nextInt();
             input.nextLine();
 
             floatZahlenArr = new float[floatZahlenGroesse];
+            speichernArr = new float[floatZahlenGroesse];
 
             // Generation von random float Zahlen die des Arrays fuehlen werden
             for(int i = 0; i < floatZahlenGroesse; i++){
                 Random randomZahl = new Random();
                 float randomFloat = randomZahl.nextFloat(0,100);
 
+                speichernArr[i] = randomFloat;
                 floatZahlenArr[i] = randomFloat;
             } 
+            System.out.println("Das Array die hergestelt wurde : ");
+            arrayAnzeigen(floatZahlenArr);
 
         } else {
             // Eingabe zum wissen ob das Array ueberschreiben soll oder nicht
@@ -226,6 +247,16 @@ public class Dialog {
         }
     }
 
+    public void selbeArrayWiederBenutzen(){
+
+        floatZahlenArr = new float[floatZahlenGroesse];
+        for(int i = 0; i < floatZahlenGroesse; i++){
+            floatZahlenArr[i] = speichernArr[i];
+        }
+        System.out.println("Die letzte Array die Sie eingegeben oder generieren haben, wurde wieder gestelt : ");
+        arrayAnzeigen(floatZahlenArr);
+    }
+
     
     /**
      * Methode die die Methode Sum in das NumberCruncherTopLevel datei ruft und 
@@ -237,11 +268,7 @@ public class Dialog {
         NumberCruncherTopLevel.Sum sum = new NumberCruncherTopLevel(floatZahlenArr).new Sum();
         sum.crunch(floatZahlenArr);
 
-        // Das ergebnis bekommen und mittels arrayAnzeigen ausgeben
-        cruncher = new NumberCruncherTopLevel(floatZahlenArr);
-        float[] cruncherZahlen = cruncher.getNumbers();
-        System.out.print("Die Array ausgabe ist : ");
-        arrayAnzeigen(cruncherZahlen);
+        operationsErgebnis(floatZahlenArr);
     }
     
     /**
@@ -253,11 +280,7 @@ public class Dialog {
         NumberCruncherTopLevel.Swirl swirl = new NumberCruncherTopLevel(floatZahlenArr).new Swirl();
         swirl.crunch(floatZahlenArr);
 
-        // Das ergebnis bekommen und mittels arrayAnzeigen ausgeben
-        cruncher = new NumberCruncherTopLevel(floatZahlenArr);
-        float[] cruncherZahlen = cruncher.getNumbers();
-        System.out.print("Die Array ausgabe ist : ");
-        arrayAnzeigen(cruncherZahlen);
+        operationsErgebnis(floatZahlenArr);
     }
 
     /**
@@ -269,11 +292,7 @@ public class Dialog {
         NumberCruncherTopLevel.Divide divide = new NumberCruncherTopLevel(floatZahlenArr).new Divide();
         divide.crunch(floatZahlenArr);
 
-        // Das ergebnis bekommen und mittels arrayAnzeigen ausgeben
-        cruncher = new NumberCruncherTopLevel(floatZahlenArr);
-        float[] cruncherZahlen = cruncher.getNumbers();
-        System.out.print("Die Array ausgabe ist : ");
-        arrayAnzeigen(cruncherZahlen);
+        operationsErgebnis(floatZahlenArr);
     }
 
     /**
@@ -285,11 +304,7 @@ public class Dialog {
         NumberCruncherTopLevel.Substract substract = new NumberCruncherTopLevel(floatZahlenArr).new Substract();
         substract.crunch(floatZahlenArr);
 
-        // Das ergebnis bekommen und mittels arrayAnzeigen ausgeben
-        cruncher = new NumberCruncherTopLevel(floatZahlenArr);
-        float[] cruncherZahlen = cruncher.getNumbers();
-        System.out.print("Die Array ausgabe ist : ");
-        arrayAnzeigen(cruncherZahlen);
+        operationsErgebnis(floatZahlenArr);
     }
 
     /**
@@ -301,14 +316,9 @@ public class Dialog {
         NumberCruncherTopLevel.Average average = new NumberCruncherTopLevel(floatZahlenArr).new Average();
         average.crunch(floatZahlenArr);
 
-        // Das ergebnis bekommen und mittels arrayAnzeigen ausgeben
-        cruncher = new NumberCruncherTopLevel(floatZahlenArr);
-        float[] cruncherZahlen = cruncher.getNumbers();
+        operationsErgebnis(floatZahlenArr);
+        
         float cruncherAverage = average.getAverage();
-
-        System.out.print("Die Array ausgabe ist : ");
-        arrayAnzeigen(cruncherZahlen);
-
         System.out.println("Und das Average Zahl ist : " + cruncherAverage);
     }
 
@@ -324,6 +334,15 @@ public class Dialog {
         System.out.println(array[array.length - 1] + "]");
     }
 
+    /**
+     * Methode die das ergebnis bekommt und mittels arrayAnzeigen ausgibt
+     */
+    public void operationsErgebnis(float[] array){
+        cruncher = new NumberCruncherTopLevel(floatZahlenArr);
+        float[] cruncherZahlen = cruncher.getNumbers();
+        System.out.println("Die Array ausgabe ist : ");
+        arrayAnzeigen(cruncherZahlen);
+    }
     /**
      * Funktion zum Starten des Dialogs
      * @param args argumenten Array

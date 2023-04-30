@@ -1,17 +1,31 @@
 import java.util.Random;
+
+/**
+ * @author Leopold Mittelberger, Elisee Brand
+ * @version 1.0
+ * Diese Klasse enthält verschiedene Methoden zur Verarbeitung von Float-Arrays 
+ */
+
 public class NumberCruncherTopLevel {
     /**
      * erstellen des Arrays
      */
     private float[] Zahlen;
-    // private int langeArray;
 
+    /**
+     * Konstruktor
+     * @param zahlen die eine Float array ist
+     */
     NumberCruncherTopLevel(float[] zahlen) {
-        this.Zahlen = zahlen;
-        // this.langeArray = langue
-        
+        this.Zahlen = zahlen;        
     }
 
+    /**
+     * Klasse Sum
+     * 
+     * Diese Klasse implementiert die crunch-Methode der Schnittstellenklasse CrunchOperation.
+     * Die Methode berechnet die Summe aller Elemente im Array.
+     */
     public class Sum implements CrunchOperation {
         @Override
         public void crunch(float[] Zahlen) {
@@ -21,6 +35,12 @@ public class NumberCruncherTopLevel {
         }
     }
 
+    /**
+     * Klasse Swirl
+     * 
+     * Diese Klasse implementiert die crunch-Methode der Schnittstellenklasse CrunchOperation.
+     * Die Methode ordnet die Elemente des Arrays zufällig an.
+     */
     public class Swirl implements CrunchOperation {
         @Override
         public void crunch(float[] Zahlen){
@@ -35,6 +55,13 @@ public class NumberCruncherTopLevel {
             }
     }
 
+    /**
+     * Klasse Divide
+     * 
+     * Diese Klasse implementiert die crunch-Methode der Schnittstellenklasse CrunchOperation.
+     * Die Methode dividiert die n/2 größten Werte im Array durch die n/2 kleinsten Werte und 
+     * speichert den neuen Wert im Datenfeld des jeweils größeren Wertes. 
+     */
     public class Divide implements CrunchOperation {
         @Override
          public void crunch(float[] Zahlen){
@@ -42,10 +69,10 @@ public class NumberCruncherTopLevel {
             //Array sort
             int zahlenLength = Zahlen.length;
             float[] sortedArrayZahlen = new float[zahlenLength];
-            for (int i = 0; i < Zahlen.length; i++) {
+            for (int i = 0; i < zahlenLength; i++) {
                 sortedArrayZahlen[i] = Zahlen[i];
             }
-            for(int i = 0; i < Zahlen.length; i++){
+            for(int i = 0; i < zahlenLength; i++){
                 int minZahl = i;
                 for(int j = i+1; j < zahlenLength; j++){
                     if(sortedArrayZahlen[j] < sortedArrayZahlen[minZahl]){
@@ -55,23 +82,30 @@ public class NumberCruncherTopLevel {
                 float tmp = sortedArrayZahlen[minZahl];
                 sortedArrayZahlen[minZahl] = sortedArrayZahlen[i];
                 sortedArrayZahlen[i] = tmp;
-                System.out.println(sortedArrayZahlen[i]);
             }
 
             int zahlenLengthDivideBy2 = 0;
-            // if(zahlenLength % 2 == 0){
-            //     zahlenLengthDivideBy2 = (int)Math.ceil(zahlenLength / 2);
-            // } else {
-            //     zahlenLengthDivideBy2 = (int)Math.ceil((zahlenLength / 2) + 1);
-            // }
+
             zahlenLengthDivideBy2 = (int)Math.ceil((zahlenLength / 2) );
             //divide
             for(int i = 0; i < zahlenLengthDivideBy2; i++){
-                Zahlen[zahlenLength - 1 - i] /= sortedArrayZahlen[i];
+                for(int j = 0; j < zahlenLength; j++){
+                    if(sortedArrayZahlen[zahlenLength - 1 - i] == Zahlen[j]){
+                        Zahlen[j] /= sortedArrayZahlen[i];
+                    }
+                }
+                // Zahlen[zahlenLength - 1 - i] /= sortedArrayZahlen[i];
             }
         }
     }
 
+    /**
+     * Klasse Subtract
+     *
+     * Die Klasse Subtract implementiert ebenfalls die CrunchOperation-Schnittstelle 
+     * Die Methode die ein Array von float-Werten als Eingabe erhält und 
+     * die Differenz zwischen dem aktuellen Wert und dem vorherigen Wert im Array berechnet.
+     */
     public class Substract implements CrunchOperation {
         @Override
         public void crunch(float[] Zahlen){
@@ -80,9 +114,18 @@ public class NumberCruncherTopLevel {
             }
         }
     }
+    
+    /**
+     * Klasse Average
+     *      
+     * Die Klasse Average implementiert ebenfalls die CrunchOperation-Schnittstelle 
+     * Die Methode die ein Array von float-Werten als Eingabe erhält und den Durchschnitt aller Werte im Array berechnet und 
+     * in der privaten Variable average speichert. Die Methode getAverage gibt den Durchschnittswert zurück.
+     */
 
     public class Average implements CrunchOperation {
         private float average;
+
         @Override
         public void crunch(float[] Zahlen){
             // float average = 0;
@@ -91,16 +134,20 @@ public class NumberCruncherTopLevel {
             }
             average /= Zahlen.length;
         }
-        
+
+        /**
+         * Dies ist eine Get Methode die das average von jeder float zahl des Array zurueckgibt
+         * @return average die ein float ist
+         */
         public float getAverage(){
             return average;
         }
     }
-    
-    // public void crunch(String[] operations){
 
-    // }
-
+    /**
+     * Dies ist eine Get Methode die Zahlen als Float array zurueckgibt
+     * @return Zahlen die eine Float Array ist
+     */
     public float[] getNumbers(){
         return Zahlen;
     }
