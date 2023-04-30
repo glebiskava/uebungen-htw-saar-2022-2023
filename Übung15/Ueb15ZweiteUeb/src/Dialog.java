@@ -15,23 +15,14 @@ public class Dialog {
     private final Scanner input;
 
     /**
-     * Konstante fuer fixe array groesse
-     */
-    // private static final int MAX_GROESSE = 50;
-
-    /**
-     * Uhrzeit, Mitarbeiter und Raum Arrays erstellen
+     * Float Array erstellen
      */
     private float[] floatZahlenArr;
-    // private Mitarbeiter[] mitarbeiterArr;
-    // private Raum[] raumArr;
 
     /**
-     * variablen fuer die laengeerfassung der verschiedenen arrays
+     * 
      */
-    // private int uhrzeitArrLaenge = 0;
-    // private int mitarbeiterArrLaenge = 0;
-    // private int raumArrLaenge = 0;
+    private NumberCruncherTopLevel cruncher;
 
     /**
      * Konstanten anlegen fuer einfache zahlen menueeingabe im terminal
@@ -39,13 +30,12 @@ public class Dialog {
     private static final int ZAHLEN_MANUEL_GEBEN = 1;
     private static final int ZAHLEN_RANDOM_GEBEN = 2;
     private static final int ZAHLEN_ARRAY_ZEIGEN = 3;
-    // private static final int RAUM_ANLEGEN = 3;
-    // private static final int UHRZEIT_ANLEGEN = 4;
-    // private static final int UHRZEIT_ANZEIGEN = 5;
-    // private static final int RESERVIEREN = 6;
-    // private static final int PRINT_RESERVIERUNG_ZU_RAUM = 7;
-    // private static final int RAUM_ANZEIGEN = 8;
-    private static final int PROGRAMM_ENDE = 0;
+    private static final int SUM                 = 4;
+    private static final int SWIRL               = 5;
+    private static final int DIVIDE              = 6;
+    private static final int SUBSTRACT           = 7;
+    private static final int AVERAGE             = 8;
+    private static final int PROGRAMM_ENDE       = 0;
 
     /**
      * String konstanten fuer jeden Menue punkt --> uebersichtlichkeit im code
@@ -53,13 +43,17 @@ public class Dialog {
     private static final String ZAHLEN_MANUEL_GEBEN_STR = " : Zahlen manuel eingeben";
     private static final String ZAHLEN_RANDOM_GEBEN_STR = " : Random zahlen generieren";
     private static final String ZAHLEN_ARRAY_ZEIGEN_STR = " : Float array anzeigen";
-    // private static final String RAUM_ANLEGEN_STR = " : Raum anlegen";
-    // private static final String UHRZEIT_ANLEGEN_STR = " : Uhrzeit anlegen";
-    // private static final String UHRZEIT_ANZEIGEN_STR = " : Uhrzeit anzeigen";
-    // private static final String RESERVIEREN_STR = " : Reservieren";
-    // private static final String PRINT_RESERVIERUNG_ZU_RAUM_STR = " : Reservierungen zu einem Raum anzeigen";
-    // private static final String RAUM_ANZEIGEN_STR = " : Alle Raeume und Reservierungen anzeigen";
-    private static final String PROGRAMM_ENDE_STR = " : Programm beenden";
+    // private static final String SUM_STR                 = " : Die summe von die Elemente des Arrays rechnen";
+    // private static final String SWIRL_STR               = " : n zufällige Vertauschungen der Datenfelder durchfuehren";
+    // private static final String DIVIDE_STR              = " : Die n/2 groeßten Werte im Array durch die n/2 Kleinsten teilen";
+    // private static final String SUBSTRACT_STR           = " : Die substraction von die Elemente des Arrays rechnen";
+    // private static final String AVERAGE_STR             = " : Den Durchschnitt aller Werte im Array bestimmen";
+    private static final String SUM_STR                 = " : Sum";
+    private static final String SWIRL_STR               = " : Swirl";
+    private static final String DIVIDE_STR              = " : Divide";
+    private static final String SUBSTRACT_STR           = " : Substract";
+    private static final String AVERAGE_STR             = " : Average";
+    private static final String PROGRAMM_ENDE_STR       = " : Programm beenden";
 
     /**
      * Scanner objekt erstellen des Typs Input
@@ -70,13 +64,8 @@ public class Dialog {
 
     /**
      * do while schleife zum starten des Programms
-     * fehleingaben werden hier
      */
     public void dialogStart(){
-
-        // uhrzeitArr = new Uhrzeit[MAX_GROESSE];
-        // mitarbeiterArr = new Mitarbeiter[MAX_GROESSE];
-        // raumArr = new Raum[MAX_GROESSE];
         int befehl = 0;
 
         do{
@@ -104,7 +93,12 @@ public class Dialog {
         System.out.print("\n\n\n" +
                 ZAHLEN_MANUEL_GEBEN        + ZAHLEN_MANUEL_GEBEN_STR        + "\n" +
                 ZAHLEN_RANDOM_GEBEN        + ZAHLEN_RANDOM_GEBEN_STR        + "\n" +
-                ZAHLEN_ARRAY_ZEIGEN        + ZAHLEN_ARRAY_ZEIGEN_STR        + "\n" +
+                ZAHLEN_ARRAY_ZEIGEN        + ZAHLEN_ARRAY_ZEIGEN_STR        + "\n===\n" +
+                SUM                        + SUM_STR                        + "\n" +
+                SWIRL                      + SWIRL_STR                      + "\n" +
+                DIVIDE                     + DIVIDE_STR                     + "\n" +
+                SUBSTRACT                  + SUBSTRACT_STR                  + "\n" +
+                AVERAGE                    + AVERAGE_STR                    + "\n" +
                 PROGRAMM_ENDE              + PROGRAMM_ENDE_STR              + "\n" +
                 "Geben Sie eine der angegebenen Zahlen ein : "
         );
@@ -116,18 +110,16 @@ public class Dialog {
      * @return Nutzer Eingabe befehl als Int
      */
     public int funktionVerarbeitung(){
-
         int befehl = input.nextInt();
         return befehl;
     }
 
     /**
      * Methode zur Ausführung der Nutzereingabe der Menuepunkte
-     * @param befehl
+     * @param befehl ist der nummer der zu eine rufe von methode fuehrt
      */
     public void funktionAusfuehrung(int befehl){
-
-        if(befehl > ZAHLEN_ARRAY_ZEIGEN || befehl < PROGRAMM_ENDE) {
+        if(befehl > AVERAGE || befehl < PROGRAMM_ENDE) {
             throw new IllegalArgumentException("Geben Sie eine der angegebenen Zahlen ein!");
         } else {
             switch (befehl) {
@@ -138,7 +130,22 @@ public class Dialog {
                     zahlenRandomGenerieren();
                     break;
                 case ZAHLEN_ARRAY_ZEIGEN:
-                    arrayAnzeigen();
+                    arrayAnzeigen(floatZahlenArr);
+                    break;
+                case SUM:
+                    summe();
+                    break;
+                case SWIRL:
+                    swirl();
+                    break;
+                case DIVIDE:
+                    divide();
+                    break;
+                case SUBSTRACT:
+                    substract();
+                    break;
+                case AVERAGE:
+                    average();
                     break;
                 case PROGRAMM_ENDE:
                     System.out.println("ENDE");
@@ -148,54 +155,173 @@ public class Dialog {
     }
 
     /**
-     * 
+     * Methode die fragt der User um den array mit float Zahlen einzufuehlen
      */
     public void zahlenManuelGeben() {
-
-        // Eingabe des Groesse des Array
-        System.out.println("Anzahl von zahlen, die Sie eingeben moechten : ");
-        int floatZahlenGroesse = input.nextInt();
-        input.nextLine();
-
-        floatZahlenArr = new float[floatZahlenGroesse];
-
-
-        for(int i = 0; i < floatZahlenGroesse; i++){
-            System.out.println("Geben Sie der " + (i + 1) + " float zahl ein : ");
-            float floatZahl = input.nextFloat();
+        if(floatZahlenArr == null){
+            // Eingabe des Groesse des Array
+            System.out.println("Anzahl von zahlen, die Sie eingeben moechten : ");
+            int floatZahlenGroesse = input.nextInt();
             input.nextLine();
 
-            floatZahlenArr[i] = floatZahl;
-            
-            
+            floatZahlenArr = new float[floatZahlenGroesse];
+
+            // Eingabe des float zahen die des Arrays einfuellen werden
+            for(int i = 0; i < floatZahlenGroesse; i++){
+                System.out.println("Geben Sie der " + (i + 1) + " float zahl ein : ");
+                float floatZahl = input.nextFloat();
+                input.nextLine();
+
+                floatZahlenArr[i] = floatZahl;
+            }
+
+        } else {
+            // Eingabe zum wissen ob das Array ueberschreiben soll oder nicht
+            System.out.println("Es existiert schon eine Array, wollen Sie es überschreiben ? [Y/n] : ");
+            String antwortArrayUberschreiben = input.next();
+            input.nextLine();
+
+            if(antwortArrayUberschreiben.equals("Y")){
+                floatZahlenArr = null;
+                zahlenManuelGeben();
+            } else {
+                System.out.println("Das Array wurde nicht uebergeschrieben");
+            }
         }
     }
 
-
+    /**
+     * Methode die fragt der User der groesse des Arrays, und fuehlt die mit Random float zahlen zwischen 0 und 100
+     */
     public void zahlenRandomGenerieren(){
+        if(floatZahlenArr == null){
+            
+            // Eingabe des Groesse des Array
+            System.out.println("Anzahl von zahlen, die werden generiert und in das Array gegeben : ");
+            int floatZahlenGroesse = input.nextInt();
+            input.nextLine();
 
-        // Eingabe des Groesse des Array
-        System.out.println("Anzahl von zahlen, die Sie eingeben moechten : ");
-        int floatZahlenGroesse = input.nextInt();
-        input.nextLine();
+            floatZahlenArr = new float[floatZahlenGroesse];
 
-        floatZahlenArr = new float[floatZahlenGroesse];
+            // Generation von random float Zahlen die des Arrays fuehlen werden
+            for(int i = 0; i < floatZahlenGroesse; i++){
+                Random randomZahl = new Random();
+                float randomFloat = randomZahl.nextFloat(0,100);
 
-        for(int i = 0; i < floatZahlenGroesse; i++){
-            Random randomZahl = new Random();
-            float randomFloat = randomZahl.nextFloat(0,100);
+                floatZahlenArr[i] = randomFloat;
+            } 
 
-            floatZahlenArr[i] = randomFloat;
-        } 
+        } else {
+            // Eingabe zum wissen ob das Array ueberschreiben soll oder nicht
+            System.out.println("Es existiert schon eine Array, wollen Sie es überschreiben ? [Y/n] : ");
+            String antwortArrayUberschreiben = input.next();
+            input.nextLine();
+
+            if(antwortArrayUberschreiben.equals("Y")){
+                floatZahlenArr = null;
+                zahlenRandomGenerieren();
+            } else {
+                System.out.println("Das Array wurde nicht uebergeschrieben");
+            }
+        }
+    }
+
+    
+    /**
+     * Methode die die Methode Sum in das NumberCruncherTopLevel datei ruft und 
+     * die Summe dis elemente des Array rechnet
+     */
+
+    public void summe(){
+        // Summe in NumberCruncherTopLevel rechnen
+        NumberCruncherTopLevel.Sum sum = new NumberCruncherTopLevel(floatZahlenArr).new Sum();
+        sum.crunch(floatZahlenArr);
+
+        // Das ergebnis bekommen und mittels arrayAnzeigen ausgeben
+        cruncher = new NumberCruncherTopLevel(floatZahlenArr);
+        float[] cruncherZahlen = cruncher.getNumbers();
+        System.out.print("Die Array ausgabe ist : ");
+        arrayAnzeigen(cruncherZahlen);
+    }
+    
+    /**
+     * Methode die die Methode Swirl in das NumberCruncherTopLevel datei ruft und 
+     * die die platz von den element das Array tauscht
+     */
+    public void swirl(){
+        // Swirl in NumberCruncherTopLevel rechnen
+        NumberCruncherTopLevel.Swirl swirl = new NumberCruncherTopLevel(floatZahlenArr).new Swirl();
+        swirl.crunch(floatZahlenArr);
+
+        // Das ergebnis bekommen und mittels arrayAnzeigen ausgeben
+        cruncher = new NumberCruncherTopLevel(floatZahlenArr);
+        float[] cruncherZahlen = cruncher.getNumbers();
+        System.out.print("Die Array ausgabe ist : ");
+        arrayAnzeigen(cruncherZahlen);
+    }
+
+    /**
+     * Methode die die Methode divide in das NumberCruncherTopLevel datei ruft und 
+     * die die n/2 groeßten Werte im Array durch die n/2 Kleinsten teilen (wo n die lange des Array ist)
+     */
+    public void divide(){
+        // Divide in NumberCruncherTopLevel rechnen
+        NumberCruncherTopLevel.Divide divide = new NumberCruncherTopLevel(floatZahlenArr).new Divide();
+        divide.crunch(floatZahlenArr);
+
+        // Das ergebnis bekommen und mittels arrayAnzeigen ausgeben
+        cruncher = new NumberCruncherTopLevel(floatZahlenArr);
+        float[] cruncherZahlen = cruncher.getNumbers();
+        System.out.print("Die Array ausgabe ist : ");
+        arrayAnzeigen(cruncherZahlen);
+    }
+
+    /**
+     * Methode die die Methode substract in das NumberCruncherTopLevel datei ruft und 
+     * die elemente des Arrays subraiert
+     */
+    public void substract(){
+        // Substract in NumberCruncherTopLevel rechnen
+        NumberCruncherTopLevel.Substract substract = new NumberCruncherTopLevel(floatZahlenArr).new Substract();
+        substract.crunch(floatZahlenArr);
+
+        // Das ergebnis bekommen und mittels arrayAnzeigen ausgeben
+        cruncher = new NumberCruncherTopLevel(floatZahlenArr);
+        float[] cruncherZahlen = cruncher.getNumbers();
+        System.out.print("Die Array ausgabe ist : ");
+        arrayAnzeigen(cruncherZahlen);
+    }
+
+    /**
+     * Methode die die Methode average in das NumberCruncherTopLevel datei ruft und 
+     * das average von die elemente in das Array rechnet
+     */
+    public void average(){
+        // Average in NumberCruncherTopLevel rechnen
+        NumberCruncherTopLevel.Average average = new NumberCruncherTopLevel(floatZahlenArr).new Average();
+        average.crunch(floatZahlenArr);
+
+        // Das ergebnis bekommen und mittels arrayAnzeigen ausgeben
+        cruncher = new NumberCruncherTopLevel(floatZahlenArr);
+        float[] cruncherZahlen = cruncher.getNumbers();
+        float cruncherAverage = average.getAverage();
+
+        System.out.print("Die Array ausgabe ist : ");
+        arrayAnzeigen(cruncherZahlen);
+
+        System.out.println("Und das Average Zahl ist : " + cruncherAverage);
     }
 
 
-    public void arrayAnzeigen(){
+    /**
+     * Methode die zeigt jedes item des Arrays
+     */
+    public void arrayAnzeigen(float[] array){
         System.out.print("[");
-        for(int i = 0; i < (floatZahlenArr.length - 1); i++){
-            System.out.print(floatZahlenArr[i] + ", ");
+        for(int i = 0; i < (array.length - 1); i++){
+            System.out.print(array[i] + ", ");
         }
-        System.out.print(floatZahlenArr[floatZahlenArr.length - 1] + "]");
+        System.out.println(array[array.length - 1] + "]");
     }
 
     /**
