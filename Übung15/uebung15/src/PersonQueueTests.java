@@ -1,5 +1,5 @@
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.testng.annotations.Test;
+import static org.testng.AssertJUnit.*;
 
 /**
  * Dies ist eine Klasse zum Testen der Klasse PersonQueue
@@ -103,6 +103,6 @@ public class PersonQueueTests {
         queue.addLast(person1);
         queue.addLast(person2);
 
-        queue.print(queue);
+        queue.print();
     }
 }

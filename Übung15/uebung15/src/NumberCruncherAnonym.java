@@ -1,5 +1,10 @@
 import java.util.Random;
 
+/**
+ * @author Leopold Mittelberger, Elisee Brand
+ * @version 1.0
+ * Diese Klasse enthält verschiedene Methoden zur Verarbeitung von Float-Arrays
+ */
 
 public class NumberCruncherAnonym {
     /**
@@ -10,8 +15,6 @@ public class NumberCruncherAnonym {
 
     NumberCruncherAnonym(float[] zahlen) {
         this.Zahlen = zahlen;
-        // this.langeArray = langue
-
     }
 
     public void crunch(String[] Operations){
@@ -27,7 +30,7 @@ public class NumberCruncherAnonym {
                     anonymousDivide();
                     break;
                 case "substract":
-                    anonymousSubstract(); 
+                    anonymousSubstract();
                     break;
                 case "average":
                     anonymousAverage();

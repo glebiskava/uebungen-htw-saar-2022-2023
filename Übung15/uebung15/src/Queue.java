@@ -7,43 +7,47 @@ public interface Queue {
      * Objekt hinten anfuegen
      * @param o angefuegtes element
      */
-    public void addLast(Object o);
+     void addLast(Object o);
 
     /**
      * erstes Element entfernen und eine Referenz darauf zurueckgeben
      */
-    public Object removeFirst();
+     Object removeFirst();
 
     /**
      * letztes element entfernen und refeerenz zurueckgeben
      */
-    public Object removeLast();
+     Object removeLast();
 
     /**
      * Das i'te Element zurueckgeben
      * @param i stelle des elements im Array
      */
-    public Object get(int i);
+     Object get(int i);
 
     /**
      * Testen ob die Queue leer ist
      */
-    public boolean empty();
+     boolean empty();
 
     /**
      * Testen ob Elemente einfuebar sind
      */
-    public boolean full();
+     boolean full();
 
     /**
      * Anzahl eingefuegter Elemente
      */
-    public int size();
+     int size();
 
     /**
      * gibt die Queue aus
-     * @param q queue die ausgegeben werden soll
      */
-    public void print(Queue q);
+     void print();
+
+    /**
+     * gitb den kleinsten lexikalischen Vornamen aus
+     */
+    String smallest();
 
 }

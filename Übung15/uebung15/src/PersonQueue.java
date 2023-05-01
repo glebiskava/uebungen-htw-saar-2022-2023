@@ -140,20 +140,9 @@ class PersonQueue implements Queue {
     }
 
     /**
-     * Methode die jeweilige Warteschlange mithilfe der get-Methode
-     * sequenziell durchlaeuft und ausgibt
-     * @param q
-     */
-    @Override
-    public void print(Queue q) {
-        for(int i = 0; i < q.size(); i++){
-            System.out.println(i + " : " + q.get(i));
-        }
-    }
-
-    /**
      * gibt die gesamte Queue mithilfe des Iterators aus
      */
+    @Override
     public void print() {
         PersonIterator iterator = new Iterator();
         while (iterator.hasNext()) {
@@ -166,6 +155,7 @@ class PersonQueue implements Queue {
      * kleinsten Vornamen zurück
      * @return Person als String mit kleinsten Vornamen
      */
+    @Override
     public String smallest() {
         PersonIterator iterator = new Iterator();
         String smallestName = null;
