@@ -9,4 +9,12 @@ public class Softdrink extends AlkoholfreiesGetraenk{
     public float getZuckergehalt(){
         return zuckergehalt;
     }
+    public void setZuckergehalt(float Zuckergehalt){
+        this.zuckergehalt = Zuckergehalt;
+    }
+
+    @Override
+    public void setHersteller(String Hersteller) {
+        super.setHersteller(Hersteller);
+    }
 }

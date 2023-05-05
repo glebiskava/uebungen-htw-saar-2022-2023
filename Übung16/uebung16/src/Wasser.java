@@ -6,7 +6,16 @@ public class Wasser extends AlkoholfreiesGetraenk{
         this.quelle = Quelle;
     }
  
-    public String getZuckergehalt(){
+    public String getQuelle(){
         return quelle;
+    }
+
+    public void setQuelle(String Quelle){
+        this.quelle = Quelle;
+    }
+
+    @Override
+    public void setHersteller(String Hersteller) {
+        super.setHersteller(Hersteller);
     }
 }

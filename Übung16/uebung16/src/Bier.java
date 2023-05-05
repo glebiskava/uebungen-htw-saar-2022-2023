@@ -9,5 +9,13 @@ public class Bier extends AlkoholischesGetraenk{
     public String getBrauerei(){
         return brauerei;
     }
+    public void setBrauerei(String Brauerei){
+        this.brauerei = Brauerei;
+    }
+
+    @Override
+    public void setAlkoholgehalt(float alkoholgehalt) {
+        super.setAlkoholgehalt(alkoholgehalt);
+    }
 }
 

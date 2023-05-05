@@ -8,4 +8,7 @@ abstract class AlkoholischesGetraenk extends Getraenk{
     public float getAlkoholgehalt(){
         return alkoholgehalt;
     }
+    public void setAlkoholgehalt(float Alkoholgehalt) {
+        this.alkoholgehalt = Alkoholgehalt;
+    }
  }
