@@ -4,5 +4,7 @@ abstract class AlkoholfreiesGetraenk extends Getraenk{
     AlkoholfreiesGetraenk(String Hersteller) {
         this.hersteller = Hersteller;
     }
-
+    public String getHersteller() {
+        return hersteller;
+    }
 }
