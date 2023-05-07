@@ -1,21 +1,36 @@
-public class Bier extends AlkoholischesGetraenk{
-    private String brauerei;
+/**
+ * @author Léopold Mittelberger, Elisee Brand
+ * @version 1.0
+ *
+ * Dies ist eine einfache Bier-Klasse
+ * diese Klasse erbt von AlkoholischesGetraenk
+ */
 
-    Bier(float alkoholgehalt, String Brauerei){
-        super(alkoholgehalt);
-        this.brauerei = Brauerei;
-    }
- 
-    public String getBrauerei(){
-        return brauerei;
-    }
-    public void setBrauerei(String Brauerei){
-        this.brauerei = Brauerei;
+public class Bier extends AlkoholischesGetraenk {
+
+    /**
+     * Standardkonstruktor
+     */
+    public Bier() {
+        super();
     }
 
+    /**
+     * Konstruktor mit name, preis, alkoholgehalt
+     * @param name name des Biers
+     * @param preis preis des Biers
+     * @param alkoholgehalt alkoholgehalt des Biers
+     */
+    public Bier(String name, double preis, double alkoholgehalt) {
+        super(name, preis, alkoholgehalt);
+    }
+
+    /**
+     * Methode gibt objekt als String zurück
+     * @return objekt als String
+     */
     @Override
-    public void setAlkoholgehalt(float alkoholgehalt) {
-        super.setAlkoholgehalt(alkoholgehalt);
+    public String toString() {
+        return super.toString() + ", Bier";
     }
 }
-

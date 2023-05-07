@@ -1,33 +1,61 @@
-public class Flasche <T> extends Getraenk{
-    // private T flasche;
+/**
+ * @author Léopold Mittelberger, Elisee Brand
+ * @version 1.0
+ *
+ * Dies ist eine einfache Flaschen-Klasse
+ * diese Klasse hat eine generischen typparameter welcher von Getraenk für erbt
+ */
+
+public class Flasche<T extends Getraenk> {
+
+    /**
+     * Attribute: inhalt und voll
+     */
     private T inhalt;
+    private boolean voll;
 
-    Flasche(){
-        this.inhalt = null;
+    /**
+     * Standardkonstruktor
+     */
+    public Flasche() {
+        this.voll = false;
     }
 
-    public void fuellen(T Getraenk){
-        this.inhalt = Getraenk;
-    }
-
-    public void leeren(){
-        this.inhalt = null;
-    }
-
-    public T getInhalt() {
-        return inhalt;
-    }
-
-    public void setInhalt(T inhalt){
+    /**
+     * methode zum Füllen der Flaschen
+     * @param inhalt inhalt der flasche
+     */
+    public void fuellen(T inhalt) {
         this.inhalt = inhalt;
+        this.voll = true;
     }
 
+    /**
+     * Methode zum Leeren der Flasche
+     */
+    public void leeren() {
+        this.inhalt = null;
+        this.voll = false;
+    }
+
+    /**
+     * methode zum Sagen ob Flasche voll ist oder nicht
+     * @return istvoll
+     */
+    public boolean istVoll() {
+        return voll;
+    }
+
+    /**
+     * Methode gibt objekt als String zurück
+     * @return objekt als String
+     */
     @Override
-    public String toString(){
-        if(this.inhalt == null){
-            return "leeresFlasche";
+    public String toString() {
+        if (voll) {
+            return inhalt.toString() + " Flasche";
         } else {
-            return "vollesFlasche"; 
+            return "Leere Flasche";
         }
     }
 }
