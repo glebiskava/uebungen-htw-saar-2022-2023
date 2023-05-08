@@ -26,6 +26,9 @@ public class Getraenkeautomat<T extends Getraenk> {
      * @param kapazitaet kapazitaet des Getraenkeautomats
      */
     public Getraenkeautomat(int kapazitaet) {
+        if (kapazitaet <= 0) {
+            throw new IllegalArgumentException("Die Kapazität muss größer als Null sein!");
+        }
         this.flaschenlager = new ArrayList<>();
         this.kapazitaet = kapazitaet;
     }
