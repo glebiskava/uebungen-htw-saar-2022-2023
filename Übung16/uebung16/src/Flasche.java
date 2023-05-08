@@ -52,6 +52,6 @@ public class Flasche<T extends Getraenk> {
      */
     @Override
     public String toString() {
-        return inhalt.toString() + " Flasche";
+        return inhalt.toString() + ", Flasche";
     }
 }

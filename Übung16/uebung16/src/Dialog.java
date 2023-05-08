@@ -18,14 +18,15 @@ public class Dialog {
     private int kapazitaet = 0;
     private int flascheWahl = 0;
     private int indexATransferer = 0;
+    private int gewolteGAutomatenArrayGroesse = 0;
 
     /**
      * Getraekautomat Array erstellen
      */
     ArrayList<Getraenkeautomat<? extends Getraenk>> getraenkeautomatArray = new ArrayList<>();
     ArrayList<String> getraenkeautomatTypArray = new ArrayList<>();
-    ArrayList<Getraenkeautomat<? extends Getraenk>> gewolteGAutomatenArray = new ArrayList<>();
-    ArrayList<Integer> indexVonGewolteteItem = new ArrayList<>();
+    // ArrayList<Getraenkeautomat<? extends Getraenk>> gewolteGAutomatenArray = new ArrayList<>();
+    ArrayList<Integer> indexVonGewolteteItem;
 
 
     /**
@@ -216,16 +217,16 @@ public class Dialog {
                     getraenkeautomatTypArray.add("Getraenk");
                     break;
                 case ALKOHOLFREIES_GA:
-                    alkoholischeGetraenkeautomat = new Getraenkeautomat<AlkoholischesGetraenk>(kapazitaet);
-                    ErrorCheck.checkArrayFull(getraenkeautomatArray, kapazitaet);
-                    getraenkeautomatArray.add(alkoholischeGetraenkeautomat);
-                    getraenkeautomatTypArray.add("AlkoholischesGetraenk");
-                    break;
-                case ALKOHOLISCHES_GA:
                     alkoholfreieGetraenkeautomat = new Getraenkeautomat<AlkoholfreiesGetraenk>(kapazitaet);
                     ErrorCheck.checkArrayFull(getraenkeautomatArray, kapazitaet);
                     getraenkeautomatArray.add(alkoholfreieGetraenkeautomat);
                     getraenkeautomatTypArray.add("AlkoholfreiesGetraenk");
+                    break;
+                case ALKOHOLISCHES_GA:
+                    alkoholischeGetraenkeautomat = new Getraenkeautomat<AlkoholischesGetraenk>(kapazitaet);
+                    ErrorCheck.checkArrayFull(getraenkeautomatArray, kapazitaet);
+                    getraenkeautomatArray.add(alkoholischeGetraenkeautomat);
+                    getraenkeautomatTypArray.add("AlkoholischesGetraenk");
                     break;
                 case WASSER_GA:
                     wasserGetraenkeautomat = new Getraenkeautomat<Wasser>(kapazitaet);
@@ -300,7 +301,7 @@ public class Dialog {
                         "5 : Rotwein"       + "\n" +
                         "6 : Weisswein"     + "\n" +
                         ">>>>> ");
-        int flascheWahl = input.nextInt();
+        flascheWahl = input.nextInt();
         input.nextLine();
 
         if(flascheWahl > 6 || flascheWahl < 1) {
@@ -330,17 +331,19 @@ public class Dialog {
     }
 
     public void automatWahlZeigen(){
-
+        ArrayList<Getraenkeautomat<? extends Getraenk>> gewolteGAutomatenArray = new ArrayList<>();
+        gewolteGAutomatenArrayGroesse = 0;
+        indexVonGewolteteItem = new ArrayList<>();
         for(int i = 0; i < getraenkeautomatArray.size(); i++){
             String currentAutomatTyp = getraenkeautomatTypArray.get(i);
-            if(flascheWahl == 1){ // wasser oder softdrink
+            if(flascheWahl == 1){ // wasser
                 if(currentAutomatTyp.equals("AlkoholfreiesGetraenk") ||
                    currentAutomatTyp.equals("Wasser") ){
                     gewolteGAutomatenArray.add(getraenkeautomatArray.get(i));
                     indexVonGewolteteItem.add(i);
                 }
             }
-            else if (flascheWahl == 2){
+            else if (flascheWahl == 2){// softdrink
                 if(currentAutomatTyp.equals("AlkoholfreiesGetraenk") ||
                    currentAutomatTyp.equals("Softdrink") ){
                     gewolteGAutomatenArray.add(getraenkeautomatArray.get(i));
@@ -354,14 +357,14 @@ public class Dialog {
                     indexVonGewolteteItem.add(i);
                 }
             }
-            else if(flascheWahl == 4){
+            else if(flascheWahl == 4){ //wein
                 if(currentAutomatTyp.equals("AlkoholischesGetraenk") ||
                    currentAutomatTyp.equals("Wein") ){
                     gewolteGAutomatenArray.add(getraenkeautomatArray.get(i));
                     indexVonGewolteteItem.add(i);
                 }
             }
-            else if(flascheWahl == 5){
+            else if(flascheWahl == 5){// Rotwein
                 if(currentAutomatTyp.equals("AlkoholischesGetraenk") ||
                    currentAutomatTyp.equals("Wein") ||
                    currentAutomatTyp.equals("Rotwein") ){
@@ -369,7 +372,7 @@ public class Dialog {
                     indexVonGewolteteItem.add(i);
                 }
             }
-            else if(flascheWahl == 6){
+            else if(flascheWahl == 6){ //Weisswein
                 if(currentAutomatTyp.equals("AlkoholischesGetraenk") ||
                    currentAutomatTyp.equals("Wein") ||
                    currentAutomatTyp.equals("Weisswein")  ){
@@ -378,9 +381,12 @@ public class Dialog {
                 }
             }
         }
-        for(int i = 0; i < gewolteGAutomatenArray.size(); i++) {
-            System.out.println((i + 1) + ". " + gewolteGAutomatenArray.get(i).toString() + getraenkeautomatTypArray.get(indexVonGewolteteItem.get(i)));
+        gewolteGAutomatenArrayGroesse = gewolteGAutomatenArray.size();
+        for(int i = 0; i < gewolteGAutomatenArrayGroesse; i++) {
+            System.out.println("\n" + (i + 1) + ". " + getraenkeautomatTypArray.get(indexVonGewolteteItem.get(i)) + " : " + gewolteGAutomatenArray.get(i).toString());
+            
         }
+        
     }
 
     /**
@@ -391,6 +397,7 @@ public class Dialog {
         System.out.println("Geben Sie die Zahl des gewollten Automaten ein : ");
         automatWahl = input.nextInt();
         input.nextLine();
+        
 
         System.out.println(getraenkeautomatArray.get(automatWahl-1).flascheAusgeben());
     }
@@ -400,18 +407,21 @@ public class Dialog {
      * @return automatwahl
      */
     public int automatWahl() {
-        getraenkeautomatenZeigen();
-        System.out.println("Geben Sie die Zahl des gewollten Automaten ein : ");
-        automatWahl = input.nextInt();
-        input.nextLine();
+        if(gewolteGAutomatenArrayGroesse == 0){
+            System.out.println("Keine GetraekeAutomate passen zu diese produkte");
+        } else {
 
-        automatWahlZeigen();
-        System.out.println("Geben Sie die Zahl des gewollten Automaten ein : ");
-        automatWahl = input.nextInt();
-        input.nextLine();
 
-        indexATransferer = indexVonGewolteteItem.get(automatWahl - 1);
-
+            automatWahlZeigen();
+            System.out.println("Geben Sie die Zahl des gewollten Automaten ein : ");
+            automatWahl = input.nextInt();
+            input.nextLine();
+            if((automatWahl - 1) > gewolteGAutomatenArrayGroesse){
+                throw new IllegalArgumentException("Zahl soll < als " + gewolteGAutomatenArrayGroesse + " sein");
+            }
+            
+            indexATransferer = indexVonGewolteteItem.get(automatWahl - 1);
+        }
         return indexATransferer;
     }
 
@@ -428,7 +438,7 @@ public class Dialog {
         Flasche<Wasser> wasserFlasche = new Flasche<>();
         wasserFlasche.fuellen(wasser);
         automatWahl();
-        getraenkeautomatArray.get(indexATransferer - 1).flascheEinlegen(wasserFlasche);
+        getraenkeautomatArray.get(indexATransferer).flascheEinlegen(wasserFlasche);
     }
 
     /**
@@ -444,7 +454,7 @@ public class Dialog {
         Flasche<Softdrink> softdrinkFlasche = new Flasche<>();
         softdrinkFlasche.fuellen(softdrink);
         automatWahl();
-        getraenkeautomatArray.get(indexATransferer - 1).flascheEinlegen(softdrinkFlasche);
+        getraenkeautomatArray.get(indexATransferer).flascheEinlegen(softdrinkFlasche);
     }
 
     /**
@@ -459,7 +469,7 @@ public class Dialog {
         Flasche<Bier> bierFlasche = new Flasche<>();
         bierFlasche.fuellen(bier);
         automatWahl();
-        getraenkeautomatArray.get(indexATransferer - 1).flascheEinlegen(bierFlasche);
+        getraenkeautomatArray.get(indexATransferer).flascheEinlegen(bierFlasche);
     }
 
     /**
@@ -475,7 +485,7 @@ public class Dialog {
         Flasche<Wein> weinFlasche = new Flasche<>();
         weinFlasche.fuellen(wein);
         automatWahl();
-        getraenkeautomatArray.get(indexATransferer - 1).flascheEinlegen(weinFlasche);
+        getraenkeautomatArray.get(indexATransferer).flascheEinlegen(weinFlasche);
     }
 
     /**
@@ -491,7 +501,7 @@ public class Dialog {
         Flasche<Rotwein> rotweinFlasche = new Flasche<>();
         rotweinFlasche.fuellen(rotwein);
         automatWahl();
-        getraenkeautomatArray.get(indexATransferer - 1).flascheEinlegen(rotweinFlasche);
+        getraenkeautomatArray.get(indexATransferer).flascheEinlegen(rotweinFlasche);
     }
 
     /**
@@ -508,7 +518,7 @@ public class Dialog {
         Flasche<Weisswein> weissweinFlasche = new Flasche<>();
         weissweinFlasche.fuellen(weisswein);
         automatWahl();
-        getraenkeautomatArray.get(indexATransferer - 1).flascheEinlegen(weissweinFlasche);
+        getraenkeautomatArray.get(indexATransferer).flascheEinlegen(weissweinFlasche);
     }
 
     /**
