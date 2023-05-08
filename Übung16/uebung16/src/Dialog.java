@@ -131,57 +131,47 @@ public class Dialog {
     public void funktionAusfuehrung(int befehl) {
         if (befehl > GETRAENKE_AUSGEBEN_INT || befehl < PROGRAMM_ENDE) {
             throw new IllegalArgumentException("Geben Sie eine der angegebenen Zahlen ein!");
-
-            if (getraenkeautomatArray[befehl] == null) {
-                System.out.println("Bitte geben Sie die Kapazität des Getränkeautomaten ein: ");
-                int capacity = input.nextInt();
-
-                while (capacity <= 0) {
-                    System.out.println("Bitte geben Sie eine gültige Kapazituet ein: ");
-                    capacity = input.nextInt();
-                }
-
-                switch (befehl) {
-                    case GETRAENKEAUTOMAT_INT:
-                        getraenkeautomatErstellen();
-                        break;
-                    case GETRAENKEAUTOMAT_ALKOHOLISCH_INT:
-                        alkoholischenGetraenkeautomatErstellen();
-                        break;
-                    case GETRAENKEAUTOMAT_ALKOHOLFREIE_INT:
-                        alkoholfreienGetraenkeautomatErstellen();
-                        break;
-                    case GETRAENKEAUTOMAT_WASSER_INT:
-                        wasserGetraenkeautomatErstellen();
-                        break;
-                    case GETRAENKEAUTOMAT_SOFTDRINK_INT:
-                        softdrinkGetraenkeautomatErstellen();
-                        break;
-                    case GETRAENKEAUTOMAT_BIER_INT:
-                        bierGetraenkeautomatErstellen();
-                        break;
-                    case GETRAENKEAUTOMAT_WEIN_INT:
-                        weinGetraenkeautomatErstellen();
-                        break;
-                    case GETRAENKEAUTOMAT_ROTWEIN_INT:
-                        rotweinGetraenkeautomatErstellen();
-                        break;
-                    case GETRAENKEAUTOMAT_WEISSWEIN_INT:
-                        weinGetraenkeautomatErstellen();
-                        break;
-                    case FLASCHE_EINLEGEN_INT:
-                        flaschEinlegen();
-                        break;
-                    case FLASCHE_AUSGEBEN_INT:
-                        flascheAusgeben();
-                        break;
-                    case GETRAENKE_AUSGEBEN_INT:
-                        getraenkeAusgeben();
-                        break;
-                    case PROGRAMM_ENDE:
-                        System.out.println("ENDE");
-                        break;
-                }
+        } else {
+            switch (befehl) {
+                case GETRAENKEAUTOMAT_INT:
+                    getraenkeautomatErstellen();
+                    break;
+                case GETRAENKEAUTOMAT_ALKOHOLISCH_INT:
+                    alkoholischenGetraenkeautomatErstellen();
+                    break;
+                case GETRAENKEAUTOMAT_ALKOHOLFREIE_INT:
+                    alkoholfreienGetraenkeautomatErstellen();
+                    break;
+                case GETRAENKEAUTOMAT_WASSER_INT:
+                    wasserGetraenkeautomatErstellen();
+                    break;
+                case GETRAENKEAUTOMAT_SOFTDRINK_INT:
+                    softdrinkGetraenkeautomatErstellen();
+                    break;
+                case GETRAENKEAUTOMAT_BIER_INT:
+                    bierGetraenkeautomatErstellen();
+                    break;
+                case GETRAENKEAUTOMAT_WEIN_INT:
+                    weinGetraenkeautomatErstellen();
+                    break;
+                case GETRAENKEAUTOMAT_ROTWEIN_INT:
+                    rotweinGetraenkeautomatErstellen();
+                    break;
+                case GETRAENKEAUTOMAT_WEISSWEIN_INT:
+                    weinGetraenkeautomatErstellen();
+                    break;
+                case FLASCHE_EINLEGEN_INT:
+                    flaschEinlegen();
+                    break;
+                case FLASCHE_AUSGEBEN_INT:
+                    flascheAusgeben();
+                    break;
+                case GETRAENKE_AUSGEBEN_INT:
+                    getraenkeAusgeben();
+                    break;
+                case PROGRAMM_ENDE:
+                    System.out.println("ENDE");
+                    break;
             }
         }
     }
