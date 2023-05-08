@@ -28,6 +28,8 @@ public abstract class Getraenk {
      * @param preis preis des Getraenks
      */
     public Getraenk(String name, double preis) {
+        ErrorCheck.checkStringEmpty(name);
+        ErrorCheck.checkDoubleEmpty(preis);
         this.name = name;
         this.preis = preis;
     }
@@ -45,6 +47,7 @@ public abstract class Getraenk {
      * @param name name ds Getraenks
      */
     public void setName(String name) {
+        ErrorCheck.checkStringEmpty(name);
         this.name = name;
     }
 
@@ -61,6 +64,7 @@ public abstract class Getraenk {
      * @param preis preis des Getraenks
      */
     public void setPreis(double preis) {
+        ErrorCheck.checkDoubleEmpty(preis);
         this.preis = preis;
     }
 

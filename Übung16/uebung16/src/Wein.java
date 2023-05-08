@@ -30,6 +30,7 @@ public  class Wein extends AlkoholischesGetraenk {
      */
     public Wein(String name, double preis, double alkoholgehalt, int jahrgang) {
         super(name, preis, alkoholgehalt);
+        ErrorCheck.checkIntegerEmpty(jahrgang);
         this.jahrgang = jahrgang;
     }
 
@@ -46,6 +47,7 @@ public  class Wein extends AlkoholischesGetraenk {
      * @param jahrgang jahrgang des weins
      */
     public void setJahrgang(int jahrgang) {
+        ErrorCheck.checkIntegerEmpty(jahrgang);
         this.jahrgang = jahrgang;
     }
 

@@ -26,9 +26,7 @@ public class Getraenkeautomat<T extends Getraenk> {
      * @param kapazitaet kapazitaet des Getraenkeautomats
      */
     public Getraenkeautomat(int kapazitaet) {
-        if (kapazitaet <= 0) {
-            throw new IllegalArgumentException("Die Kapazität muss größer als Null sein!");
-        }
+        ErrorCheck.checkIntegerEmpty(kapazitaet);
         this.flaschenlager = new ArrayList<>();
         this.kapazitaet = kapazitaet;
     }
@@ -38,7 +36,9 @@ public class Getraenkeautomat<T extends Getraenk> {
      * @param flasche falsche die eingelegt werden soll
      */
     public void flascheEinlegen(Flasche<? extends Getraenk> flasche) {
-        if (flaschenlager.size() < kapazitaet && flasche.istVoll()) {
+        if (flaschenlager.size() > kapazitaet && !flasche.istVoll()) {
+            System.out.println("Der Automat ist voll. Geben Sie eine Flasche aus oder legen Sie einen neuen an!");
+        } else {
             flaschenlager.add(flasche);
         }
     }
@@ -48,8 +48,8 @@ public class Getraenkeautomat<T extends Getraenk> {
      * @return flasche die ausgegeben wird
      */
     public Flasche<? extends Getraenk> flascheAusgeben() {
-        if (flaschenlager.isEmpty()) {
-            return null;
+        if (flaschenlager.size() == 0) {
+            System.out.println("Es gibt noch keinen Flaschen. Legen Sie erst einen an!");
         }
         return flaschenlager.remove(0);
     }
@@ -61,12 +61,16 @@ public class Getraenkeautomat<T extends Getraenk> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        // sb.append("Getraenkeautomat: ");
-        for (Flasche<? extends Getraenk> flasche : flaschenlager) {
-            sb.append(flasche.toString());
-            sb.append("\n");
-        }
-        return sb.toString();
+        // if (flaschenlager.isEmpty()) {
+        //     System.out.println("Es gibt noch keinen Flaschen. Legen Sie erst einen an!");
+        // } else {
+            // sb.append("Getraenkeautomat:\n");
+            for (Flasche<? extends Getraenk> flasche : flaschenlager) {
+                sb.append(flasche.toString());
+                sb.append("\n");
+            }
+        // }
+         return sb.toString();
     }
 
 }
