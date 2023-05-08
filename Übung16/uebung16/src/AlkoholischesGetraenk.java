@@ -29,6 +29,7 @@ public abstract class AlkoholischesGetraenk extends Getraenk {
      */
     public AlkoholischesGetraenk(String name, double preis, double alkoholgehalt) {
         super(name, preis);
+        ErrorCheck.checkDoubleEmpty(alkoholgehalt);
         this.alkoholgehalt = alkoholgehalt;
     }
 
@@ -45,6 +46,7 @@ public abstract class AlkoholischesGetraenk extends Getraenk {
      * @param alkoholgehalt alkoholgehalts des AlkoholischesGetraenk
      */
     public void setAlkoholgehalt(double alkoholgehalt) {
+        ErrorCheck.checkDoubleEmpty(alkoholgehalt);
         this.alkoholgehalt = alkoholgehalt;
     }
 

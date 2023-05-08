@@ -45,6 +45,7 @@ public class Softdrink extends AlkoholfreiesGetraenk {
      * @param geschmack geschmack des Softdrinks
      */
     public void setGeschmack(String geschmack) {
+        ErrorCheck.checkStringEmpty(geschmack);
         this.geschmack = geschmack;
     }
 

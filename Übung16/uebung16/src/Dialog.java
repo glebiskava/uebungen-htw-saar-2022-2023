@@ -14,7 +14,8 @@ public class Dialog {
      * Scanner objekt initialisieren fuer das einlesen der eingabe im terminal
      */
     private final Scanner input;
-    int automatWahl = 0;
+    private int automatWahl = 0;
+    private int kapazitaet = 0;
 
     /**
      * Getraekautomat Array erstellen
@@ -174,12 +175,15 @@ public class Dialog {
                     dialogStart(2);
                     break;
                 case GETRAENKAUTOMATEN_ZEIGEN:
+                    ErrorCheck.checkArrayEmpty(getraenkeautomatArray);
                     getraenkeautomatenZeigen();
                     break;
                 case FLASCHE_EINLEGEN:
+                    ErrorCheck.checkArrayEmpty(getraenkeautomatArray);
                     flascheInBestimmtenAutomatEinlegen();
                     break;
                 case GETRAENK_AUSGEBEN:
+                    ErrorCheck.checkArrayEmpty(getraenkeautomatArray);
                     flascheAusgeben();
                     break;
                 case PROGRAMM_ENDE:
@@ -198,38 +202,46 @@ public class Dialog {
         } else if (befehl == PROGRAMM_ENDE){
             System.out.println("Zurueck zur Hauptmenue");
         } else {
-            int kapazitaet = GAutomatKapazitaetEingeben();
+            kapazitaet = GAutomatKapazitaetEingeben();
             switch (befehl) {
                 case GA:
                     getraenkeautomat = new Getraenkeautomat<Getraenk>(kapazitaet);
+                    ErrorCheck.checkArrayFull(getraenkeautomatArray, kapazitaet);
                     getraenkeautomatArray.add(getraenkeautomat);
                     break;
                 case ALKOHOLFREIES_GA:
                     alkoholischeGetraenkeautomat = new Getraenkeautomat<AlkoholischesGetraenk>(kapazitaet);
+                    ErrorCheck.checkArrayFull(getraenkeautomatArray, kapazitaet);
                     getraenkeautomatArray.add(alkoholischeGetraenkeautomat);
                     break;
                 case ALKOHOLISCHES_GA:
                     alkoholfreieGetraenkeautomat = new Getraenkeautomat<AlkoholfreiesGetraenk>(kapazitaet);
+                    ErrorCheck.checkArrayFull(getraenkeautomatArray, kapazitaet);
                     getraenkeautomatArray.add(alkoholfreieGetraenkeautomat);
                     break;
                 case WASSER_GA:
                     wasserGetraenkeautomat = new Getraenkeautomat<Wasser>(kapazitaet);
+                    ErrorCheck.checkArrayFull(getraenkeautomatArray, kapazitaet);
                     getraenkeautomatArray.add(wasserGetraenkeautomat);
                     break;
                 case SOFTDRINK_GA:
                     softdrinkGetraenkeautomat = new Getraenkeautomat<Softdrink>(kapazitaet);
+                    ErrorCheck.checkArrayFull(getraenkeautomatArray, kapazitaet);
                     getraenkeautomatArray.add(softdrinkGetraenkeautomat);
                     break;
                 case BIER:
                     bierGetraenkeautomat = new Getraenkeautomat<Bier>(kapazitaet);
+                    ErrorCheck.checkArrayFull(getraenkeautomatArray, kapazitaet);
                     getraenkeautomatArray.add(bierGetraenkeautomat);
                     break;
                 case WEIN:
                     weinGetraenkeautomat = new Getraenkeautomat<Wein>(kapazitaet);
+                    ErrorCheck.checkArrayFull(getraenkeautomatArray, kapazitaet);
                     getraenkeautomatArray.add(weinGetraenkeautomat);
                     break;
                 case ROTWEIN:
                     rotweinGetraenkeautomat = new Getraenkeautomat<Rotwein>(kapazitaet);
+                    ErrorCheck.checkArrayFull(getraenkeautomatArray, kapazitaet);
                     getraenkeautomatArray.add(rotweinGetraenkeautomat);
                     break;
                 case WEISSWEIN:
@@ -263,7 +275,8 @@ public class Dialog {
     /**
      * Methode zum Einlegen einer Flasche in einen bestimmten Automaten
      */
-    public void flascheInBestimmtenAutomatEinlegen(){
+    public void flascheInBestimmtenAutomatEinlegen() {
+        ErrorCheck.checkArrayEmpty(getraenkeautomatArray);
         System.out.println("Geben sie eine zahl aus, ueber die flasche die sie einlegen moechten : ");
         System.out.println(
                         "1 : Wasser"        + "\n" +
@@ -302,12 +315,20 @@ public class Dialog {
         }
     }
 
+
+    /**
+     * Methode, die die erste flasche die eingelegt wurde, herausgibt
+     */
     public void flascheAusgeben() {
         automatWahl();
         System.out.println(getraenkeautomatArray.get(automatWahl-1).flascheAusgeben());
     }
 
-    public int  automatWahl() {
+    /**
+     * Methode zum Erfassen der Autmatenwahl
+     * @return automatwahl
+     */
+    public int automatWahl() {
         getraenkeautomatenZeigen();
         System.out.println("Geben Sie die Zahl des gewollten Automaten ein : ");
         automatWahl = input.nextInt();
