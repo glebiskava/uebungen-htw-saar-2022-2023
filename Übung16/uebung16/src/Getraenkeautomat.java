@@ -53,6 +53,15 @@ public class Getraenkeautomat<T extends Getraenk> {
         return flasche;
     }
 
+    
+    /**
+     * Getter für kapazitaet
+     * @return anzahl der GetraenkAutomat kapazitaet
+     */
+    public int getKapazitaet(){
+        return kapazitaet;
+    }
+
     /**
      * Methode gibt objekt als String zurück
      * @return objekt als String
@@ -60,7 +69,7 @@ public class Getraenkeautomat<T extends Getraenk> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Getraenkeautomat:\n");
+        sb.append("Getraenkeautomat (" + getKapazitaet() + "):\n");
         for (Flasche<T> flasche : flaschenlager) {
             sb.append(flasche.toString());
             sb.append("\n");
