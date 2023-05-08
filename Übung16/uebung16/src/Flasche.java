@@ -22,20 +22,21 @@ public class Flasche<T extends Getraenk> {
     }
 
     /**
-     * Getter für Inhalt
-     * @return Inhalt des Getraenks
-     */
-    public T getInhalt() {
-        return inhalt;
-    }
-
-    /**
      * methode zum Füllen der Flaschen
      * @param inhalt inhalt der flasche
      */
     public void fuellen(T inhalt) {
         this.inhalt = inhalt;
         this.voll = true;
+    }
+
+    
+    /**
+     * Getter für Inhalt
+     * @return Inhalt des Getraenks
+     */
+    public T getInhalt() {
+        return inhalt;
     }
 
     /**

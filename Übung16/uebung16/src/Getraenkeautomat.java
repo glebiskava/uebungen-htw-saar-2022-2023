@@ -14,18 +14,21 @@ public class Getraenkeautomat<T extends Getraenk> {
     /**
      * Arraylist erstellen für das Flaschenlager
      */
-    private ArrayList<Flasche<T>> flaschenlager;
+    private ArrayList<Flasche<? extends Getraenk>> flaschenlager;
 
     /**
      * Attribut kapazitaet des Getraenkeautomats
      */
-    private int kapazitaet;
+    private final int kapazitaet;
 
     /**
      * Konstruktor mit kapazitaet
      * @param kapazitaet kapazitaet des Getraenkeautomats
      */
     public Getraenkeautomat(int kapazitaet) {
+        if (kapazitaet <= 0) {
+            throw new IllegalArgumentException("Die Kapazität muss größer als Null sein!");
+        }
         this.flaschenlager = new ArrayList<>();
         this.kapazitaet = kapazitaet;
     }
@@ -34,7 +37,7 @@ public class Getraenkeautomat<T extends Getraenk> {
      * Methode zum Einlegen der Flaschen
      * @param flasche falsche die eingelegt werden soll
      */
-    public void flascheEinlegen(Flasche<T> flasche) {
+    public void flascheEinlegen(Flasche<? extends Getraenk> flasche) {
         if (flaschenlager.size() < kapazitaet && flasche.istVoll()) {
             flaschenlager.add(flasche);
         }
@@ -44,22 +47,13 @@ public class Getraenkeautomat<T extends Getraenk> {
      * methode zum Ausgeben der Flasche
      * @return flasche die ausgegeben wird
      */
-    public Flasche<T> flascheAusgeben() {
+    public Flasche<? extends Getraenk> flascheAusgeben() {
         if (flaschenlager.isEmpty()) {
             return null;
         }
-        Flasche<T> flasche = flaschenlager.remove(0);
+        Flasche<? extends Getraenk> flasche = flaschenlager.remove(0);
         flasche.leeren();
         return flasche;
-    }
-
-    
-    /**
-     * Getter für kapazitaet
-     * @return anzahl der GetraenkAutomat kapazitaet
-     */
-    public int getKapazitaet(){
-        return kapazitaet;
     }
 
     /**
@@ -69,8 +63,8 @@ public class Getraenkeautomat<T extends Getraenk> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Getraenkeautomat (" + getKapazitaet() + "):\n");
-        for (Flasche<T> flasche : flaschenlager) {
+        sb.append("Getraenkeautomat:\n");
+        for (Flasche<? extends Getraenk> flasche : flaschenlager) {
             sb.append(flasche.toString());
             sb.append("\n");
         }
