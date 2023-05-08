@@ -52,10 +52,6 @@ public class Flasche<T extends Getraenk> {
      */
     @Override
     public String toString() {
-        if (voll) {
-            return inhalt.toString() + " Flasche";
-        } else {
-            return "Leere Flasche";
-        }
+        return inhalt.toString() + " Flasche";
     }
 }

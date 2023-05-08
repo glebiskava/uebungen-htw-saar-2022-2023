@@ -43,8 +43,6 @@ public class Getraenkeautomat<T extends Getraenk> {
         }
     }
 
-
-
     /**
      * methode zum Ausgeben der Flasche
      * @return flasche die ausgegeben wird
@@ -53,9 +51,7 @@ public class Getraenkeautomat<T extends Getraenk> {
         if (flaschenlager.isEmpty()) {
             return null;
         }
-        Flasche<? extends Getraenk> flasche = flaschenlager.remove(0);
-        flasche.leeren();
-        return flasche;
+        return flaschenlager.remove(0);
     }
 
     /**

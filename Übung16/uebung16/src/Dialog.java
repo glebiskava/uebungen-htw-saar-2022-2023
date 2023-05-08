@@ -40,17 +40,17 @@ public class Dialog {
      */
     private static final int GETRAENKAUTOMAT_INSTANZIIEREN  = 1;
     private static final int GETRAENKAUTOMATEN_ZEIGEN       = 2;
-    private static final int FLASCHE_EINLEGEN            = 3;
-    private static final int GETRAENK_BESTELLEN             = 4;
+    private static final int FLASCHE_EINLEGEN               = 3;
+    private static final int GETRAENK_AUSGEBEN              = 4;
     private static final int PROGRAMM_ENDE                  = 0;
 
     /**
      * String konstanten fuer jeden Menue punkt --> uebersichtlichkeit im code
      */
     private static final String GETRAENKAUTOMAT_INSTANZIIEREN_STR   = " : GetraenkeAutomat anlegen";
-    private static final String GETRAENKAUTOMATEN_ZEIGEN_STR        = " : Alle Getraenkeautomaten an zeigen";
+    private static final String GETRAENKAUTOMATEN_ZEIGEN_STR        = " : Alle Getraenkeautomaten anzeigen";
     private static final String FLASCHE_EINLEGEN_STR                = " : Flasche einlegen";
-    private static final String GETRAENK_BESTELLEN_STR              = " : Getraenk bestellen";
+    private static final String GETRAENK_AUSGEBEN_STR               = " : Flasche ausgeben";
     private static final String PROGRAMM_ENDE_STR                   = " : Programm beenden";
 
 
@@ -80,7 +80,7 @@ public class Dialog {
     private static final String WEIN_STR                 = " : Wein GetraenkeAutomat anlegen";
     private static final String ROTWEIN_STR              = " : Rotwein GetraenkeAutomat anlegen";
     private static final String WEISWEIN_STR             = " : Weisswein GetraenkeAutomat anlegen";
-    private static final String GA_PROGRAMM_ENDE_STR        = " : Zurueck zur Hauptmenue";
+    private static final String GA_PROGRAMM_ENDE_STR     = " : Zurueck zur Hauptmenue";
 
 
 
@@ -92,7 +92,7 @@ public class Dialog {
     }
 
     /**
-     * do while schleife zum starten des Programms
+     * do while schleife zum Starten des Programms
      */
     public void dialogStart(int dialogNumber){
         int befehl = 0;
@@ -128,7 +128,7 @@ public class Dialog {
                 GETRAENKAUTOMAT_INSTANZIIEREN   + GETRAENKAUTOMAT_INSTANZIIEREN_STR     + "\n" +
                 GETRAENKAUTOMATEN_ZEIGEN        + GETRAENKAUTOMATEN_ZEIGEN_STR          + "\n" +
                 FLASCHE_EINLEGEN                + FLASCHE_EINLEGEN_STR                  + "\n" +
-                GETRAENK_BESTELLEN              + GETRAENK_BESTELLEN_STR                + "\n" +
+                GETRAENK_AUSGEBEN               + GETRAENK_AUSGEBEN_STR                 + "\n" +
                 PROGRAMM_ENDE                   + PROGRAMM_ENDE_STR                     + "\n" +
                 "Geben Sie eine der angegebenen Zahlen ein : "
         );
@@ -163,10 +163,10 @@ public class Dialog {
 
     /**
      * Methode zur Ausführung der Nutzereingabe der Menuepunkte
-     * @param befehl ist der nummer der zu eine rufe von methode fuehrt
+     * @param befehl nummer des Befehls
      */
     public void funktionAusfuehrung(int befehl){
-        if(befehl > GETRAENK_BESTELLEN || befehl < PROGRAMM_ENDE) {
+        if(befehl > GETRAENK_AUSGEBEN || befehl < PROGRAMM_ENDE) {
             throw new IllegalArgumentException("Geben Sie eine der angegebenen Zahlen ein!");
         } else {
             switch (befehl) {
@@ -179,8 +179,8 @@ public class Dialog {
                 case FLASCHE_EINLEGEN:
                     flascheInBestimmtenAutomatEinlegen();
                     break;
-                case GETRAENK_BESTELLEN:
-
+                case GETRAENK_AUSGEBEN:
+                    flascheAusgeben();
                     break;
                 case PROGRAMM_ENDE:
                     System.out.println("ENDE");
@@ -265,6 +265,14 @@ public class Dialog {
      */
     public void flascheInBestimmtenAutomatEinlegen(){
         System.out.println("Geben sie eine zahl aus, ueber die flasche die sie einlegen moechten : ");
+        System.out.println(
+                        "1 : Wasser"        + "\n" +
+                        "2 : Softdrink"     + "\n" +
+                        "3 : Bier"          + "\n" +
+                        "4 : Wein"          + "\n" +
+                        "5 : Rotwein"       + "\n" +
+                        "6 : Weisswein"     + "\n" +
+                        ">>>>> ");
         int flascheWahl = input.nextInt();
         input.nextLine();
 
@@ -292,19 +300,20 @@ public class Dialog {
                     break;
             }
         }
+    }
 
+    public void flascheAusgeben() {
+        automatWahl();
+        System.out.println(getraenkeautomatArray.get(automatWahl-1).flascheAusgeben());
+    }
+
+    public int  automatWahl() {
         getraenkeautomatenZeigen();
-        System.out.println("Geben sie den Zahl von der automat wo sie die flasche einlegen moechten :");
+        System.out.println("Geben Sie die Zahl des gewollten Automaten ein : ");
         automatWahl = input.nextInt();
         input.nextLine();
 
-        System.out.println(
-                        "1 : Wasser"        + "\n" +
-                        "2 : Softdrink"     + "\n" +
-                        "3 : Bier"          + "\n" +
-                        "4 : Wein"          + "\n" +
-                        "5 : Rotwein"       + "\n" +
-                        "6 : Weisswein"     + "\n" );
+        return automatWahl;
     }
 
     /**
@@ -319,6 +328,7 @@ public class Dialog {
         Wasser wasser = new Wasser(name, preis, istGesund, marke);
         Flasche<Wasser> wasserFlasche = new Flasche<>();
         wasserFlasche.fuellen(wasser);
+        automatWahl();
         getraenkeautomatArray.get(automatWahl - 1).flascheEinlegen(wasserFlasche);
     }
 
@@ -334,8 +344,8 @@ public class Dialog {
         Softdrink softdrink = new Softdrink(name, preis, istGesund, geschmack);
         Flasche<Softdrink> softdrinkFlasche = new Flasche<>();
         softdrinkFlasche.fuellen(softdrink);
+        automatWahl();
         getraenkeautomatArray.get(automatWahl - 1).flascheEinlegen(softdrinkFlasche);
-
     }
 
     /**
@@ -349,11 +359,12 @@ public class Dialog {
         Bier bier = new Bier(name, preis,  alkGehalt);
         Flasche<Bier> bierFlasche = new Flasche<>();
         bierFlasche.fuellen(bier);
+        automatWahl();
         getraenkeautomatArray.get(automatWahl - 1).flascheEinlegen(bierFlasche);
     }
 
     /**
-     * Weinanlegen
+     * Methode zu Wein anlegen
      */
     public void weinAnlegen() {
         String name = nameEingeben();
@@ -364,6 +375,7 @@ public class Dialog {
         Wein wein = new Wein(name, preis,  alkGehalt, jahrgang);
         Flasche<Wein> weinFlasche = new Flasche<>();
         weinFlasche.fuellen(wein);
+        automatWahl();
         getraenkeautomatArray.get(automatWahl - 1).flascheEinlegen(weinFlasche);
     }
 
@@ -379,6 +391,7 @@ public class Dialog {
         Rotwein rotwein = new Rotwein(name, preis,  alkGehalt, jahrgang);
         Flasche<Rotwein> rotweinFlasche = new Flasche<>();
         rotweinFlasche.fuellen(rotwein);
+        automatWahl();
         getraenkeautomatArray.get(automatWahl - 1).flascheEinlegen(rotweinFlasche);
     }
 
@@ -395,6 +408,7 @@ public class Dialog {
         Weisswein weisswein = new Weisswein(name, preis,  alkGehalt, jahrgang, kaltGestellt);
         Flasche<Weisswein> weissweinFlasche = new Flasche<>();
         weissweinFlasche.fuellen(weisswein);
+        automatWahl();
         getraenkeautomatArray.get(automatWahl - 1).flascheEinlegen(weissweinFlasche);
     }
 
