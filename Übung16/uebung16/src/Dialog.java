@@ -14,6 +14,7 @@ public class Dialog {
      * Scanner objekt initialisieren fuer das einlesen der eingabe im terminal
      */
     private final Scanner input;
+    int automatWahl = 0;
 
     /**
      * Getraekautomat Array erstellen
@@ -39,14 +40,16 @@ public class Dialog {
      */
     private static final int GETRAENKAUTOMAT_INSTANZIIEREN  = 1;
     private static final int GETRAENKAUTOMATEN_ZEIGEN       = 2;
-    private static final int GETRAENK_BESTELLEN             = 3;
-    private static final int PROGRAMM_ENDE        = 0;
+    private static final int FLASCHE_EINLEGEN            = 3;
+    private static final int GETRAENK_BESTELLEN             = 4;
+    private static final int PROGRAMM_ENDE                  = 0;
 
     /**
      * String konstanten fuer jeden Menue punkt --> uebersichtlichkeit im code
      */
     private static final String GETRAENKAUTOMAT_INSTANZIIEREN_STR   = " : GetraenkeAutomat anlegen";
     private static final String GETRAENKAUTOMATEN_ZEIGEN_STR        = " : Alle Getraenkeautomaten an zeigen";
+    private static final String FLASCHE_EINLEGEN_STR                = " : Flasche einlegen";
     private static final String GETRAENK_BESTELLEN_STR              = " : Getraenk bestellen";
     private static final String PROGRAMM_ENDE_STR                   = " : Programm beenden";
 
@@ -124,6 +127,7 @@ public class Dialog {
         System.out.print("\n\n\n" +
                 GETRAENKAUTOMAT_INSTANZIIEREN   + GETRAENKAUTOMAT_INSTANZIIEREN_STR     + "\n" +
                 GETRAENKAUTOMATEN_ZEIGEN        + GETRAENKAUTOMATEN_ZEIGEN_STR          + "\n" +
+                FLASCHE_EINLEGEN                + FLASCHE_EINLEGEN_STR                  + "\n" +
                 GETRAENK_BESTELLEN              + GETRAENK_BESTELLEN_STR                + "\n" +
                 PROGRAMM_ENDE                   + PROGRAMM_ENDE_STR                     + "\n" +
                 "Geben Sie eine der angegebenen Zahlen ein : "
@@ -154,8 +158,7 @@ public class Dialog {
      * @return Nutzer Eingabe befehl als Int
      */
     public int funktionVerarbeitung(){
-        int befehl = input.nextInt();
-        return befehl;
+        return input.nextInt();
     }
 
     /**
@@ -172,6 +175,9 @@ public class Dialog {
                     break;
                 case GETRAENKAUTOMATEN_ZEIGEN:
                     getraenkeautomatenZeigen();
+                    break;
+                case FLASCHE_EINLEGEN:
+                    flascheInBestimmtenAutomatEinlegen();
                     break;
                 case GETRAENK_BESTELLEN:
 
@@ -241,10 +247,190 @@ public class Dialog {
         return kapazitaet;
     }
 
-    public void getraenkeautomatenZeigen(){
-        for (Getraenkeautomat<? extends Getraenk> value : getraenkeautomatArray) {
-            System.out.println(value.toString());
+    public void getraenkeautomatenZeigen() {
+        for (int i = 0; i < getraenkeautomatArray.size(); i++) {
+            System.out.println((i + 1) + ". " + getraenkeautomatArray.get(i).toString());
         }
+    }
+
+    public void flascheInBestimmtenAutomatEinlegen(){
+        System.out.println("Geben sie eine zahl aus, ueber die flasche die sie einlegen moechten : ");
+        int flascheWahl = input.nextInt();
+        input.nextLine();
+
+        if(flascheWahl > 6 || flascheWahl < 1) {
+            throw new IllegalArgumentException("Geben Sie eine der angegebenen Zahlen ein!");
+        } else {
+            switch (flascheWahl) {
+                case 1:
+                    wasserAnlegen();
+                    break;
+                case 2:
+                    softdrinkAnlegen();
+                    break;
+                case 3:
+                    bierAnlegen();
+                    break;
+                case 4:
+                    weinAnlegen();
+                    break;
+                case 5:
+                    rotweinAnlegen();
+                    break;
+                case 6:
+                    weissweinAnlegen();
+                    break;
+            }
+        }
+
+        getraenkeautomatenZeigen();
+        System.out.println("Geben sie den Zahl von der automat wo sie die flasche einlegen moechten :");
+        automatWahl = input.nextInt();
+        input.nextLine();
+
+        System.out.println(
+                        "1 : Wasser"        + "\n" +
+                        "2 : Softdrink"     + "\n" +
+                        "3 : Bier"          + "\n" +
+                        "4 : Wein"          + "\n" +
+                        "5 : Rotwein"       + "\n" +
+                        "6 : Weisswein"     + "\n" );
+    }
+
+    public void wasserAnlegen() {
+        String name = nameEingeben();
+        double preis = preisEingeben();
+        boolean istGesund = istGesungEingeben();
+        String marke = markeEingeben();
+
+        Wasser wasser = new Wasser(name, preis, istGesund, marke);
+        Flasche<Wasser> wasserFlasche = new Flasche<>();
+        wasserFlasche.fuellen(wasser);
+        getraenkeautomatArray.get(automatWahl - 1).flascheEinlegen(wasserFlasche);
+    }
+
+    public void  softdrinkAnlegen() {
+        String name = nameEingeben();
+        double preis = preisEingeben();
+        boolean istGesund = istGesungEingeben();
+        String geschmack = geschmackEingeben();
+
+        Softdrink softdrink = new Softdrink(name, preis, istGesund, geschmack);
+        Flasche<Softdrink> softdrinkFlasche = new Flasche<>();
+        softdrinkFlasche.fuellen(softdrink);
+        getraenkeautomatArray.get(automatWahl - 1).flascheEinlegen(softdrinkFlasche);
+
+    }
+
+    public void bierAnlegen() {
+        String name = nameEingeben();
+        double preis = preisEingeben();
+        double alkGehalt = alkoholgehaltEingeben();
+
+        Bier bier = new Bier(name, preis,  alkGehalt);
+        Flasche<Bier> bierFlasche = new Flasche<>();
+        bierFlasche.fuellen(bier);
+        getraenkeautomatArray.get(automatWahl - 1).flascheEinlegen(bierFlasche);
+    }
+
+    public void weinAnlegen() {
+        String name = nameEingeben();
+        double preis = preisEingeben();
+        double alkGehalt = alkoholgehaltEingeben();
+        int jahrgang = jahrgangEingeben();
+
+        Wein wein = new Wein(name, preis,  alkGehalt, jahrgang);
+        Flasche<Wein> weinFlasche = new Flasche<>();
+        weinFlasche.fuellen(wein);
+        getraenkeautomatArray.get(automatWahl - 1).flascheEinlegen(weinFlasche);
+    }
+    public void rotweinAnlegen() {
+        String name = nameEingeben();
+        double preis = preisEingeben();
+        double alkGehalt = alkoholgehaltEingeben();
+        int jahrgang = jahrgangEingeben();
+
+        Rotwein rotwein = new Rotwein(name, preis,  alkGehalt, jahrgang);
+        Flasche<Rotwein> rotweinFlasche = new Flasche<>();
+        rotweinFlasche.fuellen(rotwein);
+        getraenkeautomatArray.get(automatWahl - 1).flascheEinlegen(rotweinFlasche);
+    }
+
+    public void weissweinAnlegen() {
+        String name = nameEingeben();
+        double preis = preisEingeben();
+        double alkGehalt = alkoholgehaltEingeben();
+        int jahrgang = jahrgangEingeben();
+        boolean kaltGestellt = kaltGestelltEingeben();
+
+        Weisswein weisswein = new Weisswein(name, preis,  alkGehalt, jahrgang, kaltGestellt);
+        Flasche<Weisswein> weissweinFlasche = new Flasche<>();
+        weissweinFlasche.fuellen(weisswein);
+        getraenkeautomatArray.get(automatWahl - 1).flascheEinlegen(weissweinFlasche);
+    }
+
+    public float alkoholgehaltEingeben() {
+        System.out.println("Geben sie eine Alkoholgehalt fuer diese Getraenk ein:");
+        float alkoholgehaltEingabe = input.nextFloat();
+        input.nextLine();
+
+        return alkoholgehaltEingabe;
+    }
+
+    public String nameEingeben() {
+        System.out.println("Geben sie eine name fuer diese Getraenk ein:");
+        String nameEingabe = input.next();
+        input.nextLine();
+
+        return nameEingabe;
+    }
+
+    public Double preisEingeben() {
+        System.out.println("Geben sie eine preis fuer diese Getraenk ein:");
+        Double preisEingabe = input.nextDouble();
+        input.nextLine();
+
+        return preisEingabe;
+    }
+
+    public Boolean istGesungEingeben() {
+        System.out.println("Geben sie eine istGesung fuer diese Getraenk ein:");
+        Boolean istGesungEingabe = input.nextBoolean();
+        input.nextLine();
+
+        return istGesungEingabe;
+    }
+
+    public Boolean kaltGestelltEingeben() {
+        System.out.println("Geben sie eine kaltGestellt fuer diese Getraenk ein:");
+        Boolean kaltGestelltEingabe = input.nextBoolean();
+        input.nextLine();
+
+        return kaltGestelltEingabe;
+    }
+
+    public int jahrgangEingeben() {
+        System.out.println("Geben sie eine jahrgang fuer diese Getraenk ein:");
+        int jahrgangEingabe = input.nextInt();
+        input.nextLine();
+
+        return jahrgangEingabe;
+    }
+
+    public String geschmackEingeben() {
+        System.out.println("Geben sie eine geschmack fuer diese Getraenk ein:");
+        String geschmackEingabe = input.next();
+        input.nextLine();
+
+        return geschmackEingabe;
+    }
+
+    public String markeEingeben() {
+        System.out.println("Geben sie eine marke fuer diese Getraenk ein:");
+        String markeEingabe = input.next();
+        input.nextLine();
+
+        return markeEingabe;
     }
 
     /**

@@ -14,7 +14,7 @@ public class Getraenkeautomat<T extends Getraenk> {
     /**
      * Arraylist erstellen für das Flaschenlager
      */
-    private ArrayList<Flasche<T>> flaschenlager;
+    private ArrayList<Flasche<? extends Getraenk>> flaschenlager;
 
     /**
      * Attribut kapazitaet des Getraenkeautomats
@@ -37,21 +37,23 @@ public class Getraenkeautomat<T extends Getraenk> {
      * Methode zum Einlegen der Flaschen
      * @param flasche falsche die eingelegt werden soll
      */
-    public void flascheEinlegen(Flasche<T> flasche) {
+    public void flascheEinlegen(Flasche<? extends Getraenk> flasche) {
         if (flaschenlager.size() < kapazitaet && flasche.istVoll()) {
             flaschenlager.add(flasche);
         }
     }
 
+
+
     /**
      * methode zum Ausgeben der Flasche
      * @return flasche die ausgegeben wird
      */
-    public Flasche<T> flascheAusgeben() {
+    public Flasche<? extends Getraenk> flascheAusgeben() {
         if (flaschenlager.isEmpty()) {
             return null;
         }
-        Flasche<T> flasche = flaschenlager.remove(0);
+        Flasche<? extends Getraenk> flasche = flaschenlager.remove(0);
         flasche.leeren();
         return flasche;
     }
@@ -64,7 +66,7 @@ public class Getraenkeautomat<T extends Getraenk> {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Getraenkeautomat:\n");
-        for (Flasche<T> flasche : flaschenlager) {
+        for (Flasche<? extends Getraenk> flasche : flaschenlager) {
             sb.append(flasche.toString());
             sb.append("\n");
         }

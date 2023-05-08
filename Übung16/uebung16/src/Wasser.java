@@ -27,7 +27,7 @@ public class Wasser extends AlkoholfreiesGetraenk {
      * @param istGesund ist es gesund?
      * @param marke marke des Wassers
      */
-    public Wasser(String name, int preis, boolean istGesund, String marke) {
+    public Wasser(String name, double preis, boolean istGesund, String marke) {
         super(name, preis, istGesund);
         this.marke = marke;
     }
@@ -44,7 +44,7 @@ public class Wasser extends AlkoholfreiesGetraenk {
      * Setter für marke
      * @param marke marke des Wassers
      */
-    public void setQuelle(String marke) {
+    public void setMarke(String marke) {
         this.marke = marke;
     }
 
