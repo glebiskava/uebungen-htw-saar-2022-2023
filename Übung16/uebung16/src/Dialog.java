@@ -240,6 +240,10 @@ public class Dialog {
         }
     }
 
+    /**
+     * Methode zum Eingeben der Getränkautomatkapazität
+     * @return kapazitaet des Automaten
+     */
     public int GAutomatKapazitaetEingeben(){
         System.out.println("Geben sie die Kapazitaet des Getraekautomat als naturlische zahl ein :");
         int kapazitaet = input.nextInt();
@@ -247,12 +251,18 @@ public class Dialog {
         return kapazitaet;
     }
 
+    /**
+     * Zeigt alle Automaten an mit den jeweiligen Flaschen
+     */
     public void getraenkeautomatenZeigen() {
         for (int i = 0; i < getraenkeautomatArray.size(); i++) {
             System.out.println((i + 1) + ". " + getraenkeautomatArray.get(i).toString());
         }
     }
 
+    /**
+     * Methode zum Einlegen einer Flasche in einen bestimmten Automaten
+     */
     public void flascheInBestimmtenAutomatEinlegen(){
         System.out.println("Geben sie eine zahl aus, ueber die flasche die sie einlegen moechten : ");
         int flascheWahl = input.nextInt();
@@ -297,10 +307,13 @@ public class Dialog {
                         "6 : Weisswein"     + "\n" );
     }
 
+    /**
+     * Methode zum Anlegen einer Wasserflasche
+     */
     public void wasserAnlegen() {
         String name = nameEingeben();
         double preis = preisEingeben();
-        boolean istGesund = istGesungEingeben();
+        boolean istGesund = istGesundEingeben();
         String marke = markeEingeben();
 
         Wasser wasser = new Wasser(name, preis, istGesund, marke);
@@ -309,10 +322,13 @@ public class Dialog {
         getraenkeautomatArray.get(automatWahl - 1).flascheEinlegen(wasserFlasche);
     }
 
+    /**
+     * Methode zum Anlegen einer Softdrinkflasche
+     */
     public void  softdrinkAnlegen() {
         String name = nameEingeben();
         double preis = preisEingeben();
-        boolean istGesund = istGesungEingeben();
+        boolean istGesund = istGesundEingeben();
         String geschmack = geschmackEingeben();
 
         Softdrink softdrink = new Softdrink(name, preis, istGesund, geschmack);
@@ -322,6 +338,9 @@ public class Dialog {
 
     }
 
+    /**
+     * Methode zum Anlegen einer Bierflasche
+     */
     public void bierAnlegen() {
         String name = nameEingeben();
         double preis = preisEingeben();
@@ -333,6 +352,9 @@ public class Dialog {
         getraenkeautomatArray.get(automatWahl - 1).flascheEinlegen(bierFlasche);
     }
 
+    /**
+     * Weinanlegen
+     */
     public void weinAnlegen() {
         String name = nameEingeben();
         double preis = preisEingeben();
@@ -344,6 +366,10 @@ public class Dialog {
         weinFlasche.fuellen(wein);
         getraenkeautomatArray.get(automatWahl - 1).flascheEinlegen(weinFlasche);
     }
+
+    /**
+     * Methode zum Anlegen einer Rotweinflasche
+     */
     public void rotweinAnlegen() {
         String name = nameEingeben();
         double preis = preisEingeben();
@@ -356,6 +382,9 @@ public class Dialog {
         getraenkeautomatArray.get(automatWahl - 1).flascheEinlegen(rotweinFlasche);
     }
 
+    /**
+     * Methode zum Anlegen einer Weissweinflasche
+     */
     public void weissweinAnlegen() {
         String name = nameEingeben();
         double preis = preisEingeben();
@@ -369,6 +398,9 @@ public class Dialog {
         getraenkeautomatArray.get(automatWahl - 1).flascheEinlegen(weissweinFlasche);
     }
 
+    /**
+     * Methode zum Eingeben des Alkoholgehalts
+     */
     public float alkoholgehaltEingeben() {
         System.out.println("Geben sie eine Alkoholgehalt fuer diese Getraenk ein:");
         float alkoholgehaltEingabe = input.nextFloat();
@@ -377,6 +409,9 @@ public class Dialog {
         return alkoholgehaltEingabe;
     }
 
+    /**
+     * Methode zum Eingeben des Namens
+     */
     public String nameEingeben() {
         System.out.println("Geben sie eine name fuer diese Getraenk ein:");
         String nameEingabe = input.next();
@@ -385,6 +420,9 @@ public class Dialog {
         return nameEingabe;
     }
 
+    /**
+     * Methode zum Eingeben des Preises
+     */
     public Double preisEingeben() {
         System.out.println("Geben sie eine preis fuer diese Getraenk ein:");
         Double preisEingabe = input.nextDouble();
@@ -393,7 +431,10 @@ public class Dialog {
         return preisEingabe;
     }
 
-    public Boolean istGesungEingeben() {
+    /**
+     * Methode zum Eingeben, ob das Getraenk gesund ist
+     */
+    public Boolean istGesundEingeben() {
         System.out.println("Geben sie eine istGesung fuer diese Getraenk ein:");
         Boolean istGesungEingabe = input.nextBoolean();
         input.nextLine();
@@ -401,6 +442,9 @@ public class Dialog {
         return istGesungEingabe;
     }
 
+    /**
+     * Methode zum Eingeben, ob das kaltgestellt ist
+     */
     public Boolean kaltGestelltEingeben() {
         System.out.println("Geben sie eine kaltGestellt fuer diese Getraenk ein:");
         Boolean kaltGestelltEingabe = input.nextBoolean();
@@ -409,6 +453,9 @@ public class Dialog {
         return kaltGestelltEingabe;
     }
 
+    /**
+     * Methode zum Eingeben des Jahrgangs
+     */
     public int jahrgangEingeben() {
         System.out.println("Geben sie eine jahrgang fuer diese Getraenk ein:");
         int jahrgangEingabe = input.nextInt();
@@ -417,6 +464,9 @@ public class Dialog {
         return jahrgangEingabe;
     }
 
+    /**
+     * Methode zum Eingeben des Geschmacks
+     */
     public String geschmackEingeben() {
         System.out.println("Geben sie eine geschmack fuer diese Getraenk ein:");
         String geschmackEingabe = input.next();
@@ -425,6 +475,9 @@ public class Dialog {
         return geschmackEingabe;
     }
 
+    /**
+     * Methode zum Eingeben der Marke
+     */
     public String markeEingeben() {
         System.out.println("Geben sie eine marke fuer diese Getraenk ein:");
         String markeEingabe = input.next();
