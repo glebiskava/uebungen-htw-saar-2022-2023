@@ -30,15 +30,6 @@ public class Flasche<T extends Getraenk> {
         this.voll = true;
     }
 
-    
-    /**
-     * Getter für Inhalt
-     * @return Inhalt des Getraenks
-     */
-    public T getInhalt() {
-        return inhalt;
-    }
-
     /**
      * Methode zum Leeren der Flasche
      */
@@ -61,10 +52,6 @@ public class Flasche<T extends Getraenk> {
      */
     @Override
     public String toString() {
-        if (voll) {
-            return inhalt.toString() + " Flasche";
-        } else {
-            return "Leere Flasche";
-        }
+        return inhalt.toString() + " Flasche";
     }
 }

@@ -54,6 +54,6 @@ public class Softdrink extends AlkoholfreiesGetraenk {
      */
     @Override
     public String toString() {
-        return super.toString() + ", Geschmack: " + geschmack;
+        return super.toString() + "\nGeschmack: " + geschmack;
     }
 }

@@ -7,7 +7,7 @@
  */
 
 
-public abstract class Wein extends AlkoholischesGetraenk {
+public  class Wein extends AlkoholischesGetraenk {
 
     /**
      * Attribut jahrgang für jahrgang des Weins

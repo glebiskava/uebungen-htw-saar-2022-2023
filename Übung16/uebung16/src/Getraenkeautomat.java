@@ -51,9 +51,7 @@ public class Getraenkeautomat<T extends Getraenk> {
         if (flaschenlager.isEmpty()) {
             return null;
         }
-        Flasche<? extends Getraenk> flasche = flaschenlager.remove(0);
-        flasche.leeren();
-        return flasche;
+        return flaschenlager.remove(0);
     }
 
     /**
@@ -63,7 +61,7 @@ public class Getraenkeautomat<T extends Getraenk> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Getraenkeautomat:\n");
+        // sb.append("Getraenkeautomat: ");
         for (Flasche<? extends Getraenk> flasche : flaschenlager) {
             sb.append(flasche.toString());
             sb.append("\n");
