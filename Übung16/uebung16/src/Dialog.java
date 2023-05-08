@@ -1,11 +1,11 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 /**
- * @author Léopold Mittelberger Elisee Brand
+ * @author Leopold Mittelberger, Elisee Brand
  * @version 1.0
- *
- * Dies ist eine Klasse zum interaktiven Testen des Getränkeautomaten
+ * Dies ist eine einfache Dialogklassse zum interaktiven Testen der Aufgabe
  */
 
 public class Dialog {
@@ -16,42 +16,13 @@ public class Dialog {
     private final Scanner input;
 
     /**
-     * Konstanten für die Menüpunkte und für die wiederaufkehrenden Strings
+     * Getraekautomat Array erstellen
      */
-    private static final int GETRAENKEAUTOMAT_INT                   = 1;
-    private static final int GETRAENKEAUTOMAT_ALKOHOLISCH_INT       = 2;
-    private static final int GETRAENKEAUTOMAT_ALKOHOLFREIE_INT      = 3;
-    private static final int GETRAENKEAUTOMAT_WASSER_INT            = 4;
-    private static final int GETRAENKEAUTOMAT_SOFTDRINK_INT         = 5;
-    private static final int GETRAENKEAUTOMAT_BIER_INT              = 6;
-    private static final int GETRAENKEAUTOMAT_WEIN_INT              = 7;
-    private static final int GETRAENKEAUTOMAT_ROTWEIN_INT           = 8;
-    private static final int GETRAENKEAUTOMAT_WEISSWEIN_INT         = 9;
-    private static final int FLASCHE_EINLEGEN_INT                   = 10;
-    private static final int FLASCHE_AUSGEBEN_INT                   = 11;
-    private static final int GETRAENKE_AUSGEBEN_INT                 = 12;
-    private static final int PROGRAMM_ENDE                          = 0;
+    ArrayList<Getraenkeautomat<? extends Getraenk>> getraenkeautomatArray = new ArrayList<>();
 
-    private static final String GETRAENKEAUTOMAT_STR                = " : Getraenkeautomat anlegen";
-    private static final String GETRAENKEAUTOMAT_ALKOHOLISCH_STR    =
-            " : Getraenkeautomat mit alkoholischen Getraenken anlegen";
-    private static final String GETRAENKEAUTOMAT_ALKOHOLFREIE_STR   =
-            " : Getraenkeautomat mit alkoholfreien Getraenken anlegen";
-    private static final String GETRAENKEAUTOMAT_WASSER_STR         = " : Getraenkeautomat mit Wasser anlegen";
-    private static final String GETRAENKEAUTOMAT_SOFTDRINK_STR      = " : Getraenkeautomat mit Softdrinks anlegen";
-    private static final String GETRAENKEAUTOMAT_BIER_STR           = " : Getraenkeautomat mit Bier anlegen";
-    private static final String GETRAENKEAUTOMAT_WEIN_STR           = " : Getraenkeautomat mit Wein anlegen";
-    private static final String GETRAENKEAUTOMAT_ROTWEIN_STR        = " : Getraenkeautomat mit Rotwein anlegen";
-    private static final String GETRAENKEAUTOMAT_WEISSWEIN_STR      = " : Getraenkeautomat mit Weisswein anlegen";
-    private static final String FLASCHE_EINLEGEN_STR                =
-            " : Eine Flasche in den Getraenkeautomat einlegen";
-    private static final String FLASCHE_AUSGEBEN_STR                =
-            " : Eine Flasche aus dem Getraenkeautomat ausgeben";
-    private static final String GETRAENKE_AUSGEBEN_STR              = " : Die Getraenke im Getraenkeautomat ausgeben";
-    private static final String PROGRAMM_ENDE_STR                   = "ENDE";
 
     /**
-     * erstellen der verschiedenen Getränkeautomaten
+     * Für die Durchführung der Operationen
      */
     private Getraenkeautomat<Getraenk> getraenkeautomat;
     private Getraenkeautomat<AlkoholischesGetraenk> alkoholischeGetraenkeautomat;
@@ -64,6 +35,53 @@ public class Dialog {
     private Getraenkeautomat<Weisswein> weissweinGetraenkeautomat;
 
     /**
+     * Konstanten anlegen fuer einfache zahlen menueeingabe im terminal
+     */
+    private static final int GETRAENKAUTOMAT_INSTANZIIEREN  = 1;
+    private static final int GETRAENKAUTOMATEN_ZEIGEN       = 2;
+    private static final int GETRAENK_BESTELLEN             = 3;
+    private static final int PROGRAMM_ENDE        = 0;
+
+    /**
+     * String konstanten fuer jeden Menue punkt --> uebersichtlichkeit im code
+     */
+    private static final String GETRAENKAUTOMAT_INSTANZIIEREN_STR   = " : GetraenkeAutomat anlegen";
+    private static final String GETRAENKAUTOMATEN_ZEIGEN_STR        = " : Alle Getraenkeautomaten an zeigen";
+    private static final String GETRAENK_BESTELLEN_STR              = " : Getraenk bestellen";
+    private static final String PROGRAMM_ENDE_STR                   = " : Programm beenden";
+
+
+
+    /**
+     * Konstanten anlegen fuer einfache zahlen menueeingabe im terminal
+     */
+    private static final int GA                   = 1;
+    private static final int ALKOHOLFREIES_GA     = 2;
+    private static final int ALKOHOLISCHES_GA     = 3;
+    private static final int WASSER_GA            = 4;
+    private static final int SOFTDRINK_GA         = 5;
+    private static final int BIER                 = 6;
+    private static final int WEIN                 = 7;
+    private static final int ROTWEIN              = 8;
+    private static final int WEISSWEIN            = 9;
+
+    /**
+     * String konstanten fuer jeden Getraenkautomat Menue punkt --> uebersichtlichkeit im code
+     */
+    private static final String GA_STR                   = " : GetraenkAutomat anlegen";
+    private static final String ALKOHOLFREIES_GA_STR     = " : Alkoholfreies GetraenkeAutomat anlegen";
+    private static final String ALKOHOLISCHES_GA_STR     = " : Alkoholisches GetraenkeAutomat anlegen";
+    private static final String WASSER_GA_STR            = " : Wasser GetraenkeAutomat anlegen";
+    private static final String SOFTDRINK_GA_STR         = " : Softdrink GetraenkeAutomat anlegen";
+    private static final String BIER_STR                 = " : Bier GetraenkeAutomat anlegen";
+    private static final String WEIN_STR                 = " : Wein GetraenkeAutomat anlegen";
+    private static final String ROTWEIN_STR              = " : Rotwein GetraenkeAutomat anlegen";
+    private static final String WEISWEIN_STR             = " : Weisswein GetraenkeAutomat anlegen";
+    private static final String GA_PROGRAMM_ENDE_STR        = " : Zurueck zur Hauptmenue";
+
+
+
+    /**
      * Scanner objekt erstellen des Typs Input
      */
     public Dialog(){
@@ -73,20 +91,26 @@ public class Dialog {
     /**
      * do while schleife zum starten des Programms
      */
-    public void dialogStart() {
+    public void dialogStart(int dialogNumber){
         int befehl = 0;
 
-        do {
-            try {
-                menueAnzeigen();
-                befehl = funktionVerarbeitung();
-                funktionAusfuehrung(befehl);
-            } catch (IllegalArgumentException e) {
+        do{
+            try{
+                if(dialogNumber == 1){
+                    menueAnzeigen();
+                    befehl = funktionVerarbeitung();
+                    funktionAusfuehrung(befehl);
+                } else if(dialogNumber == 2){
+                    GAutomatMenueAnzeigen();
+                    befehl = funktionVerarbeitung();
+                    GAutomatfunktionAusfuehrung(befehl);
+                }
+            } catch (IllegalArgumentException e){
                 System.out.println(e);
-            } catch (InputMismatchException e) {
+            } catch (InputMismatchException e){
                 System.out.println("Geben Sie eine gueltige Zahl des gewollten Datentypen ein!");
                 input.nextLine();
-            } catch (Exception e) {
+            } catch (Exception e){
                 System.out.println(e);
                 e.printStackTrace(System.out);
             }
@@ -96,22 +120,31 @@ public class Dialog {
     /**
      * Methode zeigt das Menue an
      */
-    public void menueAnzeigen() {
+    public void menueAnzeigen(){
+        System.out.print("\n\n\n" +
+                GETRAENKAUTOMAT_INSTANZIIEREN   + GETRAENKAUTOMAT_INSTANZIIEREN_STR     + "\n" +
+                GETRAENKAUTOMATEN_ZEIGEN        + GETRAENKAUTOMATEN_ZEIGEN_STR          + "\n" +
+                GETRAENK_BESTELLEN              + GETRAENK_BESTELLEN_STR                + "\n" +
+                PROGRAMM_ENDE                   + PROGRAMM_ENDE_STR                     + "\n" +
+                "Geben Sie eine der angegebenen Zahlen ein : "
+        );
+    }
+    /**
+     * Methode zeigt das Getraenkautomat Menue an
+     */
+    public void GAutomatMenueAnzeigen(){
 
         System.out.print("\n\n\n" +
-                GETRAENKEAUTOMAT_INT                + GETRAENKEAUTOMAT_STR                  + "\n" +
-                GETRAENKEAUTOMAT_ALKOHOLISCH_INT    + GETRAENKEAUTOMAT_ALKOHOLISCH_STR      + "\n" +
-                GETRAENKEAUTOMAT_ALKOHOLFREIE_INT   + GETRAENKEAUTOMAT_ALKOHOLFREIE_STR     + "\n" +
-                GETRAENKEAUTOMAT_WASSER_INT         + GETRAENKEAUTOMAT_WASSER_STR           + "\n" +
-                GETRAENKEAUTOMAT_SOFTDRINK_INT      + GETRAENKEAUTOMAT_SOFTDRINK_STR        + "\n" +
-                GETRAENKEAUTOMAT_BIER_INT           + GETRAENKEAUTOMAT_BIER_STR             + "\n" +
-                GETRAENKEAUTOMAT_WEIN_INT           + GETRAENKEAUTOMAT_WEIN_STR             + "\n" +
-                GETRAENKEAUTOMAT_ROTWEIN_INT        + GETRAENKEAUTOMAT_ROTWEIN_STR          + "\n" +
-                GETRAENKEAUTOMAT_WEISSWEIN_INT      + GETRAENKEAUTOMAT_WEISSWEIN_STR        + "\n" +
-                FLASCHE_EINLEGEN_INT                + FLASCHE_EINLEGEN_STR                  + "\n" +
-                FLASCHE_AUSGEBEN_INT                + FLASCHE_AUSGEBEN_STR                  + "\n" +
-                GETRAENKE_AUSGEBEN_INT              + GETRAENKE_AUSGEBEN_STR                + "\n" +
-                PROGRAMM_ENDE                       + PROGRAMM_ENDE_STR                     + "\n" +
+                GA                 + GA_STR                  + "\n" +
+                ALKOHOLFREIES_GA   + ALKOHOLFREIES_GA_STR    + "\n" +
+                ALKOHOLISCHES_GA   + ALKOHOLISCHES_GA_STR    + "\n" +
+                WASSER_GA          + WASSER_GA_STR           + "\n" +
+                SOFTDRINK_GA       + SOFTDRINK_GA_STR        + "\n" +
+                BIER               + BIER_STR                + "\n" +
+                WEIN               + WEIN_STR                + "\n" +
+                ROTWEIN            + ROTWEIN_STR             + "\n" +
+                WEISSWEIN          + WEISWEIN_STR            + "\n" +
+                PROGRAMM_ENDE      + GA_PROGRAMM_ENDE_STR    + "\n" +
                 "Geben Sie eine der angegebenen Zahlen ein : "
         );
     }
@@ -121,58 +154,96 @@ public class Dialog {
      * @return Nutzer Eingabe befehl als Int
      */
     public int funktionVerarbeitung(){
-        return input.nextInt();
+        int befehl = input.nextInt();
+        return befehl;
     }
 
     /**
      * Methode zur Ausführung der Nutzereingabe der Menuepunkte
-     * @param befehl nummer des befehls
+     * @param befehl ist der nummer der zu eine rufe von methode fuehrt
      */
-    public void funktionAusfuehrung(int befehl) {
-        if (befehl > GETRAENKE_AUSGEBEN_INT || befehl < PROGRAMM_ENDE) {
+    public void funktionAusfuehrung(int befehl){
+        if(befehl > GETRAENK_BESTELLEN || befehl < PROGRAMM_ENDE) {
             throw new IllegalArgumentException("Geben Sie eine der angegebenen Zahlen ein!");
         } else {
             switch (befehl) {
-                case GETRAENKEAUTOMAT_INT:
-                    getraenkeautomatErstellen();
+                case GETRAENKAUTOMAT_INSTANZIIEREN:
+                    dialogStart(2);
                     break;
-                case GETRAENKEAUTOMAT_ALKOHOLISCH_INT:
-                    alkoholischenGetraenkeautomatErstellen();
+                case GETRAENKAUTOMATEN_ZEIGEN:
+                    getraenkeautomatenZeigen();
                     break;
-                case GETRAENKEAUTOMAT_ALKOHOLFREIE_INT:
-                    alkoholfreienGetraenkeautomatErstellen();
-                    break;
-                case GETRAENKEAUTOMAT_WASSER_INT:
-                    wasserGetraenkeautomatErstellen();
-                    break;
-                case GETRAENKEAUTOMAT_SOFTDRINK_INT:
-                    softdrinkGetraenkeautomatErstellen();
-                    break;
-                case GETRAENKEAUTOMAT_BIER_INT:
-                    bierGetraenkeautomatErstellen();
-                    break;
-                case GETRAENKEAUTOMAT_WEIN_INT:
-                    weinGetraenkeautomatErstellen();
-                    break;
-                case GETRAENKEAUTOMAT_ROTWEIN_INT:
-                    rotweinGetraenkeautomatErstellen();
-                    break;
-                case GETRAENKEAUTOMAT_WEISSWEIN_INT:
-                    weinGetraenkeautomatErstellen();
-                    break;
-                case FLASCHE_EINLEGEN_INT:
-                    flaschEinlegen();
-                    break;
-                case FLASCHE_AUSGEBEN_INT:
-                    flascheAusgeben();
-                    break;
-                case GETRAENKE_AUSGEBEN_INT:
-                    getraenkeAusgeben();
+                case GETRAENK_BESTELLEN:
+
                     break;
                 case PROGRAMM_ENDE:
                     System.out.println("ENDE");
                     break;
             }
+        }
+    }
+    /**
+     * Methode zur Ausführung der Nutzereingabe der Menuepunkte
+     * @param befehl ist der nummer der zu eine rufe von methode fuehrt
+     */
+    public void GAutomatfunktionAusfuehrung(int befehl){
+        if(befehl > WEISSWEIN || befehl < PROGRAMM_ENDE) {
+            throw new IllegalArgumentException("Geben Sie eine der angegebenen Zahlen ein!");
+        } else if (befehl == PROGRAMM_ENDE){
+            System.out.println("Zurueck zur Hauptmenue");
+        } else {
+            int kapazitaet = GAutomatKapazitaetEingeben();
+            switch (befehl) {
+                case GA:
+                    getraenkeautomat = new Getraenkeautomat<Getraenk>(kapazitaet);
+                    getraenkeautomatArray.add(getraenkeautomat);
+                    break;
+                case ALKOHOLFREIES_GA:
+                    alkoholischeGetraenkeautomat = new Getraenkeautomat<AlkoholischesGetraenk>(kapazitaet);
+                    getraenkeautomatArray.add(alkoholischeGetraenkeautomat);
+                    break;
+                case ALKOHOLISCHES_GA:
+                    alkoholfreieGetraenkeautomat = new Getraenkeautomat<AlkoholfreiesGetraenk>(kapazitaet);
+                    getraenkeautomatArray.add(alkoholfreieGetraenkeautomat);
+                    break;
+                case WASSER_GA:
+                    wasserGetraenkeautomat = new Getraenkeautomat<Wasser>(kapazitaet);
+                    getraenkeautomatArray.add(wasserGetraenkeautomat);
+                    break;
+                case SOFTDRINK_GA:
+                    softdrinkGetraenkeautomat = new Getraenkeautomat<Softdrink>(kapazitaet);
+                    getraenkeautomatArray.add(softdrinkGetraenkeautomat);
+                    break;
+                case BIER:
+                    bierGetraenkeautomat = new Getraenkeautomat<Bier>(kapazitaet);
+                    getraenkeautomatArray.add(bierGetraenkeautomat);
+                    break;
+                case WEIN:
+                    weinGetraenkeautomat = new Getraenkeautomat<Wein>(kapazitaet);
+                    getraenkeautomatArray.add(weinGetraenkeautomat);
+                    break;
+                case ROTWEIN:
+                    rotweinGetraenkeautomat = new Getraenkeautomat<Rotwein>(kapazitaet);
+                    getraenkeautomatArray.add(rotweinGetraenkeautomat);
+                    break;
+                case WEISSWEIN:
+                    weissweinGetraenkeautomat = new Getraenkeautomat<Weisswein>(kapazitaet);
+                    getraenkeautomatArray.add(weissweinGetraenkeautomat);
+                    break;
+            }
+        }
+    }
+
+    public int GAutomatKapazitaetEingeben(){
+        System.out.println("Geben sie die Kapazitaet des Getraekautomat als naturlische zahl ein :");
+        int kapazitaet = input.nextInt();
+        input.nextLine();
+        return kapazitaet;
+    }
+
+    public void getraenkeautomatenZeigen(){
+        for (Getraenkeautomat<? extends Getraenk> value : getraenkeautomatArray) {
+            System.out.println(value.toString());
         }
     }
 
@@ -181,6 +252,6 @@ public class Dialog {
      * @param args argumenten Array
      */
     public static void main(String[] args) {
-        new Dialog().dialogStart();
+        new Dialog().dialogStart(1);
     }
 }

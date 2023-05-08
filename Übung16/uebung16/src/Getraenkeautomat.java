@@ -19,7 +19,7 @@ public class Getraenkeautomat<T extends Getraenk> {
     /**
      * Attribut kapazitaet des Getraenkeautomats
      */
-    private int kapazitaet;
+    private final int kapazitaet;
 
     /**
      * Konstruktor mit kapazitaet
