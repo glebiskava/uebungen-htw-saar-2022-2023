@@ -49,7 +49,7 @@ public class Getraenkeautomat<T extends Getraenk> {
      */
     public Flasche<? extends Getraenk> flascheAusgeben() {
         if (flaschenlager.size() == 0) {
-            System.out.println("Es gibt noch keinen Automaten. Legen Sie erst einen an!");
+            System.out.println("Es gibt noch keinen Flaschen. Legen Sie erst einen an!");
         }
         return flaschenlager.remove(0);
     }
@@ -61,15 +61,16 @@ public class Getraenkeautomat<T extends Getraenk> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        if (flaschenlager.isEmpty()) {
-            System.out.println("Es gibt noch keinen Automaten. Legen Sie erst einen an!");
-        } else {
-            sb.append("Getraenkeautomat:\n");
-            for (Flasche<? extends Getraenk> flasche : flaschenlager) {
-                sb.append(flasche.toString());
-                sb.append("\n");
-            }
-        } return sb.toString();
+        // if (flaschenlager.isEmpty()) {
+        //     System.out.println("Es gibt noch keinen Flaschen. Legen Sie erst einen an!");
+        // } else {
+        // sb.append("Getraenkeautomat:\n");
+        for (Flasche<? extends Getraenk> flasche : flaschenlager) {
+            sb.append(flasche.toString());
+            sb.append("\n");
+        }
+        // }
+        return sb.toString();
     }
 
 }

@@ -57,6 +57,6 @@ public class Weisswein extends Wein {
      */
     @Override
     public String toString() {
-        return super.toString() + ", Weisswein\nKalt gestellt: " + kaltGestellt;
+        return super.toString() + ", Weisswein, Kalt gestellt: " + kaltGestellt;
     }
 }
