@@ -1,9 +1,8 @@
 import java.util.function.Predicate;
 
-public class Lambda {
+public class Functions {
     //b
     public void applyAndPrint(int arg1, MyFunction function){
-        System.out.println(function.apply(arg1));
         System.out.println(function.apply(arg1));
     }
     
@@ -27,7 +26,6 @@ public class Lambda {
         }
         return result;
     };
-
     static class FibonacciFunktion implements MyFunction{
         @Override
         public int apply(int i){
@@ -43,8 +41,8 @@ public class Lambda {
         }
     }
 
-    //d
 
+    //d
     //) Implementieren Sie ein Prädikat odd und ein Prädikat even. Die Prädikate sollen prüfen, ob
     // ein gegebener Integer-Wert gerade bzw. ungerade ist. Implementieren Sie das odd-Prädikat
     // als anonyme Klasse und das even-Prädikat als Lambda-Ausdruck.
@@ -57,8 +55,6 @@ public class Lambda {
         }
     };
 
-    //Rufen Sie die Methode applyAndPrint mit einem Lambda-Ausdruck auf, welcher für gerade
-    //Zahlen die Quadratzahl berechnet.
     MyFunction evenQuadrat = x -> {
         if(even.test(x)){
             return x * x;
@@ -66,6 +62,10 @@ public class Lambda {
             return x;
         }
     };
+    
+    
+    
+    
     //f
     MyFunction fakultatOdd = x -> {
         int xFacto = factoriel.apply(x);
@@ -76,9 +76,13 @@ public class Lambda {
         }
     };
     
-    //e mais ca marche pas
-    // applyAndPrint(2, evenQuadrat);
-
-
+    
+    //e 
+    //Rufen Sie die Methode applyAndPrint mit einem Lambda-Ausdruck auf, welcher für gerade
+    //Zahlen die Quadratzahl berechnet.
+    public static void main(String[] args){
+        Functions f = new Functions();
+        f.applyAndPrint(10, f.evenQuadrat);
+    }
 
 }
