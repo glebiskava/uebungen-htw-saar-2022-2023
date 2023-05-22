@@ -2,16 +2,13 @@ import java.util.function.Predicate;
 
 @FunctionalInterface
 public interface FunctionalesInterface extends MyFunction{
-    default MyFunction conditionateInput(Predicate predicat){ // prédicat en argument
-        MyFunction result = x -> predicat.test(x) ? this.apply(x) : 0;
-        return result;
-        // return result;
+    default MyFunction conditionateInput(Predicate<Integer> predicat){ // prédicat en argument
+        return x -> predicat.test(x) ? this.apply(x) : 0;
         //return résultat de la méthode apply de l'interface
     }
 
-    default MyFunction conditionateOutput(Predicate predicat){ // prédicat en argument
-        MyFunction result = x -> predicat.test(apply(x)) ? this.apply(x) : 0;
-        return result;
+    default MyFunction conditionateOutput(Predicate<Integer> predicat){ // prédicat en argument
+        return x -> predicat.test(apply(x)) ? this.apply(x) : 0;
     }
 }
 /**

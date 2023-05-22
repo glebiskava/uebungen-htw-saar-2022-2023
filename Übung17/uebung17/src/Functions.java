@@ -1,6 +1,6 @@
 import java.util.function.Predicate;
 
-public class Functions {
+public class Functions{
     //b
     public void applyAndPrint(int arg1, MyFunction function){
         System.out.println(function.apply(arg1));
@@ -83,6 +83,6 @@ public class Functions {
     public static void main(String[] args){
         Functions f = new Functions();
         f.applyAndPrint(10, f.evenQuadrat);
-    }
+    };
 
 }
