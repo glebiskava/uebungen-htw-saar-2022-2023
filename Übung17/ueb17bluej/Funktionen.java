@@ -87,6 +87,16 @@ public class Funktionen {
     }
 
     /**
+     * Zugangsmethode für Top-Level Implementierung
+     * @param x naturlische zahl
+     * @return factoriel von x 
+     */
+    public int FactorielAnonymZugang (int x){
+        Factoriel fAnonym = new Factoriel();
+        return fAnonym.apply(x);
+    }
+
+    /**
      * Static-Nested Implementierung für zweite Funktion: (ii) f(x) = x!
      */
     public static class FactorielStatischNested implements MyFunction {
@@ -97,6 +107,17 @@ public class Funktionen {
             }
             return result;
         }
+    }
+
+    /**
+     * Zugangsmethode für Static-Nested Implementierung
+     * @param x naturlische zahl
+     * @return factoriel von x 
+     */
+
+    public int FactorielStatischNestedZugang (int x){
+        FactorielStatischNested fsn = new FactorielStatischNested();
+        return fsn.apply(x);
     }
 
     /**
