@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=FunktionalesInterface
+comment0.text=\r\n\ @author\ leopold\ mittelberger,\ elisee\ brand\r\n\ @version\ 1.0\r\n\ Dies\ ist\ ein\ einfaches\ funktionales\ Interface\ welches\ das\ interface\ aus\ Aufgabe\ 1a\ erweitert\r\n
+comment1.params=predicate
+comment1.target=MyFunction\ conditionateInput(java.util.function.Predicate)
+comment1.text=\r\n\ Diese\ Methode\ nimmt\ ein\ Pr\u00E4dikat\ als\ Argument\ entgegen\ und\r\n\ gibt\ einen\ Lambda-Ausdruck\ zur\u00FCck.\ Der\ Lambda-Ausdruck\ pr\u00FCft\ f\u00FCr\ einen\ gegebenen\r\n\ Integer-Wert,\ ob\ dieser\ das\ Pr\u00E4dikat\ erf\u00FCllt.\ Ist\ das\ Pr\u00E4dikat\ erf\u00FCllt,\ wird\ das\ Ergebnis\ der\r\n\ apply-Methode\ des\ Interfaces\ zur\u00FCckgegeben,\ ansonsten\ wird\ 0\ zur\u00FCckgegeben.\r\n\ @param\ predicate\ pr\u00E4dikat\ dass\ entgegengenommen\ wird\r\n\ @return\ pr\u00E4dikat\r\n
+comment2.params=predicate
+comment2.target=MyFunction\ conditionateOutput(java.util.function.Predicate)
+comment2.text=\r\n\ Diese\ Methode\ nimmt\ ebenfalls\ ein\ Pr\u00E4dikat\ als\ Argument\ ent-\r\n\ gegen\ und\ gibt\ einen\ Lambda-Ausdruck\ zur\u00FCck.\ Der\ Lambda-Ausdruck\ pr\u00FCft,\ ob\ das\r\n\ Ergebnis\ der\ apply-Methode\ das\ Pr\u00E4dikat\ erf\u00FCllt.\ Ist\ das\ Pr\u00E4dikat\ erf\u00FCllt,\ wird\ das\ Ergeb-\r\n\ nis\ zur\u00FCckgegeben,\ ansonsten\ 0\r\n\ @param\ predicate\ pr\u00E4dikat\ dass\ entgegengenommen\ wird\r\n\ @return\ pr\u00E4dikat\r\n
+numComments=3

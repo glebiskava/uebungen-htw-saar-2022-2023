@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=MyFunction
+comment0.text=\r\n\ @author\ leopold\ mittelberger,\ elisee\ brand\r\n\ @version\ 1.0\r\n\ Dies\ ist\ ein\ Interface\ zur\ \u00DCbergabe\ der\ Funktion\r\n
+comment1.params=i
+comment1.target=int\ apply(int)
+numComments=2

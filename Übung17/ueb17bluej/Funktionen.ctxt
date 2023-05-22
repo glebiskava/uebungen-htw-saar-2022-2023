@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=Funktionen
+comment0.text=\r\n\ @author\ leopold\ mittelberger,\ elisee\ brand\r\n\ @version\ 1.0\r\n\ Dies\ ist\ eine\ Klasse\ mit\ verschiedenen\ Funktionen\r\n
+comment1.params=i
+comment1.target=int\ apply(int)
+comment2.params=i
+comment2.target=int\ apply(int)
+comment3.params=i
+comment3.target=int\ apply(int)
+comment4.params=i
+comment4.target=int\ apply(int)
+comment5.params=integer
+comment5.target=boolean\ test(java.lang.Integer)
+numComments=6
