@@ -1,51 +1,106 @@
 import java.util.function.Predicate;
 
-public class Functions{
-    //b
-    public void applyAndPrint(int arg1, MyFunction function){
-        System.out.println(function.apply(arg1));
+public class Functions {
+
+    //a
+    public static void applyAndPrint(int i, int j, MyFunction f) {
+        for (int x = i; x <= j; x++) {
+            int result = f.apply(x);
+            System.out.println(result);
+        }
     }
-    
-    public MyFunction quadrad = x -> x * x;
-    public MyFunction factoriel = x -> {
+
+    //b
+    // (i) f(x) = x^2
+    MyFunction squareLambda = x -> x * x;
+    MyFunction squareAnonymous = new MyFunction() {
+        public int apply(int i) {
+            return i * i;
+        }
+    };
+
+    // (ii) f(x) = x!
+    MyFunction factorialLambda = x -> {
         int result = 1;
-        for (int i = 1; i <= x; i++) {
+        for (int i = 2; i <= x; i++) {
             result *= i;
         }
         return result;
     };
-    public MyFunction puissanceXplus1 = x -> (int)Math.pow(x, x+1);
-    public MyFunction fibonacci = x -> {
-        int result = 0;
-        int a = 0;
-        int b = 1;
-        for (int i = 2; i < x; i++) {
-            result = a + b;
-            a = b;
-            b = result;
+
+    MyFunction factorialAnonymous = new MyFunction() {
+        public int apply(int i) {
+            int result = 1;
+            for (int j = 2; j <= i; j++) {
+                result *= j;
+            }
+            return result;
         }
-        return result;
     };
-    static class FibonacciFunktion implements MyFunction{
-        @Override
-        public int apply(int i){
-            int result = 0;
-            int a = 0;
-            int b = 1;
-            for (int j = 2; j < i; j++) {
-                result = a + b;
-                a = b;
-                b = result;
+
+    public static class Factorial implements MyFunction {
+        public int apply(int x) {
+            int result = 1;
+            for (int i = 2; i <= x; i++) {
+                result *= i;
             }
             return result;
         }
     }
 
+    // Statische Nested-Klasse
+    public static class FactorialStaticNested implements MyFunction {
+        public int apply(int x) {
+            int result = 1;
+            for (int i = 2; i <= x; i++) {
+                result *= i;
+            }
+            return result;
+        }
+    }
+
+    // (iii) f(x) = x(x+1)
+    MyFunction productLambda = x -> x * (x + 1);
+    MyFunction productAnonymous = new MyFunction() {
+        public int apply(int i) {
+            return i * (i + 1);
+        }
+    };
+
+    // (iv) f(x) = fib(x) (Fibonacci-Folge)
+    MyFunction fibonacciLambda = x -> {
+        if (x <= 1) {
+            return x;
+        } else {
+            int prev = 0;
+            int current = 1;
+            for (int i = 2; i <= x; i++) {
+                int next = prev + current;
+                prev = current;
+                current = next;
+            }
+            return current;
+        }
+    };
+    MyFunction fibonacciAnonymous = new MyFunction() {
+        public int apply(int i) {
+            if (i <= 1) {
+                return i;
+            } else {
+                int prev = 0;
+                int current = 1;
+                for (int j = 2; j <= i; j++) {
+                    int next = prev + current;
+                    prev = current;
+                    current = next;
+                }
+                return current;
+            }
+        }
+    };
+
 
     //d
-    //) Implementieren Sie ein Prädikat odd und ein Prädikat even. Die Prädikate sollen prüfen, ob
-    // ein gegebener Integer-Wert gerade bzw. ungerade ist. Implementieren Sie das odd-Prädikat
-    // als anonyme Klasse und das even-Prädikat als Lambda-Ausdruck.
     Predicate<Integer> even = x -> x % 2 == 0;
 
     Predicate<Integer> odd = new Predicate<Integer>() {
@@ -62,27 +117,14 @@ public class Functions{
             return x;
         }
     };
-    
-    
-    
-    
+
     //f
     MyFunction fakultatOdd = x -> {
-        int xFacto = factoriel.apply(x);
-        if(odd.test(xFacto)){
+        int xFacto = factorialAnonymous.apply(x);
+        if(odd.test(x)){
             return xFacto;
         } else {
             return 0;
         }
     };
-    
-    
-    //e 
-    //Rufen Sie die Methode applyAndPrint mit einem Lambda-Ausdruck auf, welcher für gerade
-    //Zahlen die Quadratzahl berechnet.
-    public static void main(String[] args){
-        Functions f = new Functions();
-        f.applyAndPrint(10, f.evenQuadrat);
-    };
-
 }

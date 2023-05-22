@@ -2,24 +2,14 @@ import java.util.function.Predicate;
 
 @FunctionalInterface
 public interface FunctionalesInterface extends MyFunction{
-    default MyFunction conditionateInput(Predicate<Integer> predicat){ // prédicat en argument
-        return x -> predicat.test(x) ? this.apply(x) : 0;
-        //return résultat de la méthode apply de l'interface
+    default MyFunction conditionateInput(Predicate<Integer> predicate) {
+        return x -> predicate.test(x) ? apply(x) : 0;
     }
 
-    default MyFunction conditionateOutput(Predicate<Integer> predicat){ // prédicat en argument
-        return x -> predicat.test(apply(x)) ? this.apply(x) : 0;
+    default MyFunction conditionateOutput(Predicate<Integer> predicate) {
+        return x -> {
+            int result = apply(x);
+            return predicate.test(result) ? result : 0;
+        };
     }
 }
-/**
- * Implémentez une interface fonctionnelle qui étend l'interface utilisée dans la tâche 1a. 
- * Cette interface doit comporter les deux posséder les méthodes supplémentaires suivantes avec une implémentation par défaut :
-    i conditionateInput : Cette méthode prend un prédicat en argument et renvoie une expression lambda. 
-    L'expression lambda vérifie pour une valeur entière donnée si celle-ci satisfait au prédicat. 
-    Si le prédicat est rempli, le résultat de la méthode apply de l'interface est renvoyé, sinon 0 est renvoyé.
-
-    ii conditionateOutput : Cette méthode prend également un prédicat en argument et renvoie une expression lambda. 
-    L'expression lambda vérifie si le résultat de la méthode apply satisfait le prédicat. Si le prédicat est rempli, 
-    le résultat est renvoyé, sinon 0. 
-
- */
