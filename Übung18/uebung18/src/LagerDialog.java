@@ -514,7 +514,7 @@ public class LagerDialog {
         for (int i = 0; i < Lager.lager.length; i++) {
             if (Lager.lager[i] != null) {
                 int ArtNr = Lager.lager[i].getArtikelNr();
-                String Art = Lager.lager[i].getBeschreibung();
+                String Art = Lager.lager[i].getArt();
                 double Preis = Lager.lager[i].getPreis();
                 int Bestand = Lager.lager[i].getBestand();
                 double GesamtPreis = Preis * Bestand;

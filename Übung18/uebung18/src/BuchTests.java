@@ -139,7 +139,7 @@ public class BuchTests {
     public void test_getBeschreibung() {
         Buch buch = new Buch(1111, 1, 2, "Wochenende", "ronny", "cool");
 
-        assertEquals("ronny: Wochenende", buch.getBeschreibung());
+        assertEquals("ronny: Wochenende", buch.getArt());
     }
 
     /**

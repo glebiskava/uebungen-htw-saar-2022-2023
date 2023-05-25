@@ -116,10 +116,6 @@ public class Artikel {
         return preis;
     }
 
-    public String getBeschreibung() {
-        return art;
-    }
-
     /**
      * Diese Methode vergleicht
      * @param object The object to be compared with

@@ -1,4 +1,9 @@
-import java.util.Scanner;
+import java.util.*;
+import java.util.function.BiPredicate;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
 /**
  * Dies ist eine Klasse die zur Interaktion mit einem Benutzer dient.
  * Der Benutzer kann ein Objekt bearbeiten in dem er mit Zahlen verschiedene Methoden/Setter auswaehlt
@@ -144,6 +149,126 @@ public class Lager {
         ErrorCheck.checkRangeOfIndex(index, lager.length);
 
         return lager[index];
+    }
+
+    /**
+     * Methode, welche die Artikel im Lager als sortiertes Array
+     * zurückgibt
+     * @param sortCrit Sortier-Kriterium
+     * @return sortiertes Array
+     */
+    public Artikel[] getSorted(BiPredicate<Artikel, Artikel> sortCrit) {
+        Artikel[] sortedArray = Arrays.copyOf(lager, lager.length);
+
+        Comparator<Artikel> comparator = (a1, a2) -> {
+            if (sortCrit.test(a1, a2)) {
+                return -1; // a1 sollte vor a2 sortiert werden
+            } else if (sortCrit.test(a2, a1)) {
+                return 1; // a2 sollte vor a1 sortiert werden
+            } else {
+                return 0; // a1 und a2 sind gleich
+            }
+        };
+
+        Arrays.sort(sortedArray, comparator);
+
+        return sortedArray;
+    }
+
+    /**
+     * Methode die eine an die Methode übergebene
+     * Operation auf alle Artikel im Lager anwendet
+     * @param operation Operation die angewendet wird
+     */
+    public void applyToArticles(Consumer<Artikel> operation) {
+        for (Artikel artikel : lager) {
+            operation.accept(artikel);
+        }
+    }
+
+    /**
+     * Methode die alle Artikel des Lagers zurückgibt,
+     * welche ein bestimmtes Filterkriterium erfüllen
+     * @param filterCrit Filter Kriterium
+     * @return gefiltertes Array
+     */
+    public Artikel[] filter(Predicate<Artikel> filterCrit) {
+        List<Artikel> filteredList = new ArrayList<>();
+
+        for (Artikel artikel : lager) {
+            if (filterCrit.test(artikel)) {
+                filteredList.add(artikel);
+            }
+        }
+
+        return filteredList.toArray(new Artikel[0]);
+    }
+
+    /**
+     * Methode, die eine Operation auf die Artikel
+     * anwendet, welche ein bestimmtes Kriterium erfüllen
+     * @param filterCrit filter kriterium
+     * @param operation operation die angewendet wird
+     */
+    public void applyToSomeArticles(Predicate<Artikel> filterCrit, Consumer<Artikel> operation) {
+        for (Artikel artikel : lager) {
+            if (filterCrit.test(artikel)) {
+                operation.accept(artikel);
+            }
+        }
+    }
+
+    /**
+     * Methode, die eine sortierte Liste der Artikel zurück-
+     * gibt, welche ein bestimmtes Suchkriterium erfüllen
+     * @param searchCrit such kriterium
+     * @param sortCrit sortier kriterium
+     * @return array mit gematchten Artikeln
+     */
+    public List<Artikel> getArticles(Predicate<Artikel> searchCrit, Comparator<Artikel> sortCrit) {
+        List<Artikel> matchingArticles = new ArrayList<>();
+
+        for (Artikel artikel : lager) {
+            if (searchCrit.test(artikel)) {
+                matchingArticles.add(artikel);
+            }
+        }
+
+        matchingArticles.sort(sortCrit);
+
+        return matchingArticles;
+    }
+
+    /**
+     * Methode, die eine beliebige Menge an Filterkriterien als
+     * Parameter entgegennimmt und die Artikel des Lagers zurückgibt, die alle Filterkriterien er-
+     * füllen
+     * @param filterCrit filterkriterien als argumenten variablen Parameterliste
+     * @return
+     * Die Verwendung von @SafeVarargs hilft dem Compiler, potenzielle
+     * Fehler zu erkennen und gibt eine Warnung aus, wenn unsichere
+     * Operationen mit generischen Typen und varargs durchgeführt werden
+     */
+    @SafeVarargs
+    public final List<Artikel> filterAll(Predicate<Artikel>... filterCrit) {
+        List<Artikel> filteredArticles = new ArrayList<>();
+
+        for (Artikel artikel : lager) {
+            boolean allCritMatched = true;
+
+            for (Predicate<Artikel> criterion : filterCrit) {
+                if (!criterion.test(artikel)) {
+                    allCritMatched = false;
+                    break;
+                }
+            }
+
+            if (allCritMatched) {
+                filteredArticles.add(artikel);
+            }
+        }
+
+        return filteredArticles;
     }
 
     /**

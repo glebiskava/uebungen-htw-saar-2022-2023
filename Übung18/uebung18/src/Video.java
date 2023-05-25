@@ -82,7 +82,7 @@ public class Video extends Artikel{
      * erzeugt eine Beschreibung als String
      */
     @Override
-    public String getBeschreibung() {
+    public String getArt() {
         return titel;
     }
 
