@@ -7,23 +7,27 @@ import java.util.Objects;
  */
 
 public class Artikel {
+    /** Attribute */
+    private int artikelNr;
+    private String art;
+    private int bestand;
+    private double preis;
 
-    /**
-     * @param artikelNr Nummer des Artikels
-     * @param art Beschreibung des Artikels
-     * @param bestand Anzahl der Artikel
-     */
-    public int artikelNr;
-    public String art;
-    public int bestand;
-    public double preis;
+
+    private static final int BESTAND_DEFAULT   = 0;
+    private static final int PREIS_DEFAULT     = 0;
 
 
     /** Konstruktoren
      * erster Konstruktor fuer Artikel(artikelNr, art und Bestand)
      * Aufruf der Funktion zum Pruefen der Eingaben beim Anlegen eines Objektes
+     * @param artikelNr Nummer des Artikels
+     * @param art Beschreibung des Artikels
+     * @param bestand Anzahl der Artikel
      */
     public Artikel(int artikelNr, String art, int bestand, double preis) {
+        ErrorCheck.checkBestand(bestand);
+        ErrorCheck.checkPreis(preis);
         setArtikelNr(artikelNr);
         setArt(art);
         setBestand(bestand);
@@ -34,7 +38,7 @@ public class Artikel {
      * weiter Konstruktor für Artikel(artikelNr und art)
      */
     public Artikel(int artikelNr, String art) {
-        this(artikelNr, art, 0, 0);
+        this(artikelNr, art, BESTAND_DEFAULT, PREIS_DEFAULT);
     }
 
     /**
@@ -74,43 +78,76 @@ public class Artikel {
      * Setter hier noetig, falls in einem Handel Inventur geführt wird, falls ein
      * etwas geklaut wird, zum Beispiel
      * Bestand darf nicht negativ sein
+     * 
+     * 
+     * Setter für ArtikelNr soll 4stelluge sein
+     * @param ArtikelNr numùmer des Artikels
      */
     public void setArtikelNr(int artikelNr) {
         ErrorCheck.checkArtikelNr(artikelNr);
         this.artikelNr = artikelNr;
     }
 
+     /**
+     * Setter für Bestand
+     * @param bestand Anzahl der Artikel
+     */
     public void setBestand(int bestand) {
         ErrorCheck.checkGroesserAlsNull(bestand);
         ErrorCheck.checkBestand(bestand);
         this.bestand = bestand;
     }
 
+    /**
+     * Setter für Preis
+     * @param preis Preis des Artikels
+     */
     public void setPreis(double preis) {
         ErrorCheck.checkPreis(preis);
         this.preis = preis;
     }
 
+    /**
+     * Setter für Art
+     * @param art Beschreibung des Artikels
+     */
     public void setArt(String art) {
         ErrorCheck.checkArt(art);
         this.art = art;
     }
 
     /**Getter fuer jedes Attribut*/
+    /**
+     * Getter für ArtikelNr
+     * @return ArtikelNr Nummer des Artikels
+     */
     public int getArtikelNr() {
 
         return artikelNr;
     }
 
+    /**
+     * Getter für Art
+     * @return Art Beschreibung des Artikels
+     */
     public String getArt() {
 
         return art;
     }
 
+    /**
+     * Getter für Bestand
+     * @return Bestand Anzahl der Artikel
+     */
     public int getBestand() {
 
         return bestand;
     }
+
+    /**
+     * Getter für Preis
+     * @return Preis Preis des Artikels
+     */
     public double getPreis(){
 
         return preis;

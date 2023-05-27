@@ -31,33 +31,51 @@ public class Buch extends Artikel{
     }
 
     /**
-     * getter fuer jedes Attribut
+     * get fuer Titel
+     * @return titel titel des Buchs
      */
     public String getTitel() {
         return titel;
     }
 
+    /**
+     * get fuer Author
+     * @return author des Buchs
+     */
     public String getAuthor() {
         return author;
     }
 
+    /**
+     * get fuer Verlag
+     * @return verlag des Buchs
+     */
     public String getVerlag() {
         return verlag;
     }
 
     /**
-     * setter fuer jedes Attribute
+     * setter fuer titel    
+     * @param titel titel des Buchs
      */
     public void setTitel(String titel) {
         ErrorCheck.checkStringNichtLeer(titel);
         this.titel = titel;
     }
 
+    /**
+     * setter fuer author
+     * @param author author des Buchs
+     */
     public void setAuthor(String author) {
         ErrorCheck.checkStringNichtLeer(author);
         this.author = author;
     }
 
+    /**
+     * setter fuer verlag
+     * @param verlag verlag des Buchs
+     */
     public void setVerlag(String verlag) {
         ErrorCheck.checkStringNichtLeer(verlag);
         this.verlag = verlag;
@@ -72,9 +90,9 @@ public class Buch extends Artikel{
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         Buch buch = (Buch) object;
-        return artikelNr == buch.artikelNr &&
-                bestand == buch.bestand &&
-                Double.compare(buch.preis, preis) == 0 &&
+        return getArtikelNr() == buch.getArtikelNr() &&
+                getBestand() == buch.getBestand() &&
+                Double.compare(buch.getPreis(), getPreis()) == 0 &&
                 Objects.equals(titel, buch.titel) &&
                 Objects.equals(author, buch.author) &&
                 Objects.equals(verlag, buch.verlag);

@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 public class Lager {
 
     public static Artikel[] lager;
-    public static int lagerLength = 0;
+    private static int lagerLength = 0;
 
     /**
      * zwei konstruktoren --> einer mit waehlbarer Laenge des Arrays und ein Standardkonstruktor
