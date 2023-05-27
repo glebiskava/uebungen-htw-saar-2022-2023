@@ -199,9 +199,9 @@ public class Lager {
                 }
             }
         }
-        for(int i = 0; i < lagerLength; i++) {
-            System.out.println(i + ". " + lager[i] + "\n");
-        }
+        // for(int i = 0; i < lagerLength; i++) {
+        //     System.out.println(i + ". " + lager[i] + "\n");
+        // }
         return lager;
     }
 
