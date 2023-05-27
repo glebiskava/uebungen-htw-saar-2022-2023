@@ -1,3 +1,4 @@
+import java.rmi.server.SocketSecurityException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -159,8 +160,8 @@ public class LagerDialog {
                     Lager.legeAnArtikel(artikel);
                     artikel = new Artikel(9999, "9", 1, 1);
                     Lager.legeAnArtikel(artikel);
-                    artikel = new Artikel(1010, "10", 1, 1);
-                    Lager.legeAnArtikel(artikel);
+                    // artikel = new Artikel(1010, "10", 1, 1);
+                    // Lager.legeAnArtikel(artikel);
 
                     //jusque la à suprimer après tests
                     break;
@@ -291,7 +292,17 @@ public class LagerDialog {
                     System.out.println("GesuchterAuthor: ");
                     String gesuchterAuthor = input.next();
                     input.nextLine();
-                    fassade.aufgabe_h_iii(lager, gesuchterAuthor);
+                    for(int i = 0; i < Lager.getArtikelAnzahl(); i++){
+                        if(Lager.getArtikel(i) instanceof Buch){
+                            
+                            if(!((Buch) Lager.getArtikel(i)).getAuthor().equals(gesuchterAuthor)){
+                                System.out.println("Geben Sie ein richtige Author ein!");
+                            } else {
+                                System.out.println("Das author ist richtig, die preis wird -5% rabat");
+                                fassade.aufgabe_h_iii(lager, gesuchterAuthor);
+                            }
+                        }
+                    }
                     break;
                 case UEB18_AUFGABE_H_IV:
                     fassade.aufgabe_h_iv(lager);

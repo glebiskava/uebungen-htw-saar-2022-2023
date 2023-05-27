@@ -61,7 +61,10 @@ public class Lager {
 
         for (int x = 0; x < lager.length; x++) {
             if (artikelNr == lager[x].getArtikelNr()) {
-                lager[x] = null;
+                for (int y = x; y < lager.length - 1; y++) {
+                    lager[y] = lager[y + 1];
+                }
+                lager[lager.length - 1] = null;
                 lagerLength--;
                 break;
             }
@@ -239,7 +242,7 @@ public class Lager {
      */
     public void applyToSomeArticles(Predicate<Artikel> filterCrit, Consumer<Artikel> operation) {
         for (Artikel artikel : lager) { // boucle sur tous les articles
-            if (filterCrit.test(artikel)) { // si l'article match le critère
+            if (artikel != null && filterCrit.test(artikel)) { // si l'article match le critère
                 operation.accept(artikel); 
 // on applique l'opération avec l'article en paramètre en utilisant la méthode accept de l'interface Consumer qui fait appel à la méthode apply de l'interface Consumer et permet donc d'appliquer l'opération
             }

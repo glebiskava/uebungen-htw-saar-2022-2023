@@ -36,7 +36,6 @@ public class Ueb18Fassade {
         BiPredicate<Artikel, Artikel> Preis = (artikel1, artikel2) ->{ return (artikel1.getPreis()) < (artikel2.getPreis());};
 
         BiPredicate<Artikel, Artikel> Sort = (artikel1, artikel2) -> {
-            // System.out.println("Nr " + artikel1.getArtikelNr() + ", Nr2 " + artikel2.getArtikelNr() + "\n");
             return Art.test(artikel1, artikel2) ? true : 
             Bestand.test(artikel1, artikel2) ? true : 
             Preis.test(artikel1, artikel2) ? true : false;
@@ -82,13 +81,6 @@ public class Ueb18Fassade {
     public void aufgabe_c_iv(Lager lager) {
         aufgabe_c_ii(lager);
         aufgabe_c_iii(lager);
-        // lager.applyToArticles(artikel -> {
-        //     double neuerPreis = artikel.getPreis() * 0.9; // 10% Rabatt
-        //     artikel.setPreis(neuerPreis);
-
-        //     String neueBeschreibung = artikel.getArt() + " (Sonderangebot)";
-        //     artikel.setArt(neueBeschreibung);
-        // });
     }
 
     /**
@@ -99,7 +91,8 @@ public class Ueb18Fassade {
      */
     public void aufgabe_h_i(Lager lager) {
         // lager.applyToSomeArticles(a -> a instanceof CD, a -> a.aenderePreis(10));
-        // faut pas plutôt mettre ça ? : a -> a.setPreis(a.getPreis() * (1 + 10/100)) // +10%
+        lager.applyToSomeArticles(a -> a instanceof CD, a -> a.setPreis((a.getPreis() * 1.1))); // +10%
+        // faut pas plutôt mettre ça ? 
         // ou bien on fait une fonction lambda qui fait les % mais jsp comment faire lol
     }
 
@@ -110,7 +103,7 @@ public class Ueb18Fassade {
      * @param lager Das Lager mit den Artikeln. Die Aenderungen werden direkt in diesem Objekt vorgenommen.
      */
     public void aufgabe_h_ii(Lager lager) {
-        // lager.applyToSomeArticles(a -> a.getBestand() <= 2, a -> a.aenderePreis(-5));
+        lager.applyToSomeArticles(a -> a.getBestand() <= 2, a -> a.setPreis((a.getPreis() * 0.95)));
     }
 
     /**
@@ -121,7 +114,7 @@ public class Ueb18Fassade {
      * @param gesuchterAutor Der Autor, dessen Buecher guenstiger werden sollen.
      */
     public void aufgabe_h_iii(Lager lager, String gesuchterAutor) {
-        // lager.applyToSomeArticles(a -> a instanceof Buch && ((Buch) a).getAuthor().equals(gesuchterAutor), a -> a.aenderePreis(-5));
+        lager.applyToSomeArticles(a -> a instanceof Buch && ((Buch) a).getAuthor().equals(gesuchterAutor), a -> a.setPreis((a.getPreis() * 0.95)));
     }
 
     /**
