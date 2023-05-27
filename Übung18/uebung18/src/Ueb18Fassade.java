@@ -1,4 +1,4 @@
-import java.util.Comparator;
+import java.util.function.BiPredicate;
 
 /**
  * <p>Diese Klasse ist eine Fassade, hinter der Sie Ihre Loesung verstecken. Der Test ruft nur die hier definierten
@@ -24,14 +24,26 @@ public class Ueb18Fassade {
      * @return Die sortierte Artikelliste.
      */
     public Artikel[] aufgabe_c_i(Lager lager) {
-        /*Comparator<Artikel> comparator = Comparator
-                .comparing(Artikel::getUnterkategorie)
-                .thenComparing(Artikel::getBestand)
-                .thenComparing(Artikel::getPreis);
 
-        return lager.getSorted(comparator);*/
-        return null;
-    }
+        BiPredicate<Artikel, Artikel> Art = (artikel1, artikel2) ->{
+             return (artikel1.getArt()).compareTo(artikel2.getArt()) < 0;};
+        // (artikel1.getArt()).compareTo(artikel2.getArt()) renvoie un int, si il est négatif alors artikel1 est plus petit que artikel2 
+        // cela est ensuite converti en boolean (<0 = true, >0 = false)
+        // cela compare les deux articles sous forme de string et retourne true si artikel1 est plus petit que artikel2
+
+        BiPredicate<Artikel, Artikel> Bestand = (artikel1, artikel2) ->{ return (artikel1.getBestand()) < (artikel2.getBestand());};
+
+        BiPredicate<Artikel, Artikel> Preis = (artikel1, artikel2) ->{ return (artikel1.getPreis()) < (artikel2.getPreis());};
+
+        BiPredicate<Artikel, Artikel> Sort = (artikel1, artikel2) -> {
+            // System.out.println("Nr " + artikel1.getArtikelNr() + ", Nr2 " + artikel2.getArtikelNr() + "\n");
+            return Art.test(artikel1, artikel2) ? true : 
+            Bestand.test(artikel1, artikel2) ? true : 
+            Preis.test(artikel1, artikel2) ? true : false;
+        };
+
+        return lager.getSorted(Sort);
+        }
 
     /**
      * Loest die Aufgabe (c) ii.
@@ -68,13 +80,15 @@ public class Ueb18Fassade {
      * @param lager Das Lager mit den Artikeln, deren Preise und Bezeichnungen geaendert werden sollen.
      */
     public void aufgabe_c_iv(Lager lager) {
-        lager.applyToArticles(artikel -> {
-            double neuerPreis = artikel.getPreis() * 0.9; // 10% Rabatt
-            artikel.setPreis(neuerPreis);
+        aufgabe_c_ii(lager);
+        aufgabe_c_iii(lager);
+        // lager.applyToArticles(artikel -> {
+        //     double neuerPreis = artikel.getPreis() * 0.9; // 10% Rabatt
+        //     artikel.setPreis(neuerPreis);
 
-            String neueBeschreibung = artikel.getArt() + " (Sonderangebot)";
-            artikel.setArt(neueBeschreibung);
-        });
+        //     String neueBeschreibung = artikel.getArt() + " (Sonderangebot)";
+        //     artikel.setArt(neueBeschreibung);
+        // });
     }
 
     /**
@@ -117,6 +131,8 @@ public class Ueb18Fassade {
      * @param lager Das Lager mit den Artikeln. Die Aenderungen werden direkt in diesem Objekt vorgenommen.
      */
     public void aufgabe_h_iv(Lager lager) {
+        aufgabe_h_i(lager);
+        aufgabe_h_ii(lager);
         // lager.applyToSomeArticles(a -> a instanceof CD, a -> a.aenderePreis(10));
         // lager.applyToSomeArticles(a -> a.getBestand() <= 2, a -> a.aenderePreis(-5));
     }

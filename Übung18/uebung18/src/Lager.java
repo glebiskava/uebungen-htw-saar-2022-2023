@@ -2,7 +2,6 @@ import java.util.*;
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 /**
  * Dies ist eine Klasse die zur Interaktion mit einem Benutzer dient.
@@ -13,6 +12,7 @@ import java.util.stream.Collectors;
 public class Lager {
 
     public static Artikel[] lager;
+    public static int lagerLength = 0;
 
     /**
      * zwei konstruktoren --> einer mit waehlbarer Laenge des Arrays und ein Standardkonstruktor
@@ -42,6 +42,7 @@ public class Lager {
         for (int x = 0; x < lager.length; x++) {
             if (lager[x] == null) {
                 lager[x] = artikel;
+                lagerLength++;
                 break;
             }
         }
@@ -61,6 +62,7 @@ public class Lager {
         for (int x = 0; x < lager.length; x++) {
             if (artikelNr == lager[x].getArtikelNr()) {
                 lager[x] = null;
+                lagerLength--;
                 break;
             }
         }
@@ -180,18 +182,23 @@ public class Lager {
 
     //     return sortedArray;
     // }
+
+
+    //bubble sort tout simple recommandé, parce qu'on sait bien l'expliquer ! et sans importer quoi que ce soit
     public Artikel[] getSorted(BiPredicate<Artikel, Artikel> sortCrit) {
 
-        for(int i = 0; i < lager.length; i++) {
-            for(int j = 0; j < lager.length - 1; j++) {
-                if(sortCrit.test(lager[j], lager[j + 1])) {
+        for(int i = 0; i < lagerLength; i++) {
+            for(int j = 0; j < lagerLength - 1; j++) {
+                if(sortCrit.test(lager[j + 1], lager[j])) {
                     Artikel temp = lager[j];
                     lager[j] = lager[j + 1];
                     lager[j + 1] = temp;
                 }
             }
         }
-
+        for(int i = 0; i < lagerLength; i++) {
+            System.out.println(i + ". " + lager[i] + "\n");
+        }
         return lager;
     }
 

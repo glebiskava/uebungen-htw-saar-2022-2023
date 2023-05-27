@@ -11,7 +11,7 @@ public class LagerDialog {
     public static Artikel artikel;
     private final Scanner input;
     private Lager lager;
-    private Ueb18Fassade fassade;
+    private Ueb18Fassade fassade = new Ueb18Fassade();
 
     /**
      * Benutzer soll anhand von Zahlen die gewuenschten input aus.
@@ -57,6 +57,7 @@ public class LagerDialog {
     private static final int UEB18_AUFGABE_H_IV             = 8;
     private static final int UEB18_AUFGABE_H_V              = 9;
     private static final int UEB18_AUFGABE_H_VI             = 10;
+    private static final int UEB18_TO_STRING_ARTIKEL        = 11;
     
     private static final int UEB18_DIALOGUE_BEENDEN         = 0;
 
@@ -136,7 +137,32 @@ public class LagerDialog {
         } else {
             switch(befehl) {
                 case LAGER_ANLEGEN:
-                    lagerAnlegen();
+                    // lagerAnlegen(); temporaire, à remetre après tests
+                    // a suprimer après tests a partir d'ici
+                    //simplement pour tester plus facilement
+                    lager = new Lager(10);
+                    artikel = new Artikel(1111, "a", 1, 1);
+                    Lager.legeAnArtikel(artikel);
+                    artikel = new Artikel(2222, "b", 1, 1);
+                    Lager.legeAnArtikel(artikel);
+                    artikel = new Artikel(3333, "c", 2, 1);
+                    Lager.legeAnArtikel(artikel);
+                    artikel = new Artikel(4444, "c", 1, 2);
+                    Lager.legeAnArtikel(artikel);
+                    artikel = new Artikel(5555, "c", 3, 1);
+                    Lager.legeAnArtikel(artikel);
+                    artikel = new Artikel(6666, "c", 1, 1);
+                    Lager.legeAnArtikel(artikel);
+                    artikel = new Artikel(7777, "c", 1, 4);
+                    Lager.legeAnArtikel(artikel);
+                    artikel = new Artikel(8888, "d", 1, 1);
+                    Lager.legeAnArtikel(artikel);
+                    artikel = new Artikel(9999, "9", 1, 1);
+                    Lager.legeAnArtikel(artikel);
+                    artikel = new Artikel(1010, "10", 1, 1);
+                    Lager.legeAnArtikel(artikel);
+
+                    //jusque la à suprimer après tests
                     break;
                 case ARTIKEL_ANLEGEN:
                     artikelAnlegen();
@@ -220,16 +246,17 @@ public class LagerDialog {
     }
     public void menueUeb18(){
         System.out.print("\n\n\n" +
-                UEB18_AUFGABE_C_I               + ": UEB18_AUFGABE_C_I\n"   +
-                UEB18_AUFGABE_C_II              + ": UEB18_AUFGABE_C_II\n"  +
-                UEB18_AUFGABE_C_III             + ": UEB18_AUFGABE_C_III\n" +
-                UEB18_AUFGABE_C_IV              + ": UEB18_AUFGABE_C_IV\n"  +
-                UEB18_AUFGABE_H_I               + ": UEB18_AUFGABE_H_I\n"   +
-                UEB18_AUFGABE_H_II              + ": UEB18_AUFGABE_H_II\n"  +
-                UEB18_AUFGABE_H_III             + ": UEB18_AUFGABE_H_III\n" +
-                UEB18_AUFGABE_H_IV              + ": UEB18_AUFGABE_H_IV\n"  +
-                UEB18_AUFGABE_H_V               + ": UEB18_AUFGABE_H_V\n"   +
-                UEB18_AUFGABE_H_VI              + ": UEB18_AUFGABE_H_VI\n"  +
+                UEB18_AUFGABE_C_I               + ": Artikel sortieren\n"   +
+                UEB18_AUFGABE_C_II              + ": -10% rabat auf jeder artikel\n"  +
+                UEB18_AUFGABE_C_III             + ": Suffix (Sonderangebot) an alle artikel hinzufugen\n" +
+                UEB18_AUFGABE_C_IV              + ": -10% & suffix (Sonderangebot)\n"  +
+                UEB18_AUFGABE_H_I               + ": +10% CD's preise\n"   +
+                UEB18_AUFGABE_H_II              + ": bestand > 2 ==> -5% rabat\n"  +
+                UEB18_AUFGABE_H_III             + ": Preis bucher bestimmte Author ==> -5% rabat\n" +
+                UEB18_AUFGABE_H_IV              + ": +10% CD's preise && bestand > 2 ==> -5% rabat\n"  +
+                UEB18_AUFGABE_H_V               + ": liste alle bucher die bei Author sortiert sind\n"   +
+                UEB18_AUFGABE_H_VI              + ": Bucher filtern bestimmte Author && preis bestimmten bereich liegt\n"  +
+                UEB18_TO_STRING_ARTIKEL         + ": Ausgabe als String\n"  +
 
                 DIALOG_ARTIKEL_ENDE             + ": Dialog beenden\nGeben Sie einen Nummer ein: ");
     }
@@ -238,7 +265,7 @@ public class LagerDialog {
      * @param befehl ist die Nummer des jeweiligen Befehls
      */
     public void funktionUeb18Ausfuehrung(int befehl) {
-        if(befehl > UEB18_AUFGABE_H_VI || befehl < UEB18_DIALOGUE_BEENDEN) {
+        if(befehl > UEB18_TO_STRING_ARTIKEL || befehl < UEB18_DIALOGUE_BEENDEN) {
             throw new IllegalArgumentException("Geben Sie eine der angebenen Zahlen ein!");
         } else {
             switch(befehl) {
@@ -249,7 +276,7 @@ public class LagerDialog {
                     fassade.aufgabe_c_ii(lager);
                     break;
                 case UEB18_AUFGABE_C_III:
-                    fassade.aufgabe_c_ii(lager);
+                    fassade.aufgabe_c_iii(lager);
                     break;
                 case UEB18_AUFGABE_C_IV:
                     fassade.aufgabe_c_iv(lager);
@@ -283,6 +310,9 @@ public class LagerDialog {
                     double maxpreis = input.nextDouble();
                     input.nextLine();
                     fassade.aufgabe_h_vi(lager, gesuchterAuthorVI, minpreis, maxpreis);
+                    break;
+                case UEB18_TO_STRING_ARTIKEL:
+                    alsString();
                     break;
                 case UEB18_DIALOGUE_BEENDEN:
                     System.out.println("Hauptmenue, Geben Sie einen Nummer ein: ");
