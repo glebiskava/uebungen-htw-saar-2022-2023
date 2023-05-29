@@ -1,3 +1,4 @@
+import java.util.Scanner;
 import java.util.function.Predicate;
 
 /**
@@ -8,6 +9,8 @@ import java.util.function.Predicate;
 
 public class Funktionen {
 
+    // private static Scanner input;
+    
     /**
      * Aufgabe a)
      * Methode applyAndPrint, nimmt zwei natürliche Zahlen i und j sowie
@@ -93,32 +96,10 @@ public class Funktionen {
      */
     public int FactorielAnonymZugang (int x){
         Factoriel fAnonym = new Factoriel();
+        
         return fAnonym.apply(x);
     }
 
-    /**
-     * Static-Nested Implementierung für zweite Funktion: (ii) f(x) = x!
-     */
-    public static class FactorielStatischNested implements MyFunction {
-        public int apply(int x) {
-            int result = 1;
-            for (int i = 2; i <= x; i++) {
-                result *= i;
-            }
-            return result;
-        }
-    }
-
-    /**
-     * Zugangsmethode für Static-Nested Implementierung
-     * @param x naturlische zahl
-     * @return factoriel von x 
-     */
-
-    public int FactorielStatischNestedZugang (int x){
-        FactorielStatischNested fsn = new FactorielStatischNested();
-        return fsn.apply(x);
-    }
 
     /**
      * Lambda Ausdruck für dritte Funktion: (iii) f(x) = x(x+1)
@@ -216,4 +197,24 @@ public class Funktionen {
             return 0;
         }
     };
+    public static void main(String[] args){
+        Scanner input = new Scanner(System.in); 
+        System.out.println("i: ");
+        int i = input.nextInt();
+        input.nextLine();
+
+        System.out.println("j: ");
+        int j = input.nextInt();
+        input.nextLine();
+
+        System.out.println("\n Test fuer FactorielAnonymZugang: \n");
+        
+        Factoriel fAnonym = new Factoriel();
+        applyAndPrint(i, j, fAnonym::apply);
+        
+        
+        System.out.println("\n Test fuer staticNestedFactoriel: \n");
+        MyFunction fStatic = new staticNestedFactoriel.FactorielStatischNested();
+        applyAndPrint(i, j, fStatic::apply);
+    }
 }

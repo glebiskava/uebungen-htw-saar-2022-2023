@@ -138,52 +138,7 @@ public class LagerDialog {
         } else {
             switch(befehl) {
                 case LAGER_ANLEGEN:
-                    // lagerAnlegen(); temporaire, à remetre après tests
-                    // a suprimer après tests a partir d'ici
-                    //simplement pour tester plus facilement
-                    lager = new Lager(10);
-                    Buch Buch = new Buch(1111, 1, 1, "1", "a", "a");
-                    Lager.legeAnArtikel(Buch);
-                    Buch = new Buch(2222, 1, 2, "r", "e", "g");
-                    Lager.legeAnArtikel(Buch);
-                    Buch = new Buch(3333, 1, 60, "t", "r", "y");
-                    Lager.legeAnArtikel(Buch);
-                    Buch = new Buch(4444, 1, 5, "z", "t", "t");
-                    Lager.legeAnArtikel(Buch);
-                    Buch = new Buch(5555, 1, 1, "a", "a", "a");
-                    Lager.legeAnArtikel(Buch);
-                    Buch = new Buch(6666, 1, 1, "1", "a", "a");
-                    Lager.legeAnArtikel(Buch);
-                    Buch = new Buch(7777, 1, 10, "1", "a", "a");
-                    Lager.legeAnArtikel(Buch);
-                    Buch = new Buch(8888, 1, 19, "1", "a", "a");
-                    Lager.legeAnArtikel(Buch);
-                    Buch = new Buch(9999, 1, 12, "1", "a", "a");
-                    Lager.legeAnArtikel(Buch);
-                    Buch = new Buch(1010, 1, 10, "1", "a", "a");
-                    Lager.legeAnArtikel(Buch);
-                    // artikel = new Artikel(1111, "a", 1, 1);
-                    // Lager.legeAnArtikel(artikel);
-                    // artikel = new Artikel(2222, "b", 1, 1);
-                    // Lager.legeAnArtikel(artikel);
-                    // artikel = new Artikel(3333, "c", 1, 1);
-                    // Lager.legeAnArtikel(artikel);
-                    // artikel = new Artikel(4444, "c", 1, 12);
-                    // Lager.legeAnArtikel(artikel);
-                    // artikel = new Artikel(5555, "c", 2, 1);
-                    // Lager.legeAnArtikel(artikel);
-                    // artikel = new Artikel(6666, "c", 1, 1);
-                    // Lager.legeAnArtikel(artikel);
-                    // artikel = new Artikel(7777, "c", 2, 4);
-                    // Lager.legeAnArtikel(artikel);
-                    // artikel = new Artikel(8888, "d", 1, 2);
-                    // Lager.legeAnArtikel(artikel);
-                    // artikel = new Artikel(9999, "9", 1, 1);
-                    // Lager.legeAnArtikel(artikel);
-                    // artikel = new Artikel(1010, "d", 1, 1);
-                    // Lager.legeAnArtikel(artikel);
-
-                    //jusque la à suprimer après tests
+                    lagerAnlegen();
                     break;
                 case ARTIKEL_ANLEGEN:
                     artikelAnlegen();
@@ -310,23 +265,8 @@ public class LagerDialog {
                     fassade.aufgabe_h_ii(lager);
                     break;
                 case UEB18_AUFGABE_H_III:
-                    System.out.println("GesuchterAuthor: ");
-                    String gesuchterAuthor = input.next();
-                    input.nextLine();
-                    boolean richtigeAuthor = false;
-                    for(int i = 0; i < Lager.getArtikelAnzahl(); i++){
-                        if(Lager.getArtikel(i) instanceof Buch){
-                            if(((Buch) Lager.getArtikel(i)).getAuthor().equals(gesuchterAuthor)){
-                                richtigeAuthor = true;
-                                fassade.aufgabe_h_iii(lager, gesuchterAuthor);
-                            }
-                        }
-                    }
-                    if(richtigeAuthor == false){
-                        System.out.println("Geben Sie ein richtige Author ein!");
-                    } else {
-                        System.out.println("Das author ist richtig, die preis wird -5% rabat");
-                    }
+                    ueb18AufgabeHIII();
+                    
                     break;
                 case UEB18_AUFGABE_H_IV:
                     fassade.aufgabe_h_iv(lager);
@@ -732,6 +672,26 @@ public class LagerDialog {
                 e.printStackTrace(System.out);
             }
         } while (ueb18Befehl != UEB18_DIALOGUE_BEENDEN);
+    }
+
+    public void ueb18AufgabeHIII(){
+        System.out.println("GesuchterAuthor: ");
+        String gesuchterAuthor = input.next();
+        input.nextLine();
+        boolean richtigeAuthor = false;
+        for(int i = 0; i < Lager.getArtikelAnzahl(); i++){
+            if(Lager.getArtikel(i) instanceof Buch){
+                if(((Buch) Lager.getArtikel(i)).getAuthor().equals(gesuchterAuthor)){
+                    richtigeAuthor = true;
+                    fassade.aufgabe_h_iii(lager, gesuchterAuthor);
+                }
+            }
+        }
+        if(richtigeAuthor == false){
+            System.out.println("Geben Sie ein richtige Author ein!");
+        } else {
+            System.out.println("Das author ist richtig, die preis wird -5% rabat");
+        }
     }
 
     /**
