@@ -205,4 +205,16 @@ public class ErrorCheck {
             throw new IllegalArgumentException("Der Zahl, muss Groesser als 1900 und Kleiner als 2022 sein");
         }
     }
+    
+    //check fuer ueb18
+    /**
+     * checkt ob (sonderangebot) schon in art addiert wurde oder nicht
+     * @param zahl wert der uebergeben wird
+     */
+    public static void checkSonderangebot(String art){
+        if(art.contains("(Sonderangebot)")) {
+            throw new IllegalArgumentException("Sonderangebot ist schon in das Art addiert worden");
+        }
+    }
+    
 }

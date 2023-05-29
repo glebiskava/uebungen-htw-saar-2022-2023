@@ -204,6 +204,7 @@ public class Lager {
         // }
         return lager;
     }
+    
 
     /**
      * Methode die eine an die Methode übergebene
@@ -216,23 +217,7 @@ public class Lager {
         }
     }
 
-    /**
-     * Methode die alle Artikel des Lagers zurückgibt,
-     * welche ein bestimmtes Filterkriterium erfüllen
-     * @param filterCrit Filter Kriterium
-     * @return gefiltertes Array
-     */
-    public Artikel[] filter(Predicate<Artikel> filterCrit) {
-        List<Artikel> filteredList = new ArrayList<>();
-
-        for (Artikel artikel : lager) {
-            if (filterCrit.test(artikel)) {
-                filteredList.add(artikel);
-            }
-        }
-
-        return filteredList.toArray(new Artikel[0]);
-    }
+    
 
     /**
      * Methode, die eine Operation auf die Artikel
@@ -270,33 +255,47 @@ public class Lager {
         return matchingArticles;
     }
 
+     /**
+     * Methode die alle Artikel des Lagers zurückgibt,
+     * welche ein bestimmtes Filterkriterium erfüllen
+     * @param filterCrit Filter Kriterium
+     * @param filteredArticles
+     * @return gefiltertes Array
+     */
+    public Artikel[] filter(Predicate<Artikel> filterCrit, Artikel[] filteredArticles) {
+        int count = 0;
+
+        for (int i = 0; i < filteredArticles.length; i++) {
+            if (filterCrit.test(filteredArticles[i])) {
+                count++;
+            }
+        }
+
+        Artikel[] filteredArray = new Artikel[count];
+        int index = 0;
+
+        for (int i = 0; i < filteredArticles.length; i++) {
+            if (filterCrit.test(filteredArticles[i])) {
+                filteredArray[index] = filteredArticles[i];
+                index++;
+            }
+        }
+
+        return filteredArray;
+    }
+
     /**
      * Methode, die eine beliebige Menge an Filterkriterien als
      * Parameter entgegennimmt und die Artikel des Lagers zurückgibt, die alle Filterkriterien er-
      * füllen
      * @param filterCrit filterkriterien als argumenten variablen Parameterliste
-     * @return
-     * Die Verwendung von @SafeVarargs hilft dem Compiler, potenzielle
-     * Fehler zu erkennen und gibt eine Warnung aus, wenn unsichere
-     * Operationen mit generischen Typen und varargs durchgeführt werden
+     * @return array mit gematchten Artikeln
      */
-    @SafeVarargs
-    public final List<Artikel> filterAll(Predicate<Artikel>... filterCrit) {
-        List<Artikel> filteredArticles = new ArrayList<>();
+    public Artikel[] filterAll(Predicate<Artikel>... filterCrit) {
+        Artikel[] filteredArticles = Lager.lager;
 
-        for (Artikel artikel : lager) {
-            boolean allCritMatched = true;
-
-            for (Predicate<Artikel> criterion : filterCrit) {
-                if (!criterion.test(artikel)) {
-                    allCritMatched = false;
-                    break;
-                }
-            }
-
-            if (allCritMatched) {
-                filteredArticles.add(artikel);
-            }
+        for (Predicate<Artikel> crit : filterCrit) {
+            filteredArticles = filter(crit, filteredArticles);
         }
 
         return filteredArticles;

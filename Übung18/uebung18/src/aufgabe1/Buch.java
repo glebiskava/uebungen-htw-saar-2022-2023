@@ -99,14 +99,6 @@ public class Buch extends Artikel{
     }
 
     /**
-     * erzeugt eine Beschreibung als String
-     */
-    @Override
-    public String getArt() {
-        return author + ": " + titel;
-    }
-
-    /**
      * bereitet ein Objekt als String auf
      */
     @Override

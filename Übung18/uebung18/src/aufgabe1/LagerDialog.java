@@ -1,4 +1,4 @@
-import java.rmi.server.SocketSecurityException;
+// import java.rmi.server.SocketSecurityException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -142,25 +142,45 @@ public class LagerDialog {
                     // a suprimer après tests a partir d'ici
                     //simplement pour tester plus facilement
                     lager = new Lager(10);
-                    artikel = new Artikel(1111, "a", 1, 1);
-                    Lager.legeAnArtikel(artikel);
-                    artikel = new Artikel(2222, "b", 1, 1);
-                    Lager.legeAnArtikel(artikel);
-                    artikel = new Artikel(3333, "c", 2, 1);
-                    Lager.legeAnArtikel(artikel);
-                    artikel = new Artikel(4444, "c", 1, 2);
-                    Lager.legeAnArtikel(artikel);
-                    artikel = new Artikel(5555, "c", 3, 1);
-                    Lager.legeAnArtikel(artikel);
-                    artikel = new Artikel(6666, "c", 1, 1);
-                    Lager.legeAnArtikel(artikel);
-                    artikel = new Artikel(7777, "c", 1, 4);
-                    Lager.legeAnArtikel(artikel);
-                    artikel = new Artikel(8888, "d", 1, 1);
-                    Lager.legeAnArtikel(artikel);
-                    artikel = new Artikel(9999, "9", 1, 1);
-                    Lager.legeAnArtikel(artikel);
-                    // artikel = new Artikel(1010, "10", 1, 1);
+                    Buch Buch = new Buch(1111, 1, 1, "1", "a", "a");
+                    Lager.legeAnArtikel(Buch);
+                    Buch = new Buch(2222, 1, 2, "r", "e", "g");
+                    Lager.legeAnArtikel(Buch);
+                    Buch = new Buch(3333, 1, 60, "t", "r", "y");
+                    Lager.legeAnArtikel(Buch);
+                    Buch = new Buch(4444, 1, 5, "z", "t", "t");
+                    Lager.legeAnArtikel(Buch);
+                    Buch = new Buch(5555, 1, 1, "a", "a", "a");
+                    Lager.legeAnArtikel(Buch);
+                    Buch = new Buch(6666, 1, 1, "1", "a", "a");
+                    Lager.legeAnArtikel(Buch);
+                    Buch = new Buch(7777, 1, 10, "1", "a", "a");
+                    Lager.legeAnArtikel(Buch);
+                    Buch = new Buch(8888, 1, 19, "1", "a", "a");
+                    Lager.legeAnArtikel(Buch);
+                    Buch = new Buch(9999, 1, 12, "1", "a", "a");
+                    Lager.legeAnArtikel(Buch);
+                    Buch = new Buch(1010, 1, 10, "1", "a", "a");
+                    Lager.legeAnArtikel(Buch);
+                    // artikel = new Artikel(1111, "a", 1, 1);
+                    // Lager.legeAnArtikel(artikel);
+                    // artikel = new Artikel(2222, "b", 1, 1);
+                    // Lager.legeAnArtikel(artikel);
+                    // artikel = new Artikel(3333, "c", 1, 1);
+                    // Lager.legeAnArtikel(artikel);
+                    // artikel = new Artikel(4444, "c", 1, 12);
+                    // Lager.legeAnArtikel(artikel);
+                    // artikel = new Artikel(5555, "c", 2, 1);
+                    // Lager.legeAnArtikel(artikel);
+                    // artikel = new Artikel(6666, "c", 1, 1);
+                    // Lager.legeAnArtikel(artikel);
+                    // artikel = new Artikel(7777, "c", 2, 4);
+                    // Lager.legeAnArtikel(artikel);
+                    // artikel = new Artikel(8888, "d", 1, 2);
+                    // Lager.legeAnArtikel(artikel);
+                    // artikel = new Artikel(9999, "9", 1, 1);
+                    // Lager.legeAnArtikel(artikel);
+                    // artikel = new Artikel(1010, "d", 1, 1);
                     // Lager.legeAnArtikel(artikel);
 
                     //jusque la à suprimer après tests
@@ -252,9 +272,9 @@ public class LagerDialog {
                 UEB18_AUFGABE_C_III             + ": Suffix (Sonderangebot) an alle artikel hinzufugen\n" +
                 UEB18_AUFGABE_C_IV              + ": -10% & suffix (Sonderangebot)\n"  +
                 UEB18_AUFGABE_H_I               + ": +10% CD's preise\n"   +
-                UEB18_AUFGABE_H_II              + ": bestand > 2 ==> -5% rabat\n"  +
+                UEB18_AUFGABE_H_II              + ": bestand <= 2 ==> -5% rabat\n"  +
                 UEB18_AUFGABE_H_III             + ": Preis bucher bestimmte Author ==> -5% rabat\n" +
-                UEB18_AUFGABE_H_IV              + ": +10% CD's preise && bestand > 2 ==> -5% rabat\n"  +
+                UEB18_AUFGABE_H_IV              + ": +10% CD's preise && bestand <= 2 ==> -5% rabat\n"  +
                 UEB18_AUFGABE_H_V               + ": liste alle bucher die bei Author sortiert sind\n"   +
                 UEB18_AUFGABE_H_VI              + ": Bucher filtern bestimmte Author && preis bestimmten bereich liegt\n"  +
                 UEB18_TO_STRING_ARTIKEL         + ": Ausgabe als String\n"  +
@@ -272,6 +292,7 @@ public class LagerDialog {
             switch(befehl) {
                 case UEB18_AUFGABE_C_I:
                     fassade.aufgabe_c_i(lager);
+                    alsString();
                     break;
                 case UEB18_AUFGABE_C_II:
                     fassade.aufgabe_c_ii(lager);
@@ -292,16 +313,19 @@ public class LagerDialog {
                     System.out.println("GesuchterAuthor: ");
                     String gesuchterAuthor = input.next();
                     input.nextLine();
+                    boolean richtigeAuthor = false;
                     for(int i = 0; i < Lager.getArtikelAnzahl(); i++){
                         if(Lager.getArtikel(i) instanceof Buch){
-                            
-                            if(!((Buch) Lager.getArtikel(i)).getAuthor().equals(gesuchterAuthor)){
-                                System.out.println("Geben Sie ein richtige Author ein!");
-                            } else {
-                                System.out.println("Das author ist richtig, die preis wird -5% rabat");
+                            if(((Buch) Lager.getArtikel(i)).getAuthor().equals(gesuchterAuthor)){
+                                richtigeAuthor = true;
                                 fassade.aufgabe_h_iii(lager, gesuchterAuthor);
                             }
                         }
+                    }
+                    if(richtigeAuthor == false){
+                        System.out.println("Geben Sie ein richtige Author ein!");
+                    } else {
+                        System.out.println("Das author ist richtig, die preis wird -5% rabat");
                     }
                     break;
                 case UEB18_AUFGABE_H_IV:
@@ -309,6 +333,7 @@ public class LagerDialog {
                     break;
                 case UEB18_AUFGABE_H_V:
                     fassade.aufgabe_h_v(lager);
+                    alsString();
                     break;
                 case UEB18_AUFGABE_H_VI:
                     System.out.println("GesuchterAuthor: ");
@@ -320,7 +345,10 @@ public class LagerDialog {
                     System.out.println("max preis: ");
                     double maxpreis = input.nextDouble();
                     input.nextLine();
-                    fassade.aufgabe_h_vi(lager, gesuchterAuthorVI, minpreis, maxpreis);
+                    Artikel[] AuthorZwischenPreisMenge = fassade.aufgabe_h_vi(lager, gesuchterAuthorVI, minpreis, maxpreis);
+                    for(int i = 0; i < AuthorZwischenPreisMenge.length; i++){
+                        System.out.println(AuthorZwischenPreisMenge[i].toString());
+                    }
                     break;
                 case UEB18_TO_STRING_ARTIKEL:
                     alsString();
