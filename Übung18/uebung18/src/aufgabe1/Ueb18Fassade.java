@@ -1,4 +1,8 @@
-import java.util.Comparator;
+package aufgabe1;
+
+
+import java.util.function.BiPredicate;
+import java.util.function.Predicate;
 
 /**
  * <p>Diese Klasse ist eine Fassade, hinter der Sie Ihre Loesung verstecken. Der Test ruft nur die hier definierten
@@ -24,14 +28,22 @@ public class Ueb18Fassade {
      * @return Die sortierte Artikelliste.
      */
     public Artikel[] aufgabe_c_i(Lager lager) {
-        /*Comparator<Artikel> comparator = Comparator
-                .comparing(Artikel::getUnterkategorie)
-                .thenComparing(Artikel::getBestand)
-                .thenComparing(Artikel::getPreis);
 
-        return lager.getSorted(comparator);*/
-        return null;
-    }
+        BiPredicate<Artikel, Artikel> Art = (artikel1, artikel2) ->{
+             return (artikel1.getArt()).compareTo(artikel2.getArt()) < 0;};
+        BiPredicate<Artikel, Artikel> Bestand = (artikel1, artikel2) ->{ return (artikel1.getBestand()) < (artikel2.getBestand());};
+
+        BiPredicate<Artikel, Artikel> Preis = (artikel1, artikel2) ->{ return (artikel1.getPreis()) < (artikel2.getPreis());};
+
+        BiPredicate<Artikel, Artikel> Sort = (artikel1, artikel2) -> {
+            if (Art.test(artikel1, artikel2)) return true;
+            else if (artikel1.getArt().equals(artikel2.getArt()) && Bestand.test(artikel1, artikel2)) return true;
+            else if (artikel1.getArt().equals(artikel2.getArt()) && artikel1.getBestand() == artikel2.getBestand() && Preis.test(artikel1, artikel2)) return true;
+            else return false;
+        };
+
+        return lager.getSorted(Sort);
+        }
 
     /**
      * Loest die Aufgabe (c) ii.
@@ -54,7 +66,9 @@ public class Ueb18Fassade {
      * @param lager Das Lager mit den Artikeln, deren Bezeichnungen geaendert werden sollen.
      */
     public void aufgabe_c_iii(Lager lager) {
+        
         lager.applyToArticles(artikel -> {
+            ErrorCheck.checkSonderangebot(artikel.getArt());
             String neueBeschreibung = artikel.getArt() + " (Sonderangebot)";
             artikel.setArt(neueBeschreibung);
         });
@@ -68,13 +82,8 @@ public class Ueb18Fassade {
      * @param lager Das Lager mit den Artikeln, deren Preise und Bezeichnungen geaendert werden sollen.
      */
     public void aufgabe_c_iv(Lager lager) {
-        lager.applyToArticles(artikel -> {
-            double neuerPreis = artikel.getPreis() * 0.9; // 10% Rabatt
-            artikel.setPreis(neuerPreis);
-
-            String neueBeschreibung = artikel.getArt() + " (Sonderangebot)";
-            artikel.setArt(neueBeschreibung);
-        });
+        aufgabe_c_ii(lager);
+        aufgabe_c_iii(lager);
     }
 
     /**
@@ -84,7 +93,7 @@ public class Ueb18Fassade {
      * @param lager Das Lager mit den Artikeln. Die Aenderungen werden direkt in diesem Objekt vorgenommen.
      */
     public void aufgabe_h_i(Lager lager) {
-        lager.applyToSomeArticles(a -> a instanceof CD, a -> a.aenderePreis(10));
+        lager.applyToSomeArticles(a -> a instanceof CD, a -> a.setPreis((a.getPreis() * 1.1))); // +10%
     }
 
     /**
@@ -94,6 +103,7 @@ public class Ueb18Fassade {
      * @param lager Das Lager mit den Artikeln. Die Aenderungen werden direkt in diesem Objekt vorgenommen.
      */
     public void aufgabe_h_ii(Lager lager) {
+        lager.applyToSomeArticles(a -> a.getBestand() <= 2, a -> a.setPreis((a.getPreis() * 0.95)));
     }
 
     /**
@@ -104,6 +114,7 @@ public class Ueb18Fassade {
      * @param gesuchterAutor Der Autor, dessen Buecher guenstiger werden sollen.
      */
     public void aufgabe_h_iii(Lager lager, String gesuchterAutor) {
+        lager.applyToSomeArticles(a -> a instanceof Buch && ((Buch) a).getAuthor().equals(gesuchterAutor), a -> a.setPreis((a.getPreis() * 0.95)));
     }
 
     /**
@@ -113,6 +124,8 @@ public class Ueb18Fassade {
      * @param lager Das Lager mit den Artikeln. Die Aenderungen werden direkt in diesem Objekt vorgenommen.
      */
     public void aufgabe_h_iv(Lager lager) {
+        aufgabe_h_i(lager);
+        aufgabe_h_ii(lager);
     }
 
     /**
@@ -122,7 +135,15 @@ public class Ueb18Fassade {
      * @return Eine Liste mit allen Buechern, sortiert nach den Namen der Autoren.
      */
     public Artikel[] aufgabe_h_v(Lager lager) {
-        return null;
+        BiPredicate<Artikel, Artikel> sortByAuthor = (artikel1, artikel2) -> {
+            if (artikel1 instanceof Buch && artikel2 instanceof Buch) {
+                String author1 = ((Buch) artikel1).getAuthor();
+                String author2 = ((Buch) artikel2).getAuthor();
+                return author1.compareTo(author2) < 0;
+            }
+            return false;
+        };
+        return lager.getSorted(sortByAuthor);
     }
 
     /**
@@ -132,9 +153,11 @@ public class Ueb18Fassade {
      * @param gesuchterAutor Der Autor, nach dem gefiltert werden soll.
      * @param minPreis Der kleinste Preis, den die zu filternden Buecher haben sollen.
      * @param maxPreis Der hoechste Preis, den die zu filternden Buecher haben sollen.
-     * @return Alle Buecher vom Autor autor und mit einem Preis, der zwischen minPreis und maxPreis liegt.
+     * @return Alle Buecher vom Author author und mit einem Preis, der zwischen minPreis und maxPreis liegt.
      */
     public Artikel[] aufgabe_h_vi(Lager lager, String gesuchterAutor, double minPreis, double maxPreis) {
-        return null;
+        Predicate<Artikel> authoPredicate = a -> (a instanceof Buch) && ((Buch) a).getAuthor().equals(gesuchterAutor);
+        Predicate<Artikel> preisPredicate = a -> a.getPreis() >= minPreis && a.getPreis() <= maxPreis;
+        return lager.filterAll(authoPredicate, preisPredicate);
     }
 }

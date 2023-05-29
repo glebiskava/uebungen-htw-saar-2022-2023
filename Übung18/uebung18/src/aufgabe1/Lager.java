@@ -1,8 +1,9 @@
+package aufgabe1;
+
 import java.util.*;
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 /**
  * Dies ist eine Klasse die zur Interaktion mit einem Benutzer dient.
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 public class Lager {
 
     public static Artikel[] lager;
+    private static int lagerLength = 0;
 
     /**
      * zwei konstruktoren --> einer mit waehlbarer Laenge des Arrays und ein Standardkonstruktor
@@ -42,6 +44,7 @@ public class Lager {
         for (int x = 0; x < lager.length; x++) {
             if (lager[x] == null) {
                 lager[x] = artikel;
+                lagerLength++;
                 break;
             }
         }
@@ -60,7 +63,11 @@ public class Lager {
 
         for (int x = 0; x < lager.length; x++) {
             if (artikelNr == lager[x].getArtikelNr()) {
-                lager[x] = null;
+                for (int y = x; y < lager.length - 1; y++) {
+                    lager[y] = lager[y + 1];
+                }
+                lager[lager.length - 1] = null;
+                lagerLength--;
                 break;
             }
         }
@@ -157,23 +164,21 @@ public class Lager {
      * @param sortCrit Sortier-Kriterium
      * @return sortiertes Array
      */
+
     public Artikel[] getSorted(BiPredicate<Artikel, Artikel> sortCrit) {
-        Artikel[] sortedArray = Arrays.copyOf(lager, lager.length);
 
-        Comparator<Artikel> comparator = (a1, a2) -> {
-            if (sortCrit.test(a1, a2)) {
-                return -1; // a1 sollte vor a2 sortiert werden
-            } else if (sortCrit.test(a2, a1)) {
-                return 1; // a2 sollte vor a1 sortiert werden
-            } else {
-                return 0; // a1 und a2 sind gleich
+        for(int i = 0; i < lagerLength; i++) {
+            for(int j = 0; j < lagerLength - 1; j++) {
+                if(sortCrit.test(lager[j + 1], lager[j])) {
+                    Artikel temp = lager[j];
+                    lager[j] = lager[j + 1];
+                    lager[j + 1] = temp;
+                }
             }
-        };
-
-        Arrays.sort(sortedArray, comparator);
-
-        return sortedArray;
+        }
+        return lager;
     }
+    
 
     /**
      * Methode die eine an die Methode übergebene
@@ -186,23 +191,7 @@ public class Lager {
         }
     }
 
-    /**
-     * Methode die alle Artikel des Lagers zurückgibt,
-     * welche ein bestimmtes Filterkriterium erfüllen
-     * @param filterCrit Filter Kriterium
-     * @return gefiltertes Array
-     */
-    public Artikel[] filter(Predicate<Artikel> filterCrit) {
-        List<Artikel> filteredList = new ArrayList<>();
-
-        for (Artikel artikel : lager) {
-            if (filterCrit.test(artikel)) {
-                filteredList.add(artikel);
-            }
-        }
-
-        return filteredList.toArray(new Artikel[0]);
-    }
+    
 
     /**
      * Methode, die eine Operation auf die Artikel
@@ -211,9 +200,9 @@ public class Lager {
      * @param operation operation die angewendet wird
      */
     public void applyToSomeArticles(Predicate<Artikel> filterCrit, Consumer<Artikel> operation) {
-        for (Artikel artikel : lager) {
-            if (filterCrit.test(artikel)) {
-                operation.accept(artikel);
+        for (Artikel artikel : lager) { // boucle sur tous les articles
+            if (artikel != null && filterCrit.test(artikel)) { // si l'article match le critère
+                operation.accept(artikel); 
             }
         }
     }
@@ -239,33 +228,46 @@ public class Lager {
         return matchingArticles;
     }
 
+     /**
+     * Methode die alle Artikel des Lagers zurückgibt,
+     * welche ein bestimmtes Filterkriterium erfüllen
+     * @param filterCrit Filter Kriterium
+     * @return gefiltertes Array
+     */
+    public Artikel[] filter(Predicate<Artikel> filterCrit, Artikel[] filteredArticles) {
+        int count = 0;
+
+        for (int i = 0; i < filteredArticles.length; i++) {
+            if (filterCrit.test(filteredArticles[i])) {
+                count++;
+            }
+        }
+
+        Artikel[] filteredArray = new Artikel[count];
+        int index = 0;
+
+        for (int i = 0; i < filteredArticles.length; i++) {
+            if (filterCrit.test(filteredArticles[i])) {
+                filteredArray[index] = filteredArticles[i];
+                index++;
+            }
+        }
+
+        return filteredArray;
+    }
+
     /**
      * Methode, die eine beliebige Menge an Filterkriterien als
      * Parameter entgegennimmt und die Artikel des Lagers zurückgibt, die alle Filterkriterien er-
      * füllen
      * @param filterCrit filterkriterien als argumenten variablen Parameterliste
-     * @return
-     * Die Verwendung von @SafeVarargs hilft dem Compiler, potenzielle
-     * Fehler zu erkennen und gibt eine Warnung aus, wenn unsichere
-     * Operationen mit generischen Typen und varargs durchgeführt werden
+     * @return array mit gematchten Artikeln
      */
-    @SafeVarargs
-    public final List<Artikel> filterAll(Predicate<Artikel>... filterCrit) {
-        List<Artikel> filteredArticles = new ArrayList<>();
+    public Artikel[] filterAll(Predicate<Artikel>... filterCrit) {
+        Artikel[] filteredArticles = Lager.lager;
 
-        for (Artikel artikel : lager) {
-            boolean allCritMatched = true;
-
-            for (Predicate<Artikel> criterion : filterCrit) {
-                if (!criterion.test(artikel)) {
-                    allCritMatched = false;
-                    break;
-                }
-            }
-
-            if (allCritMatched) {
-                filteredArticles.add(artikel);
-            }
+        for (Predicate<Artikel> crit : filterCrit) {
+            filteredArticles = filter(crit, filteredArticles);
         }
 
         return filteredArticles;

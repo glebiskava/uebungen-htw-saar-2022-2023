@@ -1,3 +1,7 @@
+package aufgabe1;
+
+import aufgabe1.Artikel;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 

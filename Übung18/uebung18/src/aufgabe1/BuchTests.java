@@ -1,3 +1,6 @@
+
+package aufgabe1;
+import aufgabe1.Buch;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

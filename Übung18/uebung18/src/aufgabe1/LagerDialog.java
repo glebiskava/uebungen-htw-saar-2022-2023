@@ -1,3 +1,5 @@
+package aufgabe1;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -11,6 +13,7 @@ public class LagerDialog {
     public static Artikel artikel;
     private final Scanner input;
     private Lager lager;
+    private final Ueb18Fassade fassade = new Ueb18Fassade();
 
     /**
      * Benutzer soll anhand von Zahlen die gewuenschten input aus.
@@ -20,20 +23,21 @@ public class LagerDialog {
      * static: wird von allen Objekten der gleichen Klasse geteilt.
      * final: einmal die Variable initialisiert kann sie nicht mehr geaendert werden.
      */
-    private static final int LAGER_ANLEGEN                 = 1;
-    private static final int ARTIKEL_ANLEGEN               = 2;
-    private static final int ARTIKEL_ENTFERNEN             = 3;
-    private static final int BUCHE_ZUGANG                  = 4;
-    private static final int BUCHE_ABGANG                  = 5;
-    private static final int PREIS_ARTIKELS_AENDERN        = 6;
-    private static final int PREIS_ALLER_ARTIKELS_AENDERN  = 7;
-    private static final int GET_ARTIKEL                   = 8;
-    private static final int TO_STRING                     = 9;
-    private static final int BESCHREIBUNG_ALS_STRING       = 10;
-    private static final int GET_ARTIKEL_ANZAHL            = 11;
-    private static final int GET_LAGER_GROESSE             = 12;
+    private static final int LAGER_ANLEGEN                  = 1;
+    private static final int ARTIKEL_ANLEGEN                = 2;
+    private static final int ARTIKEL_ENTFERNEN              = 3;
+    private static final int BUCHE_ZUGANG                   = 4;
+    private static final int BUCHE_ABGANG                   = 5;
+    private static final int PREIS_ARTIKELS_AENDERN         = 6;
+    private static final int PREIS_ALLER_ARTIKELS_AENDERN   = 7;
+    private static final int GET_ARTIKEL                    = 8;
+    private static final int TO_STRING                      = 9;
+    private static final int BESCHREIBUNG_ALS_STRING        = 10;
+    private static final int GET_ARTIKEL_ANZAHL             = 11;
+    private static final int GET_LAGER_GROESSE              = 12;
+    private static final int UEB_18_DIALOGUE                = 13;
 
-    private static final int PROGRAMM_ENDE                 = 0;
+    private static final int PROGRAMM_ENDE                  = 0;
 
 
 
@@ -43,6 +47,22 @@ public class LagerDialog {
     private static final int ANDERE_ARTIKEL_ANLEGEN         = 4;
 
     private static final int DIALOG_ARTIKEL_ENDE            = 0;
+    
+    
+    private static final int UEB18_AUFGABE_C_I              = 1;
+    private static final int UEB18_AUFGABE_C_II             = 2;
+    private static final int UEB18_AUFGABE_C_III            = 3;
+    private static final int UEB18_AUFGABE_C_IV             = 4;
+    private static final int UEB18_AUFGABE_H_I              = 5;
+    private static final int UEB18_AUFGABE_H_II             = 6;
+    private static final int UEB18_AUFGABE_H_III            = 7;
+    private static final int UEB18_AUFGABE_H_IV             = 8;
+    private static final int UEB18_AUFGABE_H_V              = 9;
+    private static final int UEB18_AUFGABE_H_VI             = 10;
+    private static final int UEB18_TO_STRING_ARTIKEL        = 11;
+    
+    private static final int UEB18_DIALOGUE_BEENDEN         = 0;
+
 
     /**
      * Erstellen von leeren Objekten und einem 1
@@ -95,7 +115,8 @@ public class LagerDialog {
                 TO_STRING                       + ": Ausgabe als String\n" +
                 BESCHREIBUNG_ALS_STRING         + ": Beschreibung als String\n" +
                 GET_ARTIKEL_ANZAHL              + ": Get artikel anzahl\n" +
-                GET_LAGER_GROESSE               + ": Get lager groesse\n" +
+                GET_LAGER_GROESSE               + ": Get lager groesse\n\n" +
+                UEB_18_DIALOGUE                 + ": Ueb18 dialogue \n\n" +
                 PROGRAMM_ENDE                   + ": Dialog beenden\nGeben Sie einen Nummer ein: ");
     }
 
@@ -113,7 +134,7 @@ public class LagerDialog {
      * @param befehl ist die Nummer des jeweiligen Befehls
      */
     public void funktionLagerAusfuehrung(int befehl) {
-        if(befehl > GET_LAGER_GROESSE || befehl < PROGRAMM_ENDE) {
+        if(befehl > UEB_18_DIALOGUE || befehl < PROGRAMM_ENDE) {
             throw new IllegalArgumentException("Geben Sie eine der angebenen Zahlen ein!");
         } else {
             switch(befehl) {
@@ -153,6 +174,9 @@ public class LagerDialog {
                 case GET_LAGER_GROESSE:
                     getLagerGroesse();
                     break;
+                case UEB_18_DIALOGUE:
+                    ueb18DialogueAnzeigen();
+                    break;
                 case PROGRAMM_ENDE:
                     System.out.println("ENDE");
                     break;
@@ -161,6 +185,9 @@ public class LagerDialog {
     }
 
 
+    /**
+     * gibt das Menü für die Artikel aus
+     */
     public void menueArtikel(){
         System.out.print("\n\n\n" +
                 CD_ANLEGEN              + ": CD anlegen\n"    +
@@ -197,6 +224,91 @@ public class LagerDialog {
             }
         }
     }
+
+    /**
+     * gibt das menü aus
+     */
+    public void menueUeb18(){
+        System.out.print("\n\n\n" +
+                UEB18_AUFGABE_C_I               + ": Artikel sortieren\n"   +
+                UEB18_AUFGABE_C_II              + ": -10% rabat auf jeder artikel\n"  +
+                UEB18_AUFGABE_C_III             + ": Suffix (Sonderangebot) an alle artikel hinzufugen\n" +
+                UEB18_AUFGABE_C_IV              + ": -10% & suffix (Sonderangebot)\n"  +
+                UEB18_AUFGABE_H_I               + ": +10% CD's preise\n"   +
+                UEB18_AUFGABE_H_II              + ": bestand <= 2 ==> -5% rabat\n"  +
+                UEB18_AUFGABE_H_III             + ": Preis bucher bestimmte Author ==> -5% rabat\n" +
+                UEB18_AUFGABE_H_IV              + ": +10% CD's preise && bestand <= 2 ==> -5% rabat\n"  +
+                UEB18_AUFGABE_H_V               + ": liste alle bucher die bei Author sortiert sind\n"   +
+                UEB18_AUFGABE_H_VI              + ": Bucher filtern bestimmte Author && preis bestimmten bereich liegt\n"  +
+                UEB18_TO_STRING_ARTIKEL         + ": Ausgabe als String\n"  +
+
+                DIALOG_ARTIKEL_ENDE             + ": Dialog beenden\nGeben Sie einen Nummer ein: ");
+    }
+    /**
+     * Fuehrt die jeweilige Funktion aus, die vom Benutzer gewaehlt wurde, und die aufgabe der 18. ueb zu pruefen.
+     * @param befehl ist die Nummer des jeweiligen Befehls
+     */
+    public void funktionUeb18Ausfuehrung(int befehl) {
+        if(befehl > UEB18_TO_STRING_ARTIKEL || befehl < UEB18_DIALOGUE_BEENDEN) {
+            throw new IllegalArgumentException("Geben Sie eine der angebenen Zahlen ein!");
+        } else {
+            switch(befehl) {
+                case UEB18_AUFGABE_C_I:
+                    fassade.aufgabe_c_i(lager);
+                    alsString();
+                    break;
+                case UEB18_AUFGABE_C_II:
+                    fassade.aufgabe_c_ii(lager);
+                    break;
+                case UEB18_AUFGABE_C_III:
+                    fassade.aufgabe_c_iii(lager);
+                    break;
+                case UEB18_AUFGABE_C_IV:
+                    fassade.aufgabe_c_iv(lager);
+                    break;
+                case UEB18_AUFGABE_H_I:
+                    fassade.aufgabe_h_i(lager);
+                    break;
+                case UEB18_AUFGABE_H_II:
+                    fassade.aufgabe_h_ii(lager);
+                    break;
+                case UEB18_AUFGABE_H_III:
+                    ueb18AufgabeHIII();
+                    
+                    break;
+                case UEB18_AUFGABE_H_IV:
+                    fassade.aufgabe_h_iv(lager);
+                    break;
+                case UEB18_AUFGABE_H_V:
+                    fassade.aufgabe_h_v(lager);
+                    alsString();
+                    break;
+                case UEB18_AUFGABE_H_VI:
+                    System.out.println("GesuchterAuthor: ");
+                    String gesuchterAuthorVI = input.next();
+                    input.nextLine();
+                    System.out.println("min preis: ");
+                    double minpreis = input.nextDouble();
+                    input.nextLine();
+                    System.out.println("max preis: ");
+                    double maxpreis = input.nextDouble();
+                    input.nextLine();
+                    Artikel[] AuthorZwischenPreisMenge = fassade.aufgabe_h_vi(lager, gesuchterAuthorVI, minpreis, maxpreis);
+                    for (Artikel value : AuthorZwischenPreisMenge) {
+                        System.out.println(value.toString());
+                    }
+                    break;
+                case UEB18_TO_STRING_ARTIKEL:
+                    alsString();
+                    break;
+                case UEB18_DIALOGUE_BEENDEN:
+                    System.out.println("Hauptmenue, Geben Sie einen Nummer ein: ");
+                    break;
+            }
+        }
+    }
+
+    
 
     /**
      * legt ein neues Lager an
@@ -544,6 +656,54 @@ public class LagerDialog {
     public void getLagerGroesse(){
         ErrorCheck.checkLagerExistiert(lager);
         System.out.println("Groesse des Lagers: " + Lager. getLagerGroesse());
+    }
+
+
+    /**
+     * zeigt den dialog für ueb18 an
+     */
+    public void ueb18DialogueAnzeigen(){
+        ErrorCheck.checkLagerExistiert(lager);
+
+        int ueb18Befehl = 0;
+        do {
+            try {
+                menueUeb18();
+                ueb18Befehl = funktionVerarbeitung();
+                funktionUeb18Ausfuehrung(ueb18Befehl);
+            } catch(IllegalArgumentException e) {
+                System.out.println(e);
+            } catch(InputMismatchException e) {
+                System.out.println(e);
+                input.nextLine();
+            } catch(Exception e) {
+                System.out.println(e);
+                e.printStackTrace(System.out);
+            }
+        } while (ueb18Befehl != UEB18_DIALOGUE_BEENDEN);
+    }
+
+    /**
+     * Methode reduziert alle Bücher eines gegebenen Autors um 5%.
+     */
+    public void ueb18AufgabeHIII(){
+        System.out.println("GesuchterAuthor: ");
+        String gesuchterAuthor = input.next();
+        input.nextLine();
+        boolean richtigeAuthor = false;
+        for(int i = 0; i < Lager.getArtikelAnzahl(); i++){
+            if(Lager.getArtikel(i) instanceof Buch){
+                if(((Buch) Lager.getArtikel(i)).getAuthor().equals(gesuchterAuthor)){
+                    richtigeAuthor = true;
+                    fassade.aufgabe_h_iii(lager, gesuchterAuthor);
+                }
+            }
+        }
+        if(!richtigeAuthor){
+            System.out.println("Geben Sie ein richtige Author ein!");
+        } else {
+            System.out.println("Das author ist richtig, die preis wird -5% rabat");
+        }
     }
 
     /**

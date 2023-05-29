@@ -1,16 +1,14 @@
+package aufgabe1;
 import java.util.Objects;
 
 /**
  * deis ist eine Unterklasse CD der Oberklasse Artikel
  */
 
-public class CD extends Artikel{
+public class CD extends Artikel {
 
     /**
-     * Attribute:
-     * interpret = Interpret des Musiktitels --> darf nicht leer sein
-     * titel = Titel der Musik --> darf nicht leer sein
-     * anzahlTitel = Anzahl der Musiktitel --> muss größer 0 sein
+     * Attribute
      */
     private String interpret;
     private String titel;
@@ -34,33 +32,51 @@ public class CD extends Artikel{
     }
 
     /**
-     * getter feur jedes Attribut
+     * getter feur Interpret
+     * @return interpret name des kuenstlers
      */
     public String getInterpret() {
         return interpret;
     }
 
+    /**
+     * getter fuer Titel
+     * @return titel name des albums
+     */
     public String getTitel() {
         return titel;
     }
 
+    /**
+     * getter fuer AnzahlTitel
+     * @return anzahlTitel anzhal der titel in einem Album
+     */
     public int getAnzahlTitel() {
         return anzahlTitel;
     }
 
     /**
-     * setter fuer jedes Attribut
+     * setter fuer Interpret
+     * @param interpret name des kuenstlers
      */
     public void setInterpret(String interpret) {
         ErrorCheck.checkStringNichtLeer(interpret);
         this.interpret = interpret;
     }
 
+    /**
+     * setter fuer Titel
+     * @param titel name des albums
+     */
     public void setTitel(String titel) {
         ErrorCheck.checkStringNichtLeer(titel);
         this.titel = titel;
     }
 
+    /**
+     * setter fuer AnzahlTitel
+     * @param anzahlTitel anzhal der titel in einem Album
+     */
     public void setAnzahlTitel(int anzahlTitel) {
         ErrorCheck.checkGroesserAlsNull(anzahlTitel);
         this.anzahlTitel = anzahlTitel;
@@ -75,9 +91,9 @@ public class CD extends Artikel{
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         CD cd = (CD) object;
-        return artikelNr == cd.artikelNr &&
-                bestand == cd.bestand &&
-                Double.compare(cd.preis, preis) == 0 &&
+        return getArtikelNr() == cd.getArtikelNr() &&
+                getBestand() == cd.getBestand() &&
+                Double.compare(cd.getPreis(), getPreis()) == 0 &&
                 Objects.equals(interpret, cd.interpret) &&
                 Objects.equals(titel, cd.titel);
     }
