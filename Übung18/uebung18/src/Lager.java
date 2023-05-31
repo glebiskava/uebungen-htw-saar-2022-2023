@@ -1,4 +1,3 @@
-package aufgabe1;
 
 import java.util.*;
 import java.util.function.BiPredicate;
@@ -187,7 +186,9 @@ public class Lager {
      */
     public void applyToArticles(Consumer<Artikel> operation) {
         for (Artikel artikel : lager) {
-            operation.accept(artikel);
+            if (artikel != null) {
+                operation.accept(artikel);
+            }
         }
     }
 

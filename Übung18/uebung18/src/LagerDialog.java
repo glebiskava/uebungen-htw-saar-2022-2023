@@ -1,4 +1,3 @@
-package aufgabe1;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -284,19 +283,7 @@ public class LagerDialog {
                     alsString();
                     break;
                 case UEB18_AUFGABE_H_VI:
-                    System.out.println("GesuchterAuthor: ");
-                    String gesuchterAuthorVI = input.next();
-                    input.nextLine();
-                    System.out.println("min preis: ");
-                    double minpreis = input.nextDouble();
-                    input.nextLine();
-                    System.out.println("max preis: ");
-                    double maxpreis = input.nextDouble();
-                    input.nextLine();
-                    Artikel[] AuthorZwischenPreisMenge = fassade.aufgabe_h_vi(lager, gesuchterAuthorVI, minpreis, maxpreis);
-                    for (Artikel value : AuthorZwischenPreisMenge) {
-                        System.out.println(value.toString());
-                    }
+                    ueb18AufgabeHIII();
                     break;
                 case UEB18_TO_STRING_ARTIKEL:
                     alsString();
@@ -700,7 +687,7 @@ public class LagerDialog {
             }
         }
         if(!richtigeAuthor){
-            System.out.println("Geben Sie ein richtige Author ein!");
+            System.out.println("Diese Author haben wir in unserem Lager nicht.");
         } else {
             System.out.println("Das author ist richtig, die preis wird -5% rabat");
         }

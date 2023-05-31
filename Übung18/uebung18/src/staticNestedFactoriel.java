@@ -1,4 +1,3 @@
-package aufgabe2;
 
 /**
  * @author leopold mittelberger, elisee brand

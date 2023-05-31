@@ -1,9 +1,8 @@
-package aufgabe1;
-
-import aufgabe1.Artikel;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import aufgabe1.Artikel;
 
 /**
  * Dies ist eine Klasse die zur Interaktion mit einem Benutzer dient.
