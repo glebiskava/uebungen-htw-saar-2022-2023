@@ -34,18 +34,6 @@ public abstract class DoubleLinkedList<E> implements List<E> {
     }
 
     @Override
-    public Object[] toArray() {
-        Object[] array = new Object[size];
-        Node<E> currentNode = head;
-        int index = 0;
-        while (currentNode != null) {
-            array[index++] = currentNode.element;
-            currentNode = currentNode.next;
-        }
-        return array;
-    }
-
-    @Override
     public <T> T[] toArray(T[] a) {
         if (a.length < size) {
             // Erstelle ein neues Array mit dem korrekten Typ
@@ -227,6 +215,34 @@ public abstract class DoubleLinkedList<E> implements List<E> {
             }
         }
         return currentNode;
+    }
+
+    public int lastIndexOf(Object o) {
+        throw new UnsupportedOperationException();
+    }
+
+    public boolean retainAll(Collection<?> c) {
+        throw new UnsupportedOperationException();
+    }
+
+    public boolean removeAll(Collection<?> c) {
+        throw new UnsupportedOperationException();
+    }
+
+    public boolean containsAll(Collection<?> c) {
+        throw new UnsupportedOperationException();
+    }
+
+    public boolean addAll(int index, Collection<? extends E> c) {
+        throw new UnsupportedOperationException();
+    }
+
+    public Object[] toArray() {
+        throw new UnsupportedOperationException();
+    }
+
+    public ListIterator<E> listIterator() {
+        throw new UnsupportedOperationException();
     }
 
 }
