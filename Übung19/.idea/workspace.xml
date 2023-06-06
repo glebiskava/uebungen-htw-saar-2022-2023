@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e76644b5-8567-42b3-9d2f-018f0bfcef69" name="Changes" comment="- new project">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Übung19/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uebung19/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uebung19/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uebung19/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uebung19/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uebung19/src/DoubleLinkedList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uebung19/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uebung19/uebung19.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Übung19.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Übung9/uebung9BlueJ/package.bluej" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2QpOH2Mu18S7I2Yvp0P5OmmT4rQ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/media/whoami/T7/ISFATES-LAPTOP-BLPRP957/uebungen/Übung19&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e76644b5-8567-42b3-9d2f-018f0bfcef69" name="Changes" comment="" />
+      <created>1686046965243</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1686046965243</updated>
+    </task>
+    <task id="LOCAL-00001" summary="- new project">
+      <created>1686047321476</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1686047321476</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="- new project" />
+    <option name="LAST_COMMIT_MESSAGE" value="- new project" />
+  </component>
+</project>
