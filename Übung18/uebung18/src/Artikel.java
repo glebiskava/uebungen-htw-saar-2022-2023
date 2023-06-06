@@ -1,5 +1,3 @@
-package aufgabe1;
-
 import java.util.Objects;
 
 /**
@@ -160,14 +158,28 @@ public class Artikel {
      * @param object The object to be compared with
      * @return boolean true if the objects are equal, false otherwise
      */
+    // @Override
+    // public boolean equals(Object object) {
+    //     if (this == object){
+    //         return true;
+    //     }
+    //     if (!(object instanceof Artikel artikel)) {
+    //         return false;
+    //     }
+    //     return artikelNr == artikel.artikelNr &&
+    //             bestand == artikel.bestand &&
+    //             Double.compare(artikel.preis, preis) == 0 &&
+    //             Objects.equals(art, artikel.art);
+    // }
     @Override
     public boolean equals(Object object) {
         if (this == object){
             return true;
         }
-        if (!(object instanceof Artikel artikel)) {
+        if (!(object instanceof Artikel)) {
             return false;
         }
+        Artikel artikel = (Artikel) object;
         return artikelNr == artikel.artikelNr &&
                 bestand == artikel.bestand &&
                 Double.compare(artikel.preis, preis) == 0 &&

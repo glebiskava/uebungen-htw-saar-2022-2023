@@ -1,4 +1,3 @@
-package aufgabe2;
 
 import java.beans.Transient;
 

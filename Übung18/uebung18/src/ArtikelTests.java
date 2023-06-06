@@ -1,8 +1,7 @@
-package aufgabe1;
 
+import org.junit.jupiter.api.Test;
 
 import aufgabe1.Artikel;
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 

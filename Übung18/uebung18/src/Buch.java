@@ -1,9 +1,6 @@
-package aufgabe1;
-
-
-import aufgabe1.Artikel;
 
 import java.util.Objects;
+
 
 /**
  * Dies ist eine Unterklasse Buch von der Klasse Artikel welche

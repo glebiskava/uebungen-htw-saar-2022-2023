@@ -1,6 +1,3 @@
-package aufgabe1;
-import aufgabe1.Artikel;
-
 public class ErrorCheck {
 
 
