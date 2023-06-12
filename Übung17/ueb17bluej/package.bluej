@@ -1,17 +1,17 @@
 #BlueJ package file
-dependency1.from=FunktionalesInterface
-dependency1.to=MyFunction
+dependency1.from=FunktionenTest
+dependency1.to=Funktionen
 dependency1.type=UsesDependency
 dependency2.from=Funktionen
 dependency2.to=MyFunction
 dependency2.type=UsesDependency
-dependency3.from=FunktionenTest
-dependency3.to=Funktionen
+dependency3.from=FunktionalesInterface
+dependency3.to=MyFunction
 dependency3.type=UsesDependency
-editor.fx.0.height=0
-editor.fx.0.width=0
-editor.fx.0.x=0
-editor.fx.0.y=0
+editor.fx.0.height=27
+editor.fx.0.width=159
+editor.fx.0.x=-25600
+editor.fx.0.y=-25600
 objectbench.height=92
 objectbench.width=761
 package.divider.horizontal=0.6

@@ -29,7 +29,7 @@ public class Main {
                             "\nKlasse MeinVerketteteListe : " + sizeTest + " elemente");
         
         //test fuer remove()
-        System.out.println("\ntest remove() : " + list.remove(2) + "element an der 2. index wurde entfernt");
+        System.out.println("\ntest remove() : " + list.remove(2) + " element an der 2. index wurde entfernt");
         sizeTest--;
         System.out.println("Integer Liste : " + list);
 
@@ -50,7 +50,7 @@ public class Main {
         list.add(0, 10);
         System.out.println("\ntest add(int, E) : 10 wurde an der 0. Index addiert " +  list);
         list.add(2, 11);
-        System.out.println("\ntest add(int, E) : 11 wurde nach der 2. Index addiert " +  list);
+        System.out.println("\ntest add(int, E) : 11 wurde an der 2. Index addiert " +  list);
         
         //test fuer clear()
         list.clear();

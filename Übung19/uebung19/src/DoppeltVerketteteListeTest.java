@@ -1,5 +1,9 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 
 /**
@@ -8,28 +12,28 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class DoppeltVerketteteListeTest {
 
+    DoppeltVerketteteListe<Integer> list = new DoppeltVerketteteListe<>(); 
+    
+    @BeforeEach
+    public void SetUp(){
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+    }
+
     /**
      * test fuer add funktion
      */
     @Test
     public void test_Add_Nichts_Erwartet() {
+        DoppeltVerketteteListe<Integer> list = new DoppeltVerketteteListe<>();
         list.add(1);
         list.add(2);
         list.add(3);
         list.add(4);
         
         assertEquals(list.toString(), "[1, 2, 3, 4]");
-    }
-
-    
-
-    @BeforeEach
-    public void SetUp(){
-        DoppeltVerketteteListe<Integer> list = new DoppeltVerketteteListe<>();
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(4);
     }
 
     /**
@@ -48,6 +52,7 @@ public class DoppeltVerketteteListeTest {
         list.remove(2);
         assertEquals(list.toString(), "[1, 2, 4]");
     }
+    
     @Test
     public void test_Remove_everything_Nichts_Erwartet() {
         list.remove(0);
@@ -62,6 +67,7 @@ public class DoppeltVerketteteListeTest {
      */
     @Test
     public void test_Contains_Nichts_Erwartet() {
+
         assertTrue(list.contains(2));
         assertTrue(list.contains(3));
     }

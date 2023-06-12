@@ -6,7 +6,7 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     private Node<E> tail;
     private int size;
 
-    private static class Node<E> {
+    public static class Node<E> {
         E element;
         Node<E> prev;
         Node<E> next;
@@ -30,11 +30,14 @@ public class DoppeltVerketteteListe<E> implements List<E> {
 
     @Override
     public boolean contains(Object o) {
+        if(isEmpty()){
+            throw new IllegalArgumentException ("Liste ist leer");
+        }
         return indexOf(o) >= 0;
     }
 
     @Override
-    public <T> T[] toArray(T[] a) { // cette methode sers à convertir un tableau en liste
+    public <T> T[] toArray(T[] a) {
         if (a.length < size) {
             // Erstelle ein neues Array mit dem korrekten Typ
             @SuppressWarnings("unchecked")
@@ -49,7 +52,7 @@ public class DoppeltVerketteteListe<E> implements List<E> {
             result[index++] = currentNode.element;
             currentNode = currentNode.next;
         }
-        if (a.length > size) { // si le tableau est plus grand que la liste 
+        if (a.length > size) {
             a[size] = null;
         }
         return a;
@@ -58,6 +61,9 @@ public class DoppeltVerketteteListe<E> implements List<E> {
 
     @Override
     public boolean add(E e) {
+        if(e == null){
+            throw new NullPointerException("Element must not be null");
+        }
         if (isEmpty()) {
             head = new Node<>(e, null, null);
             tail = head;
@@ -72,6 +78,9 @@ public class DoppeltVerketteteListe<E> implements List<E> {
 
     @Override
     public boolean remove(Object o) {
+        if (isEmpty()) {
+            return false;
+        }
         Node<E> currentNode = head;
         while (currentNode != null) {
             if (Objects.equals(currentNode.element, o)) {
@@ -172,6 +181,9 @@ public class DoppeltVerketteteListe<E> implements List<E> {
 
     @Override
     public E remove(int index) {
+        if(isEmpty()){
+            throw new NoSuchElementException("List is empty");
+        }
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
         }
@@ -183,6 +195,9 @@ public class DoppeltVerketteteListe<E> implements List<E> {
 
     @Override
     public int indexOf(Object o) {
+        if (isEmpty()) {
+            return -1;
+        }
         int index = 0;
         Node<E> currentNode = head;
         while (currentNode != null) {
@@ -199,6 +214,9 @@ public class DoppeltVerketteteListe<E> implements List<E> {
      * Hilfsmethode zum Abrufen des Knotens an einer bestimmten Position
      */
     private Node<E> getNode(int index) {
+        if(isEmpty()){
+            throw new NoSuchElementException("List is empty");
+        }
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
         }
@@ -231,6 +249,17 @@ public class DoppeltVerketteteListe<E> implements List<E> {
         }
         s += "]";
         return s;
+    }
+
+    //Aufgabe2
+    @Override
+    public ListIterator<E> listIterator(int index) {
+        return new DoppeltVerketteteListeIterator(index);
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return new DoppeltVerketteteListeIterator();
     }
 
     public int lastIndexOf(Object o) {
