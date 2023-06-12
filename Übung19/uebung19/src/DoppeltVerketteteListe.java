@@ -18,24 +18,41 @@ public class DoppeltVerketteteListe<E> implements List<E> {
         }
     }
 
+    /**
+     * Gibt die grosse der Liste zurueck
+     * @return grosse der Liste
+     */
     @Override
     public int size() {
         return size;
     }
 
+    /**
+     * Pruft ob die Liste leer ist
+     * @return true wenn die Liste leer ist, false wenn nicht
+     */
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+
+    /**
+     * Pruft ob die Liste ein bestimmtes Element enthaelt
+     * @param o das Element das gesucht wird
+     * @return true wenn die Liste das Element enthaelt, false wenn nicht
+     */
     @Override
     public boolean contains(Object o) {
-        if(isEmpty()){
-            throw new IllegalArgumentException ("Liste ist leer");
-        }
+        // if(isEmpty()){
+        //     throw new IllegalArgumentException ("Liste ist leer");
+        // }
         return indexOf(o) >= 0;
     }
 
+    /**
+     * 
+     */
     @Override
     public <T> T[] toArray(T[] a) {
         if (a.length < size) {
@@ -59,6 +76,11 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     }
 
 
+    /**
+     * Addiert ein Element am Ende der Liste
+     * @param e das Element das hinzugefuegt wird
+     * @return true wenn das Element hinzugefuegt wurde, false wenn nicht
+     */
     @Override
     public boolean add(E e) {
         if(e == null){
@@ -76,6 +98,11 @@ public class DoppeltVerketteteListe<E> implements List<E> {
         return true;
     }
 
+    /**
+     * Entfernt ein bestimmtes Element aus der Liste
+     * @param o das Element das entfernt wird
+     * @return true wenn das Element entfernt wurde, false wenn nicht
+     */
     @Override
     public boolean remove(Object o) {
         if (isEmpty()) {
@@ -92,6 +119,118 @@ public class DoppeltVerketteteListe<E> implements List<E> {
         return false;
     }
 
+    /**
+     * Addiert alle Elemente einer Collection am Ende der Liste
+     * @param c die Collection die hinzugefuegt wird
+     * @return true wenn die Collection hinzugefuegt wurde, false wenn nicht
+     */
+    @Override
+    public boolean addAll(Collection<? extends E> c) {
+        boolean modified = false;
+        for (E element : c) {
+            add(element);
+            modified = true;
+        }
+        return modified;
+    }
+
+    /**
+     * Entfernt alle Elemente einer Liste
+     */
+    @Override
+    public void clear() {
+        Node<E> currentNode = head;
+        while (currentNode != null) {
+            Node<E> nextNode = currentNode.next;
+            currentNode.prev = null;
+            currentNode.next = null;
+            currentNode.element = null;
+            currentNode = nextNode;
+        }
+        head = tail = null;
+        size = 0;
+    }
+
+    /**
+     * Gibt ein Element an einem bestimmten Index zurueck
+     * @param index der Index des Elements
+     * @return das Element an dem Index
+     */
+    @Override
+    public E get(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        }
+        Node<E> currentNode = getNode(index);
+        return currentNode.element;
+    }
+
+    /**
+     * Plaziert ein Element an einem bestimmten Index
+     * @param index der Index an dem das Element plaziert wird
+     * @param element das Element das plaziert wird
+     * @return das Element das vorher an dem Index war
+     */
+    @Override
+    public E set(int index, E element) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        }
+        Node<E> currentNode = getNode(index);
+        E oldElement = currentNode.element;
+        currentNode.element = element;
+        return oldElement;
+    }
+
+    /**
+     * Fuegt ein Element an einem bestimmten Index hinzu
+     * @param index der Index an dem das Element hinzugefuegt wird
+     * @param element das Element das hinzugefuegt wird
+     */
+    @Override
+    public void add(int index, E element) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        }
+        if (index == size) {
+            add(element);
+        } else {
+            Node<E> nextNode = getNode(index);
+            Node<E> prevNode = nextNode.prev;
+            Node<E> newNode = new Node<>(element, prevNode, nextNode);
+            nextNode.prev = newNode;
+            if (prevNode != null) {
+                prevNode.next = newNode;
+            } else {
+                head = newNode;
+            }
+            size++;
+        }
+    }
+
+    /**
+     * Entfernt ein Element an einem bestimmten Index
+     * @param index der Index an dem das Element entfernt wird
+     * @return das Element das entfernt wurde
+     */
+    @Override
+    public E remove(int index) {
+        if(isEmpty()){
+            throw new NoSuchElementException("List is empty");
+        }
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        }
+        Node<E> currentNode = getNode(index);
+        E removedElement = currentNode.element;
+        unlink(currentNode);
+        return removedElement;
+    }
+    
+    /**
+     * Loescht die verbindung zu einem Node
+     * @param node der Node zu dem die Verbindung geloescht wird
+     */
     private void unlink(Node<E> node) {
         Node<E> prevNode = node.prev;
         Node<E> nextNode = node.next;
@@ -114,85 +253,12 @@ public class DoppeltVerketteteListe<E> implements List<E> {
         size--;
     }
 
-    @Override
-    public boolean addAll(Collection<? extends E> c) {
-        boolean modified = false;
-        for (E element : c) {
-            add(element);
-            modified = true;
-        }
-        return modified;
-    }
-
-    @Override
-    public void clear() {
-        Node<E> currentNode = head;
-        while (currentNode != null) {
-            Node<E> nextNode = currentNode.next;
-            currentNode.prev = null;
-            currentNode.next = null;
-            currentNode.element = null;
-            currentNode = nextNode;
-        }
-        head = tail = null;
-        size = 0;
-    }
-
-    @Override
-    public E get(int index) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
-        }
-        Node<E> currentNode = getNode(index);
-        return currentNode.element;
-    }
-
-    @Override
-    public E set(int index, E element) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
-        }
-        Node<E> currentNode = getNode(index);
-        E oldElement = currentNode.element;
-        currentNode.element = element;
-        return oldElement;
-    }
-
-    @Override
-    public void add(int index, E element) {
-        if (index < 0 || index > size) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
-        }
-        if (index == size) {
-            add(element);
-        } else {
-            Node<E> nextNode = getNode(index);
-            Node<E> prevNode = nextNode.prev;
-            Node<E> newNode = new Node<>(element, prevNode, nextNode);
-            nextNode.prev = newNode;
-            if (prevNode != null) {
-                prevNode.next = newNode;
-            } else {
-                head = newNode;
-            }
-            size++;
-        }
-    }
-
-    @Override
-    public E remove(int index) {
-        if(isEmpty()){
-            throw new NoSuchElementException("List is empty");
-        }
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
-        }
-        Node<E> currentNode = getNode(index);
-        E removedElement = currentNode.element;
-        unlink(currentNode);
-        return removedElement;
-    }
-
+    /**
+     * Gibt den Index eines bestimmten Elements zurueck
+     * @param o das Element dessen Index zurueckgegeben wird
+     * @return der Index des Elements
+     *        -1 wenn das Element nicht in der Liste ist
+     */
     @Override
     public int indexOf(Object o) {
         if (isEmpty()) {
@@ -212,6 +278,8 @@ public class DoppeltVerketteteListe<E> implements List<E> {
 
     /**
      * Hilfsmethode zum Abrufen des Knotens an einer bestimmten Position
+     * @param index die Position des Knotens
+     * @return der Knoten an der Position
      */
     private Node<E> getNode(int index) {
         if(isEmpty()){
