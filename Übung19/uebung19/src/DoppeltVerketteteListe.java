@@ -237,6 +237,7 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     
 
     //faire une toString qui montre le tableau 
+    @Override
     public String toString() {
         String s = "[";
         Node<E> currentNode = head;
@@ -252,15 +253,15 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     }
 
     //Aufgabe2
-    @Override
-    public ListIterator<E> listIterator(int index) {
-        return new DoppeltVerketteteListeIterator(index);
-    }
+    // @Override
+    // public ListIterator<E> listIterator(int index) {
+    //     return new DoppeltVerketteteListeIterator(index);
+    // }
 
-    @Override
-    public Iterator<E> iterator() {
-        return new DoppeltVerketteteListeIterator();
-    }
+    // @Override
+    // public Iterator<E> iterator() {
+    //     return new DoppeltVerketteteListeIterator();
+    // }
 
     public int lastIndexOf(Object o) {
         throw new UnsupportedOperationException();
