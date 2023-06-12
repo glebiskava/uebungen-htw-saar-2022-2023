@@ -43,13 +43,23 @@ public class Main {
         //test fuer get()
         System.out.println("\ntest get() : erste element an der 0. index ist " + list.get(0) + " und sollte 1 sein");
 
+        //test fuer set()
+        System.out.println("\ntest set() : " + list.set(0, 5) + " element an der 0. index wurde geaendert und ist jetzt 5 " +  list);
+        
+        //test fuer add()
+        list.add(0, 10);
+        System.out.println("\ntest add() : 10 wurde an der 0. Index addiert " +  list);
+        list.add(2, 11);
+        System.out.println("\ntest add() : 11 wurde nach der 2. Index addiert " +  list);
+        
         //test fuer clear()
         list.clear();
         sizeTest = 0;
-        System.out.println("\nInteger Liste : " + list);
-
+        System.out.println("\ntest clear() : " + list);
+        
         //test fuer isEmpty();
         System.out.println("\ntest isEmpty() : " + list.isEmpty());
+        System.out.println("Integer Liste : " + list);
     
     }
 }
