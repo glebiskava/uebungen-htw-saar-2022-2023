@@ -1,7 +1,6 @@
 import java.util.*;
-// import java.util.List<E>; // demandé dans l'énoncé ?
 
-public abstract class DoubleLinkedList<E> implements List<E> {
+public class DoppeltVerketteteListe<E> implements List<E> {
 
     private Node<E> head;
     private Node<E> tail;
@@ -35,12 +34,12 @@ public abstract class DoubleLinkedList<E> implements List<E> {
     }
 
     @Override
-    public <T> T[] toArray(T[] a) {
+    public <T> T[] toArray(T[] a) { // cette methode sers à convertir un tableau en liste
         if (a.length < size) {
             // Erstelle ein neues Array mit dem korrekten Typ
             @SuppressWarnings("unchecked")
             T[] newArray = (T[]) java.lang.reflect.Array.newInstance(
-                    a.getClass().getComponentType(), size);
+                    a.getClass().getComponentType(), size); // récupère le type ds éléments du tableau
             a = newArray;
         }
         Object[] result = a;
@@ -50,7 +49,7 @@ public abstract class DoubleLinkedList<E> implements List<E> {
             result[index++] = currentNode.element;
             currentNode = currentNode.next;
         }
-        if (a.length > size) {
+        if (a.length > size) { // si le tableau est plus grand que la liste 
             a[size] = null;
         }
         return a;
@@ -217,6 +216,22 @@ public abstract class DoubleLinkedList<E> implements List<E> {
         }
         return currentNode;
     }
+    
+
+    //faire une toString qui montre le tableau 
+    public String toString() {
+        String s = "[";
+        Node<E> currentNode = head;
+        while (currentNode != null) {
+            s += currentNode.element;
+            currentNode = currentNode.next;
+            if (currentNode != null) {
+                s += ", ";
+            }
+        }
+        s += "]";
+        return s;
+    }
 
     public int lastIndexOf(Object o) {
         throw new UnsupportedOperationException();
@@ -246,5 +261,23 @@ public abstract class DoubleLinkedList<E> implements List<E> {
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    public Iterator<E> iterator() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'iterator'");
+    }
+
+    @Override
+    public ListIterator<E> listIterator(int index) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'listIterator'");
+    }
+
+    @Override
+    public List<E> subList(int fromIndex, int toIndex) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'subList'");
+    }
+    
 }
 
