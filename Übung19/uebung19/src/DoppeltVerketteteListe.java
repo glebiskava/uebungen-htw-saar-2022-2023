@@ -357,13 +357,8 @@ public class DoppeltVerketteteListe<E> implements List<E> {
         throw new UnsupportedOperationException();
     }
 
-    public ListIterator<E> listIterator() {
-        throw new UnsupportedOperationException();
-    }
-
     @Override
     public Iterator<E> iterator() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'iterator'");
     }
 
@@ -372,7 +367,7 @@ public class DoppeltVerketteteListe<E> implements List<E> {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'listIterator'");
     }
-
+    
     @Override
     public List<E> subList(int fromIndex, int toIndex) {
         // TODO Auto-generated method stub
