@@ -42,7 +42,7 @@ public class DoppeltVerketteteListe<E> implements List<E> {
             // Erstelle ein neues Array mit dem korrekten Typ
             @SuppressWarnings("unchecked")
             T[] newArray = (T[]) java.lang.reflect.Array.newInstance(
-                    a.getClass().getComponentType(), size); // récupère le type ds éléments du tableau
+                    a.getClass().getComponentType(), size); 
             a = newArray;
         }
         Object[] result = a;
@@ -235,8 +235,10 @@ public class DoppeltVerketteteListe<E> implements List<E> {
         return currentNode;
     }
     
-
-    //faire une toString qui montre le tableau 
+    /**
+     * toString Methode zum Ausgeben der Liste
+     * @return String
+     */
     @Override
     public String toString() {
         String s = "[";
