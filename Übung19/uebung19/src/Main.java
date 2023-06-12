@@ -48,9 +48,9 @@ public class Main {
         
         //test fuer add()
         list.add(0, 10);
-        System.out.println("\ntest add() : 10 wurde an der 0. Index addiert " +  list);
+        System.out.println("\ntest add(int, E) : 10 wurde an der 0. Index addiert " +  list);
         list.add(2, 11);
-        System.out.println("\ntest add() : 11 wurde nach der 2. Index addiert " +  list);
+        System.out.println("\ntest add(int, E) : 11 wurde nach der 2. Index addiert " +  list);
         
         //test fuer clear()
         list.clear();
