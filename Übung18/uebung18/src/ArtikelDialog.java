@@ -1,9 +1,6 @@
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import aufgabe1.Artikel;
-
 /**
  * Dies ist eine Klasse die zur Interaktion mit einem Benutzer dient.
  * Der Benutzer kann ein Objekt bearbeiten in dem er mit Zahlen verschiedene Methoden/Setter auswaehlt

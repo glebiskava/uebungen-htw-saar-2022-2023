@@ -13,7 +13,7 @@ import java.util.function.Predicate;
 public class Lager {
 
     public static Artikel[] lager;
-    private static int lagerLength = 0;
+    private int lagerLength = 0;
 
     /**
      * zwei konstruktoren --> einer mit waehlbarer Laenge des Arrays und ein Standardkonstruktor
@@ -37,7 +37,7 @@ public class Lager {
      * Prueft auf fehlerhafte Eingaben
      * @param artikel das angelegte objekt
      */
-    public static void legeAnArtikel (Artikel artikel) {
+    public void legeAnArtikel(Artikel artikel) {
         ErrorCheck.checkObLagerVoll(lager);
 
         for (int x = 0; x < lager.length; x++) {
@@ -55,7 +55,7 @@ public class Lager {
      * Prueft auf fehlerhafte Eingaben
      * @param artikelNr identifiaktion des Artikels
      */
-    public static void entferneArtikel (int artikelNr) {
+    public  void entferneArtikel (int artikelNr) {
         ErrorCheck.checkIfNotAlreadyInLager(artikelNr, lager);
         ErrorCheck.checkArtikelNr(artikelNr);
         ErrorCheck.checkLagerLeer(lager);
@@ -78,14 +78,14 @@ public class Lager {
      * @param artikelNr identifiaktion des Artikels
      * @param zugang wie viel zugebucht werden soll
      */
-    public static void bucheZugang (int artikelNr, int zugang) {
+    public  void bucheZugang (int artikelNr, int zugang) {
         ErrorCheck.checkIfNotAlreadyInLager(artikelNr, lager);
         ErrorCheck.checkArtikelNr(artikelNr);
         ErrorCheck.checkLagerLeer(lager);
 
-        for (int x = 0; x < lager.length; x++) {
-            if (artikelNr == lager[x].getArtikelNr()) {
-                lager[x].bucheZugang(zugang);
+        for (Artikel artikel : lager) {
+            if (artikelNr == artikel.getArtikelNr()) {
+                artikel.bucheZugang(zugang);
                 break;
             }
         }
@@ -97,14 +97,14 @@ public class Lager {
      * @param artikelNr identifiaktion des Artikels
      * @param abgang wie viel abgebucht werden soll
      */
-    public static void bucheAbgang (int artikelNr, int abgang) {
+    public  void bucheAbgang (int artikelNr, int abgang) {
         ErrorCheck.checkIfNotAlreadyInLager(artikelNr, lager);
         ErrorCheck.checkArtikelNr(artikelNr);
         ErrorCheck.checkLagerLeer(lager);
 
-        for (int x = 0; x < lager.length; x++) {
-            if (artikelNr == lager[x].getArtikelNr()) {
-                lager[x].bucheAbgang(abgang);
+        for (Artikel artikel : lager) {
+            if (artikelNr == artikel.getArtikelNr()) {
+                artikel.bucheAbgang(abgang);
                 break;
             }
         }
@@ -116,7 +116,7 @@ public class Lager {
      * @param artikelNr identifiaktion des Artikels
      * @param prozent wie viel abgebucht werden soll
      */
-    public static void aenderePreisEinesArtikels (int artikelNr, double prozent) {
+    public  void aenderePreisEinesArtikels (int artikelNr, double prozent) {
         ErrorCheck.checkIfNotAlreadyInLager(artikelNr, lager);
         ErrorCheck.checkArtikelNr(artikelNr);
         ErrorCheck.checkLagerLeer(lager);
@@ -134,7 +134,7 @@ public class Lager {
      * Prueft auf fehlerhafte Eingaben
      * @param prozent um wei viel prozent der Preis erhoeht oder erniedrigt werden soll
      */
-    public static void aenderePreisAllerArtikel (double prozent) {
+    public  void aenderePreisAllerArtikel (double prozent) {
         ErrorCheck.checkLagerLeer(lager);
 
         for (Artikel artikel : lager) {
@@ -149,7 +149,7 @@ public class Lager {
      * Prueft auf fehlerhafte Eingaben
      * @param index position im Lager
      */
-    public static Artikel getArtikel(int index) {
+    public  Artikel getArtikel(int index) {
         ErrorCheck.checkLagerLeer(lager);
         ErrorCheck.checkNullIndex(lager, index);
         ErrorCheck.checkRangeOfIndex(index, lager.length);
@@ -265,7 +265,7 @@ public class Lager {
      * @return array mit gematchten Artikeln
      */
     public Artikel[] filterAll(Predicate<Artikel>... filterCrit) {
-        Artikel[] filteredArticles = Lager.lager;
+        Artikel[] filteredArticles = this.lager;
 
         for (Predicate<Artikel> crit : filterCrit) {
             filteredArticles = filter(crit, filteredArticles);
@@ -297,7 +297,7 @@ public class Lager {
      * Bestimmt die aktuelle Anzahl der Artikel im Lager
      * Prueft auf fehlerhafte Eingaben
      */
-    public static int getArtikelAnzahl() {
+    public  int getArtikelAnzahl() {
         ErrorCheck.checkLagerLeer(lager);
 
         int anzahl = 0;
@@ -313,7 +313,7 @@ public class Lager {
     /**
      * Bestimmt die Anzahl der Artikel, die ins Lager gelegt werden koennen
      */
-    public static int getLagerGroesse() {
+    public  int getLagerGroesse() {
         return lager.length;
     }
 

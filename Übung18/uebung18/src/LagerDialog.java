@@ -9,7 +9,7 @@ import java.util.Scanner;
  */
 
 public class LagerDialog {
-    public static Artikel artikel;
+    private Artikel artikel;
     private final Scanner input;
     private Lager lager;
     private final Ueb18Fassade fassade = new Ueb18Fassade();
@@ -381,7 +381,7 @@ public class LagerDialog {
 
         CD Cd = new CD(artikelNr, artikelBestand, artikelPreis, artikelInterpret, artikelTitel, artikelAnzahlTitel);
 
-        Lager.legeAnArtikel(Cd);
+        lager.legeAnArtikel(Cd);
     }
 
     /**
@@ -426,7 +426,7 @@ public class LagerDialog {
         ErrorCheck.checkZwischen1900und2022(artikelJahr);
 
         Video Video = new Video(artikelNr, artikelBestand, artikelPreis, artikelTitel, artikelSpieldauer, artikelJahr);
-        Lager.legeAnArtikel(Video);
+        lager.legeAnArtikel(Video);
     }
 
     /**
@@ -471,7 +471,7 @@ public class LagerDialog {
         ErrorCheck.checkStringNichtLeer(artikelVerlag);
 
         Buch Buch = new Buch(artikelNr, artikelBestand, artikelPreis, artikelTitel, artikelAuthor, artikelVerlag);
-        Lager.legeAnArtikel(Buch);
+        lager.legeAnArtikel(Buch);
     }
 
     /**
@@ -503,7 +503,7 @@ public class LagerDialog {
 
         artikel = new Artikel(artikelNr, artikelArt, artikelBestand, artikelPreis);
 
-        Lager.legeAnArtikel(artikel);
+        lager.legeAnArtikel(artikel);
     }
     /**
      * entfernt einen Artikel
@@ -515,7 +515,7 @@ public class LagerDialog {
         System.out.println("Geben Sie einen die Artikelnummer ein von \n" +
                 "dem Artikel den sie loeschen wollen: ");
         int artikelNr = input.nextInt();
-        Lager.entferneArtikel(artikelNr);
+        lager.entferneArtikel(artikelNr);
 
     }
 
@@ -533,7 +533,7 @@ public class LagerDialog {
                 "Geben Sie einen Wert ein: ");
         int zugang = input.nextInt();
 
-        Lager.bucheZugang(artikelNr, zugang);
+        lager.bucheZugang(artikelNr, zugang);
     }
     /**
      * Vermindert Artikelbestand um eine vom Nutzer selbst ausgewaehlte Menge
@@ -549,7 +549,7 @@ public class LagerDialog {
                 "Geben Sie einen Wert ein:  ");
         int abgang = input.nextInt();
 
-        Lager.bucheAbgang(artikelNr, abgang);
+        lager.bucheAbgang(artikelNr, abgang);
     }
 
     /**
@@ -566,7 +566,7 @@ public class LagerDialog {
                 "Geben Sie einen Wert ein: ");
         double prozent = input.nextDouble();
 
-        Lager.aenderePreisEinesArtikels(artikelNr, prozent);
+        lager.aenderePreisEinesArtikels(artikelNr, prozent);
     }
 
     /**
@@ -579,7 +579,7 @@ public class LagerDialog {
         System.out.println("Um wie viel Prozent soll der Preis erhoeht werden?\n" +
                 "Geben Sie einen Wert ein: ");
         double prozent = input.nextDouble();
-        Lager.aenderePreisAllerArtikel(prozent);
+        lager.aenderePreisAllerArtikel(prozent);
     }
 
     /**
@@ -592,7 +592,7 @@ public class LagerDialog {
         System.out.println("Geben Sie einen Index ein: ");
 
         int index = input.nextInt();
-        System.out.println(Lager.getArtikel(index));
+        System.out.println(lager.getArtikel(index));
     }
 
     /**
@@ -634,7 +634,7 @@ public class LagerDialog {
         ErrorCheck.checkLagerExistiert(lager);
         ErrorCheck.checkLagerLeer(Lager.lager);
 
-        System.out.println("Anzahl der Artikel im Lager : " + Lager.getArtikelAnzahl());
+        System.out.println("Anzahl der Artikel im Lager : " + lager.getArtikelAnzahl());
     }
 
     /**
@@ -642,7 +642,7 @@ public class LagerDialog {
      */
     public void getLagerGroesse(){
         ErrorCheck.checkLagerExistiert(lager);
-        System.out.println("Groesse des Lagers: " + Lager. getLagerGroesse());
+        System.out.println("Groesse des Lagers: " + lager.getLagerGroesse());
     }
 
 
@@ -678,9 +678,9 @@ public class LagerDialog {
         String gesuchterAuthor = input.next();
         input.nextLine();
         boolean richtigeAuthor = false;
-        for(int i = 0; i < Lager.getArtikelAnzahl(); i++){
-            if(Lager.getArtikel(i) instanceof Buch){
-                if(((Buch) Lager.getArtikel(i)).getAuthor().equals(gesuchterAuthor)){
+        for(int i = 0; i < lager.getArtikelAnzahl(); i++){
+            if(lager.getArtikel(i) instanceof Buch){
+                if(((Buch) lager.getArtikel(i)).getAuthor().equals(gesuchterAuthor)){
                     richtigeAuthor = true;
                     fassade.aufgabe_h_iii(lager, gesuchterAuthor);
                 }

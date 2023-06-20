@@ -81,7 +81,7 @@ public class Artikel {
      * 
      * 
      * Setter für ArtikelNr soll 4stelluge sein
-     * @param ArtikelNr numùmer des Artikels
+     * @param artikelNr numùmer des Artikels
      */
     public void setArtikelNr(int artikelNr) {
         ErrorCheck.checkArtikelNr(artikelNr);
@@ -176,10 +176,9 @@ public class Artikel {
         if (this == object){
             return true;
         }
-        if (!(object instanceof Artikel)) {
+        if (!(object instanceof Artikel artikel)) {
             return false;
         }
-        Artikel artikel = (Artikel) object;
         return artikelNr == artikel.artikelNr &&
                 bestand == artikel.bestand &&
                 Double.compare(artikel.preis, preis) == 0 &&
