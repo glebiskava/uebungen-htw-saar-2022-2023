@@ -39,40 +39,44 @@ public class DoppeltVerketteteListe<E> implements List<E> {
 
     /**
      * Pruft ob die Liste ein bestimmtes Element enthaelt
-     * @param o das Element das gesucht wird
+     * @param obj das Element das gesucht wird
      * @return true wenn die Liste das Element enthaelt, false wenn nicht
      */
     @Override
-    public boolean contains(Object o) {
-        // if(isEmpty()){
-        //     throw new IllegalArgumentException ("Liste ist leer");
-        // }
-        return indexOf(o) >= 0;
+    public boolean contains(Object obj) {
+        return indexOf(obj) >= 0;
     }
 
     /**
-     * 
+     * Kopiert die Elemente der Liste in ein Array. Das Array wird entweder in-place verwendet, wenn es genügend Kapazität hat,
+     * oder es wird ein neues Array mit dem korrekten Typ erstellt und mit den Elementen der Liste gefüllt.
+     *
+     * @param arr das Array, in das die Elemente kopiert werden sollen
+     * @param <T> der Typ des Arrays
+     * @return das Array mit den kopierten Elementen oder das neue Array mit dem korrekten Typ
      */
     @Override
-    public <T> T[] toArray(T[] a) {
-        if (a.length < size) {
+    public <T> T[] toArray(T[] arr) {
+        ErrorCheck.checkObListeLeer(arr.length);
+        ErrorCheck.checkObListeLeer(size);
+        if (arr.length < size) {
             // Erstelle ein neues Array mit dem korrekten Typ
             @SuppressWarnings("unchecked")
             T[] newArray = (T[]) java.lang.reflect.Array.newInstance(
-                    a.getClass().getComponentType(), size); 
-            a = newArray;
+                    arr.getClass().getComponentType(), size);
+            arr = newArray;
         }
-        Object[] result = a;
+        Object[] result = arr;
         Node<E> currentNode = head;
         int index = 0;
         while (currentNode != null) {
             result[index++] = currentNode.element;
             currentNode = currentNode.next;
         }
-        if (a.length > size) {
-            a[size] = null;
+        if (arr.length > size) {
+            arr[size] = null;
         }
-        return a;
+        return arr;
     }
 
 
@@ -83,9 +87,7 @@ public class DoppeltVerketteteListe<E> implements List<E> {
      */
     @Override
     public boolean add(E e) {
-        if(e == null){
-            throw new NullPointerException("Element must not be null");
-        }
+        ErrorCheck.checkObObjektNull(e);
         if (isEmpty()) {
             head = new Node<>(e, null, null);
             tail = head;
@@ -100,17 +102,19 @@ public class DoppeltVerketteteListe<E> implements List<E> {
 
     /**
      * Entfernt ein bestimmtes Element aus der Liste
-     * @param o das Element das entfernt wird
+     * @param obj das Element das entfernt wird
      * @return true wenn das Element entfernt wurde, false wenn nicht
      */
     @Override
-    public boolean remove(Object o) {
+    public boolean remove(Object obj) {
+        ErrorCheck.checkObListeLeer(size);
+        ErrorCheck.checkObObjektNull(obj);
         if (isEmpty()) {
             return false;
         }
         Node<E> currentNode = head;
         while (currentNode != null) {
-            if (Objects.equals(currentNode.element, o)) {
+            if (Objects.equals(currentNode.element, obj)) {
                 unlink(currentNode);
                 return true;
             }
@@ -168,7 +172,7 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     /**
      * Plaziert ein Element an einem bestimmten Index
      * @param index der Index an dem das Element plaziert wird
-     * @param element das Element das plaziert wird
+     * @param element das Element das platziert wird
      * @return das Element das vorher an dem Index war
      */
     @Override
@@ -226,7 +230,7 @@ public class DoppeltVerketteteListe<E> implements List<E> {
         unlink(currentNode);
         return removedElement;
     }
-    
+
     /**
      * Loescht die verbindung zu einem Node
      * @param node der Node zu dem die Verbindung geloescht wird
@@ -302,38 +306,32 @@ public class DoppeltVerketteteListe<E> implements List<E> {
         }
         return currentNode;
     }
-    
+
     /**
      * toString Methode zum Ausgeben der Liste
      * @return String
      */
     @Override
     public String toString() {
-        String s = "[";
+        StringBuilder s = new StringBuilder("[");
         Node<E> currentNode = head;
         while (currentNode != null) {
-            s += currentNode.element;
+            s.append(currentNode.element);
             currentNode = currentNode.next;
             if (currentNode != null) {
-                s += ", ";
+                s.append(", ");
             }
         }
-        s += "]";
-        return s;
+        s.append("]");
+        return s.toString();
     }
 
-    //Aufgabe2
-    // @Override
-    // public ListIterator<E> listIterator(int index) {
-    //     return new DoppeltVerketteteListeIterator(index);
-    // }
-
-    // @Override
-    // public Iterator<E> iterator() {
-    //     return new DoppeltVerketteteListeIterator();
-    // }
-
     public int lastIndexOf(Object o) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public ListIterator<E> listIterator() {
         throw new UnsupportedOperationException();
     }
 
@@ -364,15 +362,10 @@ public class DoppeltVerketteteListe<E> implements List<E> {
 
     @Override
     public ListIterator<E> listIterator(int index) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'listIterator'");
     }
-    
     @Override
     public List<E> subList(int fromIndex, int toIndex) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'subList'");
     }
-    
 }
-
