@@ -1,10 +1,12 @@
+
 import java.util.Objects;
+
 
 /**
  * Dies ist eine Unterklasse Buch von der Klasse Artikel welche
  */
 
-public class Buch extends Artikel{
+public class Buch extends Artikel {
 
     /**
      * attribute: selbsterklaerend

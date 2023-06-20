@@ -1,3 +1,4 @@
+
 import java.util.*;
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
@@ -12,7 +13,7 @@ import java.util.function.Predicate;
 public class Lager {
 
     public static Artikel[] lager;
-    private static int lagerLength = 0;
+    private int lagerLength = 0;
 
     /**
      * zwei konstruktoren --> einer mit waehlbarer Laenge des Arrays und ein Standardkonstruktor
@@ -36,7 +37,7 @@ public class Lager {
      * Prueft auf fehlerhafte Eingaben
      * @param artikel das angelegte objekt
      */
-    public static void legeAnArtikel (Artikel artikel) {
+    public void legeAnArtikel(Artikel artikel) {
         ErrorCheck.checkObLagerVoll(lager);
 
         for (int x = 0; x < lager.length; x++) {
@@ -54,7 +55,7 @@ public class Lager {
      * Prueft auf fehlerhafte Eingaben
      * @param artikelNr identifiaktion des Artikels
      */
-    public static void entferneArtikel (int artikelNr) {
+    public  void entferneArtikel (int artikelNr) {
         ErrorCheck.checkIfNotAlreadyInLager(artikelNr, lager);
         ErrorCheck.checkArtikelNr(artikelNr);
         ErrorCheck.checkLagerLeer(lager);
@@ -77,14 +78,14 @@ public class Lager {
      * @param artikelNr identifiaktion des Artikels
      * @param zugang wie viel zugebucht werden soll
      */
-    public static void bucheZugang (int artikelNr, int zugang) {
+    public  void bucheZugang (int artikelNr, int zugang) {
         ErrorCheck.checkIfNotAlreadyInLager(artikelNr, lager);
         ErrorCheck.checkArtikelNr(artikelNr);
         ErrorCheck.checkLagerLeer(lager);
 
-        for (int x = 0; x < lager.length; x++) {
-            if (artikelNr == lager[x].getArtikelNr()) {
-                lager[x].bucheZugang(zugang);
+        for (Artikel artikel : lager) {
+            if (artikelNr == artikel.getArtikelNr()) {
+                artikel.bucheZugang(zugang);
                 break;
             }
         }
@@ -96,14 +97,14 @@ public class Lager {
      * @param artikelNr identifiaktion des Artikels
      * @param abgang wie viel abgebucht werden soll
      */
-    public static void bucheAbgang (int artikelNr, int abgang) {
+    public  void bucheAbgang (int artikelNr, int abgang) {
         ErrorCheck.checkIfNotAlreadyInLager(artikelNr, lager);
         ErrorCheck.checkArtikelNr(artikelNr);
         ErrorCheck.checkLagerLeer(lager);
 
-        for (int x = 0; x < lager.length; x++) {
-            if (artikelNr == lager[x].getArtikelNr()) {
-                lager[x].bucheAbgang(abgang);
+        for (Artikel artikel : lager) {
+            if (artikelNr == artikel.getArtikelNr()) {
+                artikel.bucheAbgang(abgang);
                 break;
             }
         }
@@ -115,7 +116,7 @@ public class Lager {
      * @param artikelNr identifiaktion des Artikels
      * @param prozent wie viel abgebucht werden soll
      */
-    public static void aenderePreisEinesArtikels (int artikelNr, double prozent) {
+    public  void aenderePreisEinesArtikels (int artikelNr, double prozent) {
         ErrorCheck.checkIfNotAlreadyInLager(artikelNr, lager);
         ErrorCheck.checkArtikelNr(artikelNr);
         ErrorCheck.checkLagerLeer(lager);
@@ -133,7 +134,7 @@ public class Lager {
      * Prueft auf fehlerhafte Eingaben
      * @param prozent um wei viel prozent der Preis erhoeht oder erniedrigt werden soll
      */
-    public static void aenderePreisAllerArtikel (double prozent) {
+    public  void aenderePreisAllerArtikel (double prozent) {
         ErrorCheck.checkLagerLeer(lager);
 
         for (Artikel artikel : lager) {
@@ -148,7 +149,7 @@ public class Lager {
      * Prueft auf fehlerhafte Eingaben
      * @param index position im Lager
      */
-    public static Artikel getArtikel(int index) {
+    public  Artikel getArtikel(int index) {
         ErrorCheck.checkLagerLeer(lager);
         ErrorCheck.checkNullIndex(lager, index);
         ErrorCheck.checkRangeOfIndex(index, lager.length);
@@ -163,31 +164,6 @@ public class Lager {
      * @return sortiertes Array
      */
 
-
-    //ca à lair bien trop complexe, en plus on alloc bcp de mémoire avec le array.copyof
-    //donc j'ai fait une autre fonction en dessous (conseils de vice)
-
-
-    // public Artikel[] getSorted(BiPredicate<Artikel, Artikel> sortCrit) {
-    //     Artikel[] sortedArray = Arrays.copyOf(lager, lager.length);
-
-    //     Comparator<Artikel> comparator = (a1, a2) -> {
-    //         if (sortCrit.test(a1, a2)) {
-    //             return -1; // a1 sollte vor a2 sortiert werden
-    //         } else if (sortCrit.test(a2, a1)) {
-    //             return 1; // a2 sollte vor a1 sortiert werden
-    //         } else {
-    //             return 0; // a1 und a2 sind gleich
-    //         }
-    //     };
-
-    //     Arrays.sort(sortedArray, comparator);
-
-    //     return sortedArray;
-    // }
-
-
-    //bubble sort tout simple recommandé, parce qu'on sait bien l'expliquer ! et sans importer quoi que ce soit
     public Artikel[] getSorted(BiPredicate<Artikel, Artikel> sortCrit) {
 
         for(int i = 0; i < lagerLength; i++) {
@@ -199,9 +175,6 @@ public class Lager {
                 }
             }
         }
-        // for(int i = 0; i < lagerLength; i++) {
-        //     System.out.println(i + ". " + lager[i] + "\n");
-        // }
         return lager;
     }
     
@@ -213,7 +186,9 @@ public class Lager {
      */
     public void applyToArticles(Consumer<Artikel> operation) {
         for (Artikel artikel : lager) {
-            operation.accept(artikel);
+            if (artikel != null) {
+                operation.accept(artikel);
+            }
         }
     }
 
@@ -229,7 +204,6 @@ public class Lager {
         for (Artikel artikel : lager) { // boucle sur tous les articles
             if (artikel != null && filterCrit.test(artikel)) { // si l'article match le critère
                 operation.accept(artikel); 
-// on applique l'opération avec l'article en paramètre en utilisant la méthode accept de l'interface Consumer qui fait appel à la méthode apply de l'interface Consumer et permet donc d'appliquer l'opération
             }
         }
     }
@@ -259,7 +233,6 @@ public class Lager {
      * Methode die alle Artikel des Lagers zurückgibt,
      * welche ein bestimmtes Filterkriterium erfüllen
      * @param filterCrit Filter Kriterium
-     * @param filteredArticles
      * @return gefiltertes Array
      */
     public Artikel[] filter(Predicate<Artikel> filterCrit, Artikel[] filteredArticles) {
@@ -292,7 +265,7 @@ public class Lager {
      * @return array mit gematchten Artikeln
      */
     public Artikel[] filterAll(Predicate<Artikel>... filterCrit) {
-        Artikel[] filteredArticles = Lager.lager;
+        Artikel[] filteredArticles = this.lager;
 
         for (Predicate<Artikel> crit : filterCrit) {
             filteredArticles = filter(crit, filteredArticles);
@@ -324,7 +297,7 @@ public class Lager {
      * Bestimmt die aktuelle Anzahl der Artikel im Lager
      * Prueft auf fehlerhafte Eingaben
      */
-    public static int getArtikelAnzahl() {
+    public  int getArtikelAnzahl() {
         ErrorCheck.checkLagerLeer(lager);
 
         int anzahl = 0;
@@ -340,7 +313,7 @@ public class Lager {
     /**
      * Bestimmt die Anzahl der Artikel, die ins Lager gelegt werden koennen
      */
-    public static int getLagerGroesse() {
+    public  int getLagerGroesse() {
         return lager.length;
     }
 

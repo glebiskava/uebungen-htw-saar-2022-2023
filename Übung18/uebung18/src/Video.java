@@ -1,10 +1,11 @@
+
 import java.util.Objects;
 
 /**
  * Dies ist eine Unterklasse Video von der Klasse Artikel welche
  */
 
-public class Video extends Artikel{
+public class Video extends Artikel {
 
     /**
      * attribute: selbsterklaerend

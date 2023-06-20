@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 import java.util.function.Predicate;
 
@@ -10,7 +11,7 @@ import java.util.function.Predicate;
 public class Funktionen {
 
     // private static Scanner input;
-    
+
     /**
      * Aufgabe a)
      * Methode applyAndPrint, nimmt zwei natürliche Zahlen i und j sowie
@@ -92,11 +93,11 @@ public class Funktionen {
     /**
      * Zugangsmethode für Top-Level Implementierung
      * @param x naturlische zahl
-     * @return factoriel von x 
+     * @return factoriel von x
      */
     public int FactorielAnonymZugang (int x){
         Factoriel fAnonym = new Factoriel();
-        
+
         return fAnonym.apply(x);
     }
 
@@ -198,7 +199,7 @@ public class Funktionen {
         }
     };
     public static void main(String[] args){
-        Scanner input = new Scanner(System.in); 
+        Scanner input = new Scanner(System.in);
         System.out.println("i: ");
         int i = input.nextInt();
         input.nextLine();
@@ -208,11 +209,11 @@ public class Funktionen {
         input.nextLine();
 
         System.out.println("\n Test fuer FactorielAnonymZugang: \n");
-        
+
         Factoriel fAnonym = new Factoriel();
         applyAndPrint(i, j, fAnonym::apply);
-        
-        
+
+
         System.out.println("\n Test fuer staticNestedFactoriel: \n");
         MyFunction fStatic = new staticNestedFactoriel.FactorielStatischNested();
         applyAndPrint(i, j, fStatic::apply);

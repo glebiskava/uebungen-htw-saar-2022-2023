@@ -1,10 +1,11 @@
+
 import java.util.Objects;
 
 /**
  * deis ist eine Unterklasse CD der Oberklasse Artikel
  */
 
-public class CD extends Artikel{
+public class CD extends Artikel {
 
     /**
      * Attribute

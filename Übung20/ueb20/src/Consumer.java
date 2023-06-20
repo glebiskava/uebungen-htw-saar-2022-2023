@@ -114,4 +114,6 @@ class Consumer {
     public List<Long> getTimestampsForResult(int result) {
         return quersummen.getOrDefault(result, new ArrayList<>());
     }
+
+
 }

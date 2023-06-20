@@ -81,7 +81,7 @@ public class Artikel {
      * 
      * 
      * Setter für ArtikelNr soll 4stelluge sein
-     * @param ArtikelNr numùmer des Artikels
+     * @param artikelNr numùmer des Artikels
      */
     public void setArtikelNr(int artikelNr) {
         ErrorCheck.checkArtikelNr(artikelNr);
@@ -158,6 +158,19 @@ public class Artikel {
      * @param object The object to be compared with
      * @return boolean true if the objects are equal, false otherwise
      */
+    // @Override
+    // public boolean equals(Object object) {
+    //     if (this == object){
+    //         return true;
+    //     }
+    //     if (!(object instanceof Artikel artikel)) {
+    //         return false;
+    //     }
+    //     return artikelNr == artikel.artikelNr &&
+    //             bestand == artikel.bestand &&
+    //             Double.compare(artikel.preis, preis) == 0 &&
+    //             Objects.equals(art, artikel.art);
+    // }
     @Override
     public boolean equals(Object object) {
         if (this == object){

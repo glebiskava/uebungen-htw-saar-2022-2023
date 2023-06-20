@@ -1,3 +1,4 @@
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,11 +10,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * dies ist eine Klasse zum testen der klasse lager
  */
 public class LagerTests {
-    @BeforeEach
-    public void setup(){
-        // Before each test ein Lager Groesse 10 anlegen (default value)
-        Lager lager = new Lager();
-    }
+//    @BeforeEach
+//    public void setup(){
+//        // Before each test ein Lager Groesse 10 anlegen (default value)
+//        Lager lager = new Lager();
+//    }
 
     /**
      * Test für den ersten Konstruktor und ob die korrekte Lagergroesse uebergeben wurde
@@ -34,7 +35,8 @@ public class LagerTests {
     @Test
     public void test_zweiten_Konstruktor_And_Check_For_Lagergroesse_sollte_korrekt_sein() {
         // Pruefen, ob die Attribute des Objekts korrekt gesetzt sind
-        assertEquals(10, Lager.getLagerGroesse());
+        Lager lager = new Lager(5);
+        assertEquals(5, lager.getLagerGroesse());
 
     }
 
@@ -43,14 +45,15 @@ public class LagerTests {
      */
     @Test
     public void test_lege_Artikel_ins_Lager_sollte_korrekt_sein() {
+        Lager lager = new Lager(5);
         // Artikel anlegen
         Artikel artikel = new Artikel(9999, "Test artikel", 1000, 10.0);
 
         //Artikel ins Lager legen
-        Lager.legeAnArtikel(artikel);
+        lager.legeAnArtikel(artikel);
 
         // Verwenden der Methode getArtikel, mit der attribut 0 der der Index repräs
-        assertEquals(artikel, Lager.getArtikel(0));
+        assertEquals(artikel, lager.getArtikel(0));
     }
 
     /**
@@ -59,23 +62,24 @@ public class LagerTests {
      */
     @Test
     public void test_entferne_Artikel_ins_Lager_sollte_korrekt_sein() {
+        Lager lager = new Lager(5);
         // Zwei Artikel anlegen mit verschiedene ArtikelNr
         Artikel artikel = new Artikel(1021, "Test artikel", 10, 10.0);
         Artikel artikel2 = new Artikel(1001, "Test artikel", 1, 10.0);
 
         // Beide Artikel ins Lager legen
-        Lager.legeAnArtikel(artikel);
-        Lager.legeAnArtikel(artikel2);
+        lager.legeAnArtikel(artikel);
+        lager.legeAnArtikel(artikel2);
 
         // Verwenden der Methode getArtikel, mit der attribut 0 der der Index repräsentiert.
         // Um sicher zu sein, dass der Lager nicht Lehr ist
-        assertEquals(artikel, Lager.getArtikel(0));
+        assertEquals(artikel, lager.getArtikel(0));
 
         // Artikel von Lager löschen
-        Lager.entferneArtikel(1021);
+        lager.entferneArtikel(1021);
 
         // Prüft ob der artikel gut geloescht ist
-        assertEquals(1, Lager.getArtikelAnzahl());
+        assertEquals(1, lager.getArtikelAnzahl());
     }
 
     /**
@@ -83,14 +87,15 @@ public class LagerTests {
      */
     @Test
     public void test_Buche_Zugang_sollte_korrekt_sein() {
+        Lager lager = new Lager(5);
         // Artikel anlegen neues Artikel-Objekt mit Artikel-Startbestand von 10
         Artikel artikel = new Artikel(1210, "Test artikel", 10, 10.0);
 
         //Artikel ins Lager legen
-        Lager.legeAnArtikel(artikel);
+        lager.legeAnArtikel(artikel);
 
         // Verwenden der Methode bucheZugang, um den Lagerbestand um 5 zu erhöhen
-        Lager.bucheZugang(1210, 5);
+        lager.bucheZugang(1210, 5);
 
         // Feststellen, dass der neue Lagerbestand gleich 15 ist
         assertEquals(15, artikel.getBestand());
@@ -101,14 +106,15 @@ public class LagerTests {
      */
     @Test
     public void test_Preis_Eines_Artikels_Erhoehen_sollte_korrekt_sein() {
+        Lager lager = new Lager(5);
         // Artikel anlegen neues Artikel-Objekt mit Artikel-Startbestand von 10
         Artikel artikel = new Artikel(1000, "Test artikel", 10, 10.0);
 
         //Artikel ins Lager legen
-        Lager.legeAnArtikel(artikel);
+        lager.legeAnArtikel(artikel);
 
         // Verwenden der Methode aenderePreisEinesArtikels, um den Preis um 10% zu erhöhen
-        Lager.aenderePreisEinesArtikels(1000, 10);
+        lager.aenderePreisEinesArtikels(1000, 10);
 
         // Feststellen, dass der neue Lagerbestand gleich 15 ist
         assertEquals(11.0, artikel.getPreis());
@@ -119,14 +125,15 @@ public class LagerTests {
      */
     @Test
     public void test_Preis_Aller_Artikel_Erhoehen_sollte_korrekt_sein() {
+        Lager lager = new Lager(5);
         // Artikel anlegen neues Artikel-Objekt mit Artikel-Startbestand von 10
         Artikel artikel = new Artikel(1000, "Test artikel", 10, 10.0);
 
         //Artikel ins Lager legen
-        Lager.legeAnArtikel(artikel);
+        lager.legeAnArtikel(artikel);
 
         // Verwenden der Methode aenderePreisAllerArtikel, um den Preis um 10% zu erhöhen
-        Lager.aenderePreisAllerArtikel(10);
+        lager.aenderePreisAllerArtikel(10);
 
         // Feststellen, dass der neue Lagerbestand gleich 15 ist
         assertEquals(11.0, artikel.getPreis());
@@ -150,16 +157,17 @@ public class LagerTests {
      */
     @Test
     public void test_Artikel_legen_mit_Artikelnummer_bereits_existiert_erwartet_Exception() {
+        Lager lager = new Lager(5);
         // Artikel anlegen neues Artikel-Objekt mit ungueltiger Artikelnummer
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
 
             // Erste Artikel schaffen und im Lager anlegen
             Artikel artikel = new Artikel(1001, "Test artikel 1000", 10, 10.0);
-            Lager.legeAnArtikel(artikel);
+            lager.legeAnArtikel(artikel);
 
             // Zweite Artikel schaffen und im Lager anlegen
             Artikel artikelBis = new Artikel(1001, "Test artikel 1000bis", 10, 10.0);
-            Lager.legeAnArtikel(artikelBis);
+            lager.legeAnArtikel(artikelBis);
         });
     }
 
@@ -175,11 +183,11 @@ public class LagerTests {
 
             // Erste Artikel schaffen und im Lager anlegen
             Artikel artikel = new Artikel(1012, "Test artikel", 10, 10.0);
-            Lager.legeAnArtikel(artikel);
+            lager.legeAnArtikel(artikel);
 
             // Zweite Artikel schaffen und im Lager anlegen
             Artikel artikelBis = new Artikel(1000, "Test artikel bis", 10, 10.0);
-            Lager.legeAnArtikel(artikelBis);
+            lager.legeAnArtikel(artikelBis);
         });
     }
 
@@ -188,12 +196,13 @@ public class LagerTests {
      */
     @Test
     public void test_preisaenderung_wird_preis_negativ_machen_erwartet_Exception() {
+        Lager lager = new Lager(5);
         // Artikel anlegen neues 
         Artikel artikel = new Artikel(1021, "Test artikel", 10, 10.0);
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             // Probiert mit ein negativ Prozent Groesser als -100
-            Lager.aenderePreisAllerArtikel(-101);
+            lager.aenderePreisAllerArtikel(-101);
         });
     }
 

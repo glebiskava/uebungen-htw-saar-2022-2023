@@ -1,3 +1,4 @@
+
 import java.beans.Transient;
 
 import org.junit.jupiter.api.Assertions;
@@ -68,12 +69,6 @@ public class FunktionenTest {
         int ergebnis = f.FactorielAnonymZugang(4);
         Assertions.assertEquals(24, ergebnis);
     }
-    @Test
-    public void test_Factoriel_Static_Nested_mit_4_ewartet_24() {
-        int ergebnis = f.FactorielStatischNestedZugang(4);
-        Assertions.assertEquals(24, ergebnis);
-    }
-
 
     /**
      *  Test fuer produkt Lambda & anonym

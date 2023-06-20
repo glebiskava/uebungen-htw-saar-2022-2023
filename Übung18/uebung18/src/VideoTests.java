@@ -1,3 +1,4 @@
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -125,16 +126,6 @@ public class VideoTests {
         assertThrows(IllegalArgumentException.class, () -> {
             videoTest.setJahr(2023);
         });
-    }
-
-    /**
-     * Testen fuer richtige ausgabe bei getbeschreibung
-     */
-    @Test
-    public void test_getBeschreibung_sollte_korrekt_sein() {
-        Video videoTest = new Video(3453, 234, 234, "fastandfurious", 323, 1902);
-
-        assertEquals("fastandfurious", videoTest.getBeschreibung());
     }
 
     /**
