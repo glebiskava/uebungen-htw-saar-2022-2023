@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Producer
+comment0.text=\r\n\ @author\ Leopold\ Mittelberger,\ Elisee\ Brand\r\n\ @version\ 1.0\r\n\ Dies\ ist\ eine\ Producer-Klasse\ die\ zuf\u00E4llig\ generierte\ Zahlen\ erzeugt\ und\ in\ einer\ ArrayList\ speichert\r\n
+comment1.params=arrayList
+comment1.target=Producer(java.util.List)
+comment1.text=\r\n\ Konstruktor\r\n\ @param\ arrayList\ ArrayListe\ die\ erstellt\ wird\r\n
+comment2.params=
+comment2.target=int\ produce()
+comment2.text=\r\n\ Methode\ welche\ einen\ zuf\u00E4lligen\ Integer\ zwischen\r\n\ 0\ und\ 1000\ erzeugt\ und\ zur\u00FCckgibt\r\n\ @return\ Zahl\ die\ hinzugef\u00FCgt\ wurde\r\n
+numComments=3
