@@ -20,7 +20,8 @@ class Consumer {
     /**
      * Konstruktor
      */
-    public Consumer() {
+    public Consumer(Producer producer) {
+        this.producer = producer;
         quersummen = new HashMap<>();
         quersummenCount = new HashMap<>();
     }
@@ -29,8 +30,7 @@ class Consumer {
      * Diese Methode nimmt einen Integer entgegen und berechnet die Quersumme.
      * Für jede Berechnung wird der Zeitstempel der Berechnung gespeichert
      */
-    public void consume() {
-        int number = producer.produce();
+    public void consume(int number) {
         int sum = calculateDigitSum(number);
         long timestamp = System.currentTimeMillis();
 
