@@ -26,7 +26,7 @@ public class Main {
         Random ran = new Random();
 
         // wenn ran.nextInt() größer null also 1, dann produce wenn nicht dann consume
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 10000; i++) {
             int randomInt = ran.nextInt(2); //zufaelliger Int bis 2 also 0 oder 1
 
             if (randomInt > 0) {
