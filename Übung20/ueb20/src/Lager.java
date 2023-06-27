@@ -31,8 +31,8 @@ public class Lager {
      * @param artikel das angelegte objekt
      */
     public void legeAnArtikel(Artikel artikel) {
-            ErrorCheck.checkAlreadyInLager(artikelMap, artikel);
-            artikelMap.put(artikel.getArtikelNr(), artikel);
+        ErrorCheck.checkAlreadyInLager(artikelMap, artikel);
+        artikelMap.put(artikel.getArtikelNr(), artikel);
     }
 
     /**
