@@ -2,6 +2,7 @@ import java.util.*;
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * Dies ist eine Klasse die zur Interaktion mit einem Benutzer dient.
@@ -103,24 +104,46 @@ public class Lager {
     }
 
     /**
-     * Ermittelt einen Artikel an einer bestimmten Stelle im Lager
+     * Bestimmt die aktuelle Anzahl der Artikel im Lager
      * Prueft auf fehlerhafte Eingaben
-     *
-     * @param artikelNr identifiaktionnummer des Artikels
      */
-    public Artikel getArtikel(int artikelNr) { //changed argument from index to artikelNr
-        ErrorCheck.checkIfNotAlreadyInLager(artikelMap, artikelNr);
-        ErrorCheck.checkArtikelNr(artikelNr);
-
-        return artikelMap.get(artikelNr);
+    public int getArtikelAnzahl() {
+        return artikelMap.size();
     }
 
+    /**
+     * Gibt die ArtikelMap zurueck
+     */
+    public Map<Integer, Artikel> getArtikelMap() {
+        return artikelMap;
+    }
+
+    // --------------------------------- hinzugefügte Methoden aus Uebung 18 ---------------------------------
 
     /**
-     * Methode die eine an die Methode übergebene
-     * Operation auf alle Artikel im Lager anwendet
+     * Gibt ein Array von Artikel-Objekten zurück, das basierend auf dem angegebenen Sortierkriterium sortiert ist.
      *
-     * @param operation Operation die angewendet wird
+     * @param sortCriterion Das Sortierkriterium, das durch ein BiPredicate definiert wird und zwei Artikel-Objekte vergleicht.
+     * @return Das sortierte Array von Artikel-Objekten.
+     */
+    public Artikel[] getSorted(BiPredicate<Artikel, Artikel> sortCriterion) {
+        return artikelMap.values().stream()
+                .sorted(Comparator.comparing((Artikel artikel) -> artikel, (a1, a2) -> {
+                    if (sortCriterion.test(a1, a2)) {
+                        return -1;
+                    } else if (sortCriterion.test(a2, a1)) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                }))
+                .toArray(Artikel[]::new);
+    }
+
+    /**
+     * Wendet die angegebene Operation auf alle Artikel-Objekte im Lager an.
+     *
+     * @param operation Die Operation, die auf jedes Artikel-Objekt angewendet werden soll.
      */
     public void applyToArticles(Consumer<Artikel> operation) {
         for (Artikel artikel : artikelMap.values()) {
@@ -128,41 +151,67 @@ public class Lager {
         }
     }
 
-
     /**
-     * Methode, die eine Operation auf die Artikel
-     * anwendet, welche ein bestimmtes Kriterium erfüllen
+     * Ruft das Artikel-Objekt mit der angegebenen artikelNr aus dem Lager ab.
      *
-     * @param filterCrit filter kriterium
-     * @param operation  operation die angewendet wird
+     * @param artikelNr Die Identifikationsnummer des Artikel-Objekts.
+     * @return Das Artikel-Objekt mit der angegebenen artikelNr.
      */
-    public void applyToSomeArticles(Predicate<Artikel> filterCrit, Consumer<Artikel> operation) {
-        for (Artikel artikel : artikelMap.values()) {
-            if (filterCrit.test(artikel)) {
-                operation.accept(artikel);
-            }
-        }
+    public Artikel getArtikel(int artikelNr) {
+        ErrorCheck.checkIfNotAlreadyInLager(artikelMap, artikelNr);
+        ErrorCheck.checkArtikelNr(artikelNr);
+
+        return artikelMap.get(artikelNr);
     }
 
     /**
-     * Methode, die eine sortierte Liste der Artikel zurück-
-     * gibt, welche ein bestimmtes Suchkriterium erfüllen
+     * Filtert und gibt eine Liste von Artikel-Objekten zurück, die das angegebene Filterkriterium erfüllen.
      *
-     * @param searchCrit such kriterium
-     * @param sortCrit   sortier kriterium
-     * @return array mit gematchten Artikeln
+     * @param filterCriterion Das Filterkriterium, das durch ein Predicate definiert wird und jedes Artikel-Objekt testet.
+     * @return Die gefilterte Liste von Artikel-Objekten.
      */
-    public List<Artikel> getArticles(Predicate<Artikel> searchCrit, Comparator<Artikel> sortCrit) {
-        List<Artikel> matchingArticles = new ArrayList<>();
+    public List<Artikel> filter(Predicate<Artikel> filterCriterion) {
+        return artikelMap.values().stream()
+                .filter(filterCriterion)
+                .collect(Collectors.toList());
+    }
 
-        for (Artikel artikel : artikelMap.values()) {
-            if (searchCrit.test(artikel)) {
-                matchingArticles.add(artikel);
-            }
-        }
+    /**
+     * Wendet die angegebene Operation auf die Artikel-Objekte an, die das angegebene Filterkriterium erfüllen.
+     *
+     * @param filterCriterion Das Filterkriterium, das durch ein Predicate definiert wird und jedes Artikel-Objekt testet.
+     * @param operation       Die Operation, die auf die passenden Artikel-Objekte angewendet werden soll.
+     */
+    public void applyToSomeArticles(Predicate<Artikel> filterCriterion, Consumer<Artikel> operation) {
+        artikelMap.values().stream()
+                .filter(filterCriterion)
+                .forEach(operation);
+    }
 
-        matchingArticles.sort(sortCrit);
-        return matchingArticles;
+    /**
+     * Ruft eine sortierte Liste von Artikel-Objekten ab, die das angegebene Suchkriterium erfüllen.
+     *
+     * @param searchCriterion Das Suchkriterium, das durch ein Predicate definiert wird und jedes Artikel-Objekt testet.
+     * @param sortCriterion   Das Sortierkriterium, das durch ein Comparator definiert wird und Artikel-Objekte vergleicht.
+     * @return Die sortierte Liste der passenden Artikel-Objekte.
+     */
+    public List<Artikel> getArticles(Predicate<Artikel> searchCriterion, Comparator<Artikel> sortCriterion) {
+        return artikelMap.values().stream()
+                .filter(searchCriterion)
+                .sorted(sortCriterion)
+                .toList();
+    }
+
+    /**
+     * Filtert und gibt eine Liste von Artikel-Objekten zurück, die alle angegebenen Filterkriterien erfüllen.
+     *
+     * @param filterCriteria Die Filterkriterien, die durch ein Array von Predicates definiert werden und jedes Artikel-Objekt testen.
+     * @return Die gefilterte Liste von Artikel-Objekten.
+     */
+    public List<Artikel> filterAll(Predicate<Artikel>[] filterCriteria) {
+        return artikelMap.values().stream()
+                .filter(article -> Arrays.stream(filterCriteria).allMatch(criteria -> criteria.test(article)))
+                .toList();
     }
 
     /**
@@ -199,20 +248,5 @@ public class Lager {
         sb.append(String.format("Gesamtwert%62s", gesamtWert));
 
         return sb.toString();
-    }
-
-    /**
-     * Bestimmt die aktuelle Anzahl der Artikel im Lager
-     * Prueft auf fehlerhafte Eingaben
-     */
-    public int getArtikelAnzahl() {
-        return artikelMap.size();
-    }
-
-    /**
-     * Gibt die ArtikelMap zurueck
-     */
-    public Map<Integer, Artikel> getArtikelMap() {
-        return artikelMap;
     }
 }
