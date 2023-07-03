@@ -123,7 +123,8 @@ public class Lager {
     /**
      * Gibt ein Array von Artikel-Objekten zurück, das basierend auf dem angegebenen Sortierkriterium sortiert ist.
      *
-     * @param sortCriterion Das Sortierkriterium, das durch ein BiPredicate definiert wird und zwei Artikel-Objekte vergleicht.
+     * @param sortCriterion Das Sortierkriterium, das durch ein BiPredicate definiert
+     *                      wird und zwei Artikel-Objekte vergleicht.
      * @return Das sortierte Array von Artikel-Objekten.
      */
     public Artikel[] getSorted(BiPredicate<Artikel, Artikel> sortCriterion) {
@@ -199,7 +200,7 @@ public class Lager {
         return artikelMap.values().stream()
                 .filter(searchCriterion)
                 .sorted(sortCriterion)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     /**
@@ -211,7 +212,7 @@ public class Lager {
     public List<Artikel> filterAll(Predicate<Artikel>[] filterCriteria) {
         return artikelMap.values().stream()
                 .filter(article -> Arrays.stream(filterCriteria).allMatch(criteria -> criteria.test(article)))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     /**
@@ -238,14 +239,17 @@ public class Lager {
                 double gesamtPreis = preis * bestand;
                 gesamtWert += gesamtPreis;
 
-                sb.append(String.format("%-6d%-43s%-9s%-9d%-6s", artNr, art, preis, bestand, gesamtPreis));
+                String formatPreis = String.format("%.2f", preis);
+                String formatGesamtpreis = String.format("%.2f", gesamtPreis);
+
+                sb.append(String.format("%-6d%-43s%-9s%-9d%-6s", artNr, art, formatPreis, bestand, formatGesamtpreis));
                 sb.append("\n");
             }
         }
 
         sb.append("---------------------------------------------------------------------------");
         sb.append("\n");
-        sb.append(String.format("Gesamtwert%62s", gesamtWert));
+        sb.append(String.format("Gesamtwert: %.2f", gesamtWert ));
 
         return sb.toString();
     }
