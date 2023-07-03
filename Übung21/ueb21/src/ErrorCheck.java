@@ -99,7 +99,7 @@ public class ErrorCheck {
     /**
      * Checks if an object does not yet exist in the inventory.
      * @param artikelNr Article number
-     * @param artikel Object
+     * @param artikelMap  Object Map
      */
     public static void checkIfNotAlreadyInLager(Map<Integer, Artikel> artikelMap, int artikelNr) {
         if (artikelMap.get(artikelNr) == null) {

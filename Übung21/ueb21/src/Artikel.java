@@ -150,7 +150,8 @@ public class Artikel {
                 ART_MELDUNG
         );
 
-        this.art = art.trim();
+        assert art != null;
+        this.art = String.valueOf(art.isBlank());
     }
 
 
@@ -288,11 +289,8 @@ public class Artikel {
         if (artikelNr != other.artikelNr)
             return false;
         if (art == null) {
-            if (other.art != null)
-                return false;
-        } else if (!art.equals(other.art))
-            return false;
-        return true;
+            return other.art == null;
+        } else return art.equals(other.art);
     }
 
 
