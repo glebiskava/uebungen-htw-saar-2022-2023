@@ -1,15 +1,14 @@
-/*
-Dies ist ein Programm, das ein zeichen ausgibt
-@autor: Elisee BRAND & Leopold MITTELBERGER
-@Version: 1.0
+/**
+ * Dies ist ein Programm, das ein zeichen ausgibt
+ * @autor: Elisee BRAND & Leopold MITTELBERGER
+ * @version: 1.0
 */
 
 #include <stdio.h>
 void main (){
-    // int input 
     int input;
     int test = 0;
-    // prendre la valeur de lutilistauer
+
     printf("Geben Sie eine Zahl ein: ");
     scanf("%d", &input);
     if (input <= 0){
