@@ -1,3 +1,8 @@
+/*
+Dies ist ein Programm, das die Fibonacci-Zahlen berechnet.
+@autor: Elisee BRAND & Leopold MITTELBERGER
+@Version: 1.0
+*/
 #include <stdio.h>
 
 int fibonacci(int n) {

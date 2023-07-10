@@ -1,3 +1,8 @@
+/*
+Dies ist ein programm, call by value und call by reference zu demonstrieren.
+@autor: Elisee BRAND & Leopold MITTELBERGER
+@Version: 1.0
+*/
 #include <stdio.h>
 
 int i=333; 

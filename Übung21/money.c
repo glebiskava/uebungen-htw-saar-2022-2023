@@ -1,3 +1,8 @@
+/*
+Dies ist ein Programm, das den Nettopreis, die Mehrwertsteuer, den Brutto- und Rechnungsbetrag berechnet.
+@autor: Elisee BRAND & Leopold MITTELBERGER
+@Version: 1.0
+*/
 #include <stdio.h>
 
 int main() {
