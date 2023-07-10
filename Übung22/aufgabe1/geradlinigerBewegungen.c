@@ -79,6 +79,18 @@ void methodenRuf(){
                 GeschwindigkeitGB = berechneGeschwindigkeitGleichmaessigBeschlaunigtenBewegung(10, 5, 7, 9);
                 printf("impuls: %f\n\n", GeschwindigkeitGB);
 
+                printf("Gleichformigen bewegung berechen (s = v * (t * t0)), v=5, t=9, t0=7, s=315 erwartet\n");
+                leichformen = berechneGleichfoermigenBewegung(5, 9, 7);
+                printf("Geschwindigkeit (v = s/t): %f\n\n", leichformen);
+
+                printf("Gleichmaessig beschleunigten bewegung berechen (s = (v * v - v0 * v0) / (2 * a)), v=10, v0=5, a=7, s=5.357143 erwartet\n");
+                GleichmaessigB = berechneGleichmaessigBeschleunigtenBewegung(10, 5, 7);
+                printf("beschleuningung (a = v/t): %f\n\n", GleichmaessigB);
+
+                printf("Geschwindigkeit gleichmaessig beschlaunigten bewegung berechen (a * (t - t0) + v0), a=2, t=4, t0=6, v0=8, v=4 erwartet\n");
+                GeschwindigkeitGB = berechneGeschwindigkeitGleichmaessigBeschlaunigtenBewegung(2, 4, 6, 8);
+                printf("impuls: %f\n\n", GeschwindigkeitGB);
+
                 break;
             case 2:
                 printf("Geben Sie eine Zahl fuer v ein: ");

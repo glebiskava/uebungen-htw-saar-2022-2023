@@ -67,16 +67,28 @@ void methodenRuf(){
         switch (input){
             case 1:
                 printf("Automatischer Test\n");
-                printf("Geschwindigkeit berechnen (v = s/t) s=10, t=5, v=2 erwartet\n");
+                printf("\nGeschwindigkeit berechnen (v = s/t) s=10, t=5, v=2 erwartet\n");
                 geschwindigkeit = berechneGeschwindigkeit(10, 5);
                 printf("Geschwindigkeit (v = s/t): %f\n", geschwindigkeit);
 
-                printf("Beschleunigung berechnen (a = v/t) v=10, t=5, a=2 erwartet\n");
+                printf("\nBeschleunigung berechnen (a = v/t) v=10, t=5, a=2 erwartet\n");
                 beschleuningung = berechneBeschleunigung(10, 5);
                 printf("beschleuningung (a = v/t): %f\n", beschleuningung);
 
-                printf("Impuls berechnen (p = m * v) m=10, v=5, p=50 erwartet\n");
+                printf("\nImpuls berechnen (p = m * v) m=10, v=5, p=50 erwartet\n");
                 impuls = berechneImpuls(10, 5);
+                printf("impuls: %f\n", impuls);
+
+                printf("\nGeschwindigkeit berechnen (v = s/t), s=6, t=3, v=2 erwartet\n");
+                geschwindigkeit = berechneGeschwindigkeit(6, 3);
+                printf("Geschwindigkeit (v = s/t): %f\n", geschwindigkeit);
+
+                printf("\nBeschleunigung berechnen (a = v/t) v=8, t=4, a=2 erwartet\n");
+                beschleuningung = berechneBeschleunigung(8, 4);
+                printf("beschleuningung (a = v/t): %f\n", beschleuningung);
+
+                printf("\nImpuls berechnen (p = m * v), m=11, v=7, p=77 erwartet\n");
+                impuls = berechneImpuls(11, 7);
                 printf("impuls: %f\n", impuls);
 
                 break;
