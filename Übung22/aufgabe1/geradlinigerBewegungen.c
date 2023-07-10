@@ -5,7 +5,7 @@
 */
 
 #include <stdio.h>
-#include "aufgabe1B.h"
+#include "geradlinigerBewegungen.h"
 
 
 Strecke berechneGleichfoermigenBewegung(Geschwindigkeit v, Zeit t, Zeit t0) {

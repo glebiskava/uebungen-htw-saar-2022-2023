@@ -1,12 +1,12 @@
 /**
- * Dies ist die Menuausgabe für die Berechnung geradliniger Bewegungen
+ * Dies ist die Menuausgabe für die Berechnung mechanischer Groesse
  * @author Leopold Mittelberger, Elisee Brand
  * @version 1.0
 */
 
 
 #include <stdio.h>
-#include "aufgabe1A.h"
+#include "mechanicherGroesse.h"
 
 Geschwindigkeit berechneGeschwindigkeit(Strecke s, Zeit t){
     return s/t;

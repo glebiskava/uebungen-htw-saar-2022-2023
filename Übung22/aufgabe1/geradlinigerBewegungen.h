@@ -6,7 +6,7 @@
 
 #define aufgabelB
 
-#include "aufgabe1A.h"
+#include "mechanicherGroesse.h"
 
 Strecke berechneGleichfoermigenBewegung(Geschwindigkeit v, Zeit t, Zeit t0);
 Strecke berechneGleichmaessigBeschleunigtenBewegung(Geschwindigkeit v, Geschwindigkeit v0, Beschleunigung a);
